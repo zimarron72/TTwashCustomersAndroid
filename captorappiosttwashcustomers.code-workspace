@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../appiosttwashcustomers"
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.osx": {}
+	
+	}
+}
