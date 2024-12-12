@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import {
-  SignInWithApple,
-  SignInWithAppleResponse,
-  SignInWithAppleOptions,
-} from '@capacitor-community/apple-sign-in';
+
+import {AutenticacionService} from '../servicios/autenticacion'
 
 
 @Component({
@@ -15,78 +13,74 @@ import {
   styleUrls: ['./login.page.scss'],
   standalone: false
 })
-export class LoginPage implements OnInit {
+export class LoginPage  {
 
-  user : any
+
+  
+  form_login!: FormGroup;
+  
+
+
 
 
   constructor(
   private alertController: AlertController,
   private router: Router,
-) { }
+ private servicioauth : AutenticacionService,
+  private formBuilder: FormBuilder,
+  
+) { 
 
-  ngOnInit() {
-  }
-
-  openAppleSignIn() {
-
-    let options: SignInWithAppleOptions = {
-      clientId: 'com.appiosid.ttwashexpress',
-      redirectURI: '',
-      scopes: 'email name',
-      state: '12345',
-      nonce: 'nonce',
-    };
-
-   /* SignInWithApple.authorize(options)
-     .then((result: SignInWithAppleResponse) => {
-       // Handle user information
-       // Validate token with server and create new session
-     })
-     .catch(error => {
-       // Handle error
-     });  */
-     SignInWithApple.authorize(options)
-     .then(async (res) => {
-       if (res.response && res.response.identityToken) {
-         this.user = res.response;
-         this.presentAlert(res.response.identityToken);
-       } else {
-         //this.presentAlert(0);
-         this.router.navigate(['/tabs']);
-       }
-     })
-     .catch((response) => {
-      // this.presentAlert(0);
-       this.router.navigate(['/tabs']);
-     }); 
-     
-
- 
-   }
-
-
-   async presentAlert(x : any) {
-    if(x == 0 ) {
-    const alert = await this.alertController.create({
-      header: 'Login Failed',
-      message: 'Please try again later',
-      buttons: ['OK'],
-    });
-    await alert.present();
+  this.form_login = this.formBuilder.group({
+    email: [, { validators: [Validators.required]}],
+    password: [, { validators: [Validators.required] }]
     
-  }
-  else {
-    const alert = await this.alertController.create({
-      header: 'Wellcome',
-      message: x,
-      buttons: ['OK'],
-    });
-    await alert.present();
-  }
+  });
 
-  }
+}
 
+////////LFIREBASE EMAIL-CONTRASENA///////
+ async send() {
+
+  if (this.form_login.valid) {
+
+  
+    var email = this.form_login.get("email")?.value;
+      var password = this.form_login.get("password")?.value;
+      this.servicioauth.login(email,password)
+  
+    }
+  
+    else {
+      const alert = await this.alertController.create({
+        header: 'Warning',
+        message: 'Please complete your information',
+        buttons: ['OK'],
+      });
+      await alert.present(); 
+    }
+  
+
+
+ }    
+
+registro () {
+
+      this.router.navigate(['registro']);
+     }
+   
+resetpassword (){
+   
+       this.router.navigate(['resetpassword']);
+     }
+
+/////////////LOGIN APPLE////////////////// 
+  
+openAppleSignIn1() {
+
+  this.servicioauth.openAppleSignIn()
+  
+}
 
 
 

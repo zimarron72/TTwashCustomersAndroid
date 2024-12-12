@@ -1,11 +1,11 @@
-
-
-
 <ion-header>
   <ion-toolbar color="primary">   
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+
 
 <ion-content [fullscreen]="true">
   <div class="app-logo"></div>
@@ -19,19 +19,67 @@
     color: #fff;  
       font-size: x-small;  
    font-style: oblique;">with the usual care!</div>
-  <div style="text-align: center; font-weight: bolder; color:#f2f2f2">2.1.3</div>
-
+  <div style="text-align: center; font-weight: bolder; color:#f2f2f2">1.0.0</div>
+<!---SIGN APPLE-->
   <ion-card >
     <ion-card-content>
-      <ion-button expand="full" (click)="openAppleSignIn()">
+      <ion-button expand="full" (click)="openAppleSignIn1()">
         <ion-icon name="logo-apple" slot="start"></ion-icon>
         Sign in
       </ion-button>
     </ion-card-content>
   </ion-card>
+<!---SIGN FIREBASE EMAIL-PASSSWORD-->
+  <ion-list lines="none">
+  <form [formGroup]="form_login" >
+    <ion-item lines="full" class="platino">
+      <ion-label  position="floating" class="platino">Email</ion-label>
+      
+      <ion-icon name="mail" color="light" slot="end"></ion-icon>
+      <ion-input   color="light" placeholder="Email" formControlName="email" type="email" required></ion-input>
+     
+    </ion-item>
+    <ion-item lines="full" >
+      <ion-label position="floating" class="platino">Password</ion-label>
+      <ion-icon name="lock-closed" color="light" slot="end"></ion-icon>
+     
+      <ion-input color="light" placeholder="Password" formControlName="password" type="password" required></ion-input>
+    </ion-item> 
+  </form>  
+</ion-list>
+<ion-button color="primary" expand="block"  (click)="send()">SEND</ion-button>
 
 
 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+  
+        
+        <ion-button  color="primary" expand="block" (click) = "resetpassword()" >FORGOT YOUR PASSWORD</ion-button>
+      </ion-col>
+    </ion-row>
+  
+   
+  
+    <!--<ion-row>
+      <ion-col>
+        <ion-button   color="primary" expand="block" (click) = "logingoogle()" >Sign in by Gmail</ion-button>
+      </ion-col>
+    </ion-row>-->
+  
+  <ion-row>
+      <ion-col>
+        <div class="separador">Don't have an account?</div>    
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col>
+        <ion-button   color="primary" expand="block" (click) = "registro()" >Sing up an account</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
   <!--<app-explore-container name="Login"></app-explore-container>-->
