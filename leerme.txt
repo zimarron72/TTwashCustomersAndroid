@@ -1,0 +1,28 @@
+Ionic:
+
+   Ionic CLI                     : 7.2.0 (/Users/jormansandoval/.nvm/versions/node/v20.17.0/lib/node_modules/@ionic/cli)
+   Ionic Framework               : @ionic/angular 8.4.1
+   @angular-devkit/build-angular : 19.0.4
+   @angular-devkit/schematics    : 19.0.4
+   @angular/cli                  : 19.0.4
+   @ionic/angular-toolkit        : 12.1.1
+
+Capacitor:
+
+   Capacitor CLI      : 6.2.0
+   @capacitor/android : 6.2.0
+   @capacitor/core    : 6.2.0
+   @capacitor/ios     : 6.2.0
+
+Utility:
+
+   cordova-res : 0.15.4
+   native-run  : 2.0.1
+
+System:
+
+   NodeJS : v20.17.0 (/Users/jormansandoval/.nvm/versions/node/v20.17.0/bin/node)
+   npm    : 10.8.2
+   OS     : macOS Unknown
+
+   Se logro usar el plugin capacitorhttp para arrancar login con firebase. Esta pendiente implementar la verificacion del token al back/end php

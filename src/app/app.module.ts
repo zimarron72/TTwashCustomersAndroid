@@ -15,15 +15,16 @@ import { Storage } from '@ionic/storage-angular';
 
 
 import { environment } from '../environments/environment';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFirebaseApp, initializeApp, getApp } from '@angular/fire/app';
+import { provideAuth, getAuth, indexedDBLocalPersistence, initializeAuth } from '@angular/fire/auth';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
 //import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 
 
 import {  ReactiveFormsModule } from '@angular/forms';
+import { Capacitor } from '@capacitor/core';
 
 
 @NgModule({
@@ -43,9 +44,19 @@ import {  ReactiveFormsModule } from '@angular/forms';
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-  provideAuth(() => getAuth()),
-  provideFirestore(() => getFirestore()),
+  provideAuth(() => {
+    if (Capacitor.isNativePlatform()) {
+      return initializeAuth(getApp(), {
+        persistence: indexedDBLocalPersistence
+      });
+    } else {
+      return getAuth()
+    }
+  }), 
   provideStorage(() => getStorage()),
+  provideMessaging(() => getMessaging()),
+  
+
   AutenticacionService,
   LoadingController,
   Storage,
