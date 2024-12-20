@@ -1,0 +1,57 @@
+
+
+ion-content{
+    --ion-background-color:#f2f2f2;
+}
+
+.separador {
+    text-align: center;
+    color: #f2f2f2;
+}
+
+
+
+::ng-deep .etiqueta {
+
+    color: #f2f2f2;
+}
+
+.app-logo{
+    background-image: url(https://washtt.com/app_logo_inicio_ttwash_express.png);
+    height: 150px;
+    width: 150px;
+    background-repeat: no-repeat;
+    //border-radius: 320px;
+    background-position: center;
+    background-size: contain;
+    //background-color: #e3f8ff;
+    margin: 20px auto;
+  }
+
+  .lleno {
+    
+    --ion-text-color: #f2f2f2;
+    --ion-text-color-rgb: 255,255,255;
+  
+    --ion-border-color: #f2f2f2;
+    }
+
+    ion-content {
+        --ion-background-color: #2E4F9C;
+        --ion-background-color-rgb: 46, 79, 156;
+      }
+    
+      ::ng-deep ion-item {
+        --ion-item-background: #2E4F9C;
+      }
+
+      ::ng-deep .sodio {
+        color:#ffffff;
+      }
+
+
+      ion-icon[name="eye"], ion-icon[name="eye-off"] {
+        font-size: 24px;
+        color: #777;
+        cursor: pointer;
+      }

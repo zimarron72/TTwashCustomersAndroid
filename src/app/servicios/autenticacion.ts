@@ -154,93 +154,63 @@ export class AutenticacionService {
 
   const alert = await this.alertController.create({
     header,
-    message: code + ' Sorry, ' + mensaje
+    message: code + ' Sorry, ' + mensaje,
+    buttons: ['OK'],
   });
   await alert.present();  
 
 }
 
-
-
-
- /* async register( email: string , password: string, name: string) {
-    this.loading.simpleLoader()
-    await createUserWithEmailAndPassword(this.auth, email, password).then(
-      async (_userCredential) => {
-  
-        var data = this.auth
-        await this.localstorage.setObject('usuario',data)
-       
-        this.doPost('https://washtt.com/v1_api_clientes_registro.php', {name: name , email: email , password: password  }).subscribe({
-          next: async (data : any) => {
-            this.loading.dismissLoader()   
-             switch(data.respuesta) 
-             {
-               case 'ERROR':
-  
-               const alert5 = await this.alertController.create({
-                header: 'Error',
-                message: '(5) Sorry, an error occurred,Please try again error 1: ' + data.mensaje,
-                buttons: ['OK'],
-              });
-              await alert5.present(); 
-  
-              
-               break;
-               case 'DUPLICADO_USUARIO':
-  
-               const alert6 = await this.alertController.create({
-                header: 'Error',
-                message: '(6) There is already an account with this email: ',
-                buttons: ['OK'],
-              });
-              await alert6.present(); 
-  
-                 
-               break;
-               case 'OK':
-            
-                await this.localstorage.setData('autenticacion_tipo','correo_pass')
-                this.router.navigate(['/tabtobooks/home']);
-               break;  
-        
-             }
-        
-          },
-          error: async error => {
-            this.loading.dismissLoader()   
-              var errorMessage = error.message;
-  
-              const alert7 = await this.alertController.create({
-                header: 'Error',
-                message: '(7) There was an error!'+ errorMessage,
-                buttons: ['OK'],
-              });
-              await alert7.present(); 
-                      
+register(email: string , password: string, name: string) {
+  this.loading.simpleLoader()
+  createUserWithEmailAndPassword(this.auth, email, password).then(
+    async (_user) => {
+      this.loading.dismissLoader() 
+      //var url = "'https://washtt.com/v1_api_clientes_registro.php"
+      var url = "'https://washtt.com/ v1_api_probador.php"
+     
+      var data1 = { email: email, password: password, name : name }
+      this.cHttps(url, data1).subscribe(
+        async (res: any) => {
+          let mensaje
+          let header
+          let code
+          switch (res.data.respuesta) {
+            case 'ERROR':  
+            code = '02'
+            header = 'Error'              
+            mensaje = 'an error occurred,please login again' + res.data.mensaje
+            this.aviso(header,mensaje,code)                  
+            break;            
+            case 'OK':
+              /*this.wonderPush.setUserId(data.userid)
+              this.wonderPush.addTag('clientes')*/
+              await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
+              alert(res.data.respuesta)
+             // this.router.navigate(['/tabtobooks']);
+              break;           
+            default:
+            code = '02'
+            header = 'Error' 
+            mensaje = 'something is wrong right now. Please try again later.' 
+            this.aviso(header,mensaje,code)      
           }
-        });   
+                        
+        }
+      )
+
+    }).catch(
+      (error) => { 
+        this.loading.dismissLoader()
+        console.log(error)
+        alert(error)
         
       }
-  
-    ).catch(async (error) => {
-  
-      this.loading.dismissLoader()   
-      var errorMessage = error.message;
-      const alert8 = await this.alertController.create({
-        header: 'Error',
-        message: 'There was an error!, ' + errorMessage,
-        buttons: ['OK'],
-      });
-      await alert8.present(); 
-    });
-  
-    }*/
+    )
 
 
 
-
-
+}
 
 
   logout() {

@@ -21,42 +21,61 @@
    font-style: oblique;">with the usual care!</div>
   <div style="text-align: center; font-weight: bolder; color:#f2f2f2">1.0.0</div>
 <!---SIGN APPLE-->
-  <ion-card >
-    <ion-card-content>
-      <ion-button expand="full" (click)="openAppleSignIn1()">
-        <ion-icon name="logo-apple" slot="start"></ion-icon>
+<ion-grid>
+
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" (click)="openAppleSignIn1()">
+        <ion-icon name="logo-apple" slot="end"></ion-icon>
         Sign in
       </ion-button>
-    </ion-card-content>
-  </ion-card>
+    </ion-col>
+  </ion-row>
 <!---SIGN FIREBASE EMAIL-PASSSWORD-->
-  <ion-list lines="none">
+<ion-row>
+  <ion-col> 
+      <div style="text-align: center;
+    color: #fff;    
+   font-style: oblique;">or! sign in with account:</div>
+ </ion-col>
+</ion-row>
+
   <form [formGroup]="form_login" >
-    <ion-item lines="full" class="platino">
-      <ion-label  position="floating" class="platino">Email</ion-label>
-      
-      <ion-icon name="mail" color="light" slot="end"></ion-icon>
-      <ion-input   color="light" placeholder="Email" formControlName="email" type="email" required></ion-input>
-     
-    </ion-item>
+
+    <ion-row>
+      <ion-col>  
+        <ion-list lines="none">
+          
+      <ion-item lines="full" >
+ <ion-label position="floating" class="platino">Email</ion-label>  
+   <ion-icon name="mail" color="light" slot="end"></ion-icon>
+<ion-input   color="light"  formControlName="email" type="email" required></ion-input>     
+    </ion-item> 
+
     <ion-item lines="full" >
       <ion-label position="floating" class="platino">Password</ion-label>
-      <ion-icon name="lock-closed" color="light" slot="end"></ion-icon>
-     
-      <ion-input color="light" placeholder="Password" formControlName="password" type="password" required></ion-input>
+      <ion-input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"></ion-input>
+      <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
     </ion-item> 
+
+  </ion-list>
+    </ion-col>
+  </ion-row> 
+
   </form>  
-</ion-list>
-<ion-button color="primary" expand="block"  (click)="send()">SEND</ion-button>
+
+  <ion-row>
+    <ion-col>
+<ion-button color="primary" expand="block"  (click)="send()">Send</ion-button>
+</ion-col>
+</ion-row> 
 
 
 
-  <ion-grid>
+
     <ion-row>
-      <ion-col>
-  
-        
-        <ion-button  color="primary" expand="block" (click) = "resetpassword()" >FORGOT YOUR PASSWORD</ion-button>
+      <ion-col>       
+        <ion-button  color="primary" expand="block" (click) = "resetpassword()" >Forgot your password</ion-button>
       </ion-col>
     </ion-row>
   
@@ -68,15 +87,11 @@
       </ion-col>
     </ion-row>-->
   
-  <ion-row>
-      <ion-col>
-        <div class="separador">Don't have an account?</div>    
-      </ion-col>
-    </ion-row>
+ 
   
     <ion-row>
       <ion-col>
-        <ion-button   color="primary" expand="block" (click) = "registro()" >Sing up an account</ion-button>
+        <ion-button   color="primary" expand="block" (click) = "registro()" >Don't have an account?</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

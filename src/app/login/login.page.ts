@@ -17,7 +17,9 @@ export class LoginPage  {
 
 
   
-  form_login!: FormGroup;
+  form_login!: FormGroup
+  showPassword: boolean = false;
+
   
 
 
@@ -82,7 +84,9 @@ openAppleSignIn1() {
   
 }
 
-
+ togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    }
 
 }
 
