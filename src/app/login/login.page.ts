@@ -2,7 +2,6 @@ import { Component} from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
 import {AutenticacionService} from '../servicios/autenticacion'
 
 

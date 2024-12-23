@@ -14,7 +14,12 @@ import {
   SignInWithAppleOptions,
 } from '@capacitor-community/apple-sign-in';
 
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Auth, 
+  signInWithEmailAndPassword,
+   createUserWithEmailAndPassword, 
+   signOut,
+   sendPasswordResetEmail
+  } from '@angular/fire/auth';
 
 
 @Injectable({
@@ -151,14 +156,22 @@ export class AutenticacionService {
   }
 
   async aviso(header : string,mensaje : string, code : string) {
-
+if(code == '') {
+  const alert = await this.alertController.create({
+    header,
+    message: mensaje,
+    buttons: ['OK'],
+  });
+  await alert.present();  
+}
+else {
   const alert = await this.alertController.create({
     header,
     message: code + ' Sorry, ' + mensaje,
     buttons: ['OK'],
   });
   await alert.present();  
-
+}
 }
 
 register(email: string , password: string, name: string) {
@@ -166,8 +179,8 @@ register(email: string , password: string, name: string) {
   createUserWithEmailAndPassword(this.auth, email, password).then(
     async (_user) => {
       this.loading.dismissLoader() 
-      //var url = "'https://washtt.com/v1_api_clientes_registro.php"
-      var url = "'https://washtt.com/ v1_api_probador.php"
+      //var url = "https://washtt.com/v1_api_clientes_registro.php"
+      var url = "https://washtt.com/v1_api_probador.php"
      
       var data1 = { email: email, password: password, name : name }
       this.cHttps(url, data1).subscribe(
@@ -176,11 +189,15 @@ register(email: string , password: string, name: string) {
           let header
           let code
           switch (res.data.respuesta) {
-            case 'ERROR':  
-            code = '02'
-            header = 'Error'              
-            mensaje = 'an error occurred,please login again' + res.data.mensaje
-            this.aviso(header,mensaje,code)                  
+            case 'ERROR': 
+            _user.user.delete().then(
+              (cat) => {
+                code = '02'
+                header = 'Error'              
+                mensaje = 'an error occurred,please try again' + res.data.mensaje
+                this.aviso(header,mensaje,code) 
+              }
+            )                            
             break;            
             case 'OK':
               /*this.wonderPush.setUserId(data.userid)
@@ -190,10 +207,15 @@ register(email: string , password: string, name: string) {
              // this.router.navigate(['/tabtobooks']);
               break;           
             default:
-            code = '02'
+              _user.user.delete().then(
+                (cat) => {
+                  code = '02'
             header = 'Error' 
             mensaje = 'something is wrong right now. Please try again later.' 
-            this.aviso(header,mensaje,code)      
+            this.aviso(header,mensaje,code)
+                }
+              )
+                 
           }
                         
         }
@@ -202,16 +224,58 @@ register(email: string , password: string, name: string) {
     }).catch(
       (error) => { 
         this.loading.dismissLoader()
+       let  code = '03'
+       let header = 'Error' 
+        let mensaje = error 
+        this.aviso(header,mensaje,code)
         console.log(error)
-        alert(error)
+        
         
       }
     )
 
-
-
 }
 
+ 
+resetpassword(email : string) {
+  this.loading.simpleLoader()  
+  sendPasswordResetEmail(this.auth,email).then(() => {
+    // Password reset email sent!
+    // ..
+    this.loading.dismissLoader()   
+
+    let  code = ''
+    let header = 'Notice' 
+     let mensaje = 'An email has been sent to your account to recover your password'
+     this.aviso(header,mensaje,code)        
+    this.router.navigate(['login']);
+
+  }).catch((error) => {
+    this.loading.dismissLoader() 
+    //var errorCode = error.code;
+    let  code = '04'
+    let header = 'Error' 
+    let mensaje
+    switch(error.code) {
+      case 'auth/invalid-email':
+        mensaje = 'Invalid email'
+       
+      break;
+      case 'auth/invalid-email':
+        mensaje = 'User not found'
+       
+      break;
+
+      default:
+       mensaje = 'there is a problem, please try again later.'
+      
+    }
+     
+    this.aviso(header,mensaje,code) 
+    
+    // ..
+  });
+}
 
   logout() {
     return signOut(this.auth);

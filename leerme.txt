@@ -25,5 +25,9 @@ System:
    npm    : 10.8.2
    OS     : macOS Unknown
 
-   Sobre la base de los avances del commit previo, se avanzo en completar el codigo html y script de registro. Se consolido el login en html
-   y script. Esta pendiente implementar la verificacion del token al back/end php
+   Sobre la base de los avances del commit previo, ya se implemento
+   recuperacion de clave. faltaria ahora el sing de apple, para ingresar
+   dentros de los detalles internos de la app
+   . 
+   
+   Esta pendiente implementar la verificacion del token al back/end php
