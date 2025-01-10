@@ -18,7 +18,10 @@ import { Auth,
   signInWithEmailAndPassword,
    createUserWithEmailAndPassword, 
    signOut,
-   sendPasswordResetEmail
+   sendPasswordResetEmail,
+   OAuthProvider,
+   signInWithCredential,
+   AuthCredential
   } from '@angular/fire/auth';
 
 
@@ -40,6 +43,7 @@ export class AutenticacionService {
     private alertController: AlertController,
     private localstorage: StorageService,
     private loading: LoadingService,
+    //private appleResponse : SignInWithAppleResponse
     //private wonderPush: WonderPush,
   ) { }
   
@@ -80,7 +84,7 @@ export class AutenticacionService {
                     this.wonderPush.addTag('clientes')*/
                     await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
                     alert(res.data.respuesta)
-                   // this.router.navigate(['/tabtobooks']);
+                    this.router.navigate(['/tabs/tabtobooks']);
                     break;
                   case 'TOKEN ERROR':
                   code = '01'
@@ -277,8 +281,11 @@ resetpassword(email : string) {
   });
 }
 
-  logout() {
-    return signOut(this.auth);
+  logout_regular() {
+    signOut(this.auth).then(
+(_res) => {
+  this.router.navigate(['/login']);
+})
   }
 
 
@@ -307,12 +314,18 @@ resetpassword(email : string) {
     };
 
 
-    SignInWithApple.authorize(options)
+ /* SignInWithApple.authorize(options)
       .then(async (res) => {
         if (res.response && res.response.identityToken) {
           let user = res.response;
-          this.presentAlert(res.response.identityToken);
-        } else {
+          //Create a custom OAuth provider 
+          const provider = new OAuthProvider('apple.com')
+          // Create sign in credentials with our token
+          const credential = provider.credential({
+           idToken : this.appleResponse.response.identityToken
+
+          })
+                   } else {
           //this.presentAlert(0);
           this.router.navigate(['/tabs']);
         }
@@ -320,7 +333,71 @@ resetpassword(email : string) {
       .catch((_response) => {
         // this.presentAlert(0);
         this.router.navigate(['/tabs']);
-      });
+      });*/
+
+     SignInWithApple.authorize(options).then(async (result: SignInWithAppleResponse) => {
+        // Handle user information
+        // Validate token with server and create new session
+         let idtoken = result.response.identityToken
+         let email = result.response.email
+         let name = result.response.familyName
+         let login = 'ios'
+         await this.localstorage.setData('idtoken',idtoken)
+            var url = "https://washtt.com/v1_api_clientes_login.php"
+            var data1 = { email: email, name: name, idtoken : idtoken, login : login }
+            this.cHttps(url, data1).subscribe(
+              async (res: any) => {
+                let mensaje
+                let header
+                let code
+                switch (res.data.respuesta) {
+                  case 'ERROR':  
+                  code = '01'
+                  header = 'Error'              
+                  mensaje = 'an error occurred,please login again'
+                  this.aviso(header,mensaje,code)                  
+                  break;            
+                  case 'TODO_OK':
+                    /*this.wonderPush.setUserId(data.userid)
+                    this.wonderPush.addTag('clientes')*/
+                    await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
+                    alert(res.data.respuesta)
+                    this.router.navigate(['/tabs/tabtobooks']);
+                    break;
+                  case 'TOKEN ERROR':
+                  code = '01'
+                  header = 'Error' 
+                  mensaje = 'Invalid or expired token,please login again'
+                  this.aviso(header,mensaje,code)                       
+                  break;            
+                  case 'NOT_CUSTOMER':
+                  code = '01'
+                  header = 'Error' 
+                  mensaje = 'user not active in this app. Please open a new account'                     
+                  this.aviso(header,mensaje,code)
+                  break;
+                  default:
+                  code = '01'
+                  header = 'Error' 
+                  mensaje = 'something is wrong right now. Please try again later.' 
+                  this.aviso(header,mensaje,code)      
+                }
+                              
+              }
+            )
+      })
+      .catch(error => {
+        let  code = '05'
+        let header = 'Error'
+        let mensaje    
+        switch(error.message)  {
+        case "The operation couldn’t be completed. (com.apple.AuthenticationServices.AuthorizationError error 1000.)":
+        mensaje = 'The operation couldn’t be completed' 
+         this.aviso(header,mensaje,code)
+         break;
+        }
+         console.log(error)
+      }); 
 
 
 
