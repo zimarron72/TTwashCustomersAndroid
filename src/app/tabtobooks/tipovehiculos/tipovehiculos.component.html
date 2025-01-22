@@ -1,9 +1,63 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
     <ion-title>To book</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding"> Tipos de vehiculos. </ion-content>
+<div style="background-color:#cb033c; color: #fff">
+  <ion-button>     
+    Please select
+  </ion-button>
+</div>
+<ion-content class="ion-padding"> 
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!--<ion-content class="ion-padding">     
+    <ion-refresher slot="fixed" disabled="false" (ionRefresh)="doRefresh($event)" pullFactor="0.5" pullMin="100" pullMax="200">  
+      <ion-refresher-content  
+      pullingIcon="arrow-dropdown"  
+      pullingText="Pull to refresh"  
+      refreshingSpinner="circles"  
+      refreshingText="Refreshing..."></ion-refresher-content>  
+    </ion-refresher>--> 
+    <!--<ion-list>    
+      <ion-item *ngFor="let item of dummyList; let i=index">    
+        Item {{ i+1 }}  
+      </ion-item>    
+    </ion-list>--> 
+    <ion-list>
+
+      <ion-item  *ngFor="let vehiculo of vehiculos" routerLink="#">
+        <ion-thumbnail slot="end">
+          <img src="https://www.washtt.com/components/com_jshopping/files/img_categories/{{vehiculo.category_image}}" />
+        </ion-thumbnail>  
+        <ion-label>
+            {{vehiculo.name}}
+             </ion-label>
+        </ion-item>
+      </ion-list>
+    
+
+  </ion-content>  
+
+
+
+
+
+ <!-- <ion-list>
+
+    <ion-item  *ngFor="let vehiculo of vehiculos" routerLink="/tabs-cliente/tobook/tipolavados/{{vehiculo.name}}/{{vehiculo.category_id}}">
+      <ion-thumbnail slot="end">
+        <img src="https://www.washtt.com/components/com_jshopping/files/img_categories/{{vehiculo.category_image}}" />
+      </ion-thumbnail>  
+      <ion-label>
+          {{vehiculo.name}}
+           </ion-label>
+      </ion-item>
+    </ion-list>-->
+
+<!--</ion-content>-->

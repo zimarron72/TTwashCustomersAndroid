@@ -1,0 +1,409 @@
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+    </ion-buttons>    
+    <ion-title>Bill information</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-icon name="information-circle" slot='start' style="color:#f2f2f2"></ion-icon>
+    <ion-title size="small" style="color: #ffffff;">This information is used to prepare billing</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+  <ion-content>  
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+  
+
+
+<div *ngIf = "xnombre">
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+        <ion-text style="color:#f2f2f2; font-weight: bold;">
+          <h3>Firstname</h3>
+        </ion-text>       
+        <ion-text style="color:#f2f2f2">
+          <p>{{nombre}}</p>
+        </ion-text>
+      </ion-label>
+      <ion-button slot="end" (click) = "edit_firstname()">       
+        <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+      </ion-button>
+    </ion-item>
+</div>
+<div *ngIf = "xfnombre">
+    <form [formGroup]="form_firtname" >
+      <ion-item lines="full">
+        <ion-label  position="floating" class="etiqueta">New firstname</ion-label>
+        <ion-input  style="color:#f2f2f2"  formControlName="firstname" type="text" required ></ion-input>       
+      </ion-item>     
+      </form>
+      <ion-button   color="primary" expand="block" (click) = "update_firstname()">Update</ion-button>
+      <ion-button   class="cancel" expand="block" (click) = "cancel_firstname()" >Cancel</ion-button>
+</div>      
+
+<div *ngIf = "xapellido">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Lastname</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{apellido}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_lastname()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfapellido">
+  <form [formGroup]="form_lastname" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New lastname</ion-label>
+      <ion-input style="color:#f2f2f2"  formControlName="lastname" type="text" required ></ion-input>       
+    </ion-item>   
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_lastname()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_lastname()" >Cancel</ion-button>
+</div>
+
+<div *ngIf = "xfullname">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Fullname</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{fullname}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_fullname()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xffullname">
+  <form [formGroup]="form_fullname" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New fullname</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="fullname" type="text" required ></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_fullname()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_fullname()" >Cancel</ion-button>
+</div> 
+
+<div *ngIf = "xcustomer">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Customer type</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{tipocliente}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_customer()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfcustomer">
+  <form [formGroup]="form_customer" >
+    <ion-item>
+      <ion-label>New customer type</ion-label>
+      <ion-select  formControlName="customer" >        
+        <ion-select-option *ngFor="let customertype of customertypes"  [value]="customertype.valor">  
+          {{customertype.etiqueta}}
+        </ion-select-option>    
+      </ion-select>
+       </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_customer()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_customer()" >Cancel</ion-button>
+</div> 
+<div *ngIf="ver">
+
+<div *ngIf = "xempresa">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Company</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{empresa}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_empresa()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfempresa">
+  <form [formGroup]="form_empresa" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New Company</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="empresa" type="text" required ></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_empresa()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_empresa()" >Cancel</ion-button>
+</div>
+
+<div *ngIf = "xrif">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Tax ID</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{rif}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_rif()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfrif">
+  <form [formGroup]="form_rif" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New Tax ID</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="rif" type="text" maxlength = "13" (keyup)="taxidFormat($event)" value="{{ taxid }}"
+      ></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_rif()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_rif()" >Cancel</ion-button>
+</div> 
+
+</div>
+
+<div *ngIf = "xcasa">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Suite</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{casa}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_casa()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfcasa">
+  <form [formGroup]="form_suite" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New suite</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="casa" type="text" required ></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_casa()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_casa()" >Cancel</ion-button>
+</div>
+
+<div *ngIf = "xcalle">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Street No.</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{calle}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_calle()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfcalle">
+  <form [formGroup]="form_calle" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New street No.</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="calle" type="text" required ></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_calle()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_calle()" >Cancel</ion-button>
+</div> 
+
+<div *ngIf = "xdireccion">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Address</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{direccion}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_direccion()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfdireccion">
+  <form [formGroup]="form_direccion">
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New address</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="direccion" type="text" required ></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_direccion()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_direccion()" >Cancel</ion-button>
+</div> 
+
+<div *ngIf = "xzip">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Postal Code</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{codigopostal}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_zip()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfzip">
+  <form [formGroup]="form_zip" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New postal Code</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="zip" type="text" required ></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_zip()">Update</ion-button>
+    <ion-button  class="cancel" expand="block" (click) = "cancel_zip()" >Cancel</ion-button>
+</div> 
+
+<div *ngIf = "xestado">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>State</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{estado}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_estado()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfestado">
+  <form [formGroup]="form_state" >
+    <ion-item lines="full">
+      <ion-label  >New state</ion-label>
+      <ion-select  formControlName="estado" >     
+        <ion-select-option *ngFor="let estado of estados"  [value]="estado.estado">  
+          {{estado.estado}}
+        </ion-select-option>    
+      </ion-select>
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_estado()">Update</ion-button>
+    <ion-button  class="cancel" expand="block" (click) = "cancel_estado()" >Cancel</ion-button>
+</div>
+
+<div *ngIf = "xciudad">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>City</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{ciudad}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_ciudad()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfciudad">
+  <form [formGroup]="form_city" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New city</ion-label>
+      <ion-select  formControlName="ciudad" >
+      <ion-select-option *ngFor="let city of cities"  [value]="city.city">  
+        {{city.city}}
+      </ion-select-option> 
+    </ion-select>
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_ciudad()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_ciudad()" >Cancel</ion-button>
+</div>
+
+<div *ngIf = "xtelefono">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Phone</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{telefono}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_telefono()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xftelefono">
+  <form [formGroup]="form_phone" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New phone</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="phone" type="tel" maxlength = "14" (keyup)="phoneFormat($event)" value="{{ telefonox }}"></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_telefono()">Update</ion-button>
+    <ion-button  class="cancel" expand="block" (click) = "cancel_telefono()" >Cancel</ion-button>
+</div> 
+
+<div *ngIf = "xcelular">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <h3>Mobil</h3>
+      </ion-text>       
+      <ion-text style="color:#f2f2f2">
+        <p>{{celular}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button slot="end" (click) = "edit_celular()">       
+      <ion-icon slot="icon-only" name="pencil" class="pen"></ion-icon>
+    </ion-button>
+  </ion-item>
+</div>
+<div *ngIf = "xfcelular">
+  <form [formGroup]="form_mobilphone" >
+    <ion-item lines="full">
+      <ion-label  position="floating" class="etiqueta">New mobil</ion-label>
+      <ion-input  style="color:#f2f2f2"  formControlName="mobil" type="tel" maxlength = "14" (keyup)="mobilFormat($event)" value="{{ mobilx }}"></ion-input>       
+    </ion-item>
+    </form>
+    <ion-button   color="primary" expand="block" (click) = "update_celular()">Update</ion-button>
+    <ion-button   class="cancel" expand="block" (click) = "cancel_celular()" >Cancel</ion-button>
+</div> 
+
+
+
+   
+
+     
+       
+
+  </ion-content>

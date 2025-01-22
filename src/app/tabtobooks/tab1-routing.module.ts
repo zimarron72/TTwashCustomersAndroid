@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Tab1Page } from './tab1.page';
 import {TipovehiculosComponent} from './tipovehiculos/tipovehiculos.component';
 import {CitasComponent} from './citas/citas.component';
+import {PutprofileComponent} from './putprofile/putprofile.component';
 
 
 const routes: Routes = [
@@ -13,8 +14,9 @@ const routes: Routes = [
       
       { path: 'tipovehiculos', component: TipovehiculosComponent },
       { path: 'citas', component: CitasComponent },
-   /* { path: 'tipolavados/:vehiculo/:vehiculoid', component: TipolavadosComponent },
-      { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },
+      { path: 'putprofile', component: PutprofileComponent },
+    /*{ path: 'tipolavados/:vehiculo/:vehiculoid', component: TipolavadosComponent },
+     { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },
       { path: 'washs/:washname/:washlavado/:washvehiculo/:washdescripcion/:washid/:washprecio/:washpreciomobil', component: WashsComponent },
       { path: 'ingresarsitio', component: IngresarsitioComponent },
       { path: 'ingresarperfil', component: IngresarperfilComponent},

@@ -1,0 +1,26 @@
+::ng-deep .button-solid {
+    --background: none !important;
+    --color: none !important; 
+    --background-hover: none !important;
+    --background-activated: none !important;
+
+--background-focused: none !important;
+--background-activated-opacity: none !important;
+--background-focused-opacity: none !important;
+--background-hover-opacity: none !important;
+--box-shadow: none !important
+}
+
+.icon-inner, .ionicon, svg { display:none !important}
+
+::ng-deep ion-item {
+    --ion-item-background: #2E4F9C;
+    --color: #f2f2f2;
+
+  
+   
+  }
+
+  ion-content{
+    --ion-background-color:#2E4F9C;
+}

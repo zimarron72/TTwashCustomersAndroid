@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>To Book</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-icon name="information-circle" slot='start' style="color: #f2f2f2;"></ion-icon>
+    <ion-title size="small" style="color: #f2f2f2;">Before starting we require basic information for your bill</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<ion-grid>
+<ion-row>
+<ion-col> 
+  <form [formGroup]="form_profile" >
+    <ion-list lines="none">
+          
+<ion-item lines="full" >
+ <ion-label position="floating" class="platino">First name</ion-label>  
+<ion-icon name="mail" color="light" slot="end"></ion-icon>
+<ion-input   color="light"  formControlName="firstname" type="text" required></ion-input>     
+</ion-item>
+
+<ion-item lines="full" >
+  <ion-label position="floating" class="platino">Last name</ion-label>  
+ <ion-icon name="mail" color="light" slot="end"></ion-icon>
+ <ion-input   color="light"  formControlName="lastname" type="text" required></ion-input>     
+ </ion-item>
+
+ <ion-item lines="full" >
+  <ion-label position="floating" class="platino">Mobile phone</ion-label>
+  <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>  
+ <ion-input   color="light"  formControlName="mobilephone" type="tel" required></ion-input>     
+ </ion-item> 
+
+</ion-list>
+</form> 
+</ion-col> 
+</ion-row> 
+
+<ion-row>
+  <ion-col>
+<ion-button color="primary" expand="block"  (click)="continue()">Continue</ion-button>
+</ion-col>
+</ion-row> 
+
+</ion-grid>
+</ion-content>
