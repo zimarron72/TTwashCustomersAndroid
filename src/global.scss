@@ -36,10 +36,24 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-
-.custom-loader-class{
-    
-    --background:#2E4F9C;
-    color: #f2f2f2;
+:root {
+    --ion-color-rojo: #CA083F;
+    --ion-color-rojo-rgb: 202, 8, 63;
+    --ion-color-rojo-contrast: #f2f2f2;
+    --ion-color-rojo-contrast-rgb: 0, 0, 0;
+    --ion-color-rojo-shade: #e0b4ba;
+    --ion-color-rojo-tint: #fed2d7;
+  }
   
- }
+  .ion-color-rojo {
+    --ion-color-base: var(--ion-color-rojo);
+    --ion-color-base-rgb: var(--ion-color-rojo-rgb);
+    --ion-color-contrast: var(--ion-color-rojo-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-rojo-contrast-rgb);
+    --ion-color-shade: var(--ion-color-rojo-shade);
+    --ion-color-tint: var(--ion-color-rojo-tint);
+  }
+  
+  div[slot='content'] {
+    background: rgba(var(--ion-color-rojo-rgb));
+  }

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { Tab2Page } from './tab2.page';
 import { ProfileComponent } from './profile/profile.component';
 import { BilladdressComponent } from './billaddress/billaddress.component';
+import { LocationsComponent } from './locations/locations.component';
+import { FleetComponent  } from './fleet/fleet.component';
 
 const routes: Routes = [
   {
@@ -13,8 +15,10 @@ const routes: Routes = [
 
       { path: 'nav-profile', component: ProfileComponent },
       { path: 'billaddress', component: BilladdressComponent },
-      /*{ path: 'fleet', component: FleetComponent },      
       { path: 'locations', component: LocationsComponent },
+      { path: 'fleet', component: FleetComponent }
+      /*,      
+     
      
       { path: 'account', component:AccountComponent },
       { path: 'addsitio', component:AddsiteComponent },

@@ -1,0 +1,24 @@
+ion-accordion {
+  margin: 0 auto;
+}
+
+ion-accordion.accordion-expanding,
+ion-accordion.accordion-expanded {
+  width: calc(100% - 32px);
+
+  margin: 16px auto;
+}
+
+.ticket {
+font-weight:bold;
+  text-align: center;
+  margin: unset;
+}
+
+.tickets {
+
+  text-align: left;
+  margin: unset;
+  color: #f2f2f2;
+font-weight: bolder;
+}

@@ -9,6 +9,8 @@ import { RouterModule} from '@angular/router';
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { BilladdressComponent } from './billaddress/billaddress.component';
+import { LocationsComponent } from './locations/locations.component';
+import { FleetComponent  } from './fleet/fleet.component';
 
 
 
@@ -24,7 +26,9 @@ import { BilladdressComponent } from './billaddress/billaddress.component';
   ],
   declarations: [Tab2Page,
     ProfileComponent,
-    BilladdressComponent
+    BilladdressComponent,
+    LocationsComponent,
+    FleetComponent
   ]
 })
 export class Tab2PageModule {}

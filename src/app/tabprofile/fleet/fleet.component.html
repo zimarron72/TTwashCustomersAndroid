@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>  
+    <ion-title>Fleet</ion-title>
+  </ion-toolbar>
+  <ion-toolbar  color="primary">
+    <ion-icon name="information-circle" slot='start' style="color:#f2f2f2"></ion-icon>
+    <ion-title size="small" style="color: #ffffff;">With a fleet you acquire benefits and discounts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<ion-accordion-group *ngFor="let element of data; let i = index " expand="inset" >
+  <ion-accordion value=i>
+    <ion-item slot="header" color="light">
+      <ion-icon name="car-outline"></ion-icon>
+      <ion-label><p>{{element.type_vehicle}}</p><p>Number: {{element.unit_number}}</p> </ion-label>
+    </ion-item>
+    <div class="ion-padding" slot="content">
+      <p style="font-weight:bold; text-align: left; margin: unset;">License:</p>
+<p style=" text-align: left; margin: unset;color: #f2f2f2;
+    font-weight: bolder;">{{element.license}}</p>
+<p style="font-weight:bold; text-align: left; margin: unset;"> Modelo:</p>
+<p style=" text-align: left; margin: unset;color: #f2f2f2;
+    font-weight: bolder;">{{element.model}}</p>
+<p style="font-weight:bold; text-align: left; margin: unset;">Mark:</p>
+<p style=" text-align: left; margin: unset;color: #f2f2f2;
+    font-weight: bolder;">{{element.mark}}</p>
+<p style="font-weight:bold; text-align: left; margin: unset;">Color:</p>
+<p style=" text-align: left; margin: unset;color: #f2f2f2;
+    font-weight: bolder;">{{element.color}}</p>
+<p style="font-weight:bold; text-align: left; margin: unset;">Appearance:</p>
+<p style=" text-align: left; margin: unset;color: #f2f2f2;
+    font-weight: bolder;">{{element.appearance}}</p>
+<br>
+    <ion-grid>
+      <ion-row>
+       
+        <ion-col><ion-button expand="full" color="secondary" (click) = add()  >
+          <ion-icon slot="start" name="add-outline"></ion-icon> 
+          Add a new vehicle
+        </ion-button></ion-col>
+      </ion-row>
+        <ion-row>
+
+        <ion-col><ion-button expand="full" color="secondary" (click) = "borrar(element.id)">
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+          Delete this vehicle
+        </ion-button></ion-col>
+     
+      </ion-row>
+    </ion-grid>
+    </div>
+  </ion-accordion>   
+</ion-accordion-group>
+
+
+</ion-content>

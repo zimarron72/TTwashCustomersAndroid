@@ -7,9 +7,5 @@
 			"path": "../appiosttwashcustomers"
 		}
 	],
-	"settings": {
-		"terminal.integrated.env.osx": {},
-		"git.ignoreLimitWarning": true
-	
-	}
+	"settings": {}
 }
