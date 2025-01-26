@@ -110,22 +110,29 @@ idtoken!: string
 autenticacion_tipo!: string
 
 
-  constructor(
+ constructor(
     private alertController: AlertController,
     private router: Router,
     private formBuilder: FormBuilder,
     private localstorage:StorageService,
     private loading:LoadingService
-  ) { }
+  ) {
+
+  
+
+   }
 
   async ngOnInit() {
     this.reactiveForm(); 
+  
+  }
+
+  async ionViewWillEnter() {  
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
-  }
 
-  ionViewWillEnter() {  
+
     this.loading.simpleLoader()
     if(this.user) {
         /********************************************************* */

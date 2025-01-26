@@ -11,8 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { BilladdressComponent } from './billaddress/billaddress.component';
 import { LocationsComponent } from './locations/locations.component';
 import { FleetComponent  } from './fleet/fleet.component';
-
-
+import { ModaladdsiteComponent  } from './modaladdsite/modaladdsite.component';
+import { ModaladdtruckComponent  } from './modaladdtruck/modaladdtruck.component';
 
 @NgModule({
   imports: [
@@ -28,7 +28,9 @@ import { FleetComponent  } from './fleet/fleet.component';
     ProfileComponent,
     BilladdressComponent,
     LocationsComponent,
-    FleetComponent
+    FleetComponent,
+    ModaladdsiteComponent,
+    ModaladdtruckComponent
   ]
 })
 export class Tab2PageModule {}

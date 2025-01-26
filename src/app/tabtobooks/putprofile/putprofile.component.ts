@@ -40,8 +40,12 @@ export class PutprofileComponent  implements OnInit {
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+  }
 
-
+  async ionViewWillEnter() {  
+    this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    this.idtoken = await this.localstorage.getData('idtoken')
+    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
   }
 
   async continue() {

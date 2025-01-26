@@ -51,15 +51,15 @@ export class TipovehiculosComponent implements OnInit {
 
 
   async ngOnInit() { 
-    this.user = JSON.parse(await this.localstorage.getData('usuario'))
-    this.idtoken = await this.localstorage.getData('idtoken')
-    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+    
 
   }
 
 
-   ionViewWillEnter() {  
-  
+   async ionViewWillEnter() {  
+    this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    this.idtoken = await this.localstorage.getData('idtoken')
+    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
     this.loading.simpleLoader()
     var url = 'https://washtt.com/v1_api_clientes_tipodevehiculos.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }

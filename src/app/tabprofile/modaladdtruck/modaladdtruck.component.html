@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Add new vehicle</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+
+    <ion-item>
+      <ion-select label="Type of vehiculo" label-placement="fixed" placeholder="your type of vehicle" [(ngModel)]="tipov" >
+      <ion-select-option *ngFor="let tipo of tipos"  [value]="tipo.vehiculo">  
+        {{tipo.vehiculo}}
+      </ion-select-option>        
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Model of vehicle" [(ngModel)]="model" placeholder="your model of vehiclee"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Vehicle brand" [(ngModel)]="brand" placeholder="make of your vehicle"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Color of the vehicle" [(ngModel)]="color" placeholder="color of your vehicle"></ion-input>
+    </ion-item>
+
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="License" [(ngModel)]="license" placeholder="vehicle driver's license"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Vehicle number" [(ngModel)]="unitnumber" placeholder="number of your vehicle"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-select label="Vehicle details" label-placement="fixed" placeholder="details of your vehicle" [(ngModel)]="detallev" >
+    <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
+      {{detalle.etiqueta}}
+    </ion-select-option>        
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-select label="Main vehicle" label-placement="fixed" placeholder="Is this your main vehicle?" [(ngModel)]="default" >
+      <ion-select-option [value]="1">  
+       YES
+      </ion-select-option>        
+    <ion-select-option [value]="0">  
+      NOT
+    </ion-select-option>        
+    </ion-select>
+  </ion-item>
+
+</ion-list>
+</ion-content>

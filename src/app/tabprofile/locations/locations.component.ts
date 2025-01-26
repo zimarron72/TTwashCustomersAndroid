@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
-import { AlertController } from '@ionic/angular';
+import { AlertController , ModalController } from '@ionic/angular';
+import { ModaladdsiteComponent  } from '../modaladdsite/modaladdsite.component';
 
 @Component({
   selector: 'app-locations',
@@ -20,17 +21,19 @@ idtoken!: string
 autenticacion_tipo!: string
 data!: any
 
+message = 'This modal example uses the modalController to present and dismiss modals.';
+
   constructor(
     private alertController: AlertController,
     private localstorage: StorageService,
     private router: Router,
     private loading : LoadingService, 
+    private modalCtrl: ModalController
+    
   ) { }
 
   async ngOnInit() {
-    this.user = JSON.parse(await this.localstorage.getData('usuario'))
-    this.idtoken = await this.localstorage.getData('idtoken')
-    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+   
   }
 
   cHttps(url: string, data: any) {
@@ -66,7 +69,10 @@ async aviso(header : string, mensaje : string, code : string) {
 
 }
 
-ionViewWillEnter() {  
+async ionViewWillEnter() {  
+  this.user = JSON.parse(await this.localstorage.getData('usuario'))
+  this.idtoken = await this.localstorage.getData('idtoken')
+  this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
   this.loading.simpleLoader()
   if(this.user) {
     let url = 'https://washtt.com/v1_api_clientes_getlocationscliente.php'
@@ -187,9 +193,88 @@ console.log(this.data)
 }
 
 
-add() {
-  
+
+
+async add() {
+  const modal = await this.modalCtrl.create({
+    component: ModaladdsiteComponent
+  });
+  modal.present();
+
+  const { data, role } = await modal.onWillDismiss();
+
+  if (role === 'confirm') {
+    this.loading.simpleLoader()
+    if(this.user) {
+      let url = 'https://washtt.com/v1_api_clientes_addsitio.php'
+      let datax = { 
+      idtoken: this.idtoken,
+      autenticacion_tipo: this.autenticacion_tipo,
+      email : this.user.email,
+      suite : data.suite , 
+      street : data.street,
+      address : data.address,
+state  : data.estado,
+city : data.ciudad,
+zip : data.zip,
+defaults : data.defaults
+    }
+      this.cHttps(url, datax).subscribe(
+        async (res: any) => {
+          this.loading.dismissLoader()  
+          let mensaje
+          let header
+          let code
+          switch(res.data.respuesta) {
+            case 'ERROR':
+            code = ''
+            header = 'Error'
+            mensaje = 'an error occurred,please login again'
+            this.localstorage.clearData()
+            this.router.navigate(['/login']);
+            this.aviso(header, mensaje, code)
+            break;
+
+            case 'TOKEN ERROR':
+            code = ''
+            header = 'Error'
+            mensaje = 'Invalid or expired token,please login again'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])   
+            this.aviso(header, mensaje, code) 
+          break; 
+
+          case 'OK_TODO':
+          
+            code = ''
+            header = 'Notice'
+            mensaje = 'Location added successfully'
+            this.aviso(header, mensaje, code) 
+            this.router.navigate(['/tabs/tabprofile/nav-profile']);
+
+          break;  
+
+          }
+    }
+  )
+        }
+        else {
+          let mensaje = 'please login again'
+    let header = 'Warning'
+    let code = ''
+    this.loading.dismissLoader() 
+    this.localstorage.clearData()
+    this.router.navigate(['/login']);
+    this.aviso(header, mensaje, code)  
+        }
 }
+}
+
+
+
+
+
+
 
 borrar(id : number , status : number) {
   this.loading.simpleLoader()
