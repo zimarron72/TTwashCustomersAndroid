@@ -13,6 +13,9 @@ import { ServiciosTobook} from '../servicios/servicios.tobook';
 import {TipovehiculosComponent} from './tipovehiculos/tipovehiculos.component';
 import {CitasComponent} from './citas/citas.component';
 import {PutprofileComponent} from './putprofile/putprofile.component';
+import {TiposerviciosComponent} from './tiposervicios/tiposervicios.component';
+import {TipolavadosComponent} from './tipolavados/tipolavados.component';
+import {WashsComponent} from './washs/washs.component';
 
 @NgModule({
   imports: [
@@ -28,7 +31,11 @@ import {PutprofileComponent} from './putprofile/putprofile.component';
     Tab1Page,
     TipovehiculosComponent,
     CitasComponent,
-    PutprofileComponent
+    PutprofileComponent,
+    TiposerviciosComponent,
+    TipolavadosComponent,
+    WashsComponent
+
   ],
   providers: [ServiciosTobook,],
 })

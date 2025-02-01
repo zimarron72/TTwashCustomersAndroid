@@ -13,6 +13,7 @@ import { LocationsComponent } from './locations/locations.component';
 import { FleetComponent  } from './fleet/fleet.component';
 import { ModaladdsiteComponent  } from './modaladdsite/modaladdsite.component';
 import { ModaladdtruckComponent  } from './modaladdtruck/modaladdtruck.component';
+import { AccountComponent  } from './account/account.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { ModaladdtruckComponent  } from './modaladdtruck/modaladdtruck.component
     LocationsComponent,
     FleetComponent,
     ModaladdsiteComponent,
-    ModaladdtruckComponent
+    ModaladdtruckComponent,
+    AccountComponent
   ]
 })
 export class Tab2PageModule {}

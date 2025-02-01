@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>To Book</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div style="background-color:#cb033c; color: #fff">
+  <ion-button (click) = "goBack()">
+    <ion-icon slot="start" name="chevron-back-outline"></ion-icon>  
+    Select Service
+  </ion-button>
+</div>
+
+  <ion-list >
+
+    <ion-item  *ngFor="let servicio of servicios" routerLink="/tabs/tabtobooks/washs/{{servicio.name}}/{{lavado}}/{{vehiculo}}/{{servicio.description}}/{{servicio.product_id}}/{{servicio.product_price}}/{{servicio.price_mobil}}" >
+      <ion-thumbnail slot="end">
+        <img src="https://www.washtt.com/components/com_jshopping/files/img_products/{{servicio.image}}" />
+      </ion-thumbnail> 
+      <ion-label >
+        {{servicio.name}}
+      </ion-label>
+      
+    </ion-item>
+  
+  </ion-list>
+
+
+</ion-content>
+

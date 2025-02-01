@@ -7,6 +7,7 @@ import { LocationsComponent } from './locations/locations.component';
 import { FleetComponent  } from './fleet/fleet.component';
 import { ModaladdsiteComponent  } from './modaladdsite/modaladdsite.component';
 import { ModaladdtruckComponent  } from './modaladdtruck/modaladdtruck.component';
+import { AccountComponent  } from './account/account.component';
 const routes: Routes = [
   {
     path: '',
@@ -20,18 +21,8 @@ const routes: Routes = [
       { path: 'fleet', component: FleetComponent },
       { path: 'addsitio', component:ModaladdsiteComponent },
       { path: 'addcar', component:ModaladdtruckComponent },
-      /*,      
-     
-     
       { path: 'account', component:AccountComponent },
-     
-      { path: 'addcar', component:ModaladdtruckComponent },*/
-     
-      
-    /* {
-        path: '',
-        redirectTo: '/tabs/tabprofile/nav-profile',
-      },*/
+ 
       
      
     ],

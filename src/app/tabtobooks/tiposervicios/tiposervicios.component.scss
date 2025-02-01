@@ -1,0 +1,27 @@
+.servicio_header {
+    display:inline;
+    text-align: center;
+}
+
+#yarda {
+    width: 90%;
+}
+#mobil {
+    width: 90%;
+}
+#promo {
+
+    font-size: 45%;
+}
+
+::ng-deep ion-item {
+    --ion-item-background: #2E4F9C;
+    --color: #f2f2f2;
+
+  
+   
+  }
+
+  ion-content{
+    --ion-background-color:#2E4F9C;
+}

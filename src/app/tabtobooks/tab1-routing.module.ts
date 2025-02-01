@@ -4,6 +4,10 @@ import { Tab1Page } from './tab1.page';
 import {TipovehiculosComponent} from './tipovehiculos/tipovehiculos.component';
 import {CitasComponent} from './citas/citas.component';
 import {PutprofileComponent} from './putprofile/putprofile.component';
+import {TiposerviciosComponent} from './tiposervicios/tiposervicios.component';
+import {TipolavadosComponent} from './tipolavados/tipolavados.component';
+import {WashsComponent} from './washs/washs.component';
+
 
 
 const routes: Routes = [
@@ -15,9 +19,11 @@ const routes: Routes = [
       { path: 'tipovehiculos', component: TipovehiculosComponent },
       { path: 'citas', component: CitasComponent },
       { path: 'putprofile', component: PutprofileComponent },
-    /*{ path: 'tipolavados/:vehiculo/:vehiculoid', component: TipolavadosComponent },
-     { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },
+      { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },
+      { path: 'tipolavados/:vehiculo/:vehiculoid', component: TipolavadosComponent },
       { path: 'washs/:washname/:washlavado/:washvehiculo/:washdescripcion/:washid/:washprecio/:washpreciomobil', component: WashsComponent },
+    /*   
+     
       { path: 'ingresarsitio', component: IngresarsitioComponent },
       { path: 'ingresarperfil', component: IngresarperfilComponent},
       { path: 'ingresarcamion', component: IngresarcamionComponent },

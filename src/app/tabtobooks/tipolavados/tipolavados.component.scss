@@ -1,0 +1,14 @@
+::ng-deep .button-solid {
+    --background: none !important;
+    --color: none !important; 
+    --background-hover: none !important;
+    --background-activated: none !important;
+
+--background-focused: none !important;
+--background-activated-opacity: none !important;
+--background-focused-opacity: none !important;
+--background-hover-opacity: none !important;
+--box-shadow: none !important
+}
+
+.icon-inner, .ionicon, svg { display:none !important}
