@@ -11,11 +11,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="show">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
+  </ion-refresher> 
 <ion-accordion-group *ngFor="let element of data; let i = index " expand="inset" >
   <ion-accordion value=i>
     <ion-item slot="header" color="light">
@@ -59,6 +58,13 @@
     </div>
   </ion-accordion>   
 </ion-accordion-group>
-
-
 </ion-content>
+
+
+<ion-content *ngIf="!show">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-button  expand="block" color="warning" (click) = add()>Register your first vehicle now!</ion-button>
+</ion-content>
+

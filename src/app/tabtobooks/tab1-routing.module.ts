@@ -7,6 +7,9 @@ import {PutprofileComponent} from './putprofile/putprofile.component';
 import {TiposerviciosComponent} from './tiposervicios/tiposervicios.component';
 import {TipolavadosComponent} from './tipolavados/tipolavados.component';
 import {WashsComponent} from './washs/washs.component';
+import {YardormobilComponent} from './yardormobil/yardormobil.component';
+import {CitamobilComponent} from './citamobil/citamobil.component';
+import {CitayardComponent} from './citayard/citayard.component';
 
 
 
@@ -22,6 +25,9 @@ const routes: Routes = [
       { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },
       { path: 'tipolavados/:vehiculo/:vehiculoid', component: TipolavadosComponent },
       { path: 'washs/:washname/:washlavado/:washvehiculo/:washdescripcion/:washid/:washprecio/:washpreciomobil', component: WashsComponent },
+      { path: 'yardormobil/:servicio/:vehiculo/:washid/:washprecio/:washpreciomobil', component:YardormobilComponent },
+      { path: 'citamobil', component: CitamobilComponent },
+      { path: 'citayarda', component: CitayardComponent },
     /*   
      
       { path: 'ingresarsitio', component: IngresarsitioComponent },

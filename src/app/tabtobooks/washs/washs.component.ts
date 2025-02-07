@@ -48,6 +48,7 @@ export class WashsComponent  implements OnInit {
         await this.localstorage.setData('washpreciomobil', this.washpreciomobil)
         await this.localstorage.setData('washprecio', this.washprecio)
         await this.localstorage.setData('tipovehiculo', this.washlavado) 
+     
         
       }
     );
@@ -57,7 +58,9 @@ export class WashsComponent  implements OnInit {
 
   ngOnInit() {}
 
-  reservarnow() {}
+  reservarnow() {
+   
+  }
 
   cancel() {
     this.router.navigate(['/tabs/tabtobooks/tipovehiculos']);

@@ -19,6 +19,7 @@ export class FleetComponent  implements OnInit {
   idtoken!: string
   autenticacion_tipo!: string
   data!: any
+  show:boolean = true
 
   constructor(
     private alertController: AlertController,
@@ -105,9 +106,13 @@ async ionViewWillEnter() {
 
           
           this.fleet = Object.values(res.data)
+          if(!this.fleet) {
+            this.show = false
+            }
           this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
 
           this.data = this.fleet
+         
 console.log(this.data)
 
 
@@ -162,9 +167,12 @@ doRefresh(event: { target: { complete: () => void; }; }) {
           break;   
         
           case '200_OK':
-
+            
           
           this.fleet = Object.values(res.data)
+          if(!this.fleet) {
+            this.show = false
+            }
           this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
 
           this.data = this.fleet
@@ -198,7 +206,7 @@ async add() {
   if (role === 'confirm') {
     this.loading.simpleLoader()
     if(this.user) {
-      let url = 'https://washtt.com/v1_api_clientes_addcamion.php'
+      let url = 'https://washtt.com/v2_api_clientes_addcamion.php'
       let datax = { 
       idtoken: this.idtoken,
       autenticacion_tipo: this.autenticacion_tipo,
@@ -237,6 +245,14 @@ vehicletypes : data.vehicletypes
             this.aviso(header, mensaje, code) 
           break; 
 
+          case 'COUNT':
+            code = ''
+            header = 'Warning'
+            mensaje = 'OOPS! vehicle already registered'             
+            this.router.navigate(['/tabs/tabprofile/nav-profile']);
+            this.aviso(header, mensaje, code) 
+          break; 
+
           case 'OK_TRUCK':
           
             code = ''
@@ -260,6 +276,11 @@ vehicletypes : data.vehicletypes
     this.router.navigate(['/login']);
     this.aviso(header, mensaje, code)  
         }
+}
+if(role === 'cancel'){
+
+  this.router.navigate(['/tabs/tabprofile/nav-profile']); 
+
 }
 }
 

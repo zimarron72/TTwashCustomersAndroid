@@ -88,6 +88,7 @@ async aviso(header : string, mensaje : string, code : string) {
 
   async ionViewWillEnter() { 
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    await this.localstorage.setData('vehiculoid',this.lavadoid)
     if(this.user){    
     await this.localstorage.setData('tipolavado', this.lavado)   
     this.idtoken = await this.localstorage.getData('idtoken')

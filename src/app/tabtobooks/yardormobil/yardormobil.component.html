@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>To Book</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>  
+<ion-card>
+  <ion-card-header>
+    <ion-card-title color="success">Service<br>{{washname}}</ion-card-title>
+    <ion-card-subtitle style="color:#fff">Vehicule {{washlavado}}</ion-card-subtitle>
+  
+  </ion-card-header>
+
+  <ion-card-content >
+    <p class="precio1"><span style="color:#fff;">Price</span> {{precioyarda}}</p>
+    <ion-button expand="full" class= "tobook1"  (click)="yarda()">Booking in our site</ion-button>
+    <p class="precio2"><span style="color:#fff;">Price</span> {{preciomobils}}</p>
+    <ion-button expand="full" class= "tobook2"  (click)="mobil()">Mobil's bookings</ion-button>
+    <p>&nbsp;</p>
+    <ion-button expand="full" (click) = "cancel()" color="primary">Cancel</ion-button>
+  </ion-card-content>
+</ion-card>

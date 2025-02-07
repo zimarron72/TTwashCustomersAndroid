@@ -50,7 +50,7 @@ export class ModaladdtruckComponent  implements OnInit {
   async ionViewWillEnter() {
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')  
-    var url2 = 'https://washtt.com/v1_api_clientes_formtipovehiculos.php'
+    var url2 = 'https://washtt.com/v2_api_clientes_formtipovehiculos.php'
     var data2 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo}
     this.cHttps(url2, data2).subscribe(
       async (res: any) => {

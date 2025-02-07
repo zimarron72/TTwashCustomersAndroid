@@ -16,6 +16,9 @@ import {PutprofileComponent} from './putprofile/putprofile.component';
 import {TiposerviciosComponent} from './tiposervicios/tiposervicios.component';
 import {TipolavadosComponent} from './tipolavados/tipolavados.component';
 import {WashsComponent} from './washs/washs.component';
+import {YardormobilComponent} from './yardormobil/yardormobil.component';
+import {CitamobilComponent} from './citamobil/citamobil.component';
+import {CitayardComponent} from './citayard/citayard.component';
 
 @NgModule({
   imports: [
@@ -34,7 +37,11 @@ import {WashsComponent} from './washs/washs.component';
     PutprofileComponent,
     TiposerviciosComponent,
     TipolavadosComponent,
-    WashsComponent
+    WashsComponent,
+    YardormobilComponent,
+    CitamobilComponent,
+    CitayardComponent
+
 
   ],
   providers: [ServiciosTobook,],

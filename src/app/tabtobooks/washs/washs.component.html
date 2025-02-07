@@ -16,23 +16,25 @@
 
   <ion-card-content >
     <p style="text-align: justify; color:#f2f2f2;">{{washdescripcion}}</p>
-  </ion-card-content>
-</ion-card>
-
-<ion-button expand="full" (click) = "reservarnow()" color="primary">Booking now</ion-button><br>
+    <ion-button expand="full" color="primary"  routerLink="/tabs/tabtobooks/yardormobil/{{washname}}/{{washlavado}}/{{washid}}/{{washprecio}}/{{washpreciomobil}}">Booking now</ion-button><br>
 
 <ion-button expand="full" (click) = "cancel()" color="primary">Cancel</ion-button>
-
-
 <ion-list>
-<ion-icon name="warning" slot='start' color="danger"></ion-icon>
-<ion-label color="warning">warning:</ion-label>
-<ion-item>
-  <ion-label class="ion-text-wrap">
-    <p style="text-align: justify; color:#f2f2f2;">The company will only place two solid waste bags and personal items for the disposal of these materials. We are NOT responsible for sorting or selecting items and we are not responsible FOR LOSS OF valuables. <span style="font-weight:bolder">SO WE RECOMMEND TO REMOVE EVERYTHING BEFORE DOING THIS SERVICE.THE HANDLING OF WASTE AND ARTICLES HAS ADDITIONAL VALUE</span>.</p>
-  </ion-label>
-</ion-item>
-</ion-list> 
+  <ion-icon name="warning" slot='start' color="danger"></ion-icon>
+  <ion-label color="warning">warning:</ion-label>
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <p style="text-align: justify; color:#f2f2f2;">The company will only place two solid waste bags and personal items for the disposal of these materials. We are NOT responsible for sorting or selecting items and we are not responsible FOR LOSS OF valuables. <span style="font-weight:bolder">SO WE RECOMMEND TO REMOVE EVERYTHING BEFORE DOING THIS SERVICE.THE HANDLING OF WASTE AND ARTICLES HAS ADDITIONAL VALUE</span>.</p>
+    </ion-label>
+  </ion-item>
+  </ion-list> 
+</ion-card-content>
+</ion-card>
+
+
+
+
+
 
 
   
