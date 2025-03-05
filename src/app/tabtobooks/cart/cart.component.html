@@ -1,0 +1,253 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div *ngIf ='vermensaje' style="text-align: center; color:#f2f2f2"> <img src="./assets/imgs/icono_exclamacion.png" /><h4>There are no bookings in your shopping cart</h4></div>
+  <diV *ngIf ='vercart' > <!--Tabla de cart principal-->
+
+
+ <ion-accordion-group *ngFor="let element of itemOrderCart; let i = index " expand="inset" >
+    <ion-accordion value=i>
+      <ion-item slot="header" color="light"> 
+     
+          <ion-icon  name="star" slot="start" [ngStyle]="{'color': element.type == 'Mobile' ? '#CA083F' : '#2E4F9C'}"></ion-icon>
+      
+        <ion-label>{{element.Service}}<br>$ {{element.Price}} {{element.type}} 
+        </ion-label>   
+      </ion-item> 
+           
+      <div class="ion-padding" slot="content" >
+       
+      
+        <ion-grid >
+          <ion-row>
+            <ion-col>
+          <ion-button size="small" (click)="borrar(element.index)">
+            <ion-icon slot="start" name="star"></ion-icon>
+            Delete
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          &nbsp; 
+          &nbsp; 
+        </ion-col>  
+
+        <ion-col>
+          <ion-button size="small" (click)="add()">
+            <ion-icon slot="end" name="bag-add"></ion-icon>
+            Add
+          </ion-button>
+          </ion-col>
+          </ion-row>
+        </ion-grid >
+       
+           
+       
+
+
+
+
+        <div *ngIf="element.type == 'Onsite'">
+        <h3  style = "text-align: center; color:#f2f2f2" >{{element.type}}</h3>
+        <ion-grid>
+         
+        <ion-row>         
+          <ion-col>
+          
+            <p style = "text-align: center; color:#f2f2f2">Vehicle</p>
+            <p style="font-weight:bold; text-align: left; margin: unset;" >Number:</p> 
+            <p style=" text-align: left; margin: unset;color: #f2f2f2;
+          font-weight: bolder;" >{{element.Unit}}</p>
+            <p style="font-weight:bold; text-align: left; margin: unset;" >Model:</p> 
+            <p style=" text-align: left; margin: unset;color: #f2f2f2;
+          font-weight: bolder;" >{{element.camionmodelo}}</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >Brand:</p> 
+          <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.camionmark}}</p>
+         <p style="font-weight:bold; text-align: left; margin: unset;" >Color:</p> 
+         <p style=" text-align: left; margin: unset;color: #f2f2f2;
+       font-weight: bolder;" >{{element.camioncolor}}</p>
+       <p style="font-weight:bold; text-align: left; margin: unset;" >Appearance:</p> 
+       <p style=" text-align: left; margin: unset;color: #f2f2f2;
+     font-weight: bolder;" >{{element.detalles}}</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >License:</p> 
+          <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.license}}</p>
+          </ion-col>
+          <ion-col>
+           
+            <p style = "text-align: center; color:#f2f2f2">Appointment</p>
+            <p style="font-weight:bold; text-align: left; margin: unset;" >Yard:</p> 
+            <p style=" text-align: left; margin: unset;color: #f2f2f2;
+          font-weight: bolder;" >{{element.Location}}</p>
+            <p style="font-weight:bold; text-align: left; margin: unset;" >Date:</p>
+           <p style=" text-align: left; margin: unset;color: #f2f2f2;
+          font-weight: bolder;" >{{element.Date}}</p>
+           <p style="font-weight:bold; text-align: left; margin: unset;" >Hour:</p>
+           <p style=" text-align: left; margin: unset;color: #f2f2f2;
+          font-weight: bolder;" >{{element.Hour}}</p>
+       
+          </ion-col>
+        </ion-row>    
+      </ion-grid>
+    </div>     
+    <div *ngIf="element.type == 'Mobile'">
+      <h3  style = "text-align: center; color:#f2f2f2" >{{element.type}}</h3>
+      <ion-grid>
+       
+      <ion-row>         
+        <ion-col>
+        
+          <p style = "text-align: center; color:#f2f2f2">Vehicle</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >Number:</p> 
+          <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.Unit}}</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >Model:</p> 
+          <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.camionmodelo}}</p>
+        <p style="font-weight:bold; text-align: left; margin: unset;" >Brand:</p> 
+        <p style=" text-align: left; margin: unset;color: #f2f2f2;
+      font-weight: bolder;" >{{element.camionmark}}</p>
+       <p style="font-weight:bold; text-align: left; margin: unset;" >Color:</p> 
+       <p style=" text-align: left; margin: unset;color: #f2f2f2;
+     font-weight: bolder;" >{{element.camioncolor}}</p>
+     <p style="font-weight:bold; text-align: left; margin: unset;" >Appearance:</p> 
+     <p style=" text-align: left; margin: unset;color: #f2f2f2;
+   font-weight: bolder;" >{{element.detalles}}</p>
+        <p style="font-weight:bold; text-align: left; margin: unset;" >License:</p> 
+        <p style=" text-align: left; margin: unset;color: #f2f2f2;
+      font-weight: bolder;" >{{element.license}}</p>
+        </ion-col>
+        <ion-col>
+         
+          <p style = "text-align: center; color:#f2f2f2">Appointment</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >Date:</p>
+         <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.Date}}</p>
+         <p style="font-weight:bold; text-align: left; margin: unset;" >Hour:</p>
+         <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.Hour}}</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >Power:</p>
+          <p style=" text-align: left; margin: unset;color: #f2f2f2;
+         font-weight: bolder;" >{{element.power}}</p>
+           <p style="font-weight:bold; text-align: left; margin: unset;" >Water:</p>
+           <p style=" text-align: left; margin: unset;color: #f2f2f2;
+          font-weight: bolder;" >{{element.water}}</p>
+            <p style="font-weight:bold; text-align: left; margin: unset;" >You will be present during the service?:</p>
+            <p style=" text-align: left; margin: unset;color: #f2f2f2;
+           font-weight: bolder;" >{{element.ensitio}}</p>
+        </ion-col>
+      </ion-row> 
+      
+      <ion-row>   
+         
+        <ion-col>
+        
+          <p style = "text-align: center; color:#f2f2f2">Your location</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >Suite:</p> 
+          <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.suite}}</p>
+          <p style="font-weight:bold; text-align: left; margin: unset;" >Street:</p> 
+          <p style=" text-align: left; margin: unset;color: #f2f2f2;
+        font-weight: bolder;" >{{element.street}}</p>
+        <p style="font-weight:bold; text-align: left; margin: unset;" >Address:</p> 
+        <p style=" text-align: left; margin: unset;color: #f2f2f2;
+      font-weight: bolder;" >{{element.address}}</p>
+       <p style="font-weight:bold; text-align: left; margin: unset;" >City:</p> 
+       <p style=" text-align: left; margin: unset;color: #f2f2f2;
+     font-weight: bolder;" >{{element.city}}</p>
+     <p style="font-weight:bold; text-align: left; margin: unset;" >State:</p> 
+     <p style=" text-align: left; margin: unset;color: #f2f2f2;
+   font-weight: bolder;" >{{element.state}}</p>
+        <p style="font-weight:bold; text-align: left; margin: unset;" >Code postal:</p> 
+        <p style=" text-align: left; margin: unset;color: #f2f2f2;
+      font-weight: bolder;" >{{element.zip}}</p>
+        </ion-col>
+        <ion-col>
+            <p style="font-weight:bold; text-align: left; margin: unset;" >Does main location site?
+              {{element.favorito}}:</p>
+            
+        </ion-col>
+      </ion-row> 
+
+
+    </ion-grid> 
+  </div>
+</div>        
+
+    </ion-accordion>   
+  </ion-accordion-group>
+
+ 
+
+
+  <ion-grid >
+         
+    <ion-row *ngFor="let y of transactions; let i = index" >         
+      <ion-col>{{y.vacio}}</ion-col>
+      <ion-col style="text-align: right; color:#f2f2f2">{{y.vacio}}{{y.concepto}}:</ion-col>
+      <ion-col style="text-align: right; color:#f2f2f2">{{y.cost}}</ion-col>
+    </ion-row> 
+
+  </ion-grid>
+  
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+  
+       
+        <ion-button expand="full" color="primary"  (click) = "add()">Add new booking
+          <ion-icon name="add-circle" slot="end"></ion-icon>
+        </ion-button>
+  
+      </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col>
+      
+        <ion-button expand="full" color="primary"  (click) = "checkout()">Ready
+          <ion-icon name="checkbox" slot="end"></ion-icon>
+        </ion-button>
+  
+      </ion-col>
+    </ion-row>  
+    <ion-row>
+      <ion-col>
+       
+        <ion-button expand="full" color="primary"  (click) = "cancelar()">Cancel
+          <ion-icon name="close-circle" slot="end"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>  
+<ion-row *ngIf = "ocultarcupon" >
+      <ion-col>
+       
+        <!--<ion-button expand="full" color="primary" *ngIf = "ocultarcupon" (click) = "cupon()">-->  
+          <ion-button expand="full" color="primary"  (click) = "cupon()">
+          Cupon
+          <ion-icon name="gift" slot="end"></ion-icon>
+        </ion-button>
+  
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+
+  </diV>
+
+
+
+
+</ion-content>

@@ -10,6 +10,11 @@ import {WashsComponent} from './washs/washs.component';
 import {YardormobilComponent} from './yardormobil/yardormobil.component';
 import {CitamobilComponent} from './citamobil/citamobil.component';
 import {CitayardComponent} from './citayard/citayard.component';
+import {AddcarComponent} from './addcar/addcar.component';
+import {AddsiteComponent} from './addsite/addsite.component';
+import {CartComponent } from './cart/cart.component';
+import {CuponComponent } from './cupon/cupon.component';
+import {SuccesstobookComponent } from './successtobook/successtobook.component';
 
 
 
@@ -28,6 +33,11 @@ const routes: Routes = [
       { path: 'yardormobil/:servicio/:vehiculo/:washid/:washprecio/:washpreciomobil', component:YardormobilComponent },
       { path: 'citamobil', component: CitamobilComponent },
       { path: 'citayarda', component: CitayardComponent },
+      { path: 'addcar', component: AddcarComponent },
+      { path: 'addsite', component: AddsiteComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'cupon', component: CuponComponent },
+      { path: 'successtobook', component: SuccesstobookComponent },
     /*   
      
       { path: 'ingresarsitio', component: IngresarsitioComponent },

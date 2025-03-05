@@ -19,7 +19,11 @@ import {WashsComponent} from './washs/washs.component';
 import {YardormobilComponent} from './yardormobil/yardormobil.component';
 import {CitamobilComponent} from './citamobil/citamobil.component';
 import {CitayardComponent} from './citayard/citayard.component';
-
+import {AddcarComponent} from './addcar/addcar.component';
+import {AddsiteComponent} from './addsite/addsite.component';
+import {CartComponent } from './cart/cart.component';
+import {CuponComponent } from './cupon/cupon.component';
+import {SuccesstobookComponent } from './successtobook/successtobook.component';
 @NgModule({
   imports: [
     IonicModule,
@@ -40,7 +44,14 @@ import {CitayardComponent} from './citayard/citayard.component';
     WashsComponent,
     YardormobilComponent,
     CitamobilComponent,
-    CitayardComponent
+    CitayardComponent,
+    AddcarComponent,
+    AddsiteComponent,
+    CartComponent,
+    CuponComponent,
+    SuccesstobookComponent
+    
+
 
 
   ],

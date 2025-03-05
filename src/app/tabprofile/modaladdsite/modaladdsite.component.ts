@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {  ModalController } from '@ionic/angular';
+import {  ModalController, AlertController } from '@ionic/angular';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
+//import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-modaladdsite',
   templateUrl: './modaladdsite.component.html',
@@ -13,7 +15,7 @@ export class ModaladdsiteComponent  implements OnInit {
   suite!: string;
   street!: string;
   address!:string
-  zip!:number
+  zip!:any
   estado!:string
   ciudad!:string
   estados!:any
@@ -21,13 +23,43 @@ export class ModaladdsiteComponent  implements OnInit {
   autenticacion_tipo!:any
   cities!:any
   default:any
+
+
   constructor(private modalCtrl: ModalController,
     private localstorage:StorageService,
+  // private formBuilder: FormBuilder,
+    private alertController: AlertController,
   ) {
    
   
 
    }
+
+ 
+
+   async aviso(header : string, mensaje : string, code : string) {
+    if (code == '') {
+      const alert = await this.alertController.create({
+        header,
+        message: mensaje,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+    else {
+      const alert = await this.alertController.create({
+        header,
+        message: code + ' Sorry, ' + mensaje,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+
+}
+
+
+
+
 
   async ngOnInit() {
    
@@ -74,17 +106,20 @@ export class ModaladdsiteComponent  implements OnInit {
   }
 
   confirm() {
-    return this.modalCtrl.dismiss({
-      suite : this.suite,
-       street : this.street,
-       address : this.address,
-      zip : this.zip,
-      estado:this.estado,
-      ciudad:this.ciudad,
-      defaults:this.default
-      },
-       
-       'confirm');
+
+
+
+      this.modalCtrl.dismiss({
+        suite : this.suite,
+         street : this.street,
+         address : this.address,
+        zip : this.zip,
+        estado:this.estado,
+        ciudad:this.ciudad,
+        defaults:this.default
+        },'confirm') 
+
+
   }
 
 

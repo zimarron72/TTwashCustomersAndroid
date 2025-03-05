@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+   
+    <ion-title>Add location</ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Suite" [(ngModel)]="suite" placeholder="your suite"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Street" [(ngModel)]="street" placeholder="your street"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Address" [(ngModel)]="address" placeholder="your address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input labelPlacement="stacked" label="Code postal" [(ngModel)]="zip" placeholder="your code postal"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select label="State" label-placement="fixed" placeholder="your state" [(ngModel)]="estado" >
+      <ion-select-option *ngFor="let local of estados"  [value]="local.estado">  
+        {{local.estado}}
+      </ion-select-option>        
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select label="City" label-placement="fixed" placeholder="your city" [(ngModel)]="ciudad" >
+      <ion-select-option *ngFor="let ciudad of cities"  [value]="ciudad.city">  
+        {{ciudad.city}}
+      </ion-select-option>        
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-select label="Main location" label-placement="fixed" placeholder="Is this your main location?" [(ngModel)]="default" >
+        <ion-select-option [value]="1">  
+         YES
+        </ion-select-option>        
+      <ion-select-option [value]="0">  
+        NOT
+      </ion-select-option>        
+      </ion-select>
+    </ion-item>
+  
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="primary" >
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Action</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="continue()" [strong]="true">Continue</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

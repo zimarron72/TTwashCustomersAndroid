@@ -16,27 +16,33 @@
 
     <ion-item>
       <ion-select label="Number" labelPlacement="stacked" placeholder="your number's vehicle" [(ngModel)]="numberv" >
-      <ion-select-option *ngFor="let numero of numeros"  [value]="numero.placa">  
-        {{numero.placa}}
+        <ion-select-option [value]="tempv">  
+          {{tempv}}
+        </ion-select-option>     
+      <ion-select-option *ngFor="let numero of numeros"  [value]="numero">  
+        {{numero}}
       </ion-select-option>        
       </ion-select>
+      <ion-button shape="round" (click)="addcar()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
     </ion-item>
 
 
-    <ion-item>
-      <ion-select label="Vehicle details" labelPlacement="stacked" placeholder="details of your vehicle" [(ngModel)]="detallev" >
-      <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
-        {{detalle.etiqueta}}
-      </ion-select-option>        
-      </ion-select>
-    </ion-item>
+   
 
     <ion-item>
-      <ion-select label="Your location" labelPlacement="stacked" placeholder="where is your location" [(ngModel)]="locationv" >
+      <ion-select label="Your location" labelPlacement="stacked" placeholder="where is your location" [(ngModel)]="locationv">
+        <ion-select-option [value]="templ">  
+          {{templ}}
+        </ion-select-option>     
       <ion-select-option *ngFor="let locacion of locations"  [value]="locacion.id">  
         {{locacion.suite}}
       </ion-select-option>        
       </ion-select>
+      <ion-button shape="round" (click)="addsite()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
     </ion-item>
 
     <ion-item>

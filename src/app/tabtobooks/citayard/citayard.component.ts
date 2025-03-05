@@ -5,6 +5,7 @@ import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
 import {  AlertController , ModalController  } from '@ionic/angular';
 import { Router } from '@angular/router';
+import {AddcarComponent} from '../addcar/addcar.component';
 @Component({
   selector: 'app-citayard',
   templateUrl: './citayard.component.html',
@@ -18,14 +19,13 @@ vehiculo!:any
 tipov!:any
 idtoken!:any
 autenticacion_tipo!:any
-numeros:any | null = null
+numeros:string[] = []
 fleet!:any
 numberv!:any
 vehiculoid!:any
 locations!:any
 locationv!:any
-detalles!:any
-detallev!:any
+
 sitiosyard!:any
 diacita!:any
 horacita!:any
@@ -55,6 +55,7 @@ horario = [
 { etiqueta: '06:30 p.m' , valor: '06:30 p.m'},
 ]
 
+tempv:any
 
   constructor(
     private localstorage: StorageService,
@@ -107,13 +108,17 @@ this.vehiculoid = await this.localstorage.getData('vehiculoid')
             
             this.fleet = Object.values(res.data)
             this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
+
             for (let camiones of this.fleet) 
               {
-              if(camiones.row_id_cat == this.vehiculoid) {
-               this.numeros = [{index:0,placa :camiones.unit_number}]
+              if(camiones.row_id_cat === this.vehiculoid) {
+                this.numeros.push(camiones.unit_number)
+             
               }
               }
+        this.numeros=Object.values(this.numeros)
     console.log('XYZ:'+this.numeros)
+          
     
   
   
@@ -122,16 +127,6 @@ this.vehiculoid = await this.localstorage.getData('vehiculoid')
         })
     
 
-        var url3 = 'https://washtt.com/v1_api_clientes_formtipodetallesvehiculo.php'
-        var data3 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo}
-        this.cHttps(url3, data3).subscribe(
-          async (res: any) => {
-            this.detalles = res.data
-            this.detalles = Object.values(this.detalles)
-            this.detalles =  this.detalles.filter(((valor: string | any[]) => valor !== 'OK_DATA'))     
-             console.log(this.detalles)
-            }
-          )
 
 
           var url2 = 'https://washtt.com/v1_api_clientes_sitiosyard.php'
@@ -156,12 +151,7 @@ this.vehiculoid = await this.localstorage.getData('vehiculoid')
       this.router.navigate(['/login']);
       this.aviso(header, mensaje, code) 
     }
-
-
-
-
-
-
+    
   }
 
   cHttps(url: string, data: any) {
@@ -200,12 +190,113 @@ async aviso(header : string, mensaje : string, code : string) {
   }
 
   continue() {
+    let tipov
+    let numberv
+    let yard
+    let diacita
+    let horacita
     return this.modalCtrl.dismiss({
+tipov : this.tipov,
+numberv : this.numberv,
+yard : this.yard,
+diacita : this.diacita,
+horacita : this.horacita      
      
       },
        
        'continue');
+
+
+
+
+       
   }
 
+
+  async addcar(){
+    const modal = await this.modalCtrl.create({
+      component: AddcarComponent
+    });
+    modal.present();
+  
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'continue') {
+      this.tempv = data.unitnumber
+      this.loading.simpleLoader()
+      if(this.user) {
+        let url = 'https://washtt.com/v2_api_clientes_addcamion.php'
+        let datax = { 
+        idtoken: this.idtoken,
+        autenticacion_tipo: this.autenticacion_tipo,
+        email : this.user.email,
+        model:data.model,
+        mark : data.mark , 
+        unitnumber : data.unitnumber,
+        color : data.color,
+  detail  : data.detail,
+  defaults : data.defaults,
+  licenseplate : data.licenseplate,
+  vehicletypes : data.vehicletypes
+      }
+        this.cHttps(url, datax).subscribe(
+          async (res: any) => {
+            this.loading.dismissLoader()  
+            let mensaje
+            let header
+            let code
+            switch(res.data.respuesta) {
+              case 'ERROR':
+              code = ''
+              header = 'Error'
+              mensaje = 'an error occurred,please login again'
+              this.localstorage.clearData()
+              this.router.navigate(['/login']);
+              this.aviso(header, mensaje, code)
+              break;
+  
+              case 'TOKEN ERROR':
+              code = ''
+              header = 'Error'
+              mensaje = 'Invalid or expired token,please login again'
+              this.localstorage.clearData()
+              this.router.navigate(['/login'])   
+              this.aviso(header, mensaje, code) 
+            break; 
+  
+            case 'COUNT':
+              code = ''
+              header = 'Warning'
+              mensaje = 'OOPS! vehicle already registered'    
+            
+              this.aviso(header, mensaje, code) 
+            break; 
+  
+            case 'OK_TRUCK':
+            
+              code = ''
+              header = 'Notice'
+              mensaje = 'The vehicle was successfully...Continue'
+              this.aviso(header, mensaje, code) 
+             
+  
+            break;  
+  
+            }
+      }
+    )
+          }
+          else {
+            let mensaje = 'please login again'
+      let header = 'Warning'
+      let code = ''
+      this.loading.dismissLoader() 
+      this.localstorage.clearData()
+      this.router.navigate(['/login']);
+      this.aviso(header, mensaje, code)  
+          }
+
+    }
+
+  } 
 
 }
