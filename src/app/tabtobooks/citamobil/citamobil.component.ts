@@ -15,6 +15,7 @@ import {AddsiteComponent} from '../addsite/addsite.component';
   standalone:false
 })
 export class CitamobilComponent  implements OnInit {
+
   user!:any
   vehiculo!:any
   tipov!:any
@@ -22,17 +23,13 @@ export class CitamobilComponent  implements OnInit {
   autenticacion_tipo!:any
   numeros:string[] = []
   fleet!:any
-  numberv!:any
+ 
 vehiculoid!:any
 locations!:any
 locationv!:any
 detalles!:any
 detallev!:any
-power!:any
-water!:any
-ensitio!:any
-diacita!:any
-horacita!:any
+
 
 horario = [
  
@@ -87,7 +84,26 @@ state: any
 city: any
 favorito: any   
 
+mobil = {
+  tipov: "", 
+ numberv: null,
+ locationv: "",
+power: "",
+water: "",
+ensitio: "",
+  diacita: "",
+ horacita : "",
 
+}
+
+allErrorMessage = ''
+numbervErrorMessage = ''
+locationvErrorMessage = ''
+powerErrorMessage = ''
+waterErrorMessage = ''
+ensitioErrorMessage = ''
+diacitaErrorMessage = ''
+horacitaErrorMessage = ''
 
 
 
@@ -98,6 +114,86 @@ favorito: any
     private alertController: AlertController,
     private modalCtrl: ModalController,
   ) { }
+
+  validateForm(){
+
+  
+
+    var allValidationFlag = true
+    var locationvValidationFlag = true
+    var numbervValidationFlag = true
+    var diacitaValidationFlag = true
+    var horacitaValidationFlag = true
+    var powerValidationFlag = true
+    var waterValidationFlag = true
+    var ensitioValidationFlag = true
+    
+  
+    if (this.mobil.numberv == null && this.mobil.locationv == "" && this.mobil.diacita == '' && this.mobil.horacita == "" && this.mobil.power == "" && this.mobil.water == "" && this.mobil.ensitio == "") {
+        this.allErrorMessage = "All camps must be filled out to continue";
+        allValidationFlag = false ; 
+    }
+  
+  
+  
+    if(this.mobil.numberv == null && allValidationFlag == true)  
+    {
+        this.numbervErrorMessage = "Your number's vehicle must be filled out";
+        numbervValidationFlag = false;
+    } 
+
+    if (this.mobil.locationv == "" && allValidationFlag == true) {
+      this.locationvErrorMessage = "Your location must be filled out";
+      locationvValidationFlag = false ; 
+  }
+
+  if(this.mobil.power == "" && allValidationFlag == true)  
+    {
+        this.powerErrorMessage = "is there electricity supply on site";
+        powerValidationFlag = false;
+    }
+
+    if(this.mobil.water == "" && allValidationFlag == true)  
+      {
+          this.waterErrorMessage = "Is there a water supply on site?";
+          waterValidationFlag = false;
+      }
+
+      if(this.mobil.ensitio == "" && allValidationFlag == true)  
+        {
+            this.ensitioErrorMessage = "will you be present at the location?";
+            ensitioValidationFlag = false;
+        }
+  
+    if(this.mobil.diacita == "" && allValidationFlag == true)  
+        {
+            this.diacitaErrorMessage = "Please select a suitable day for your appointment.";
+            diacitaValidationFlag = false;
+        }
+  
+    if(this.mobil.horacita == "" && allValidationFlag == true)  
+          {
+              this.horacitaErrorMessage = "Please select a suitable time for your appointment.";
+              horacitaValidationFlag = false;
+          }   
+
+  
+           
+            
+  
+    /*var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!emailRegex.test(this.data.email)){  
+        this.emailErrorMessage =  'Please enter valid email';
+        emailValidationFlag = false
+    }else{
+        this.emailErrorMessage = '';
+        emailValidationFlag = true;
+    }*/
+  
+    return (allValidationFlag && numbervValidationFlag && locationvValidationFlag && diacitaValidationFlag && horacitaValidationFlag  && powerValidationFlag && waterValidationFlag && ensitioValidationFlag) ? true : false ;
+  }
+
+
 
   ngOnInit() {}
   async ionViewWillEnter() {
@@ -329,15 +425,27 @@ async aviso(header : string, mensaje : string, code : string) {
           break;
         }  
 
-        return this.modalCtrl.dismiss({
-          tipov : this.tipov,
-          numberv : this.numberv,
-          location : this.locationv,
-          diacita : this.diacita,
-          horacita : this.horacita,
-          power : this.power,
-          water : this.water,
-          presencia : this.ensitio,
+        this.allErrorMessage = ''
+this.numbervErrorMessage = ''
+this.locationvErrorMessage = ''
+this.powerErrorMessage = ''
+this.waterErrorMessage = ''
+this.ensitioErrorMessage = ''
+this.diacitaErrorMessage = ''
+this.horacitaErrorMessage = ''
+
+
+if(this.validateForm()){
+        this.modalCtrl.dismiss({
+
+          tipov : this.mobil.tipov,
+          numberv : this.mobil.numberv,
+          location : this.mobil.locationv,
+          diacita : this.mobil.diacita,
+          horacita : this.mobil.horacita,
+          power : this.mobil.power,
+          water : this.mobil.water,
+          presencia : this.mobil.ensitio,
           suite:this.suite,
           street: this.street,
           address: this.address,
@@ -348,7 +456,7 @@ async aviso(header : string, mensaje : string, code : string) {
           },
            
            'continue');
-
+        }
 
 
       }).closed

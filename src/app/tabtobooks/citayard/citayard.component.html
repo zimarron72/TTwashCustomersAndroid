@@ -6,15 +6,16 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <div  style = 'text-align: center; color: #f2f2f2'>{{allErrorMessage}}</div>
   <ion-list>
 
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Your type vehicle" [(ngModel)]="tipov" value="{{vehiculo}}" [readonly]="true"></ion-input>
+      <ion-input labelPlacement="stacked" label="Your type vehicle" id = "tipov" name = 'tipov' [(ngModel)]="onsite.tipov" value="{{vehiculo}}" [readonly]="true" />
     </ion-item>
 
     <ion-item>
-      <ion-select label="Number" labelPlacement="stacked" placeholder="your number's vehicle" [(ngModel)]="numberv" >
+      <ion-select label="Number" labelPlacement="stacked" placeholder="your number's vehicle" id = "numberv" name = 'numberv' [(ngModel)]="onsite.numberv" >
         <ion-select-option [value]="tempv">  
           {{tempv}}
         </ion-select-option>  
@@ -22,6 +23,8 @@
         {{numero}}
       </ion-select-option>        
       </ion-select>
+      <br/>
+      {{numbervErrorMessage}}
       <ion-button shape="round" (click)="addcar()">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
@@ -30,25 +33,31 @@
 
 
     <ion-item>
-      <ion-select label="In which of our yards" labelPlacement="stacked" placeholder="select one from our yard" [(ngModel)]="yard" >
+      <ion-select label="In which of our yards" labelPlacement="stacked" placeholder="select one from our yard" id = "yard" name = 'yard' [(ngModel)]="onsite.yard" >
       <ion-select-option *ngFor="let site of sitiosyard"  [value]="site.nombre_yard">  
         {{site.nombre_yard}}
       </ion-select-option>        
       </ion-select>
+      <br/>
+      {{yardErrorMessage}}
     </ion-item>
 
 
 
     <ion-item>
-      <ion-input  label="Date day" labelPlacement="stacked" [(ngModel)]="diacita" type="date" placeholder="Choose a day" ></ion-input>
+      <ion-input  label="Date day" labelPlacement="stacked" [(ngModel)]="onsite.diacita" id = "diacita" name = 'diacita' type="date" placeholder="Choose a day" />
+      <br/>
+      {{diacitaErrorMessage}}
     </ion-item>
 
     <ion-item>
-      <ion-select label="Appointment time"  labelPlacement="stacked" placeholder="Choose a hour" [(ngModel)]="horacita" >
+      <ion-select label="Appointment time"  labelPlacement="stacked" placeholder="Choose a hour" id = "horacita" name = 'horacita' [(ngModel)]="onsite.horacita" >
       <ion-select-option *ngFor="let hora of horario"  [value]="hora.valor">  
         {{hora.etiqueta}}
       </ion-select-option>        
       </ion-select>
+      <br/>
+      {{horacitaErrorMessage}}
     </ion-item>
 
   </ion-list>

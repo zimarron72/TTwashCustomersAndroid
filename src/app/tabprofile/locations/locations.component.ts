@@ -5,6 +5,7 @@ import { LoadingService } from '../../servicios/loading.services';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { AlertController , ModalController } from '@ionic/angular';
+
 import { ModaladdsiteComponent  } from '../modaladdsite/modaladdsite.component';
 
 @Component({
@@ -28,7 +29,8 @@ message = 'This modal example uses the modalController to present and dismiss mo
     private localstorage: StorageService,
     private router: Router,
     private loading : LoadingService, 
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+ 
     
   ) { }
 
@@ -204,72 +206,11 @@ async add() {
   const { data, role } = await modal.onWillDismiss();
 
   if (role === 'confirm') {
-    this.loading.simpleLoader()
-    if(this.user) {
-      let url = 'https://washtt.com/v1_api_clientes_addsitio.php'
-      let datax = { 
-      idtoken: this.idtoken,
-      autenticacion_tipo: this.autenticacion_tipo,
-      email : this.user.email,
-      suite : data.suite , 
-      street : data.street,
-      address : data.address,
-state  : data.estado,
-city : data.ciudad,
-zip : data.zip,
-defaults : data.defaults
-    }
-      this.cHttps(url, datax).subscribe(
-        async (res: any) => {
-          this.loading.dismissLoader()  
-          let mensaje
-          let header
-          let code
-          switch(res.data.respuesta) {
-            case 'ERROR':
-            code = ''
-            header = 'Error'
-            mensaje = 'an error occurred,please login again'
-            this.localstorage.clearData()
-            this.router.navigate(['/login']);
-            this.aviso(header, mensaje, code)
-            break;
 
-            case 'TOKEN ERROR':
-            code = ''
-            header = 'Error'
-            mensaje = 'Invalid or expired token,please login again'
-            this.localstorage.clearData()
-            this.router.navigate(['/login'])   
-            this.aviso(header, mensaje, code) 
-          break; 
+    this.procesar(data.suite,data.street,data.address,data.estado,data.ciudad,data.zip,data.favorito)
 
-         
-
-          case 'OK_TODO':
-          
-            code = ''
-            header = 'Notice'
-            mensaje = 'Location added successfully'
-            this.aviso(header, mensaje, code) 
-            this.router.navigate(['/tabs/tabprofile/nav-profile']);
-
-          break;  
-
-          }
-    }
-  )
-        }
-        else {
-          let mensaje = 'please login again'
-    let header = 'Warning'
-    let code = ''
-    this.loading.dismissLoader() 
-    this.localstorage.clearData()
-    this.router.navigate(['/login']);
-    this.aviso(header, mensaje, code)  
-        }
 }
+
 }
 
 
@@ -340,6 +281,76 @@ borrar(id : number , status : number) {
     this.router.navigate(['/login']);
     this.aviso(header, mensaje, code) 
   }
+}
+
+
+procesar(suite : any, street: any, address : any, estado: any, ciudad: any, zip: any, defaults:any ) {
+  this.loading.simpleLoader()
+  if(this.user) {
+    let url = 'https://washtt.com/v1_api_clientes_addsitio.php'
+    let datax = { 
+    idtoken: this.idtoken,
+    autenticacion_tipo: this.autenticacion_tipo,
+    email : this.user.email,
+    suite : suite , 
+    street : street,
+    address : address,
+state  : estado,
+city : ciudad,
+zip : zip,
+defaults : defaults
+  }
+    this.cHttps(url, datax).subscribe(
+      async (res: any) => {
+        this.loading.dismissLoader()  
+        let mensaje
+        let header
+        let code
+        switch(res.data.respuesta) {
+          case 'ERROR':
+          code = ''
+          header = 'Error'
+          mensaje = 'an error occurred,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login']);
+          this.aviso(header, mensaje, code)
+          break;
+
+          case 'TOKEN ERROR':
+          code = ''
+          header = 'Error'
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header, mensaje, code) 
+        break; 
+
+       
+
+        case 'OK_TODO':
+        
+          code = ''
+          header = 'Notice'
+          mensaje = 'Location added successfully'
+          this.aviso(header, mensaje, code) 
+          this.router.navigate(['/tabs/tabprofile/nav-profile']);
+
+        break;  
+
+        }
+  }
+)
+      }
+      else {
+        let mensaje = 'please login again'
+  let header = 'Warning'
+  let code = ''
+  this.loading.dismissLoader() 
+  this.localstorage.clearData()
+  this.router.navigate(['/login']);
+  this.aviso(header, mensaje, code)  
+      }
+
 }
 
 }

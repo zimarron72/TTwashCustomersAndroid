@@ -10,18 +10,36 @@ import { StorageService } from '../../servicios/storage.service';
   standalone:false
 })
 export class ModaladdtruckComponent  implements OnInit {
-  tipov:any
-  detallev:any
+ 
+  
   tipos!: any;
-  model!: string;
-  brand!:string
-  color!:number
-  license!:string
-  unitnumber!:string
   detalles!:any
-  default:any
   idtoken!: any
   autenticacion_tipo!:any
+
+  allErrorMessage = ''
+  tipovErrorMessage = ''
+  modelErrorMessage = ''
+  brandErrorMessage = ''
+  colorErrorMessage = ''
+  licenseErrorMessage = ''
+  unitnumberErrorMessage = ''
+  detallevErrorMessage = ''
+  favoritoErrorMessage = ''
+
+
+  truck = {
+    tipov: "",
+    model: "",
+    brand: "",
+    color : "",
+    license: "",
+    unitnumber: null,
+    detallev: "",
+    favorito: ""
+  }
+
+
  
   constructor(
     private modalCtrl: ModalController,
@@ -32,7 +50,89 @@ export class ModaladdtruckComponent  implements OnInit {
    
   }
 
+  validateForm(){
 
+  
+
+    var allValidationFlag = true
+    var tipovValidationFlag = true
+    var modelValidationFlag = true
+    var brandValidationFlag = true
+    var colorValidationFlag = true
+    var licenseValidationFlag = true
+    var unitnumberValidationFlag = true
+    var detallevValidationFlag = true
+    var favoritoValidationFlag = true
+    
+  
+    if (this.truck.tipov == "" && this.truck.model == "" && this.truck.model == "" && this.truck.brand == "" && this.truck.color == "" && this.truck.license == "" && this.truck.unitnumber == null && this.truck.detallev == "" && this.truck.favorito == "" ) {
+        this.allErrorMessage = "All camps must be filled out";
+        allValidationFlag = false ; 
+    }
+  
+    if (this.truck.tipov == "" && allValidationFlag == true) {
+      this.tipovErrorMessage = "The type of your vehicle must be filled out";
+      tipovValidationFlag = false ; 
+  }
+  
+    if(this.truck.model == "" && allValidationFlag == true)  
+    {
+        this.modelErrorMessage = "The model of your vehicle must be filled out";
+        modelValidationFlag = false;
+    } 
+  
+    if(this.truck.brand == "" && allValidationFlag == true)  
+        {
+            this.brandErrorMessage = "The brand of your vehicle must be filled out";
+            brandValidationFlag = false;
+        }
+  
+    if(this.truck.color == "" && allValidationFlag == true)  
+          {
+              this.colorErrorMessage = "The color of your vehicle must be filled out";
+              colorValidationFlag = false;
+          }   
+  
+      if(this.truck.license == "" && allValidationFlag == true)  
+          {
+              this.licenseErrorMessage = "Your license must be filled out";
+              licenseValidationFlag = false;
+          }
+  
+       if(this.truck.unitnumber == null && allValidationFlag == true)  
+            {
+                this.unitnumberErrorMessage = "The vehicle's number must be filled out or a number";
+                unitnumberValidationFlag = false;
+            }   
+  
+       if(this.truck.detallev == "" && allValidationFlag == true)  
+                {
+                    this.detallevErrorMessage = "What does your vehicle look like?";
+                    detallevValidationFlag = false;
+                }
+
+        if(this.truck.favorito == "" && allValidationFlag == true)  
+                  {
+                      this.favoritoErrorMessage = "Is this your favorite vehicle?";
+                      favoritoValidationFlag = false;
+                  }
+
+
+  
+           
+            
+  
+    /*var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!emailRegex.test(this.data.email)){  
+        this.emailErrorMessage =  'Please enter valid email';
+        emailValidationFlag = false
+    }else{
+        this.emailErrorMessage = '';
+        emailValidationFlag = true;
+    }*/
+  
+    return (allValidationFlag && tipovValidationFlag && modelValidationFlag && brandValidationFlag && colorValidationFlag && licenseValidationFlag && unitnumberValidationFlag && favoritoValidationFlag && detallevValidationFlag) ? true : false ;
+  }
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -83,19 +183,34 @@ export class ModaladdtruckComponent  implements OnInit {
   }
 
   confirm() {
-    return this.modalCtrl.dismiss({
-     vehicletypes : this.tipov,
-       model : this.model,
-       mark : this.brand,
-      color : this.color,
-      licenseplate:this.license,
-      ciudad:this.unitnumber,
-      detail:this.detallev,
-      unitnumber:this.unitnumber,
-      defaults:this.default
+
+    this.allErrorMessage = ''
+    this.tipovErrorMessage = ''
+    this.modelErrorMessage = ''
+    this.brandErrorMessage = ''
+    this.colorErrorMessage = ''
+    this.licenseErrorMessage = ''
+    this.unitnumberErrorMessage = ''
+    this.detallevErrorMessage = ''
+    this.favoritoErrorMessage = ''
+
+    if(this.validateForm()){
+
+    this.modalCtrl.dismiss({
+     vehicletypes : this.truck.tipov,
+       model : this.truck.model,
+       mark : this.truck.brand,
+      color : this.truck.color,
+      licenseplate:this.truck.license,
+      ciudad:this.truck.unitnumber,
+      detail:this.truck.detallev,
+      unitnumber:this.truck.unitnumber,
+      defaults:this.truck.favorito
       },
        
        'confirm');
+
+    }
   }
 
 }

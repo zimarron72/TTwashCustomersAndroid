@@ -16,20 +16,14 @@ export class CitayardComponent  implements OnInit {
 user!:any
 vehiculo!:any
 
-tipov!:any
+
 idtoken!:any
 autenticacion_tipo!:any
 numeros:string[] = []
 fleet!:any
-numberv!:any
 vehiculoid!:any
-locations!:any
-locationv!:any
-
 sitiosyard!:any
-diacita!:any
-horacita!:any
-yard!:any
+
 
 horario = [
 
@@ -57,6 +51,22 @@ horario = [
 
 tempv:any
 
+onsite = {
+  tipov: "",
+ yard: "",
+  diacita: "",
+ horacita : "",
+ numberv: null
+
+}
+
+allErrorMessage = ''
+yardErrorMessage = ''
+diacitaErrorMessage = ''
+horacitaErrorMessage = ''
+numbervErrorMessage = ''
+
+
   constructor(
     private localstorage: StorageService,
     private router: Router,
@@ -64,6 +74,66 @@ tempv:any
     private alertController: AlertController,
     private modalCtrl: ModalController,
   ) { }
+
+  validateForm(){
+
+  
+
+    var allValidationFlag = true
+    var yardValidationFlag = true
+    var numbervValidationFlag = true
+    var diacitaValidationFlag = true
+    var horacitaValidationFlag = true
+    
+  
+    if (this.onsite.numberv == null && this.onsite.yard == "" && this.onsite.diacita == '' && this.onsite.horacita == ""  ) {
+        this.allErrorMessage = "All camps must be filled out to continue";
+        allValidationFlag = false ; 
+    }
+  
+  
+  
+    if(this.onsite.numberv == null && allValidationFlag == true)  
+    {
+        this.numbervErrorMessage = "Your vehicle must be filled out";
+        numbervValidationFlag = false;
+    } 
+
+    if (this.onsite.yard == "" && allValidationFlag == true) {
+      this.yardErrorMessage = "The yard must be filled out";
+      yardValidationFlag = false ; 
+  }
+  
+    if(this.onsite.diacita == "" && allValidationFlag == true)  
+        {
+            this.diacitaErrorMessage = "Please select a suitable day for your appointment.";
+            diacitaValidationFlag = false;
+        }
+  
+    if(this.onsite.horacita == "" && allValidationFlag == true)  
+          {
+              this.horacitaErrorMessage = "Please select a suitable time for your appointment.";
+              horacitaValidationFlag = false;
+          }   
+
+  
+           
+            
+  
+    /*var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!emailRegex.test(this.data.email)){  
+        this.emailErrorMessage =  'Please enter valid email';
+        emailValidationFlag = false
+    }else{
+        this.emailErrorMessage = '';
+        emailValidationFlag = true;
+    }*/
+  
+    return (allValidationFlag && numbervValidationFlag && yardValidationFlag && diacitaValidationFlag && horacitaValidationFlag ) ? true : false ;
+  }
+
+
+
 
   ngOnInit() {}
 
@@ -190,24 +260,31 @@ async aviso(header : string, mensaje : string, code : string) {
   }
 
   continue() {
-    let tipov
-    let numberv
-    let yard
-    let diacita
-    let horacita
-    return this.modalCtrl.dismiss({
-tipov : this.tipov,
-numberv : this.numberv,
-yard : this.yard,
-diacita : this.diacita,
-horacita : this.horacita      
+
+    this.allErrorMessage = ''
+    this.numbervErrorMessage = ''
+    this.yardErrorMessage = ''
+    this.diacitaErrorMessage = ''
+    this.horacitaErrorMessage = ''
+    
+  
+    if(this.validateForm()){
+
+  
+     this.modalCtrl.dismiss({
+      
+tipov : this.onsite.tipov,
+numberv : this.onsite.numberv,
+yard : this.onsite.yard,
+diacita : this.onsite.diacita,
+horacita : this.onsite.horacita      
      
       },
        
        'continue');
 
 
-
+    }
 
        
   }

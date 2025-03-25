@@ -6,50 +6,63 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <div  style = 'text-align: center; color: #f2f2f2'>{{allErrorMessage}}</div>
   <ion-list>
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Your type vehicle" [(ngModel)]="tipov" value="{{vehiculo}}" [readonly]="true"></ion-input>
+      <ion-input labelPlacement="stacked" label="Your type vehicle" id = 'tipov' name = 'tipov'  type = 'text' [(ngModel)]="truck.tipov" value="{{vehiculo}}" [readonly]="true" />
     </ion-item>
 
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Model of vehicle" [(ngModel)]="model" placeholder="your model of vehiclee"></ion-input>
+      <ion-input labelPlacement="stacked" label="Model of vehicle" id = 'model' name = 'model' type = 'text' [(ngModel)]="truck.model" placeholder="your model of vehiclee" />
+      <br/>
+      {{modelErrorMessage}}
     </ion-item>
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Vehicle brand" [(ngModel)]="brand" placeholder="make of your vehicle"></ion-input>
+      <ion-input labelPlacement="stacked" label="Vehicle brand" id = 'brand' name = 'brand'  type = 'text' [(ngModel)]="truck.brand" placeholder="make of your vehicle" />
+      <br/>
+      {{brandErrorMessage}}
     </ion-item>
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Color of the vehicle" [(ngModel)]="color" placeholder="color of your vehicle"></ion-input>
+      <ion-input labelPlacement="stacked" label="Color of the vehicle" id = 'color' name = 'color' type = 'text' [(ngModel)]="truck.color" placeholder="color of your vehicle" />
+      <br/>
+      {{colorErrorMessage}}
     </ion-item>
 
   <ion-item>
-    <ion-input labelPlacement="stacked" label="License" [(ngModel)]="license" placeholder="vehicle driver's license"></ion-input>
+    <ion-input labelPlacement="stacked" label="License" id = 'license' name = 'license' type = 'text' [(ngModel)]="truck.license" placeholder="vehicle driver's license" />
   </ion-item>
 
   <ion-item>
-    <ion-input labelPlacement="stacked" label="Vehicle number" [(ngModel)]="unitnumber" placeholder="number of your vehicle"></ion-input>
+    <ion-input labelPlacement="stacked" label="Vehicle number" id = 'unitnumber' name = 'unitnumber' type = 'number' [(ngModel)]="truck.unitnumber" placeholder="number of your vehicle" />
+    <br/>
+    {{unitnumberErrorMessage}}
   </ion-item>
 
   <ion-item>
-    <ion-select label="Vehicle details" labelPlacement="stacked" placeholder="details of your vehicle" [(ngModel)]="detallev" >
+    <ion-select label="Vehicle details" labelPlacement="stacked"  placeholder="details of your vehicle" id = 'detallev' name = 'detallev' [(ngModel)]="truck.detallev" >
     <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
       {{detalle.etiqueta}}
     </ion-select-option>        
     </ion-select>
+    <br/>
+    {{detallevErrorMessage}}
   </ion-item>
 
   <ion-item>
-    <ion-select label="Main vehicle" labelPlacement="stacked" placeholder="Is this your main vehicle?" [(ngModel)]="default" >
-      <ion-select-option [value]="1">  
+    <ion-select label="Main vehicle" labelPlacement="stacked" placeholder="Is this your main vehicle?" id = 'favorito' name = 'favorito' [(ngModel)]="truck.favorito" >
+      <ion-select-option value="1">  
        YES
       </ion-select-option>        
-    <ion-select-option [value]="0">  
+    <ion-select-option value="0">  
       NOT
     </ion-select-option>        
     </ion-select>
+    <br/>
+    {{favoritoErrorMessage}}
   </ion-item>
 
 </ion-list>
