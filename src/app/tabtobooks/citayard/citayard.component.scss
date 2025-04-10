@@ -1,0 +1,36 @@
+ion-datetime::part(calendar-day) {
+    color: #f2f2f2;
+  }
+  
+  ion-datetime::part(calendar-day today) {
+    color: #89e032;
+  }
+  
+  ion-datetime::part(calendar-day):focus {
+    background-color: rgb(137 224 50 / 0.9);
+    box-shadow: 0px 0px 0px 4px rgba(137, 224, 50, 0.3);
+  }
+
+  ion-datetime {
+  
+    border-radius: 16px;
+    box-shadow: rgba(var(--ion-color-rose-rgb), 0.3) 0px 10px 15px -3px;
+
+    --background: rgb(43, 78, 158);
+    --background-rgb: 43, 78, 158;
+    --wheel-highlight-background: rgb(242, 242, 242);
+    --wheel-highlight-border-radius: 48px;
+    --wheel-fade-background-rgb: 43, 78, 158;
+  }
+
+
+  
+  ion-datetime::part(wheel-item) {
+    color: rgb(255, 66, 97);
+  }
+  
+  ion-datetime::part(wheel-item active) {
+    color: rgb(43, 78, 158);
+  }
+
+  

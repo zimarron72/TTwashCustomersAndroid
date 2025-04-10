@@ -24,6 +24,9 @@ import {AddsiteComponent} from './addsite/addsite.component';
 import {CartComponent } from './cart/cart.component';
 import {CuponComponent } from './cupon/cupon.component';
 import {SuccesstobookComponent } from './successtobook/successtobook.component';
+
+
+
 @NgModule({
   imports: [
     IonicModule,

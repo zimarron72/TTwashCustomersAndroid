@@ -7,5 +7,7 @@
 			"path": "../appiosttwashcustomers"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.fontSize": 18
+	}
 }

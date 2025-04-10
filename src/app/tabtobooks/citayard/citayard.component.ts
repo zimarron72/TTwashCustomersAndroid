@@ -6,6 +6,7 @@ import { StorageService } from '../../servicios/storage.service';
 import {  AlertController , ModalController  } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {AddcarComponent} from '../addcar/addcar.component';
+import {formatDate} from '@angular/common';
 @Component({
   selector: 'app-citayard',
   templateUrl: './citayard.component.html',
@@ -60,11 +61,12 @@ onsite = {
 
 }
 
-allErrorMessage = ''
-yardErrorMessage = ''
-diacitaErrorMessage = ''
-horacitaErrorMessage = ''
-numbervErrorMessage = ''
+
+hoy: any
+currentDate: any
+
+
+
 
 
   constructor(
@@ -73,11 +75,16 @@ numbervErrorMessage = ''
     private loading: LoadingService,
     private alertController: AlertController,
     private modalCtrl: ModalController,
+     
   ) { }
 
   validateForm(){
 
-  
+  var code
+  var header
+  var mensaje
+
+  var alerta = false
 
     var allValidationFlag = true
     var yardValidationFlag = true
@@ -87,34 +94,80 @@ numbervErrorMessage = ''
     
   
     if (this.onsite.numberv == null && this.onsite.yard == "" && this.onsite.diacita == '' && this.onsite.horacita == ""  ) {
-        this.allErrorMessage = "All camps must be filled out to continue";
-        allValidationFlag = false ; 
+        
+      allValidationFlag = false
+     alerta = true  
+              code = ''
+              header = 'Waiting'
+              mensaje = 'All camps must be filled out to continue'
+              this.aviso(header, mensaje, code) 
+
     }
   
   
   
     if(this.onsite.numberv == null && allValidationFlag == true)  
     {
-        this.numbervErrorMessage = "Your vehicle must be filled out";
+        
         numbervValidationFlag = false;
+if(alerta != true) {
+
+  alerta = true
+  code = ''
+        header = 'Waiting'
+        mensaje = 'Your vehicle number must be filled out'
+         
+        this.aviso(header, mensaje, code) 
+}
+
+ 
     } 
 
     if (this.onsite.yard == "" && allValidationFlag == true) {
-      this.yardErrorMessage = "The yard must be filled out";
-      yardValidationFlag = false ; 
+      yardValidationFlag = false ;
+     
+      if(alerta != true) {
+       
+        alerta = true
+        code = ''
+              header = 'Waiting'
+              mensaje = 'The yard must be filled out'             
+              this.aviso(header, mensaje, code) 
+      }
+
+
   }
+
+
+  if(this.onsite.horacita == "" && allValidationFlag == true)  
+    {
+       
+        horacitaValidationFlag = false;
+        if(alerta != true) {
+
+          alerta = true
+          code = ''
+                header = 'Waiting'
+                mensaje = 'Please select a suitable time for your appointment.'             
+                this.aviso(header, mensaje, code) 
+        }
+    }   
   
     if(this.onsite.diacita == "" && allValidationFlag == true)  
         {
-            this.diacitaErrorMessage = "Please select a suitable day for your appointment.";
+            
             diacitaValidationFlag = false;
+            if(alerta != true) {
+
+              alerta = true
+              code = ''
+                    header = 'Waiting'
+                    mensaje = 'Please select a suitable day for your appointment.'             
+                    this.aviso(header, mensaje, code) 
+            }
         }
   
-    if(this.onsite.horacita == "" && allValidationFlag == true)  
-          {
-              this.horacitaErrorMessage = "Please select a suitable time for your appointment.";
-              horacitaValidationFlag = false;
-          }   
+
 
   
            
@@ -132,12 +185,40 @@ numbervErrorMessage = ''
     return (allValidationFlag && numbervValidationFlag && yardValidationFlag && diacitaValidationFlag && horacitaValidationFlag ) ? true : false ;
   }
 
+done2() {
+  var code
+  var header
+  var mensaje
+  var fecha = formatDate(this.onsite.diacita,'d MMM YYYY','en-US');
+  code = ''
+  header = 'Selected appointment date'
+  mensaje = fecha
+  this.aviso(header, mensaje, code) 
 
+}
+
+done1() {
+  var code
+  var header
+  var mensaje
+  var hora = this.onsite.horacita
+  code = ''
+  header = 'Selected appointment time'
+  mensaje = hora
+  this.aviso(header, mensaje, code) 
+
+}
 
 
   ngOnInit() {}
 
   async ionViewWillEnter() {
+
+ 
+
+    this.hoy = new Date().toISOString()
+
+
     this.vehiculo=await this.localstorage.getData('vehiculo')
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
@@ -255,17 +336,15 @@ async aviso(header : string, mensaje : string, code : string) {
       await alert.present();
     }
   }
+
+
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
   continue() {
 
-    this.allErrorMessage = ''
-    this.numbervErrorMessage = ''
-    this.yardErrorMessage = ''
-    this.diacitaErrorMessage = ''
-    this.horacitaErrorMessage = ''
+ 
     
   
     if(this.validateForm()){

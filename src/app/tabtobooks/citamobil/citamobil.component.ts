@@ -7,7 +7,7 @@ import {  AlertController,  ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {AddcarComponent} from '../addcar/addcar.component';
 import {AddsiteComponent} from '../addsite/addsite.component';
-
+import {formatDate} from '@angular/common';
 @Component({
   selector: 'app-citamobil',
   templateUrl: './citamobil.component.html',
@@ -96,14 +96,18 @@ ensitio: "",
 
 }
 
-allErrorMessage = ''
+
+hoy: any
+currentDate: any
+
+/*allErrorMessage = ''
 numbervErrorMessage = ''
 locationvErrorMessage = ''
 powerErrorMessage = ''
 waterErrorMessage = ''
 ensitioErrorMessage = ''
 diacitaErrorMessage = ''
-horacitaErrorMessage = ''
+horacitaErrorMessage = ''*/
 
 
 
@@ -115,9 +119,40 @@ horacitaErrorMessage = ''
     private modalCtrl: ModalController,
   ) { }
 
+
+done2() {
+  var code
+  var header
+  var mensaje
+  var fecha = formatDate(this.mobil.diacita,'d MMM YYYY','en-US');
+  code = ''
+  header = 'Selected appointment date'
+  mensaje = fecha
+  this.aviso(header, mensaje, code) 
+
+}
+
+done1() {
+  var code
+  var header
+  var mensaje
+  var hora = this.mobil.horacita
+  code = ''
+  header = 'Selected appointment time'
+  mensaje = hora
+  this.aviso(header, mensaje, code) 
+
+}
+
+
+
   validateForm(){
 
+    var code
+    var header
+    var mensaje
   
+    var alerta = false
 
     var allValidationFlag = true
     var locationvValidationFlag = true
@@ -130,52 +165,124 @@ horacitaErrorMessage = ''
     
   
     if (this.mobil.numberv == null && this.mobil.locationv == "" && this.mobil.diacita == '' && this.mobil.horacita == "" && this.mobil.power == "" && this.mobil.water == "" && this.mobil.ensitio == "") {
-        this.allErrorMessage = "All camps must be filled out to continue";
-        allValidationFlag = false ; 
+               allValidationFlag = false ; 
+               alerta = true  
+              code = ''
+              header = 'Waiting'
+              mensaje = 'All camps must be filled out to continue'
+              this.aviso(header, mensaje, code) 
     }
   
   
   
     if(this.mobil.numberv == null && allValidationFlag == true)  
     {
-        this.numbervErrorMessage = "Your number's vehicle must be filled out";
+        
         numbervValidationFlag = false;
+        numbervValidationFlag = false;
+        if(alerta != true) {
+        
+          alerta = true
+          code = ''
+                header = 'Waiting'
+                mensaje = 'Your vehicle number must be filled out'
+                 
+                this.aviso(header, mensaje, code) 
+        }
     } 
 
     if (this.mobil.locationv == "" && allValidationFlag == true) {
-      this.locationvErrorMessage = "Your location must be filled out";
+      
       locationvValidationFlag = false ; 
+     
+      if(alerta != true) {
+       
+        alerta = true
+        code = ''
+              header = 'Waiting'
+              mensaje = 'Your location must be filled out'             
+              this.aviso(header, mensaje, code) 
+      }
   }
 
   if(this.mobil.power == "" && allValidationFlag == true)  
     {
-        this.powerErrorMessage = "is there electricity supply on site";
+        
         powerValidationFlag = false;
+        if(alerta != true) {
+
+          alerta = true
+          code = ''
+                header = 'Waiting'
+                mensaje = 'is there electricity supply on site?'
+                 
+                this.aviso(header, mensaje, code) 
+        }
+
     }
 
     if(this.mobil.water == "" && allValidationFlag == true)  
       {
-          this.waterErrorMessage = "Is there a water supply on site?";
+         
           waterValidationFlag = false;
+          if(alerta != true) {
+
+            alerta = true
+            code = ''
+                  header = 'Waiting'
+                  mensaje = 'Is there a water supply on site?'
+                   
+                  this.aviso(header, mensaje, code) 
+          }
+         
       }
 
       if(this.mobil.ensitio == "" && allValidationFlag == true)  
         {
-            this.ensitioErrorMessage = "will you be present at the location?";
+            
             ensitioValidationFlag = false;
+            if(alerta != true) {
+
+              alerta = true
+              code = ''
+                    header = 'Waiting'
+                    mensaje = 'will you be present at the location?'
+                     
+                    this.aviso(header, mensaje, code) 
+            }
         }
+
+        if(this.mobil.horacita == "" && allValidationFlag == true)  
+          {
+             
+              horacitaValidationFlag = false;
+              if(alerta != true) {
+
+                alerta = true
+                code = ''
+                      header = 'Waiting'
+                      mensaje = 'Please select a suitable time for your appointment.'
+                       
+                      this.aviso(header, mensaje, code) 
+              }
+          } 
   
     if(this.mobil.diacita == "" && allValidationFlag == true)  
         {
-            this.diacitaErrorMessage = "Please select a suitable day for your appointment.";
+          
             diacitaValidationFlag = false;
+            if(alerta != true) {
+
+              alerta = true
+              code = ''
+                    header = 'Waiting'
+                    mensaje = 'Please select a suitable date for your appointment.'
+                     
+                    this.aviso(header, mensaje, code) 
+            }
         }
   
-    if(this.mobil.horacita == "" && allValidationFlag == true)  
-          {
-              this.horacitaErrorMessage = "Please select a suitable time for your appointment.";
-              horacitaValidationFlag = false;
-          }   
+     
 
   
            
@@ -197,6 +304,12 @@ horacitaErrorMessage = ''
 
   ngOnInit() {}
   async ionViewWillEnter() {
+
+
+    this.hoy = new Date().toISOString()
+
+
+
     this.vehiculo=await this.localstorage.getData('vehiculo')
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
@@ -425,16 +538,7 @@ async aviso(header : string, mensaje : string, code : string) {
           break;
         }  
 
-        this.allErrorMessage = ''
-this.numbervErrorMessage = ''
-this.locationvErrorMessage = ''
-this.powerErrorMessage = ''
-this.waterErrorMessage = ''
-this.ensitioErrorMessage = ''
-this.diacitaErrorMessage = ''
-this.horacitaErrorMessage = ''
-
-
+    
 if(this.validateForm()){
         this.modalCtrl.dismiss({
 
