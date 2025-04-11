@@ -21,7 +21,7 @@ export class Tab1Page  {
 
     {
       title: 'Appointments',
-      url: '/tabs/tabtobooks/citas',
+      url: '/tabs/tabtobooks/tipocitas',
       icon: 'calendar'
     },
     {

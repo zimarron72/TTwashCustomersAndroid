@@ -24,7 +24,7 @@ import {AddsiteComponent} from './addsite/addsite.component';
 import {CartComponent } from './cart/cart.component';
 import {CuponComponent } from './cupon/cupon.component';
 import {SuccesstobookComponent } from './successtobook/successtobook.component';
-
+import {TipocitasComponent } from './tipocitas/tipocitas.component';
 
 
 @NgModule({
@@ -52,11 +52,8 @@ import {SuccesstobookComponent } from './successtobook/successtobook.component';
     AddsiteComponent,
     CartComponent,
     CuponComponent,
-    SuccesstobookComponent
-    
-
-
-
+    SuccesstobookComponent,
+    TipocitasComponent
   ],
   providers: [ServiciosTobook,],
 })

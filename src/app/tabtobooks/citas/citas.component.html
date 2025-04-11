@@ -1,9 +1,117 @@
 <ion-header>
-  <ion-toolbar color="primary" >
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>To book</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content class="ion-padding"> mis citas. </ion-content>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Appointments</ion-title>
+      
+    </ion-toolbar>
+    <div *ngIf="n == 1" style="font-weight: bolder;
+    padding: 3%; background-color: #ca083f; color:#fff; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
+      ON WAITING
+      </div>
+       <div *ngIf="n == 2" style="font-weight: bolder;
+    padding: 3%; background-color: #FFC409; color:#363637; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
+      CONFIRMED
+      </div>
+      
+       <div *ngIf="n == 7" style="font-weight: bolder;
+    padding: 3%; background-color: #2dd36f; color:#363637; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
+      ATTENDED
+      </div>
+      
+      <div *ngIf="n == 9" style="font-weight: bolder;
+    padding: 3%; background-color: #2e4f9c; color:#fff; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
+      CANCELLED
+      </div>
+  
+    <ion-toolbar *ngIf=" 2 >= n" style ="color:#f2f2f2;" color="primary"> 
+   
+      <ion-icon name="information-circle" slot='start' style ="color:#f2f2f2;"></ion-icon>
+      <ion-title size="small">Appointments can be canceled with at least 24 hours notice</ion-title>
+     
+    </ion-toolbar>
+    <ion-toolbar *ngIf="n == 7" style ="color:#f2f2f2;" color="primary"> 
+      <ion-icon name="warning" slot='start' style ="color:#f2f2f2;"></ion-icon>
+      <ion-title size="small">Payment for these successfully completed appointments must be made as soon as possible.</ion-title>
+    </ion-toolbar>
+    <ion-toolbar *ngIf="n >= 9" style ="color:#f2f2f2;" color="primary"> 
+      <ion-icon name="information-circle" slot='start' style ="color:#f2f2f2;"></ion-icon>
+      <ion-title size="small">These appointments have no effect and can be deleted by you whenever you wish.</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div style="background-color:#cb033c; color: #fff" >
+        <ion-button (click) = "goBack()" fill="clear" style="color: #fff;" >
+          <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+          back    
+        </ion-button>   
+      </div>     
+  
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>  
+  
+  <ion-accordion-group *ngFor="let element of conjunto; let i = index " expand="inset" >
+    <ion-accordion value=i>
+      <ion-item slot="header" color="light">
+        <ion-icon name="map-outline"></ion-icon>
+        <ion-label>{{element.Service}}<br>{{element.Appointment}} {{element.Location}}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <p class="tickets"> Type:</p>
+      <p class="ticket">{{element.Location}}</p>
+      <p class="tickets"> Nº Order:</p>
+      <p class="ticket">{{element.Order}}</p>
+      <p class="tickets"> Hour:</p>
+      <p class="ticket">{{element.citahora}}</p>       
+      <p class="tickets">Price:</p>
+      <p class="ticket">{{element.Price_item_string}}</p>
+        <p class="tickets">Discount:</p>
+        <p class="ticket">{{element.Descuento_item_string}}</p>
+          <p class="tickets">Total:</p>
+          <p class="ticket">{{element.Total_item_string}}</p>
+  
+          <div *ngIf="n == 7">
+            <hr>
+  <div style="text-align: center;" *ngIf="element.vercharge_item">Servicio charge</div>
+            <p *ngIf="element.vercharge_item" class="tickets">Monto:</p>
+            <p *ngIf="element.vercharge_item" class="ticket">{{element.rp_monto_item}}</p>
+              <p *ngIf="element.vercharge_item" class="tickets">Concepto:</p>
+              <p *ngIf="element.vercharge_item" class="ticket">{{element.rp_concepto_item}}</p>
+          </div>
+          <div *ngIf="n == 7">
+            <hr>
+  <div *ngIf="element.vercharge_item">        
+                <ion-button  expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}"> TO SEE PHOTOS <ion-icon name="sparkles"></ion-icon>
+                 </ion-button>               
+           <ion-button  expand="full" color="primary"  routerLink="/tabs-cliente/tobook/squareconcargo/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/2">TO PAY NOW  
+           <ion-icon name="card"></ion-icon>             
+            </ion-button>             
+          </div>
+                 <ion-button *ngIf="element.verenlace3_item" expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}">TO SEE PHOTOS <ion-icon name="sparkles"></ion-icon>
+          </ion-button>           
+        <ion-button *ngIf="element.verenlace3_item" expand="full" color="primary"  routerLink="/tabs-cliente/tobook/square/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/1">TO PAY NOW    <ion-icon name="card"></ion-icon>
+                         </ion-button>            
+          </div>
+
+          <div *ngIf=" 2 >= n" > 
+            <!--<ion-button expand="full" color="primary"  (click)="Cancelar(element.order_item_id)">Cancel
+              <ion-icon name="close-circle"></ion-icon>
+            </ion-button>-->
+          </div>         
+
+          <div *ngIf="n >= 9">
+            <!--<ion-button expand="full" color="primary"  (click)="Borrar(element.order_item_id)">Delete
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>-->
+          </div>
+
+
+      </div>
+    </ion-accordion>   
+  </ion-accordion-group>
+
+
+
+</ion-content>

@@ -15,6 +15,7 @@ import {AddsiteComponent} from './addsite/addsite.component';
 import {CartComponent } from './cart/cart.component';
 import {CuponComponent } from './cupon/cupon.component';
 import {SuccesstobookComponent } from './successtobook/successtobook.component';
+import {TipocitasComponent } from './tipocitas/tipocitas.component';
 
 
 
@@ -25,7 +26,7 @@ const routes: Routes = [
   children: [
       
       { path: 'tipovehiculos', component: TipovehiculosComponent },
-      { path: 'citas', component: CitasComponent },
+      { path: 'citas/:n', component: CitasComponent },
       { path: 'putprofile', component: PutprofileComponent },
       { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },
       { path: 'tipolavados/:vehiculo/:vehiculoid', component: TipolavadosComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'cupon', component: CuponComponent },
       { path: 'successtobook', component: SuccesstobookComponent },
+      { path: 'tipocitas', component: TipocitasComponent },
     /*   
      
       { path: 'ingresarsitio', component: IngresarsitioComponent },

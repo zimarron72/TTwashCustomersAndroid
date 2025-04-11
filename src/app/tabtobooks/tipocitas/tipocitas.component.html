@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Appointments</ion-title>
+  </ion-toolbar>
+   <ion-toolbar  style ="color:#f2f2f2;" color="primary"> 
+    <ion-icon name="warning" slot='start' style ="color:#f2f2f2;"></ion-icon>
+    <ion-title size="small">In case of changes made to the data in this table, refresh the table to view the changes.</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+
+  <ion-list>
+
+    <ion-item   routerLink="/tabs/tabtobooks/citas/1">
+      <ion-icon name="warning" slot="start" color="primary"></ion-icon> 
+      <ion-label floating ion-left>     
+       ON WAITING              
+      </ion-label>      
+    <ion-badge color="primary">{{inhold}}</ion-badge>      
+    </ion-item>
+    
+    <ion-item  routerLink="/tabs/tabtobooks/citas/2">
+      <ion-icon name="checkmark-circle" slot="start"  color ="warning"></ion-icon> 
+      <ion-label floating ion-left>        
+        COMFIRMED     
+      </ion-label >      
+      <ion-badge color ="warning">{{confirmed}}</ion-badge>  
+    </ion-item>
+
+    
+    <ion-item   routerLink="/tabs/tabtobooks/citas/7">
+      <ion-icon name="checkmark-done-circle" slot="start" color ="success"></ion-icon>
+      <ion-label floating ion-left>        
+      ATTENDED     
+      </ion-label>
+      <ion-badge color ="success">{{completed}}</ion-badge>
+    </ion-item>
+
+    <ion-item  routerLink="/tabs/tabtobooks/citas/9">
+      <ion-icon name="close-circle" slot="start"  color="tertiary"></ion-icon> 
+      <ion-label floating ion-left>       
+      CANCELLED      
+      </ion-label>     
+      <ion-badge color="tertiary">{{cancelled}}</ion-badge>
+    </ion-item>
+
+
+    <ion-item  routerLink="/tabs/tabtobooks/citas/10">
+      <ion-icon name="close-circle" slot="start"  color="tertiary"></ion-icon> 
+      <ion-label floating ion-left>       
+      ARCHIVED   
+      </ion-label>     
+      <ion-badge color="tertiary">{{cancelled}}</ion-badge>
+    </ion-item>
+
+    
+  
+   
+  
+  </ion-list> 
+
+
+</ion-content>
