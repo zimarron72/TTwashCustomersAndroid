@@ -6,71 +6,131 @@
       <ion-title>Appointments</ion-title>
       
     </ion-toolbar>
-    <div *ngIf="n == 1" style="font-weight: bolder;
+    <div *ngIf="n == 1" class="waiting" style="font-weight: bolder;
     padding: 3%; background-color: #ca083f; color:#fff; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
       ON WAITING
       </div>
-       <div *ngIf="n == 2" style="font-weight: bolder;
-    padding: 3%; background-color: #FFC409; color:#363637; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
+       <div *ngIf="n == 2" class="confirmed" >
       CONFIRMED
       </div>
       
-       <div *ngIf="n == 7" style="font-weight: bolder;
-    padding: 3%; background-color: #2dd36f; color:#363637; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
+       <div *ngIf="n == 7" class="attended">
       ATTENDED
       </div>
       
-      <div *ngIf="n == 9" style="font-weight: bolder;
-    padding: 3%; background-color: #2e4f9c; color:#fff; border-bottom: solid 1px #fff; text-align: center; border-top: solid 1px #fff;">
+      <div *ngIf="n == 9" class="cancelled" >
       CANCELLED
       </div>
+
+      <div *ngIf="n == 10" class="archived">
+        ARCHIVED
+        </div>
   
-    <ion-toolbar *ngIf=" 2 >= n" style ="color:#f2f2f2;" color="primary"> 
+    <ion-toolbar *ngIf=" 2 >= n" class ="colorfont"  color="primary"> 
    
-      <ion-icon name="information-circle" slot='start' style ="color:#f2f2f2;"></ion-icon>
+      <ion-icon name="information-circle" slot='start'  class ="colorfont" ></ion-icon>
       <ion-title size="small">Appointments can be canceled with at least 24 hours notice</ion-title>
      
     </ion-toolbar>
-    <ion-toolbar *ngIf="n == 7" style ="color:#f2f2f2;" color="primary"> 
-      <ion-icon name="warning" slot='start' style ="color:#f2f2f2;"></ion-icon>
+    <ion-toolbar *ngIf="n == 7" class ="colorfont" color="primary"> 
+      <ion-icon name="warning" slot='start' class ="colorfont"></ion-icon>
       <ion-title size="small">Payment for these successfully completed appointments must be made as soon as possible.</ion-title>
     </ion-toolbar>
-    <ion-toolbar *ngIf="n >= 9" style ="color:#f2f2f2;" color="primary"> 
-      <ion-icon name="information-circle" slot='start' style ="color:#f2f2f2;"></ion-icon>
-      <ion-title size="small">These appointments have no effect and can be deleted by you whenever you wish.</ion-title>
+    <ion-toolbar *ngIf="n == 9" class ="colorfont" color="primary"> 
+      <ion-icon name="information-circle" slot='start' class ="colorfont"></ion-icon>
+      <ion-title size="small">These appointments have no effect and can be archived by you whenever you wish.</ion-title>
     </ion-toolbar>
-  </ion-header>
+
+    <ion-toolbar *ngIf="n == 10" class ="colorfont" color="primary"> 
+      <ion-icon name="information-circle" slot='start' class ="colorfont"></ion-icon>
+      <ion-title size="small">These appointments have no effect and have been archived for informational purposes.</ion-title>
+    </ion-toolbar>
+
+    </ion-header>
+
+
   <ion-content>
-    <div style="background-color:#cb033c; color: #fff" >
-        <ion-button (click) = "goBack()" fill="clear" style="color: #fff;" >
-          <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-          back    
-        </ion-button>   
-      </div>     
-  
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>  
+    </ion-refresher>
+   <!--<div style ="color:#f2f2f2;" color="primary"> 
+      <ion-button (click) = "goBack()" fill="clear" style="color: #fff;" >
+        <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+        back    
+      </ion-button>   
+      <ion-button (click)="vermobil()" expand="full">View mobil</ion-button>
+      <ion-button (click)="veryard()" expand="full">View onsite</ion-button>
+    </div>-->
+
+    <ion-grid color="primary">
+      <ion-row>
+        <ion-col>
+          <ion-button (click) = "goBack()" fill="clear" style="color: #fff;" >
+            <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+            back    
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="radio">
+          <ion-button size="small" (click)="vermobil()">
+            <ion-icon slot="start" name="eye"></ion-icon>           
+            Mobil
+          </ion-button>
+        </ion-col>
+        <ion-col class="radio">
+          <ion-button size="small" (click)="veryard()">
+            <ion-icon slot="start" name="eye"></ion-icon>           
+            Onsite
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    
+    
+
   
-  <ion-accordion-group *ngFor="let element of conjunto; let i = index " expand="inset" >
-    <ion-accordion value=i>
-      <ion-item slot="header" color="light">
-        <ion-icon name="map-outline"></ion-icon>
-        <ion-label>{{element.Service}}<br>{{element.Appointment}} {{element.Location}}</ion-label>
+ <ion-accordion-group *ngFor="let element of conjunto | sortcitas : terms  ; let i = index " expand="inset" >
+    <ion-accordion value=i>     
+      <ion-item slot="header" color="light" >
+        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success"></ion-icon>
+        <ion-icon *ngIf="element.Location == 'Yard'" name="home" color="tertiary"></ion-icon>
+        <ion-label>
+          <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
+          <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
+          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}       
+        </ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
-        <p class="tickets"> Type:</p>
-      <p class="ticket">{{element.Location}}</p>
-      <p class="tickets"> Nº Order:</p>
-      <p class="ticket">{{element.Order}}</p>
-      <p class="tickets"> Hour:</p>
-      <p class="ticket">{{element.citahora}}</p>       
-      <p class="tickets">Price:</p>
-      <p class="ticket">{{element.Price_item_string}}</p>
-        <p class="tickets">Discount:</p>
-        <p class="ticket">{{element.Descuento_item_string}}</p>
-          <p class="tickets">Total:</p>
-          <p class="ticket">{{element.Total_item_string}}</p>
+        <ion-grid>
+
+          <ion-row>
+            <ion-col class="neon">Order nº</ion-col>          
+          </ion-row>
+          <ion-row>
+            <ion-col class="argon">{{element.Order}}</ion-col>          
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="neon" >Price</ion-col>
+            <ion-col class="neon">Discount</ion-col>
+            <ion-col class="neon">Total to pay</ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="argon">{{element.Price_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Descuento_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Total_item_string}}</ion-col>
+            
+          </ion-row>
+
+         
+
+
+        </ion-grid>
+     
   
           <div *ngIf="n == 7">
             <hr>
@@ -83,35 +143,55 @@
           <div *ngIf="n == 7">
             <hr>
   <div *ngIf="element.vercharge_item">        
-                <ion-button  expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}"> TO SEE PHOTOS <ion-icon name="sparkles"></ion-icon>
+                <ion-button  expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}"> TO SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
                  </ion-button>               
-           <ion-button  expand="full" color="primary"  routerLink="/tabs-cliente/tobook/squareconcargo/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/2">TO PAY NOW  
-           <ion-icon name="card"></ion-icon>             
+           <ion-button  expand="full" color="secondary"  routerLink="/tabs-cliente/tobook/squareconcargo/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/2">TO PAY NOW  
+           <ion-icon name="card" slot="start" ></ion-icon>             
             </ion-button>             
           </div>
-                 <ion-button *ngIf="element.verenlace3_item" expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}">TO SEE PHOTOS <ion-icon name="sparkles"></ion-icon>
+                 <ion-button *ngIf="element.verenlace3_item" expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}">TO SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
           </ion-button>           
-        <ion-button *ngIf="element.verenlace3_item" expand="full" color="primary"  routerLink="/tabs-cliente/tobook/square/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/1">TO PAY NOW    <ion-icon name="card"></ion-icon>
+        <ion-button *ngIf="element.verenlace3_item" expand="full" color="secondary"  routerLink="/tabs-cliente/tobook/square/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/1">TO PAY NOW    <ion-icon name="card"></ion-icon>
                          </ion-button>            
           </div>
 
           <div *ngIf=" 2 >= n" > 
-            <!--<ion-button expand="full" color="primary"  (click)="Cancelar(element.order_item_id)">Cancel
-              <ion-icon name="close-circle"></ion-icon>
-            </ion-button>-->
+            <ion-button expand="full" color="secondary"  (click)="Cancelar(element.order_item_id)">
+              <ion-icon name="close-circle" slot="start"></ion-icon>
+              Cancel
+            </ion-button>
           </div>         
 
-          <div *ngIf="n >= 9">
-            <!--<ion-button expand="full" color="primary"  (click)="Borrar(element.order_item_id)">Delete
-              <ion-icon name="trash"></ion-icon>
-            </ion-button>-->
+        <div *ngIf="n == 9">
+            <div>
+            <ion-button expand="full" color="secondary"  (click)="Archive(element.order_item_id)">
+              <ion-icon name="trash" slot="start" ></ion-icon>
+              Archive
+            </ion-button>
           </div>
+        </div>
+
+       
+
+        <div *ngIf="element.archived == 1">
+          <div class="neon" *ngIf="n == 8"><h3><ion-text color="medium"><ion-icon name="diamond-sharp"></ion-icon></ion-text>Service</h3></div> 
+          <div class="neon" *ngIf="n == 9"><h3><ion-text color="warning"><ion-icon name="star-half-sharp"></ion-icon></ion-text>Service</h3></div>     
+        </div>
+        <div *ngIf="element.archived == '1'">
+          <div class="neon" *ngIf="n == 8"><h3>Completed</h3></div>  
+          <div class="neon" *ngIf="n == 9"><h3>Cancelled</h3></div>       
+        </div>
+          
+
+         
 
 
+   
       </div>
     </ion-accordion>   
   </ion-accordion-group>
-
-
-
 </ion-content>
+
+
+
+

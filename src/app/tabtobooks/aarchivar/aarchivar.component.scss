@@ -1,0 +1,24 @@
+ion-toggle {
+ 
+  
+    --track-background: #ddd;
+    --track-background-checked: #ddd;
+  
+   
+  }
+  
+  ion-toggle::part(track) {
+ 
+  
+    /* Required for iOS handle to overflow the height of the track */
+    overflow: visible;
+  }
+
+  ion-item {
+  
+    --color: #f2f2f2;
+}
+
+p {
+    color: #f2f2f2;
+}

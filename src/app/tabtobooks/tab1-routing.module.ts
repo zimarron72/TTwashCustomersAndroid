@@ -16,6 +16,8 @@ import {CartComponent } from './cart/cart.component';
 import {CuponComponent } from './cupon/cupon.component';
 import {SuccesstobookComponent } from './successtobook/successtobook.component';
 import {TipocitasComponent } from './tipocitas/tipocitas.component';
+import {AcancelarComponent } from './acancelar/acancelar.component';
+import {AarchivarComponent } from './aarchivar/aarchivar.component';
 
 
 
@@ -40,6 +42,9 @@ const routes: Routes = [
       { path: 'cupon', component: CuponComponent },
       { path: 'successtobook', component: SuccesstobookComponent },
       { path: 'tipocitas', component: TipocitasComponent },
+      { path: 'cancelarcita', component: AcancelarComponent },
+      { path: 'archivarcita', component: AarchivarComponent},
+      
     /*   
      
       { path: 'ingresarsitio', component: IngresarsitioComponent },

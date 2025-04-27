@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">   
+    <ion-title>Archive appointment</ion-title>  
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <p>By confirming this action, the appointment will be stored as archived data. This information is preserved for reference purposes. The company reserves the right to retain this information for legal purposes.</p>
+  <ion-item>
+    <ion-toggle labelPlacement="start" color="warning"  [(ngModel)]="terminos">I accept the terms</ion-toggle>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="primary" >
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Go back</ion-button>
+    </ion-buttons>
+    <ion-title>Action</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

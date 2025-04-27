@@ -18,6 +18,7 @@ export class TipocitasComponent  implements OnInit {
   confirmed: any
   cancelled: any
   completed: any
+  archivados: any
 
   idtoken!: string
   autenticacion_tipo!: string
@@ -102,6 +103,7 @@ async aviso(header : string, mensaje : string, code : string) {
             this.confirmed = res.data.confirmados
             this.completed = res.data.completados
             this.cancelled = res.data.cancelados
+            this.archivados = res.data.archivados
            break;
          
         }
@@ -118,12 +120,12 @@ async aviso(header : string, mensaje : string, code : string) {
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
-    this.loading.simpleLoader()
+   
     var url = 'https://washtt.com/v2_api_clientes_getappointment.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {
-        this.loading.dismissLoader()
+        event.target.complete();
         console.log(res)
         let mensaje
         let header
@@ -151,6 +153,7 @@ async aviso(header : string, mensaje : string, code : string) {
             this.confirmed = res.data.confirmados
             this.completed = res.data.completados
             this.cancelled = res.data.cancelados
+            this.archivados = res.data.archivados
            break;
          
         }
