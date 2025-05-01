@@ -9,8 +9,8 @@ import { Location } from '@angular/common';
 import { AcancelarComponent } from '../acancelar/acancelar.component';
 import { AarchivarComponent } from '../aarchivar/aarchivar.component';
 //import { SortcitasPipe } from '../sortcitas/sortcitas.pipe';
-
-
+import { PaysquareComponent } from '../paysquare/paysquare.component';
+import { SlidergaleryComponent } from '../slidergalery/slidergalery.component';
 
 @Component({
   selector: 'app-citas',
@@ -339,6 +339,41 @@ goBack(): void {
     } 
   }
 
+  async Pay1(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: PaysquareComponent
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'continue') {
+
+
+
+    } 
+  }
+
+  async Galery(id: any): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: SlidergaleryComponent,
+      componentProps: { 
+        item: id,
+        
+      }
+    });
+     modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'continue') {
+
+
+
+    } 
+  }
+
+
+
+
 
   vermobil(){
     this.terms = "Mobil"
@@ -448,5 +483,9 @@ goBack(): void {
   
   
     }  */
+
+
+
+
 
 }

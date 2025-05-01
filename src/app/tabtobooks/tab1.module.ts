@@ -7,7 +7,8 @@ import { Tab1Page } from './tab1.page';
 //import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { RouterModule } from '@angular/router';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
-import { ServiciosTobook } from '../servicios/servicios.tobook';
+import { SquareService } from '../servicios/square.service';
+//import { ServiciosTobook } from '../servicios/servicios.tobook';
 
 //componentes anidados
 import { TipovehiculosComponent } from './tipovehiculos/tipovehiculos.component';
@@ -28,6 +29,9 @@ import { TipocitasComponent } from './tipocitas/tipocitas.component';
 import { AcancelarComponent } from './acancelar/acancelar.component';
 import { AarchivarComponent } from './aarchivar/aarchivar.component';
 import { SortcitasPipe } from './sortcitas/sortcitas.pipe';
+import { SlidergaleryComponent } from './slidergalery/slidergalery.component';
+import { PaysquareComponent } from './paysquare/paysquare.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 
@@ -61,8 +65,12 @@ import { SortcitasPipe } from './sortcitas/sortcitas.pipe';
     TipocitasComponent,
     AcancelarComponent,
     AarchivarComponent,
-    SortcitasPipe
+    SortcitasPipe,
+    SlidergaleryComponent,
+    PaysquareComponent
   ],
-  providers: [ServiciosTobook,],
+  providers: [SquareService],
+   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
+
 })
 export class Tab1PageModule { }

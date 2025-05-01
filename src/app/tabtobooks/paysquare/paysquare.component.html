@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Payment method</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="continue()" [strong]="true">Continue</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div style="text-align:center">
+    <img src="https://www.washtt.com/images/square-logo.png" alt="logo square">
+    <div style="color:#f2f2f2"> <small>Powered by Square</small> </div> 
+   </div>
+  <form id="payment-form">
+    <div id="billing">
+  
+      <div class="label">Service</div> 
+      <input type="text" id="concept" name="concept" class="form-control" value ='{{servicio}}' readonly="" > 
+  
+      
+  
+      <div class="label" >Price</div> 
+      <input type="text" id="sub-total" name="sub-total" class="form-control" value ='{{precio_string}}' readonly=""> 
+   
+      
+  
+      <div class="label">Discount</div> 
+      <input type="text" id="descuento" name="descuento" class="form-control" value ='{{descuento_string}}' readonly=""> 
+  
+      
+  
+      <div class="label">Total</div> 
+      <input type="text" id="total" name="total" class="form-control" value ='{{total_string}}' readonly=""><br> 
+  
+      
+      
+      <div style="text-align: center; color:#f2f2f2"> Would you like to add a tip?</div>
+      <div class="tip">Tip</div> 
+      <input type="tel" id="tip" name="tip" class="form-control" value="" placeholder="tip?"><br> 
+      <!--<div style="text-align: center; color:#f2f2f2">Please fill in the payment information</div>-->
+   
+  
+  
+  
+     
+        <!--<input type="hidden" id="uid" name="uid"  value='{{uid}}'> 
+        <input type="hidden" id="uemail" name="uemail"  value='{{uemail}}'> 
+        <input type="hidden" id="n" name="n" value="0">-->
+    </div><br>
+  
+ 
+  
+    <div id="card-container">
+    
+    </div>
+    
+  <!--<ion-button id="card-button" (click) = "eventHandler()">
+      <ion-icon slot="start" name="star"></ion-icon>
+     To pay
+    </ion-button>-->
+    
+    
+   
+  </form> 
+    
+    <!--<ion-row>
+      <ion-col>
+        <ion-button   color="primary" expand="block" (click) = "eventHandler()" >To pay</ion-button>
+      </ion-col>
+    </ion-row>
+ 
+  <div id="payment-status-container"></div>
+  <ion-row>
+    <ion-col>
+      <ion-button   color="primary" expand="block" (click) = "cancelar()" >Cancel</ion-button>
+    </ion-col>
+  </ion-row>-->
+</ion-content>
+
+
+
+

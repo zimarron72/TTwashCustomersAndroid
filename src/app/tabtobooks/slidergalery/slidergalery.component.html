@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar style ="color:#f2f2f2;" color="primary">
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()"> <ion-icon slot="start" name="chevron-back-outline"></ion-icon>  
+      Back
+      </ion-button>
+    </ion-buttons>
+    <ion-title><ion-icon name="sparkles"></ion-icon>  Images of Job</ion-title>   
+    <ion-buttons slot="end">
+      <ion-button (click)="continue()" [strong]="true"></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar  style ="color:#f2f2f2;" color="primary"> 
+        <ion-title size="small">The images presented correspond to your vehicle after cleaning.</ion-title>  
+    
+  </ion-toolbar>
+
+
+</ion-header>
+
+
+
+
+<ion-content [fullscreen]="true">
+<!--<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>-->
+
+
+
+
+<swiper-container  zoom="true"   [loop]="true" [pagination]="true" >
+
+
+<swiper-slide *ngFor="let imagen of imagenes">																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																			 
+  <ion-card >
+    <ion-card-header >
+      <ion-card-title>{{imagen.titulo}}</ion-card-title>
+      <ion-card-subtitle>{{imagen.frase}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="swiper-zoom-container">
+          <img src="{{imagen.url}}" style="height: 100%; width: 100%" />
+        </div>
+    </ion-card-content>
+</ion-card>
+</swiper-slide>
+
+</swiper-container>
+</ion-content>

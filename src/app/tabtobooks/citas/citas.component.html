@@ -143,15 +143,15 @@
           <div *ngIf="n == 7">
             <hr>
   <div *ngIf="element.vercharge_item">        
-                <ion-button  expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}"> TO SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
+                <ion-button  expand="full" color="warning"   (click)="Galery(element.order_item_id)" > TO SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
                  </ion-button>               
-           <ion-button  expand="full" color="secondary"  routerLink="/tabs-cliente/tobook/squareconcargo/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/2">TO PAY NOW  
+           <ion-button  expand="full" color="secondary" (click)="Pay1()" >TO PAY NOW  
            <ion-icon name="card" slot="start" ></ion-icon>             
             </ion-button>             
           </div>
-                 <ion-button *ngIf="element.verenlace3_item" expand="full" color="warning"  routerLink="/tabs-cliente/tobook/galeria/{{element.order_item_id}}">TO SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
+                 <ion-button *ngIf="element.verenlace3_item" expand="full" color="warning"  (click)="Galery(element.order_item_id)">TO SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
           </ion-button>           
-        <ion-button *ngIf="element.verenlace3_item" expand="full" color="secondary"  routerLink="/tabs-cliente/tobook/square/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/1">TO PAY NOW    <ion-icon name="card"></ion-icon>
+        <ion-button *ngIf="element.verenlace3_item" expand="full" color="secondary"  (click)="Pay1()">TO PAY NOW    <ion-icon name="card"></ion-icon>
                          </ion-button>            
           </div>
 
@@ -183,10 +183,14 @@
         </div>
           
 
-         
+       <!----routerLink="/tabs/tabtobooks/squareconcargo/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/2"-->     
 
-
+       <!--routerLink="/tabs-cliente/tobook/square/{{element.Service}}/{{element.product_item_price}}/{{element.order_item_id}}/{{element.wash_id}}/{{element.discount}}/{{element.rp_monto}}/{{element.rp_concepto_item}}/1"-->
    
+       <!--routerLink="/tabs/tabtobooks/viewphoto/{{element.order_item_id}}"-->
+
+       <!--routerLink="/tabs/tabtobooks/viewphoto/{{element.order_item_id}}"-->
+
       </div>
     </ion-accordion>   
   </ion-accordion-group>

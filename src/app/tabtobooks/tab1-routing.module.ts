@@ -18,7 +18,8 @@ import {SuccesstobookComponent } from './successtobook/successtobook.component';
 import {TipocitasComponent } from './tipocitas/tipocitas.component';
 import {AcancelarComponent } from './acancelar/acancelar.component';
 import {AarchivarComponent } from './aarchivar/aarchivar.component';
-
+import { SlidergaleryComponent } from './slidergalery/slidergalery.component';
+import { PaysquareComponent } from './paysquare/paysquare.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,9 @@ const routes: Routes = [
       { path: 'tipocitas', component: TipocitasComponent },
       { path: 'cancelarcita', component: AcancelarComponent },
       { path: 'archivarcita', component: AarchivarComponent},
+      { path: 'viewphoto/:order_item_id', component: SlidergaleryComponent },
+      { path: 'Pay1', component: PaysquareComponent },
+     
       
     /*   
      

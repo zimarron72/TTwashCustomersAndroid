@@ -13,6 +13,7 @@ import { AutenticacionService } from './servicios/autenticacion';
 import { ServiciosTobook} from './servicios/servicios.tobook';
 import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { SquareService } from './servicios/square.service';
 
 
 import { environment } from '../environments/environment';
@@ -26,6 +27,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 
 import {  ReactiveFormsModule } from '@angular/forms';
 import { Capacitor } from '@capacitor/core';
+
 
 
 @NgModule({
@@ -62,6 +64,7 @@ import { Capacitor } from '@capacitor/core';
   ServiciosTobook,
   LoadingController,
   Storage,
+  SquareService,
   //WonderPush
 
   ],
