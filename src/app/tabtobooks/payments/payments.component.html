@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Payments:<br><span [style.color]=colorp>{{n}}</span></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>  
+ <ion-accordion-group *ngFor="let element of conjunto  let i = index " expand="inset" >
+    <ion-accordion value=i>     
+      <ion-item slot="header" color="light" >
+        
+        <ion-label>
+          <strong>{{element.service}}</strong><br>
+       {{element.fechapago}} | Order nº {{element.order_number}}       
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+   <ion-grid>
+
+          <ion-row>
+            <ion-col class="neon">Report nº </ion-col>  
+            <ion-col class="argon">{{element.report_number}}</ion-col>        
+          </ion-row>
+         
+
+          <ion-row>
+            <ion-col class="neon" >Price</ion-col>
+            <ion-col class="neon">Discount</ion-col>
+            <ion-col class="neon">Total paid</ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="argon">{{element.Price_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Descuento_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Amount_string}}</ion-col>
+            
+          </ion-row>      
+
+
+        </ion-grid>   
+        
+         <hr class="linea" *ngIf="element.vercharge_item">
+                <div *ngIf="element.vercharge_item" class="neon" >Servicio charge</div>
+          <p *ngIf="element.vercharge_item" class="neon" >Monto:</p>
+          <p *ngIf="element.vercharge_item" class="argon" >{{element.rp_monto_item_string}}</p>
+            <p *ngIf="element.vercharge_item" class="neon" >Concepto:</p>
+            <p *ngIf="element.vercharge_item" class="argon" >{{element.rp_concepto_item}}</p>
+
+
+
+
+
+      </div>
+  
+
+     
+        
+          
+
+
+    </ion-accordion>   
+  </ion-accordion-group>
+</ion-content>

@@ -31,6 +31,9 @@ import { AarchivarComponent } from './aarchivar/aarchivar.component';
 import { SortcitasPipe } from './sortcitas/sortcitas.pipe';
 import { SlidergaleryComponent } from './slidergalery/slidergalery.component';
 import { PaysquareComponent } from './paysquare/paysquare.component';
+import { PaysquarechargeComponent } from './paysquarecharge/paysquarecharge.component';
+import { TipopagosComponent} from './tipopagos/tipopagos.component';
+import { PaymentsComponent} from './payments/payments.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
@@ -67,7 +70,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     AarchivarComponent,
     SortcitasPipe,
     SlidergaleryComponent,
-    PaysquareComponent
+    PaysquareComponent,
+    PaysquarechargeComponent,
+    TipopagosComponent,
+     PaymentsComponent
   ],
   providers: [SquareService],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA],

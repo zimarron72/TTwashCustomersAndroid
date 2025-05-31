@@ -20,6 +20,9 @@ import {AcancelarComponent } from './acancelar/acancelar.component';
 import {AarchivarComponent } from './aarchivar/aarchivar.component';
 import { SlidergaleryComponent } from './slidergalery/slidergalery.component';
 import { PaysquareComponent } from './paysquare/paysquare.component';
+import { TipopagosComponent} from './tipopagos/tipopagos.component';
+import { PaymentsComponent} from './payments/payments.component';
+
 
 
 const routes: Routes = [
@@ -30,6 +33,7 @@ const routes: Routes = [
       
       { path: 'tipovehiculos', component: TipovehiculosComponent },
       { path: 'citas/:n', component: CitasComponent },
+      { path: 'payments/:n', component: PaymentsComponent },
       { path: 'putprofile', component: PutprofileComponent },
       { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },
       { path: 'tipolavados/:vehiculo/:vehiculoid', component: TipolavadosComponent },
@@ -43,6 +47,7 @@ const routes: Routes = [
       { path: 'cupon', component: CuponComponent },
       { path: 'successtobook', component: SuccesstobookComponent },
       { path: 'tipocitas', component: TipocitasComponent },
+      { path: 'tipopagos', component: TipopagosComponent },
       { path: 'cancelarcita', component: AcancelarComponent },
       { path: 'archivarcita', component: AarchivarComponent},
       { path: 'viewphoto/:order_item_id', component: SlidergaleryComponent },

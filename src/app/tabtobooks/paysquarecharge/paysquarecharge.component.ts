@@ -4,15 +4,15 @@ import { SquareService } from '../../servicios/square.service';
 import { AlertController } from '@ionic/angular';
 import { StorageService } from '../../servicios/storage.service';
 import { LoadingService } from '../../servicios/loading.services';
-
 declare var Square: any;
 @Component({
-  selector: 'app-paysquare',
-  templateUrl: './paysquare.component.html',
-  styleUrls: ['./paysquare.component.scss'],
+  selector: 'app-paysquarecharge',
+  templateUrl: './paysquarecharge.component.html',
+  styleUrls: ['./paysquarecharge.component.scss'],
   standalone : false
 })
-export class PaysquareComponent  implements OnInit {
+export class PaysquarechargeComponent  implements OnInit {
+
 
  idtoken!: string
   autenticacion_tipo!: string
@@ -23,9 +23,13 @@ export class PaysquareComponent  implements OnInit {
   subtotal : any
   descuento : any
 
+  recargo_monto : any
+  recargo_concepto : any
+
 subtotal_string !: string
 descuento_string !: string
 total_string !: string
+charge_string !: string
   
 
   total : any
@@ -35,15 +39,15 @@ total_string !: string
   card : any
 
   constructor(
-    private modalCtrl: ModalController,
+     private modalCtrl: ModalController,
     private dsls: SquareService, 
     private loading : LoadingService,
     private localstorage: StorageService,
     private alertController: AlertController
-
   ) { }
 
   ngOnInit() {}
+
 
   async aviso(header : string, mensaje : string, code : string) {
     if (code == '') {
@@ -83,6 +87,7 @@ total_string !: string
   this.subtotal_string =   formatter$.format(this.subtotal)
   this.descuento_string =   formatter$.format(this.descuento)
   this.total_string =   formatter$.format(this.total) 
+    this.charge_string =   formatter$.format(this.recargo_monto) 
   
   //async function main() {
 
@@ -143,9 +148,9 @@ this.loading.dismissLoader()
         nonce : result.token,
         itemid : this.item,
         washid : this.wash,
-        charge : 0,
-        charge_concepto : 'NA',
-        charge_status : 'NA'
+        charge : this.recargo_monto,
+        charge_concepto : this.recargo_concepto,
+        charge_status : 2
       };
 
         fetch(url, {
@@ -292,7 +297,5 @@ this.loading.dismissLoader()
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
-
-  
 
 }

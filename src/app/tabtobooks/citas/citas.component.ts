@@ -10,6 +10,7 @@ import { AcancelarComponent } from '../acancelar/acancelar.component';
 import { AarchivarComponent } from '../aarchivar/aarchivar.component';
 //import { SortcitasPipe } from '../sortcitas/sortcitas.pipe';
 import { PaysquareComponent } from '../paysquare/paysquare.component';
+import { PaysquarechargeComponent } from '../paysquarecharge/paysquarecharge.component';
 import { SlidergaleryComponent } from '../slidergalery/slidergalery.component';
 
 @Component({
@@ -339,18 +340,294 @@ goBack(): void {
     } 
   }
 
-  async Pay1(): Promise<void> {
+  async Pay1(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {
     const modal = await this.modalCtrl.create({
-      component: PaysquareComponent
+      component: PaysquareComponent,
+       componentProps: { 
+        
+        concepto : service,
+        subtotal : subtotal,
+        descuento : descuento,
+        total : total,
+        item : item_id,
+        wash : wash_id
+        
+      }
     });
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
     if (role === 'continue') {
+//refrescar luego del pago
+switch(data.accion) {
 
+case "alogin":
+  this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+break;    
+
+case "tipopagos":
+   this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+break;
+
+case "successpay":
+  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
+    this.cHttps(url, data1).subscribe(
+      async (res: any) => {            
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'Sorry, an error occurred,please login again2'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code) 
+                   break;            
+         
+          
+      default:
+
+      this.m = res.data.archived
+      console.log('ESTAMMM'+this.m)
+
+      var sinfiltrardatos = Object.values(res.data)
+      this.conjunto = sinfiltrardatos
+
+      if(sinfiltrardatos == null) {
+        this.vertabla = false
+        this.vermensaje = true
+       
+      }
+      else {
+        this.vertabla = true
+        this.vermensaje = false
+       
+      }
+         
+        }
+                      
+      }
+    )
+break; 
+
+case "successpaycond":
+  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
+    this.cHttps(url, data1).subscribe(
+      async (res: any) => {            
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'Sorry, an error occurred,please login again2'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code) 
+                   break;            
+         
+          
+      default:
+
+      this.m = res.data.archived
+      console.log('ESTAMMM'+this.m)
+
+      var sinfiltrardatos = Object.values(res.data)
+      this.conjunto = sinfiltrardatos
+
+      if(sinfiltrardatos == null) {
+        this.vertabla = false
+        this.vermensaje = true
+       
+      }
+      else {
+        this.vertabla = true
+        this.vermensaje = false
+       
+      }
+         
+        }
+                      
+      }
+    )
+break;
+
+
+
+}
 
 
     } 
+  
+  }
+
+  async Pay2(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: PaysquarechargeComponent,
+       componentProps: { 
+        
+        concepto : service,
+        subtotal : subtotal,
+        descuento : descuento,
+        total : total,
+        item : item_id,
+        wash : wash_id,
+        recargo_concepto : recargo_concepto,
+        recargo_monto : recargo_monto
+        
+      }
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'continue') {
+//refrescar luego del pago
+switch(data.accion) {
+
+case "alogin":
+  this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+break;    
+
+case "tipopagos":
+   this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+break;
+
+case "successpay":
+  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
+    this.cHttps(url, data1).subscribe(
+      async (res: any) => {            
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'Sorry, an error occurred,please login again2'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code) 
+                   break;            
+         
+          
+      default:
+
+      this.m = res.data.archived
+      console.log('ESTAMMM'+this.m)
+
+      var sinfiltrardatos = Object.values(res.data)
+      this.conjunto = sinfiltrardatos
+
+      if(sinfiltrardatos == null) {
+        this.vertabla = false
+        this.vermensaje = true
+       
+      }
+      else {
+        this.vertabla = true
+        this.vermensaje = false
+       
+      }
+         
+        }
+                      
+      }
+    )
+break; 
+
+case "successpaycond":
+  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
+    this.cHttps(url, data1).subscribe(
+      async (res: any) => {            
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'Sorry, an error occurred,please login again2'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code) 
+                   break;            
+         
+          
+      default:
+
+      this.m = res.data.archived
+      console.log('ESTAMMM'+this.m)
+
+      var sinfiltrardatos = Object.values(res.data)
+      this.conjunto = sinfiltrardatos
+
+      if(sinfiltrardatos == null) {
+        this.vertabla = false
+        this.vermensaje = true
+       
+      }
+      else {
+        this.vertabla = true
+        this.vermensaje = false
+       
+      }
+         
+        }
+                      
+      }
+    )
+break;
+
+
+
+}
+
+
+    } 
+  
   }
 
   async Galery(id: any): Promise<void> {
