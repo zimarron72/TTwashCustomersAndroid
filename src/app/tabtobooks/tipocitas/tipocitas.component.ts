@@ -19,6 +19,7 @@ export class TipocitasComponent  implements OnInit {
   cancelled: any
   completed: any
   archivados: any
+  pagados : any
 
   idtoken!: string
   autenticacion_tipo!: string
@@ -104,6 +105,7 @@ async aviso(header : string, mensaje : string, code : string) {
             this.completed = res.data.completados
             this.cancelled = res.data.cancelados
             this.archivados = res.data.archivados
+               this.pagados = res.data.pagados
            break;
          
         }
@@ -154,6 +156,7 @@ async aviso(header : string, mensaje : string, code : string) {
             this.completed = res.data.completados
             this.cancelled = res.data.cancelados
             this.archivados = res.data.archivados
+             this.pagados = res.data.pagados
            break;
          
         }

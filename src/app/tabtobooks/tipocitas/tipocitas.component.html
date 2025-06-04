@@ -43,16 +43,26 @@
       <ion-badge color ="success">{{completed}}</ion-badge>
     </ion-item>
 
-    <ion-item  routerLink="/tabs/tabtobooks/citas/9">
+
+     <ion-item  routerLink="/tabs/tabtobooks/citas/8">
       <ion-icon name="close-circle" slot="start"  color="tertiary"></ion-icon> 
+      <ion-label floating ion-left>       
+      PAID      
+      </ion-label>     
+      <ion-badge color="tertiary">{{pagados}}</ion-badge>
+    </ion-item>
+
+    <ion-item  routerLink="/tabs/tabtobooks/citas/9">
+      <ion-icon name="close-circle" slot="start"  color="dark"></ion-icon> 
       <ion-label floating ion-left>       
       CANCELLED      
       </ion-label>     
-      <ion-badge color="tertiary">{{cancelled}}</ion-badge>
+      <ion-badge color="dark">{{cancelled}}</ion-badge>
     </ion-item>
 
 
-    <ion-item  routerLink="/tabs/tabtobooks/citas/10">
+
+    <ion-item  routerLink="/tabs/tabtobooks/citas/11"><!--10 reservado al estado de expirado-->
       <ion-icon name="archive-sharp" slot="start" color="medium" ></ion-icon>    
       <ion-label floating ion-left>       
       ARCHIVED   

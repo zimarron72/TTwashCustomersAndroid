@@ -250,8 +250,7 @@ goBack(): void {
     if (role === 'confirm')
  {
 
-      var idtoken = await this.localstorage.getData('idtoken')
-      var autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+     
       this.loading.simpleLoader()
      var url = 'https://washtt.com/v1_api_clientes_cancelar_item_order.php'
      var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, itemid:id }
@@ -318,9 +317,7 @@ goBack(): void {
         }
                       
       }
-    )
-
-    }
+    ) }
 
 
   }
@@ -335,9 +332,56 @@ goBack(): void {
     const { data, role } = await modal.onWillDismiss();
     if (role === 'continue') {
 
+   this.loading.simpleLoader()
+     var url = 'https://washtt.com/v1_api_clientes_archivar_item_order.php'
+     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, itemid:id }
+     this.cHttps(url, data1).subscribe(
+      async (res: any) => {
+        this.loading.dismissLoader()
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'Sorry, an error occurred,please login again2'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code)                       
+          break;  
+          
+          
 
+          case '200_OK':
 
-    } 
+          code = ''
+          header = 'Warning' 
+          mensaje = 'Appointment successfully archived'             
+          this.aviso(header,mensaje,code) 
+          this.router.navigate(['/tabs/tabtobooks/tipocitas']) 
+                    
+              
+        
+          break;
+          
+     
+         
+        }
+                      
+      }
+    ) 
+}
+    
   }
 
   async Pay1(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {

@@ -170,11 +170,11 @@ this.loading.dismissLoader()
      
         } )
         .then(async response => { 
-
+ this.loading.dismissLoader()
           console.log(response)          
           const destroyed = await this.card.destroy();
 
-          this.loading.dismissLoader()
+         
         let mensaje
         let header
         let code
