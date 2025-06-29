@@ -19,6 +19,7 @@ idtoken!: string
   autenticacion_tipo!: string
   token_notificacion!: string
   user: any
+vermensaje:boolean= false
 
   conjunto:any
 
@@ -31,8 +32,10 @@ colorpx!: string
     private rutaActiva: ActivatedRoute,
     private loading: LoadingService,
     private alertController: AlertController,
+   
 
-  ) { 
+  ) 
+  { 
 
 this.n = this.rutaActiva.snapshot.params['n'];
     this.rutaActiva.params.subscribe(
@@ -60,6 +63,11 @@ switch(this.n) {
   }
 
   ngOnInit() {}
+
+isObjectEmpty(obj: any): boolean {
+  return Object.keys(obj).length === 0;
+}
+
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -137,7 +145,10 @@ async aviso(header : string, mensaje : string, code : string) {
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
     
+if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
 
+}
     
          
         }
@@ -194,7 +205,10 @@ async aviso(header : string, mensaje : string, code : string) {
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
 
-    
+    if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
+
+}
          
         }
                       
@@ -212,6 +226,8 @@ async aviso(header : string, mensaje : string, code : string) {
    } 
 }
 
-
+goBack(): void {
+  this.router.navigate(['/tabs/tabtobooks/tipopagos']) 
+}
 
 }

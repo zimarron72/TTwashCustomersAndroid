@@ -189,5 +189,24 @@ export class AddsiteComponent  implements OnInit {
        'continue');
     }
   }
+mainPopoverOptions = {
+
+   // header: 'Main location',
+    subHeader: 'Does it is your main location?',
+
+  };
+  ciudadPopoverOptions = {
+
+   // header: 'location's city',
+    subHeader: "Location's city:",
+
+  };
+
+estadoPopoverOptions = {
+
+   // header: 'Main location',
+    subHeader: "Location's state:",
+
+  };
 
 }

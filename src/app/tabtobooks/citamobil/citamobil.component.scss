@@ -32,3 +32,8 @@ ion-datetime::part(calendar-day) {
   ion-datetime::part(wheel-item active) {
     color: rgb(43, 78, 158);
   }
+
+  ion-select::part(icon) {
+  color: #f2f2f2;
+  opacity: 1;
+}

@@ -16,7 +16,10 @@
     </ion-item>
 
     <ion-item >    
-      <ion-select label="Number" labelPlacement="stacked" placeholder="Your number's vehicle" id = "numberv" name = 'numberv' [(ngModel)]="onsite.numberv" >
+      <ion-select label="Number" [interfaceOptions]="numberPopoverOptions" interface="popover" labelPlacement="stacked" placeholder="Your vehicle's number" id = "numberv" name = 'numberv' [(ngModel)]="onsite.numberv" >
+            <ion-select-option value="">  
+        Select
+        </ion-select-option>  
         <ion-select-option [value]="tempv">  
           {{tempv}}
         </ion-select-option>  
@@ -35,8 +38,11 @@
 
 
     <ion-item >
-      <ion-select label="In which of our yards" labelPlacement="stacked" placeholder="Select one from our yard" id = "yard" name = 'yard' [(ngModel)]="onsite.yard" >
-      <ion-select-option *ngFor="let site of sitiosyard"  [value]="site.nombre_yard"> 
+      <ion-select label="In which of our yards" [interfaceOptions]="yardPopoverOptions" interface="popover" labelPlacement="stacked" placeholder="Select one from our yard" id = "yard" name = 'yard' [(ngModel)]="onsite.yard" >
+         <ion-select-option value="">  
+        Select
+        </ion-select-option>  
+        <ion-select-option *ngFor="let site of sitiosyard"  [value]="site.nombre_yard"> 
         {{site.nombre_yard}}
       </ion-select-option>        
       </ion-select>      
@@ -44,8 +50,11 @@
 
 
     <ion-item>     
-      <ion-select label="Appointment time"  labelPlacement="stacked" placeholder="Select a Reservation time" id = "horacita" name = 'horacita' [(ngModel)]="onsite.horacita" (ionChange) = done1()>
-      <ion-select-option *ngFor="let hora of horario"  [value]="hora.valor">  
+      <ion-select label="Appointment time"  [interfaceOptions]="timePopoverOptions" interface="popover" labelPlacement="stacked" placeholder="Select a Reservation time" id = "horacita" name = 'horacita' [(ngModel)]="onsite.horacita" (ionChange) = done1()>
+          <ion-select-option value="">  
+        Select
+        </ion-select-option>  
+        <ion-select-option *ngFor="let hora of horario"  [value]="hora.valor">  
         {{hora.etiqueta}}
       </ion-select-option>        
       </ion-select>     
@@ -69,11 +78,11 @@
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button color="warning" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="continue()" [strong]="true">Continue</ion-button>
+      <ion-button color="success" (click)="continue()" [strong]="true">Continue</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

@@ -44,7 +44,11 @@ export class AddcarComponent  implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private localstorage:StorageService, 
-  ) { }
+  ) { 
+
+
+
+  }
 
   ngOnInit() {}
 
@@ -197,6 +201,24 @@ export class AddcarComponent  implements OnInit {
   }
 
 }
+
+
+detallesPopoverOptions = {
+
+   // header: 'General details of the vehicle',
+    subHeader: 'We count on your sincere selection:',
+
+  };
+
+
+mainPopoverOptions = {
+
+   // header: 'Main vehicle',
+    subHeader: 'Does it is main vehicle your fleet?',
+
+  };
+
+
 
 
 }

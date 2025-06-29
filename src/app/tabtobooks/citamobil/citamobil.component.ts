@@ -748,5 +748,42 @@ if(this.validateForm()){
     }
   }
 
+  numeroPopoverOptions = {
+
+    subHeader: 'Select his number, but if it is not, you can add it',
+
+  };
+
+    locationPopoverOptions = {
+
+    subHeader: 'Select your address, but if it is not, you can add it',
+
+  };
+
+    powerPopoverOptions = {
+
+    subHeader: 'Is there electricity on site?',
+
+  };
+
+    waterPopoverOptions = {
+
+    subHeader: 'Is there a water supply on site?',
+
+  };
+
+    presenciaPopoverOptions = {
+
+    subHeader: 'That day, will we to meet you?',
+
+  };
+
+timePopoverOptions = {
+
+   subHeader: 'Work schedule: select the time of your preference',
+
+  };
+
+
 
 }

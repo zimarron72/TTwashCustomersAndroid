@@ -61,6 +61,10 @@
 
 
   <ion-content>
+      <ion-button (click) = "goBack()" fill="clear" style="color: #fff;" >
+            <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+            back    
+          </ion-button>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
@@ -72,16 +76,8 @@
       <ion-button (click)="vermobil()" expand="full">View mobil</ion-button>
       <ion-button (click)="veryard()" expand="full">View onsite</ion-button>
     </div>-->
-
-    <ion-grid color="primary">
-      <ion-row>
-        <ion-col>
-          <ion-button (click) = "goBack()" fill="clear" style="color: #fff;" >
-            <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-            back    
-          </ion-button>
-        </ion-col>
-      </ion-row>
+   <div *ngIf ='vermensaje' style="text-align: center; color:#f2f2f2"> <img src="./assets/imgs/icono_exclamacion.png" /><h4>Sorry, there is no information for this type of Appointment.</h4></div>
+    <ion-grid color="primary" *ngIf ='verfiltros'>    
       <ion-row>
         <ion-col class="radio">
           <ion-button size="small" (click)="vermobil()">

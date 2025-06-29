@@ -5,7 +5,7 @@ import { from } from 'rxjs';
 import {  AlertController ,  ModalController } from '@ionic/angular';
 import { Router, ActivatedRoute,  Params} from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
-import { Location } from '@angular/common';
+
 import { AcancelarComponent } from '../acancelar/acancelar.component';
 import { AarchivarComponent } from '../aarchivar/aarchivar.component';
 //import { SortcitasPipe } from '../sortcitas/sortcitas.pipe';
@@ -23,8 +23,8 @@ export class CitasComponent  implements OnInit {
 
   n!: number
   m:any
-  vermensaje !: boolean
-  vertabla! : boolean
+  vermensaje : boolean = false
+verfiltros : boolean = true
 
   respuesta!: string
   verenlace1 : boolean = false 
@@ -52,7 +52,7 @@ export class CitasComponent  implements OnInit {
     private loading: LoadingService,
     private alertController: AlertController,
     private modalCtrl: ModalController,
-    private location: Location,
+   
   ) { 
 
     this.n = this.rutaActiva.snapshot.params['n'];
@@ -64,6 +64,11 @@ export class CitasComponent  implements OnInit {
 
 
   }
+
+isObjectEmpty(obj: any): boolean {
+  return Object.keys(obj).length === 0;
+}
+
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -144,17 +149,11 @@ async aviso(header : string, mensaje : string, code : string) {
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
     
+ if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
+this.verfiltros = false;
 
-      if(sinfiltrardatos == null) {
-        this.vertabla = false
-        this.vermensaje = true
-       
-      }
-      else {
-        this.vertabla = true
-        this.vermensaje = false
-       
-      }
+}
          
         }
                       
@@ -208,16 +207,10 @@ async aviso(header : string, mensaje : string, code : string) {
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
 
-      if(sinfiltrardatos == null) {
-        this.vertabla = false
-        this.vermensaje = true
-       
-      }
-      else {
-        this.vertabla = true
-        this.vermensaje = false
-       
-      }
+      if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
+this.verfiltros = false;
+}
          
         }
                       
@@ -236,7 +229,7 @@ async aviso(header : string, mensaje : string, code : string) {
 }
 
 goBack(): void {
-  this.location.back();
+   this.router.navigate(['/tabs/tabtobooks/tipocitas'])  
 }
 
   async Cancelar(id: number): Promise<void> {
@@ -448,17 +441,10 @@ case "successpay":
 
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
-
-      if(sinfiltrardatos == null) {
-        this.vertabla = false
-        this.vermensaje = true
-       
-      }
-      else {
-        this.vertabla = true
-        this.vermensaje = false
-       
-      }
+ if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
+this.verfiltros = false;
+}
          
         }
                       
@@ -502,16 +488,10 @@ case "successpaycond":
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
 
-      if(sinfiltrardatos == null) {
-        this.vertabla = false
-        this.vermensaje = true
-       
-      }
-      else {
-        this.vertabla = true
-        this.vermensaje = false
-       
-      }
+      if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
+this.verfiltros = false;
+}
          
         }
                       
@@ -594,17 +574,10 @@ case "successpay":
 
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
-
-      if(sinfiltrardatos == null) {
-        this.vertabla = false
-        this.vermensaje = true
-       
-      }
-      else {
-        this.vertabla = true
-        this.vermensaje = false
-       
-      }
+ if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
+this.verfiltros = false;
+}
          
         }
                       
@@ -648,16 +621,10 @@ case "successpaycond":
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
 
-      if(sinfiltrardatos == null) {
-        this.vertabla = false
-        this.vermensaje = true
-       
-      }
-      else {
-        this.vertabla = true
-        this.vermensaje = false
-       
-      }
+   if(this.isObjectEmpty(this.conjunto)) {
+this.vermensaje = true;
+this.verfiltros = false;
+}
          
         }
                       

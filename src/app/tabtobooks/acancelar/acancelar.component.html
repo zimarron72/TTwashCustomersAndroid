@@ -7,16 +7,17 @@
   <p>By confirming this action, the appointment will be rejected by our cleaning team. Our administrative team may also remove it as archived data after one month. Under no circumstances will the company be liable for any damages or losses resulting from this action. Please ensure you are happy to confirm this action.</p>
   <ion-item>
     <ion-toggle labelPlacement="start" color="warning"  [(ngModel)]="terminos">I accept the terms</ion-toggle>
-  </ion-item>
+  </ion-item><br><br>
+   <div style="text-align: center;"> <img src="./assets/imgs/cancel_app.png" /></div>
 </ion-content>
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Go back</ion-button>
+      <ion-button color="warning" (click)="cancel()">Go back</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+      <ion-button color='success'  (click)="confirm()" [strong]="true">Confirm</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

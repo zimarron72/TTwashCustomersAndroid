@@ -15,7 +15,10 @@
     </ion-item>
 
     <ion-item>
-      <ion-select label="Number" labelPlacement="stacked" id = "numberv" name = "numberv" placeholder="your number's vehicle" [(ngModel)]="mobil.numberv" >
+      <ion-select 
+      [interfaceOptions]="numeroPopoverOptions" interface="popover" fill="outline"
+      label="Number" labelPlacement="stacked" id = "numberv" name = "numberv" placeholder="Your vehicle's number" [(ngModel)]="mobil.numberv" >
+          
         <ion-select-option [value]="tempv">  
           {{tempv}}
         </ion-select-option>     
@@ -33,7 +36,10 @@
    
 
     <ion-item>
-      <ion-select label="Your location" labelPlacement="stacked" id = "locationv" name = "locationv" placeholder="where is your location" [(ngModel)]="mobil.locationv">
+      <ion-select 
+      [interfaceOptions]="locationPopoverOptions" interface="popover" fill="outline"
+      
+      label="Your location" labelPlacement="stacked" id = "locationv" name = "locationv" placeholder="Location's your vehicle?" [(ngModel)]="mobil.locationv">
         <ion-select-option [value]="templ">  
           {{templ}}
         </ion-select-option>     
@@ -48,7 +54,10 @@
     </ion-item>
 
     <ion-item>
-      <ion-select  labelPlacement="stacked" placeholder="There is power supply in the location?" id = "power" name = "power" [(ngModel)]="mobil.power" >
+      <ion-select  label="Power supply"
+       [interfaceOptions]="powerPopoverOptions" interface="popover" fill="outline"
+      
+      labelPlacement="stacked" placeholder="Select" id = "power" name = "power" [(ngModel)]="mobil.power" >
       <ion-select-option *ngFor="let power of powers"  [value]="power.valor">  
         {{power.etiqueta}}
       </ion-select-option>        
@@ -57,7 +66,9 @@
     </ion-item>
 
     <ion-item>
-      <ion-select labelPlacement="stacked" placeholder="There is water supply in the location?" id = "water" name = "water" [(ngModel)]="mobil.water" >
+      <ion-select label="Water supply" placeholder="Select"
+       [interfaceOptions]="waterPopoverOptions" interface="popover" fill="outline"
+      labelPlacement="stacked"  id = "water" name = "water" [(ngModel)]="mobil.water" >
       <ion-select-option *ngFor="let water of waters"  [value]="water.valor">  
         {{water.etiqueta}}
       </ion-select-option>        
@@ -66,7 +77,10 @@
     </ion-item>
 
     <ion-item>
-      <ion-select  labelPlacement="stacked" placeholder="You will be present that day?" id = "ensitio" name = "ensitio" [(ngModel)]="mobil.ensitio" >
+      <ion-select 
+      label="Will you to be there?" placeholder="Select"
+       [interfaceOptions]="presenciaPopoverOptions" interface="popover" fill="outline"
+      labelPlacement="stacked"  id = "ensitio" name = "ensitio" [(ngModel)]="mobil.ensitio" >
       <ion-select-option *ngFor="let ensitio of ensitios"  [value]="ensitio.valor">  
         {{ensitio.etiqueta}}
       </ion-select-option>        
@@ -76,7 +90,10 @@
 
 
     <ion-item>
-      <ion-select label="Appointment time"  labelPlacement="stacked" placeholder="Choose a hour" id = "horacita" name = "horacita" [(ngModel)]="mobil.horacita" (ionChange) = done1()>
+      <ion-select 
+       label="Meeting time" placeholder="Select"
+       [interfaceOptions]="timePopoverOptions" interface="popover" fill="outline"
+      label="Appointment time"  labelPlacement="stacked"  id = "horacita" name = "horacita" [(ngModel)]="mobil.horacita" (ionChange) = done1()>
       <ion-select-option *ngFor="let hora of horario"  [value]="hora.valor">  
         {{hora.etiqueta}}
       </ion-select-option>        
@@ -100,11 +117,11 @@
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button color="warning" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="continue()" [strong]="true">Continue</ion-button>
+      <ion-button color="success" (click)="continue()" [strong]="true">Continue</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

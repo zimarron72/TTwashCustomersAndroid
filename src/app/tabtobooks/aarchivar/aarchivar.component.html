@@ -8,15 +8,18 @@
   <ion-item>
     <ion-toggle labelPlacement="start" color="warning"  [(ngModel)]="terminos">I accept the terms</ion-toggle>
   </ion-item>
+
+
+   <div style="text-align: center;"> <img src="./assets/imgs/archivo_app.png" /></div>
 </ion-content>
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Go back</ion-button>
+      <ion-button color="warning" (click)="cancel()">Go back</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+      <ion-button color="success" (click)="confirm()" [strong]="true">Confirm</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

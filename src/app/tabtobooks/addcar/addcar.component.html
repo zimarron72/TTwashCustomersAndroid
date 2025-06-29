@@ -43,8 +43,15 @@
   </ion-item>
 
   <ion-item>
-    <ion-select label="Vehicle details" labelPlacement="stacked"  placeholder="details of your vehicle" id = 'detallev' name = 'detallev' [(ngModel)]="truck.detallev" >
-    <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
+    <ion-select labelPlacement="stacked" 
+    [interfaceOptions]="detallesPopoverOptions" 
+    interface="popover" 
+        fill="outline"   
+    label="Vehicle details" 
+
+    id = 'detallev' name = 'detallev' [(ngModel)]="truck.detallev" >
+  
+      <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
       {{detalle.etiqueta}}
     </ion-select-option>        
     </ion-select>
@@ -53,7 +60,10 @@
   </ion-item>
 
   <ion-item>
-    <ion-select label="Main vehicle" labelPlacement="stacked" placeholder="Is this your main vehicle?" id = 'favorito' name = 'favorito' [(ngModel)]="truck.favorito" >
+    <ion-select label="Main vehicle" labelPlacement="stacked" [interfaceOptions]="mainPopoverOptions" interface="popover" fill="outline"  id = 'favorito' name = 'favorito' [(ngModel)]="truck.favorito" >
+       <ion-select-option value="">  
+      Select
+      </ion-select-option>  
       <ion-select-option value="1">  
        YES
       </ion-select-option>        
@@ -71,11 +81,11 @@
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button color="warning" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="continue()" [strong]="true">Continue</ion-button>
+      <ion-button color="success" (click)="continue()" [strong]="true">Continue</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

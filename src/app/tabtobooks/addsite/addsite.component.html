@@ -29,7 +29,14 @@
       {{zipErrorMessage}}
     </ion-item>
     <ion-item>
-      <ion-select label="State" labelPlacement="stacked" id = 'estado' name = 'estado'  placeholder="your state" [(ngModel)]="site.estado" >
+      <ion-select 
+      [interfaceOptions]="estadoPopoverOptions"
+       interface="popover" 
+        fill="outline"   
+      label="State" labelPlacement="stacked" id = 'estado' name = 'estado'  placeholder="your state" [(ngModel)]="site.estado" >
+      <ion-select-option value="">  
+      Select
+      </ion-select-option> 
       <ion-select-option *ngFor="let local of estados"  [value]="local.estado">  
         {{local.estado}}
       </ion-select-option>        
@@ -38,7 +45,14 @@
       {{estadoErrorMessage}}
     </ion-item>
     <ion-item>
-      <ion-select label="City" id = 'ciudad' name = 'ciudad'  labelPlacement="stacked" placeholder="your city" [(ngModel)]="site.ciudad" >
+      <ion-select 
+      [interfaceOptions]="ciudadPopoverOptions"
+       interface="popover" 
+        fill="outline"   
+      label="City" id = 'ciudad' name = 'ciudad'  labelPlacement="stacked" placeholder="your city" [(ngModel)]="site.ciudad" >
+      <ion-select-option value="">  
+      Select
+      </ion-select-option> 
       <ion-select-option *ngFor="let ciudad of cities"  [value]="ciudad.city">  
         {{ciudad.city}}
       </ion-select-option>        
@@ -48,8 +62,14 @@
     </ion-item>
   
     <ion-item>
-      <ion-select label="Main location" labelPlacement="stacked" id = 'favorito' name = 'favorito'  placeholder="Is this your main location?" [(ngModel)]="site.favorito" >
-        <ion-select-option value="1">  
+      <ion-select 
+      [interfaceOptions]="mainPopoverOptions" interface="popover" fill="outline"
+      
+      label="Main location" labelPlacement="stacked" id = 'favorito' name = 'favorito'   [(ngModel)]="site.favorito" >
+          <ion-select-option value="">  
+      Select
+      </ion-select-option> 
+      <ion-select-option value="1">  
          YES
         </ion-select-option>        
       <ion-select-option value="0">  
@@ -65,11 +85,11 @@
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button color="warning" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="continue()" [strong]="true">Continue</ion-button>
+      <ion-button  color="success"  (click)="continue()" [strong]="true">Continue</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

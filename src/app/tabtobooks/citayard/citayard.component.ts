@@ -455,4 +455,26 @@ horacita : this.onsite.horacita
 
   } 
 
+
+numberPopoverOptions = {
+
+    subHeader: 'Select his number, but if it is not, you can add it',
+
+  };
+
+  yardPopoverOptions = {
+
+    subHeader: 'Yard location: select one of our locations',
+    
+  };
+
+  timePopoverOptions = {
+ 
+    subHeader: 'Work schedule: select the time of your preference',
+   
+  };
+
+
+
+
 }
