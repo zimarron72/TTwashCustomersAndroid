@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
    
-    <ion-title>Add new vehicle</ion-title>
+    <ion-title>Add a new vehicle to your fleet</ion-title>
   
   </ion-toolbar>
 </ion-header>
@@ -11,7 +11,13 @@
     
 
     <ion-item>
-      <ion-select label="Vehicle" labelPlacement="stacked" placeholder="your type of vehicle" id="tipov" name = "tipov" [(ngModel)]="truck.tipov" >
+      <ion-select 
+      [interfaceOptions]="vehiculoPopoverOptions" 
+    interface="popover" 
+        fill="outline"  
+      placeholder="Select"
+      
+      label="Type of vehicle" labelPlacement="stacked"  id="tipov" name = "tipov" [(ngModel)]="truck.tipov" >
       <ion-select-option *ngFor="let tipo of tipos"  [value]="tipo.category_id">  
         {{tipo.name}}
       </ion-select-option>        
@@ -51,7 +57,14 @@
   </ion-item>
 
   <ion-item>
-    <ion-select label="Vehicle details" labelPlacement="stacked" placeholder="details of your vehicle" id="detallev" name = "detallev"  [(ngModel)]="truck.detallev" >
+
+
+    <ion-select
+    [interfaceOptions]="detallesPopoverOptions" 
+    interface="popover" 
+        fill="outline"  
+    
+    label="Vehicle details" labelPlacement="stacked" placeholder="details of your vehicle" id="detallev" name = "detallev"  [(ngModel)]="truck.detallev" >
     <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
       {{detalle.etiqueta}}
     </ion-select-option>        
@@ -61,7 +74,10 @@
   </ion-item>
 
   <ion-item>
-    <ion-select label="Main vehicle" labelPlacement="stacked" placeholder="Is this your main vehicle?" id="favorito" name = "favorito"  [(ngModel)]="truck.favorito" >
+    <ion-select
+    [interfaceOptions]="mainPopoverOptions" interface="popover" fill="outline"
+    
+    label="Main vehicle" labelPlacement="stacked" placeholder="Is this your main vehicle?" id="favorito" name = "favorito"  [(ngModel)]="truck.favorito" >
       <ion-select-option value ="1">  
        YES
       </ion-select-option>        
@@ -74,15 +90,17 @@
   </ion-item>
  
 </ion-list>
+ <div  style="text-align: center;"> <img src="./assets/imgs/fleet_app.png" /></div>
+
 </ion-content>
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button color="warning" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+      <ion-button color="success" (click)="confirm()" [strong]="true">Confirm</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

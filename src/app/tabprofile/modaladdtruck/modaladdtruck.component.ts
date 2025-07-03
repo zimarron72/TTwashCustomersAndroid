@@ -213,4 +213,27 @@ export class ModaladdtruckComponent  implements OnInit {
     }
   }
 
+vehiculoPopoverOptions = {
+
+   // header: 'Main vehicle',
+    subHeader: 'Select the type of vehicle',
+
+  };
+
+  detallesPopoverOptions = {
+
+   // header: 'General details of the vehicle',
+    subHeader: 'We count on your sincere selection:',
+
+  };
+
+
+mainPopoverOptions = {
+
+   // header: 'Main vehicle',
+    subHeader: 'Does it is main vehicle your fleet?',
+
+  };
+
+
 }

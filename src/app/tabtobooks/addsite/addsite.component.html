@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
    
-    <ion-title>Add location</ion-title>
+    <ion-title>Add a new location</ion-title>
   
   </ion-toolbar>
 </ion-header>
@@ -63,7 +63,8 @@
   
     <ion-item>
       <ion-select 
-      [interfaceOptions]="mainPopoverOptions" interface="popover" fill="outline"
+      [interfaceOptions]="mainPopoverOptions" 
+      interface="popover" fill="outline"
       
       label="Main location" labelPlacement="stacked" id = 'favorito' name = 'favorito'   [(ngModel)]="site.favorito" >
           <ion-select-option value="">  
@@ -81,6 +82,8 @@
     </ion-item>
   
   </ion-list>
+
+   <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
 </ion-content>
 <ion-footer>
   <ion-toolbar color="primary" >

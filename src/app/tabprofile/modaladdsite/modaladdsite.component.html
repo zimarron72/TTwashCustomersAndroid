@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
 
-    <ion-title>New location</ion-title>
+    <ion-title>Add a new location</ion-title>
 
   </ion-toolbar>
 </ion-header>
@@ -38,7 +38,11 @@
 
 
   <ion-item>
-    <ion-select label="State" label-placement="stacked" id = "estado" name= "formEstado" placeholder="your state" [(ngModel)]="site.estado" required>
+    <ion-select    
+      [interfaceOptions]="estadoPopoverOptions"
+       interface="popover" 
+        fill="outline"   
+    label="State" label-placement="stacked" id = "estado" name= "formEstado" placeholder="Select" [(ngModel)]="site.estado" required>
     <ion-select-option *ngFor="let local of estados"  [value]="local.estado">  
       {{local.estado}}
     </ion-select-option>        
@@ -48,7 +52,11 @@
   </ion-item>
   
   <ion-item>
-    <ion-select label="City" label-placement="stacked" id = "ciudad" name= "formCiudad" placeholder="your city" [(ngModel)]="site.ciudad" required>
+    <ion-select
+    [interfaceOptions]="ciudadPopoverOptions"
+       interface="popover" 
+        fill="outline"  
+    label="City" label-placement="stacked" id = "ciudad" name= "formCiudad" placeholder="Select" [(ngModel)]="site.ciudad" required>
     <ion-select-option *ngFor="let ciudad of cities"  [value]="ciudad.city">  
       {{ciudad.city}}
     </ion-select-option>        
@@ -58,8 +66,15 @@
   </ion-item>
 
   <ion-item>
-    <ion-select label="Main location" label-placement="stacked" placeholder="Is this your main location?" id = "favorito" name= "formFavorito" [(ngModel)]="site.favorito" required >
-      <ion-select-option value= "1">  
+    <ion-select 
+          [interfaceOptions]="mainPopoverOptions" 
+      interface="popover" fill="outline"
+    
+    label="Main location" label-placement="stacked" placeholder="Is this your main location?" id = "favorito" name= "formFavorito" [(ngModel)]="site.favorito" required >
+       <ion-select-option value="">  
+      Select
+      </ion-select-option> 
+    <ion-select-option value= "1">  
        YES
       </ion-select-option>        
     <ion-select-option value= "0">  
@@ -71,15 +86,19 @@
   </ion-item>
 
 </ion-list>
+
+
+<div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
+
 </ion-content>
 <ion-footer>
   <ion-toolbar color="primary" >
     <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+      <ion-button color="warning" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
     <ion-title>Action</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+      <ion-button color="success" (click)="confirm()" [strong]="true">Confirm</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
