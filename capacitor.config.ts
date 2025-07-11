@@ -21,9 +21,10 @@ CapacitorHttp: {
       "enabled": true
     },
 
+Capacitor: {}
 
-
-  }
+  },
+  
 };
 
 export default config;

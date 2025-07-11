@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {AutenticacionService} from '../servicios/autenticacion'
-
+import { App } from '@capacitor/app';
 
 @Component({
 
@@ -14,7 +14,7 @@ import {AutenticacionService} from '../servicios/autenticacion'
 })
 export class LoginPage  {
 
-
+appVersion: any
   
   form_login!: FormGroup
   showPassword: boolean = false;
@@ -38,7 +38,13 @@ export class LoginPage  {
     
   });
 
+  App.getInfo().then(info=> {
+    this.appVersion = info.version
+  })
+
 }
+
+
 
 ////////LFIREBASE EMAIL-CONTRASENA///////
  async send() {
@@ -86,6 +92,9 @@ openAppleSignIn1() {
  togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
     }
+
+
+  
 
 }
 

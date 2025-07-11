@@ -19,18 +19,18 @@
 
   <ion-card-content class="ion-text-center">
     <h2>{{fullname}}</h2>
-    <ion-text color="medium">
+    <ion-text>
       <div style="display: flex;" class="ion-justify-content-center">
-        <ion-icon name="mail" color="medium">
+        <ion-icon name="mail">
         </ion-icon>
-        <p>{{username}}</p>
+        <p> {{username}}</p>
       </div>
     </ion-text>
-    <ion-text color="medium">
+    <ion-text >
       <div style="display: flex;" class="ion-justify-content-center">
-        <ion-icon name="location-outline" color="medium">
+        <ion-icon name="location-outline">
         </ion-icon>
-        <p>{{address}}</p>
+        <p> {{address}}</p>
       </div>
     </ion-text>
 <ion-button id="open-action-sheet" color="primary">change photo</ion-button>
@@ -40,17 +40,17 @@
 </ion-card>
   <ion-list>
 
-    <ion-item  routerLink="/tabs/tabprofile/account">
+    <!--<ion-item  routerLink="/tabs/tabprofile/account">
       
       <ion-icon slot="start" name="id-card-outline"></ion-icon>
       <ion-label floating ion-left>              
         DATA ACCOUNT       
-      </ion-label>  
-    </ion-item>
+      </ion-label>-->  
+    <ion-item routerLink="/tabs/tabprofile/billaddress">
 
-    <ion-item  routerLink="/tabs/tabprofile/billaddress">
-     
-      <ion-icon slot="start" name="wallet-outline"></ion-icon>
+    
+     <ion-icon slot="start" name="id-card-outline"></ion-icon>
+      
       <ion-label  floating ion-left>     
         BILLING ADDRESS       
       </ion-label>  
@@ -71,9 +71,15 @@
       </ion-label>  
     </ion-item>
   
-  </ion-list> 
+  </ion-list><br>
+<div style="margin: 0 auto;">
+     <ion-img  style=" height:150px; " src="./assets/imgs/profile_app.png" ></ion-img>
+</div>
+   
+  
 
-<br><br><br><br>
-   <div  style="text-align: center;"> <img src="./assets/imgs/profile_app.png" /></div>
+
+
+   
   
 </ion-content>

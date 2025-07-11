@@ -211,6 +211,12 @@ async add() {
 
 }
 
+if(role === 'cancel'){
+
+  this.router.navigate(['/tabs/tabprofile/nav-profile']); 
+
+}
+
 }
 
 
