@@ -4,7 +4,7 @@ import { AlertController, IonicSafeString } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
-//import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
+import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 
 
 
@@ -22,9 +22,9 @@ versionActual:any
 
   constructor(
     private platform: Platform,
-    private aviso: AlertController
-    // private wonderPush: WonderPush,
-
+    private aviso: AlertController,
+    private wonderPush : WonderPush
+   
 
   ) {
 
@@ -68,8 +68,8 @@ cHttps(url: string, data: any) {
 
  inicializarApp() {
 this.platform.ready().then(()=>{
- /* this.wonderPush.subscribeToNotifications()
-    this.wonderPush.addTag('clientes')*/
+  this.wonderPush.subscribeToNotifications()
+    this.wonderPush.addTag('clientes')
 });
 
 this.checkVersion()

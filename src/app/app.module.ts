@@ -22,7 +22,7 @@ import { provideAuth, getAuth, indexedDBLocalPersistence, initializeAuth } from 
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
-//import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
+import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 
 
 import {  ReactiveFormsModule } from '@angular/forms';
@@ -65,7 +65,7 @@ import { Capacitor } from '@capacitor/core';
   LoadingController,
   Storage,
   SquareService,
-  //WonderPush
+  WonderPush
 
   ],
   bootstrap: [AppComponent],

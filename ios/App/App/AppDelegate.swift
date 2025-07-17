@@ -1,6 +1,6 @@
 import UIKit
 import Capacitor
-
+import WonderPush
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -45,5 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // tracking app url opens, make sure to keep this call
         return ApplicationDelegateProxy.shared.application(application, continue: userActivity, restorationHandler: restorationHandler)
     }
+
+  
+
+func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        WonderPush.setClientId("213c8ea4ecb545a6aa4238c09a3289b760f47d69", secret: "324db2b9b38519ba4431324b78768785df86b74edd2750dc693346acfb0596bf")
+        return true
+}
 
 }

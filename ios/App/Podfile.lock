@@ -18,6 +18,15 @@ PODS:
     - Capacitor
   - CapacitorStatusBar (6.0.2):
     - Capacitor
+  - CordovaPluginsStatic (6.2.0):
+    - CapacitorCordova
+    - WonderPush (= 4.3.2)
+  - WonderPush (4.3.2):
+    - WonderPush/Core (= 4.3.2)
+  - WonderPush/Core (4.3.2)
+  - WonderPushExtension (4.3.2):
+    - WonderPushExtension/Extension (= 4.3.2)
+  - WonderPushExtension/Extension (4.3.2)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -30,6 +39,13 @@ DEPENDENCIES:
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - CordovaPluginsStatic (from `../capacitor-cordova-ios-plugins`)
+  - WonderPushExtension (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - WonderPush
+    - WonderPushExtension
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -52,6 +68,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/splash-screen"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
+  CordovaPluginsStatic:
+    :path: "../capacitor-cordova-ios-plugins"
 
 SPEC CHECKSUMS:
   Capacitor: 1f3c7b9802d958cd8c4eb63895fff85dff2e1eea
@@ -64,7 +82,10 @@ SPEC CHECKSUMS:
   CapacitorKeyboard: 460c6f9ec5e52c84f2742d5ce2e67bbc7ab0ebb0
   CapacitorSplashScreen: 68893659d77b5f82d753b3a70475082845e3039c
   CapacitorStatusBar: 3b9ac7d0684770522c532d1158a1434512ab1477
+  CordovaPluginsStatic: 4a6ca2389523bc42917b8db3522fbcb522264b12
+  WonderPush: 846ef082e7df9cbcf9b4a2c755899c0cbca30228
+  WonderPushExtension: 65c269defd144b6e21d7d6fce54ab17289200540
 
-PODFILE CHECKSUM: f2b6a006e5a01bbcb9b1ed00420b92473847ad88
+PODFILE CHECKSUM: db5bb8638a7288d3dbeefeed1293fdf319937481
 
 COCOAPODS: 1.16.2
