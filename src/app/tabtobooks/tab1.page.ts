@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AutenticacionService} from '../servicios/autenticacion'
 import { Router } from "@angular/router";
-
+import { StorageService } from '../servicios/storage.service';
 @Component({
     selector: 'app-tab1',
     templateUrl: 'tab1.page.html',
@@ -40,23 +40,28 @@ export class Tab1Page  {
   cliente_correo!: string
 
 
-
+user:any
   constructor(
 private AutenticacionService : AutenticacionService,
 private router: Router,
+ private localstorage: StorageService,
 
   ) {
 
-this.cliente_correo= 'ejemplo@gmail.com'
-this.autenticacion_tipo= 'correo_pass'
-this.router.navigate(['/tabs/tabtobooks/tipovehiculos']);
 
+this.router.navigate(['/tabs/tabtobooks/tipovehiculos']);
+        
 
 
     
       }
 
-
+   async ionViewWillEnter() {  
+    this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+  this.cliente_correo = this.user.email
+ 
+  }
 
 salida_regular() {
     

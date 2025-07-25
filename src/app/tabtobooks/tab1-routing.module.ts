@@ -54,37 +54,10 @@ const routes: Routes = [
       { path: 'Pay1', component: PaysquareComponent },
      
       
-    /*   
-     
-      { path: 'ingresarsitio', component: IngresarsitioComponent },
-      { path: 'ingresarperfil', component: IngresarperfilComponent},
-      { path: 'ingresarcamion', component: IngresarcamionComponent },
-      { path: 'citamobil', component: CitamobilComponent },
-      { path: 'citayarda', component: CitayardaComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'mybooks/:n', component: MybooksComponent },
-      { path: 'mypays/:p', component: MypaysComponent },
-      { path: 'tipopagos', component: TipopagosComponent },
-      { path: 'tipobooks', component: TipobooksComponent},     
-      { path: 'square/:servicio/:precio/:itemid/:wash_id/:descuento/:charge/:concepto:/:charge_status', component: SquareComponent},
-      { path: 'successtobook', component: SuccesstobookComponent}, 
-      { path: 'successpay', component: SuccesspayComponent}, 
-      { path: 'dealsweek', component: DealsweekComponent},     
-      { path: 'squareconcargo/:servicio/:precio/:itemid/:wash_id/:descuento/:charge/:concepto/:charge_status', component: SquareConcargoComponent},
-      { path: 'galeria/:order_item_id', component: GaleriaComponent}, */
-
-
-
-     /*{
-        path: '',
-        redirectTo: '/tabs/tabtobooks',
-      },*/
+    
     ]
-  } /*,
-  {
-    path: '',
-    redirectTo: '/tabs/tabtobooks',
-  },*/
+  } 
+
 
   
 

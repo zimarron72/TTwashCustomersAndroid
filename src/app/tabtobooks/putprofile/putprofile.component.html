@@ -5,9 +5,9 @@
     </ion-buttons>
     <ion-title>To Book</ion-title>
   </ion-toolbar>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-icon name="information-circle" slot='start' style="color: #f2f2f2;"></ion-icon>
-    <ion-title size="small" style="color: #f2f2f2;">Before starting we require basic information for your bill</ion-title>
+    <ion-title size="small" style="color: #f2f2f2;">Before we begin, we require a little more basic information from you.</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,29 +15,30 @@
 <ion-grid>
 <ion-row>
 <ion-col> 
-  <form [formGroup]="form_profile" >
-    <ion-list lines="none">
-          
-<ion-item lines="full" >
- <ion-label position="floating" class="platino">First name</ion-label>  
-<ion-icon name="mail" color="light" slot="end"></ion-icon>
-<ion-input   color="light"  formControlName="firstname" type="text" required></ion-input>     
+
+    <ion-list >
+
+<ion-item>
+
+  <ion-icon name="phone-portrait-outline" color="light" slot="end"></ion-icon>   
+<ion-input labelPlacement="stacked" label ="Mobile phone" type = "tel" maxlength="11" class="custom" id = "mobilephone" name = "mobilephone" [(ngModel)]="array.mobilephone"  (ionBlur)="mascaraDeTelefono($event)" placeholder="04248888888"></ion-input>
 </ion-item>
 
-<ion-item lines="full" >
-  <ion-label position="floating" class="platino">Last name</ion-label>  
- <ion-icon name="mail" color="light" slot="end"></ion-icon>
- <ion-input   color="light"  formControlName="lastname" type="text" required></ion-input>     
- </ion-item>
+<ion-item>
 
- <ion-item lines="full" >
-  <ion-label position="floating" class="platino">Mobile phone</ion-label>
-  <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>  
- <ion-input   color="light"  formControlName="mobilephone" type="tel" required></ion-input>     
- </ion-item> 
+<ion-input labelPlacement="stacked" label="First name"  type="text"  class="custom" id = "firstname" name = "firstname" [(ngModel)]="array.firstname" ></ion-input>
+</ion-item>
+ 
+<ion-item>
+
+<ion-input labelPlacement="stacked" label = "Last name"  type="text"  class="custom" id = "lastname" name = "lastname" [(ngModel)]="array.lastname" ></ion-input>
+</ion-item>
+ 
+    
+ 
 
 </ion-list>
-</form> 
+
 </ion-col> 
 </ion-row> 
 

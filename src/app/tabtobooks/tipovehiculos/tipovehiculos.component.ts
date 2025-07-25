@@ -88,12 +88,11 @@ export class TipovehiculosComponent implements OnInit {
           this.aviso(header,mensaje,code)                       
           break;            
           case 'PERFIL_INCOMPLETO':
-          this.router.navigate(['tabs/tabtobooks/putprofile/']);
+          this.router.navigate(['/tabs/tabtobooks/putprofile']);
           break; 
           case 'CONTINUAR':
             this.vehiculos = res.data  
-              console.log(this.vehiculos) 
-           
+              console.log(this.vehiculos)            
            break;
           default:
             this.vehiculos = res.data  
@@ -169,7 +168,7 @@ export class TipovehiculosComponent implements OnInit {
                     this.aviso(header,mensaje,code)                       
                     break;            
                     case 'PERFIL_INCOMPLETO':
-                    this.router.navigate(['tabs-cliente/tobook/ingresarperfil/']);
+                     this.router.navigate(['/tabs/tabtobooks/putprofile']);
                     break; 
                     case 'CONTINUAR':
                       this.vehiculos = res.data  
