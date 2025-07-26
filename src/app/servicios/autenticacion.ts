@@ -75,31 +75,44 @@ export class AutenticacionService {
                 let header
                 let code
                 switch (res.data.respuesta) {
+
                   case 'ERROR':  
                   code = '01'
                   header = 'Error'              
                   mensaje = 'an error occurred,please login again'
                   this.aviso(header,mensaje,code)                  
-                  break;            
+                  break;     
+                        
                   case 'TODO_OK':
+
                     this.wonderPush.setUserId(res.data.userid)
                     this.wonderPush.addTag('clientes')
-                    await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
-                   
+                    await this.localstorage.setData('autenticacion_tipo', 'correo_pass');                   
                     this.router.navigate(['/tabs/tabtobooks']);
                     break;
+
                   case 'TOKEN ERROR':
+
                   code = '01'
                   header = 'Error' 
                   mensaje = 'Invalid or expired token,please login again'
                   this.aviso(header,mensaje,code)                       
-                  break;            
+                  break;  
+
+                     case 'NO EXISTE':
+                  code = '01'
+                  header = 'Error' 
+                  mensaje = 'Uuups!, there is no longer an account registered with this email address. Please register again.'                     
+                  this.aviso(header,mensaje,code)
+                  break;     
+
                   case 'NOT_CUSTOMER':
                   code = '01'
                   header = 'Error' 
-                  mensaje = 'user not active in this app. Please open a new account'                     
+                  mensaje = 'Uuups!, an account with this email address already exists. Therefore, for this app (TTwash Customers), you must use a different email address.'                     
                   this.aviso(header,mensaje,code)
                   break;
+
                   default:
                   code = '01'
                   header = 'Error' 
@@ -185,8 +198,8 @@ register(email: string , password: string, name: string) {
   createUserWithEmailAndPassword(this.auth, email, password).then(
     async (_user) => {
       this.loading.dismissLoader() 
-      //var url = "https://washtt.com/v1_api_clientes_registro.php"
-      var url = "https://washtt.com/v1_api_probador.php"
+      var url = "https://washtt.com/v1_api_clientes_registro.php"
+      //var url = "https://washtt.com/v1_api_probador.php"
      
       var data1 = { email: email, password: password, name : name }
       this.cHttps(url, data1).subscribe(
@@ -204,14 +217,23 @@ register(email: string , password: string, name: string) {
                 this.aviso(header,mensaje,code) 
               }
             )                            
-            break;            
+            break;
+            case 'DUPLICADO_USUARIO':
+                  code = '01'
+                  header = 'Error' 
+                  mensaje = 'Uuups!, an account with this email address already exists. Therefore, you must use a different email address.'                     
+                  this.aviso(header,mensaje,code)
+            break;              
             case 'OK':
               this.wonderPush.setUserId(res.data.userid)
               this.wonderPush.addTag('clientes')
               await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
               alert(res.data.respuesta)
              this.router.navigate(['/tabtobooks']);
-              break;           
+              break;  
+              
+              
+
             default:
               _user.user.delete().then(
                 (cat) => {

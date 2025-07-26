@@ -190,13 +190,16 @@ this.loading.simpleLoader()
                     
                   break; 
                   case 'NOT_CUSTOMER':
-               
-                   this.password1(userCredential.user.email,idToken,'newcustomer')  
+                code = '01'
+                  header = 'Error' 
+                  mensaje = 'Uuups!, an account with this email address already exists, associated with the TTwash Jobs app. Therefore, for this app (TTwash Customers), you must use a different email address.'                     
+                  this.aviso(header,mensaje,code)
+                
 
                   break;
                   case 'GETPASSWORD':
 
-                  this.password1(userCredential.user.email,idToken,'newtodo')  
+                  this.password1(userCredential.user.email,idToken)  
               
                    
                  
@@ -227,14 +230,14 @@ this.loading.dismissLoader()
       this.showPassword = !this.showPassword;
     }
 
-  async password1(email:string | null ,idtoken:string,x:string) {
+  async password1(email:string | null ,idtoken:string) {
     const modal = await this.modalCtrl.create({
                     component: Passwordapple1Page,
                      componentProps: { 
                      email: email,
                      idtoken: idtoken,
                      tipo: 'apple' ,
-                     x:x                     
+                                      
                     }
                   });
                   modal.present();
@@ -242,6 +245,7 @@ this.loading.dismissLoader()
                   const { data, role } = await modal.onWillDismiss();
 
                   if(role === 'continue') {
+                    
                     this.wonderPush.setUserId(data.userid)
                     this.wonderPush.addTag('clientes')
                     await this.localstorage.setData('autenticacion_tipo', 'apple');                   
