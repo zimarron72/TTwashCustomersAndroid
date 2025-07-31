@@ -22,7 +22,7 @@ elemento = {
   email:any
   tipo:any
   idtoken:any
-  x:any
+  
 
   ErrorMessage:any
   constructor(
@@ -139,7 +139,12 @@ validateForm() {
    if (this.validateForm()) {
 this.loading.simpleLoader()
   var url = "https://washtt.com/v1_api_clientes_loginapple_registro.php"
-            var data1 = { email: this.email, idtoken : this.idtoken, tipo:this.tipo, x:this.x, password : this.elemento.password1 }
+            var data1 = { 
+              email: this.email,
+              idtoken : this.idtoken,
+              tipo:this.tipo,
+              password : this.elemento.password1
+             }
             this.cHttps(url, data1).subscribe(
               async (res: any)  => {
                  this.loading.dismissLoader()

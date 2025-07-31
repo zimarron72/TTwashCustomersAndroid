@@ -19,7 +19,8 @@ export class FleetComponent  implements OnInit {
   idtoken!: string
   autenticacion_tipo!: string
   data!: any
-  show:boolean = true
+  showlist:boolean = true
+  showadd:boolean = false
 
   constructor(
     private alertController: AlertController,
@@ -32,6 +33,10 @@ export class FleetComponent  implements OnInit {
   async ngOnInit() {
    
   }
+
+  isObjectEmpty(obj: any): boolean {
+  return Object.keys(obj).length === 0;
+}
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -106,14 +111,17 @@ async ionViewWillEnter() {
 
           
           this.fleet = Object.values(res.data)
-          if(!this.fleet) {
-            this.show = false
-            }
           this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
-
-          this.data = this.fleet
-         
-console.log(this.data)
+          if(this.isObjectEmpty(this.fleet)) {
+            this.showadd = true
+            this.showlist = false
+            }
+            else {
+             this.showadd = false
+            this.showlist = true 
+          this.data = this.fleet         
+          console.log(this.data)
+            }
 
 
           break;
@@ -168,16 +176,18 @@ doRefresh(event: { target: { complete: () => void; }; }) {
         
           case '200_OK':
             
-          
-          this.fleet = Object.values(res.data)
-          if(!this.fleet) {
-            this.show = false
-            }
+  this.fleet = Object.values(res.data)
           this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
-
-          this.data = this.fleet
-console.log(this.data)
-
+          if(this.isObjectEmpty(this.fleet)) {
+            this.showadd = true
+            this.showlist = false
+            }
+            else {
+             this.showadd = false
+            this.showlist = true 
+          this.data = this.fleet         
+          console.log(this.data)
+            }
 
           break;
         }  

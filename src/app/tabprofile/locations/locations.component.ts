@@ -22,6 +22,9 @@ idtoken!: string
 autenticacion_tipo!: string
 data!: any
 
+ showlist:boolean = true
+  showadd:boolean = false
+
 message = 'This modal example uses the modalController to present and dismiss modals.';
 
   constructor(
@@ -37,6 +40,10 @@ message = 'This modal example uses the modalController to present and dismiss mo
   async ngOnInit() {
    
   }
+
+   isObjectEmpty(obj: any): boolean {
+  return Object.keys(obj).length === 0;
+}
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -112,9 +119,18 @@ async ionViewWillEnter() {
           
           this.locations = Object.values(res.data)
           this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
+ if(this.isObjectEmpty(this.locations)) {
+            this.showadd = true
+            this.showlist = false
+            }
+            else {
+             this.showadd = false
+            this.showlist = true 
+          this.data = this.locations         
+          console.log(this.data)
+            }
 
-          this.data = this.locations
-console.log(this.data)
+       
 
 
           break;
@@ -173,8 +189,16 @@ doRefresh(event: { target: { complete: () => void; }; }) {
           this.locations = Object.values(res.data)
           this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
 
-          this.data = this.locations
-console.log(this.data)
+          if(this.isObjectEmpty(this.locations)) {
+            this.showadd = true
+            this.showlist = false
+            }
+            else {
+             this.showadd = false
+            this.showlist = true 
+          this.data = this.locations         
+          console.log(this.data)
+            }
 
 
           break;

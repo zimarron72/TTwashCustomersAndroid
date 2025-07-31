@@ -54,8 +54,8 @@ address:any
 datos:any
 
   picture! : string
-  //rostro = './assets/imgs/foto_perfil.svg'
-rostro!:any
+rostro: any = './assets/imgs/foto_perfil.svg'
+
 
 
   baseUrl: string = 'https://washtt.com'
@@ -117,7 +117,13 @@ rostro!:any
     this.password = res.data.password
     this.fullname = res.data.fullname
     this.address = res.data.street
+    this.rostro = res.data.rostro
+   if(this.rostro == '' || this.rostro == null || this.rostro == undefined) {
+this.rostro = './assets/imgs/foto_perfil.svg'
+  }
+  else {
     this.rostro = this.baseUrl+'/'+res.data.rostro
+  }
             
   
   
@@ -228,7 +234,14 @@ edit_password(){}
   this.password = res.data.password
   this.fullname = res.data.fullname
   this.address = res.data.street
-  this.rostro = this.baseUrl+'/'+res.data.rostro
+  this.rostro = res.data.rostro
+  if(this.rostro == '' || this.rostro == null || this.rostro == undefined) {
+this.rostro = './assets/imgs/foto_perfil.svg'
+  }
+  else {
+    this.rostro = this.baseUrl+'/'+res.data.rostro
+  }
+  
           
 
 

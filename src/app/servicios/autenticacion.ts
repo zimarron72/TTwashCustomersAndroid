@@ -196,27 +196,30 @@ else {
 register(email: string , password: string, name: string) {
   this.loading.simpleLoader()
   createUserWithEmailAndPassword(this.auth, email, password).then(
-    async (_user) => {
-      this.loading.dismissLoader() 
-      var url = "https://washtt.com/v1_api_clientes_registro.php"
-      //var url = "https://washtt.com/v1_api_probador.php"
-     
+    async (res) => {
+       let user = res.user
+       await this.localstorage.setObject('usuario',user)
+       user.getIdToken(false).then(
+ async (response:string) => {
+  let idtoken = response
+  await this.localstorage.setData('idtoken',idtoken)
+var url = "https://washtt.com/v1_api_clientes_registro.php"    
       var data1 = { email: email, password: password, name : name }
       this.cHttps(url, data1).subscribe(
-        async (res: any) => {
+        async (res1: any) => {
+           this.loading.dismissLoader() 
           let mensaje
           let header
           let code
-          switch (res.data.respuesta) {
+          switch (res1.data.respuesta) {
             case 'ERROR': 
-            _user.user.delete().then(
-              (cat) => {
+         
                 code = '02'
                 header = 'Error'              
-                mensaje = 'an error occurred,please try again' + res.data.mensaje
+                mensaje = 'an error occurred,please try again' + res1.data.mensaje
                 this.aviso(header,mensaje,code) 
-              }
-            )                            
+             
+                                      
             break;
             case 'DUPLICADO_USUARIO':
                   code = '01'
@@ -225,17 +228,17 @@ register(email: string , password: string, name: string) {
                   this.aviso(header,mensaje,code)
             break;              
             case 'OK':
-              this.wonderPush.setUserId(res.data.userid)
+              this.wonderPush.setUserId(res1.data.userid)
               this.wonderPush.addTag('clientes')
               await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
-              alert(res.data.respuesta)
-             this.router.navigate(['/tabtobooks']);
+             
+             this.router.navigate(['/tabs/tabtobooks']);
               break;  
               
               
 
             default:
-              _user.user.delete().then(
+              res.user.delete().then(
                 (cat) => {
                   code = '02'
             header = 'Error' 
@@ -249,19 +252,9 @@ register(email: string , password: string, name: string) {
         }
       )
 
-    }).catch(
-      (error) => { 
-        this.loading.dismissLoader()
-       let  code = '03'
-       let header = 'Error' 
-        let mensaje = error 
-        this.aviso(header,mensaje,code)
-        console.log(error)
-        
-        
-      }
-    )
 
+ })
+    })
 }
 
  

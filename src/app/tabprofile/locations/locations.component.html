@@ -12,6 +12,7 @@
 
 
 <ion-content>
+ <div *ngIf='showlist'> 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -55,6 +56,12 @@
       </div>
     </ion-accordion>   
   </ion-accordion-group>
+ </div>
+
+ <diV  *ngIf='showadd'> <br><br><ion-button  expand="block" color="warning" (click) = add()>Register your location now!</ion-button>
+<br><br>
+   <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
+</diV>
 
 
 

@@ -11,7 +11,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="show">
+<ion-content >
+  <diV *ngIf='showlist'>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher> 
@@ -58,13 +59,16 @@
     </div>
   </ion-accordion>   
 </ion-accordion-group>
+</diV>
+
+<diV  *ngIf='showadd'> <br><br><ion-button  expand="block" color="warning" (click) = add()>Register your first vehicle now!</ion-button>
+<br><br>
+   <div  style="text-align: center;"> <img src="./assets/imgs/vehiculos_app.png" /></div>
+</diV>
+
+
 </ion-content>
 
 
-<ion-content *ngIf="!show">
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <ion-button  expand="block" color="warning" (click) = add()>Register your first vehicle now!</ion-button>
-</ion-content>
+
 
