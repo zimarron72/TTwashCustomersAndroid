@@ -25,7 +25,7 @@ Capacitor: {}
 
   },
   
-,
+
     android: {
        buildOptions: {
           keystorePath: 'undefined',
