@@ -10,7 +10,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 //services**************
 import { AutenticacionService } from './servicios/autenticacion';
-import { ServiciosTobook} from './servicios/servicios.tobook';
+
 import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { SquareService } from './servicios/square.service';
@@ -61,7 +61,7 @@ import { Capacitor } from '@capacitor/core';
   
 
   AutenticacionService,
-  ServiciosTobook,
+  
   LoadingController,
   Storage,
   SquareService,

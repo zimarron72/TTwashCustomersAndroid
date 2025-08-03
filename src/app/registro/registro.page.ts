@@ -34,17 +34,7 @@ export class RegistroPage   {
       });
    }
 
-  /* segmentChanged(ev: any) {
- 
-    if(this.respuesta == 'YES') {
-      this.verboton = true
-    }
-    else {
-      this.verboton = false
-      this.router.navigate(['login']);
-    }
-    
-  }*/
+  
 
     togglePasswordVisibility1() {
       this.showPassword1 = !this.showPassword1;

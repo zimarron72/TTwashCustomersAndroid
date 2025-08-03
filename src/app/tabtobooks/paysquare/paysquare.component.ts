@@ -69,8 +69,8 @@ total_string !: string
     this.loading.simpleLoader()
      //ojo square-sandbox or square segun las credenciales
      
-    await this.dsls.loadScript('square-sandbox')
-  //await this.dsls.loadScript('square')
+    //await this.dsls.loadScript('square-sandbox')
+ await this.dsls.loadScript('square')
 
   const formatter$ = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -86,8 +86,8 @@ total_string !: string
   
   //async function main() {
 
-const appId = 'sandbox-sq0idb-RrvT24qkMyTSr91-Qy080w';
-// const appId = 'sq0idp-vuSagOWbgJlfqKv2PoID5A';
+//const appId = 'sandbox-sq0idb-RrvT24qkMyTSr91-Qy080w';
+ const appId = 'sq0idp-vuSagOWbgJlfqKv2PoID5A';
   const locationId = 'JCQ7Q20HXQTZ8';
  //const locationId = 'JCQ7Q20HXQTZ8';
 

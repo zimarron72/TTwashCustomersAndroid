@@ -1,28 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { AlertController } from '@ionic/angular';
-import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
+import { CapacitorHttp,  HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { LoadingService } from '../servicios/loading.services';
 import { StorageService } from './storage.service';
 
 import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 
-import {
-  SignInWithApple,
-  SignInWithAppleResponse,
-  SignInWithAppleOptions,
-} from '@capacitor-community/apple-sign-in';
 
 import { Auth, 
   signInWithEmailAndPassword,
    createUserWithEmailAndPassword, 
    signOut,
    sendPasswordResetEmail,
-   OAuthProvider,
-   signInWithCredential,
-   AuthCredential,
-   getAuth
+  
   } from '@angular/fire/auth';
 
 
@@ -45,7 +37,7 @@ export class AutenticacionService {
     private localstorage: StorageService,
     private loading: LoadingService,
     
-    //private appleResponse : SignInWithAppleResponse
+    
     private wonderPush: WonderPush,
   ) { }
   
@@ -273,7 +265,7 @@ resetpassword(email : string) {
 
   }).catch((error) => {
     this.loading.dismissLoader() 
-    //var errorCode = error.code;
+   
     let  code = '04'
     let header = 'Error' 
     let mensaje
@@ -301,6 +293,8 @@ resetpassword(email : string) {
   logout_regular() {
     signOut(this.auth).then(
 (_res) => {
+ // alert('salirda')
+  this.localstorage.clearData
   this.router.navigate(['/login']);
 })
   }

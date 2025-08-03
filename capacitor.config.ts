@@ -25,6 +25,13 @@ Capacitor: {}
 
   },
   
-};
+,
+    android: {
+       buildOptions: {
+          keystorePath: 'undefined',
+          keystoreAlias: 'undefined',
+       }
+    }
+  };
 
 export default config;

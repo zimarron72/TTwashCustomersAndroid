@@ -4,7 +4,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {AutenticacionService} from '../servicios/autenticacion'
 import { App } from '@capacitor/app';
-import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
+import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { Passwordapple1Page } from '../passwordapple1/passwordapple1.page';
 import { StorageService } from '../servicios/storage.service';

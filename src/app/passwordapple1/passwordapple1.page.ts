@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {   ModalController, AlertController } from '@ionic/angular';
-import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
+import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { LoadingService } from '../servicios/loading.services';
 
