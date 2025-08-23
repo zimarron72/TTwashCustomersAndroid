@@ -60,7 +60,7 @@ this.router.navigate(['/tabs/tabtobooks/tipovehiculos']);
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
   this.cliente_correo = this.user.email
- 
+  
   }
 
 salida_regular() {

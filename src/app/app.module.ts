@@ -16,6 +16,7 @@ import { Storage } from '@ionic/storage-angular';
 import { SquareService } from './servicios/square.service';
 
 
+
 import { environment } from '../environments/environment';
 import { provideFirebaseApp, initializeApp, getApp } from '@angular/fire/app';
 import { provideAuth, getAuth, indexedDBLocalPersistence, initializeAuth } from '@angular/fire/auth';
@@ -61,11 +62,11 @@ import { Capacitor } from '@capacitor/core';
   
 
   AutenticacionService,
-  
   LoadingController,
   Storage,
   SquareService,
   WonderPush
+
 
   ],
   bootstrap: [AppComponent],

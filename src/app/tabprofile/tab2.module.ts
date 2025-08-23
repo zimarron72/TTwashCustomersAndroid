@@ -14,16 +14,17 @@ import { FleetComponent  } from './fleet/fleet.component';
 import { ModaladdsiteComponent  } from './modaladdsite/modaladdsite.component';
 import { ModaladdtruckComponent  } from './modaladdtruck/modaladdtruck.component';
 import { AccountComponent  } from './account/account.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    //ExploreContainerComponentModule,
+HttpClientModule,
     ReactiveFormsModule,
     Tab2PageRoutingModule,
-    RouterModule,
+    RouterModule
+   
   ],
   declarations: [Tab2Page,
     ProfileComponent,

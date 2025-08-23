@@ -174,17 +174,7 @@ async aviso(header : string, mensaje : string, code : string) {
 }
 
 
-fromCamara() {
 
-}
-
-fromGallery() {}
-
-cancel_password(){}
-
-submit_password(){}
-
-edit_password(){}
 
 
 
@@ -254,16 +244,11 @@ edit_password(){}
  async logResult(event: CustomEvent<OverlayEventDetail>) {
   
   this.datos = event.detail
-  let mensaje
-  let header
-  let code  
+
   switch(this.datos.role) {
 
 case 'camara':
-  mensaje = '1'
-  header = '1'
-  code = '1'
-  this.aviso(header, mensaje, code) 
+
 
   const capturedPhoto = await Camera.getPhoto({
     resultType: CameraResultType.Uri,
@@ -277,11 +262,7 @@ case 'camara':
 break; 
 
 case 'galeria':
-  mensaje = '2'
-  header = '2'
-  code = '2'
-  this.aviso(header, mensaje, code) 
-break;
+
 
 case 'cancel':
   this.router.navigate(['/tabs/tabprofile/nav-profile'])   
@@ -327,6 +308,8 @@ private convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
   };
   reader.readAsDataURL(blob);
 });
+
+
 
 
 }
