@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-<key>NSCameraUsageDescription</key>
-    <string>This app needs access to your camera to take photos and record videos for your profile.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to your camera to take photos and record videos for your profile.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -37,7 +37,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIStatusBarStyle</key>
-	<string></string>
+	<string/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
@@ -48,12 +48,12 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
-<string>This app requires access to your photo library to allow you to select and upload photos for your profile.</string>
-<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-<string>This app uses your location to provide real-time updates and personalized content even when the app is in the background.</string>
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>Your app needs access to your location to provide relevant features, such as showing nearby points of interest or calculating distances.</string>
-<key>NSPhotoLibraryAddUsageDescription</key>
-<string>This app needs to save photos you take to your photo library.</string>
+	<string>This app requires access to your photo library to allow you to select and upload photos for your profile.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app uses your location to provide real-time updates and personalized content even when the app is in the background.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your app needs access to your location to provide relevant features, such as showing nearby points of interest or calculating distances.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app needs to save photos you take to your photo library.</string>
 </dict>
 </plist>

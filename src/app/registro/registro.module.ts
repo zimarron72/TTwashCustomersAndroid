@@ -10,14 +10,14 @@ import { RegistroPage } from './registro.page';
 
 // Material angular
 
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
     RegistroPageRoutingModule,
-    ExploreContainerComponentModule,
+   
   ],
   declarations: [RegistroPage]
 })

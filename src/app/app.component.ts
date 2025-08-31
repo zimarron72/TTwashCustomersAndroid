@@ -67,13 +67,26 @@ cHttps(url: string, data: any) {
   }
 
  inicializarApp() {
-this.platform.ready().then(()=>{
-  this.wonderPush.subscribeToNotifications()
-    this.wonderPush.addTag('clientes')
+this.platform.ready().then(async ()=>{
+  setTimeout(() => {
+  this.wonderPush.subscribeToNotifications().then(
+
+  )
+    
+}, 3000)
+ await this.sleep(8500)
+this.checkVersion()
+ 
 });
 
-this.checkVersion()
+
+
   } 
+
+
+ sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+} 
  
 checkVersion() {
 
@@ -191,3 +204,7 @@ compare(a: string, b:string) {
  
 
 }
+function sleep(arg0: number) {
+  throw new Error('Function not implemented.');
+}
+

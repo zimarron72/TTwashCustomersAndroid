@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
-//import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+
 import { RouterModule } from '@angular/router';
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { SquareService } from '../servicios/square.service';
-//import { ServiciosTobook } from '../servicios/servicios.tobook';
+
 
 //componentes anidados
 import { TipovehiculosComponent } from './tipovehiculos/tipovehiculos.component';
@@ -45,7 +45,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    //ExploreContainerComponentModule,
+   
     Tab1PageRoutingModule,
     RouterModule,
   ],

@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+
 
 
 
@@ -18,7 +18,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
     ReactiveFormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    ExploreContainerComponentModule,
+
   ],
   declarations: [LoginPage]
 })

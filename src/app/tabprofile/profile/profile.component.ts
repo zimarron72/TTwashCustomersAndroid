@@ -190,13 +190,13 @@ async aviso(header : string, mensaje : string, code : string) {
 
  doRefresh(event: { target: { complete: () => void; }; }) {
   event.target.complete();
-  this.loading.simpleLoader()
+
   if(this.user) {
     let url = 'https://washtt.com/v1_api_clientes_getinfocuenta.php'
     let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email}
     this.cHttps(url, data).subscribe(
       async (res: any) => {
-        this.loading.dismissLoader()  
+  
         let mensaje
         let header
         let code
@@ -268,28 +268,23 @@ this.rostro = './assets/imgs/foto_perfil.svg'
 
 case 'camara':
   
-
-
-break; 
-
-case 'galeria':
- 
- const capturedPhoto = await Camera.getPhoto({
+ const capturedCamera = await Camera.getPhoto({
       resultType: CameraResultType.Base64, // or .DataUrl for base64
-      source: CameraSource.Photos,
+      source: CameraSource.Camera,
       quality: 90
     });
 
-       let url = 'https://washtt.com/v1_api_clientes_rostro_base64.php'
-      let data = { 
+       let url1 = 'https://washtt.com/v1_api_clientes_rostro_base64.php'
+      let data1 = { 
         idtoken: this.idtoken,
         autenticacion_tipo: this.autenticacion_tipo,
         email : this.user.email,
-        imagenBase64 : capturedPhoto.base64String
+        imagenBase64 : capturedCamera.base64String
       }
-      this.cHttps(url, data).subscribe(
+      this.loading.simpleLoader()
+      this.cHttps(url1, data1).subscribe(
         async (res: any) => {
-  
+  this.loading.dismissLoader()  
           let mensaje
           let header
           let code
@@ -310,7 +305,56 @@ case 'galeria':
           
             case true:
   
-            this.rostro = "data:image/jpeg;base64,"+capturedPhoto.base64String; 
+            this.rostro = "data:image/jpeg;base64,"+capturedCamera.base64String; 
+            
+  
+  
+            break;
+          }  
+        })  
+
+break; 
+
+case 'galeria':
+ 
+ const capturedGallery = await Camera.getPhoto({
+      resultType: CameraResultType.Base64, // or .DataUrl for base64
+      source: CameraSource.Photos,
+      quality: 90
+    });
+
+       let url2 = 'https://washtt.com/v1_api_clientes_rostro_base64.php'
+      let data2 = { 
+        idtoken: this.idtoken,
+        autenticacion_tipo: this.autenticacion_tipo,
+        email : this.user.email,
+        imagenBase64 : capturedGallery.base64String
+      }
+      this.loading.simpleLoader()
+      this.cHttps(url2, data2).subscribe(
+        async (res: any) => {
+  this.loading.dismissLoader()  
+          let mensaje
+          let header
+          let code
+          switch(res.data.success) {
+         
+            case false:
+              code = ''
+              header = 'Error'
+              mensaje = 'an error occurred,please login again'
+              this.localstorage.clearData()
+              this.router.navigate(['/login']);
+              this.aviso(header, mensaje, code) 
+              
+             
+            break;
+          
+            
+          
+            case true:
+  
+            this.rostro = "data:image/jpeg;base64,"+capturedGallery.base64String; 
             
   
   
