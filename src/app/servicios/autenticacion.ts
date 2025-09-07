@@ -14,6 +14,8 @@ import { Auth,
    createUserWithEmailAndPassword, 
    signOut,
    sendPasswordResetEmail,
+   getAuth, 
+  
   
   } from '@angular/fire/auth';
 
@@ -340,6 +342,58 @@ resetpassword(email : string) {
     
 
   }
+
+
+  async borrarCuenta() {
+const auth = getAuth();
+const user = auth.currentUser;
+this.user = user
+await user?.delete().then(
+  ()=>{
+ var url = 'https://washtt.com/v1_api_clientes_deleteCuenta.php'
+    var data1 = {  email: this.user.email }
+    this.cHttps(url, data1).subscribe(
+      async (res: any) => {
+    
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'an error occurred,please login again'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code)                       
+          break;            
+          case 'OK':   
+            code = ''
+          header = '' 
+          mensaje = 'Your account deletion has been successfully completed. Thank you for your preference.'
+         this.aviso(header,mensaje,code) 
+          this.localstorage.clearData()
+          this.router.navigate(['/delete-cuenta/encuesta'])   
+          break;  
+        }
+                      
+      }
+    )
+})
+
+  }
+
+
+
 
 
 

@@ -38,7 +38,7 @@ appVersion: any
   form_login!: FormGroup
   showPassword: boolean = false;
 
-  
+ ID:any 
 
 
 
@@ -154,6 +154,7 @@ resetpassword (){
 
  const auth = getAuth();         
 const idToken = res.response.identityToken;
+this.ID = res.response.user
  const provider = new OAuthProvider('apple.com')
  const credential = provider.credential(
   {
@@ -199,7 +200,7 @@ this.loading.simpleLoader()
                   break;
                   case 'GETPASSWORD':
 
-                  this.password1(userCredential.user.email,idToken)  
+                  this.password1(userCredential.user.email,idToken, this.ID )  
               
                    
                  
@@ -230,14 +231,14 @@ this.loading.dismissLoader()
       this.showPassword = !this.showPassword;
     }
 
-  async password1(email:string | null ,idtoken:string) {
+  async password1(email:string | null ,idtoken:string, ID:any) {
     const modal = await this.modalCtrl.create({
                     component: Passwordapple1Page,
                      componentProps: { 
                      email: email,
                      idtoken: idtoken,
                      tipo: 'apple' ,
-                                      
+                      ID: ID                
                     }
                   });
                   modal.present();

@@ -22,6 +22,7 @@ elemento = {
   email:any
   tipo:any
   idtoken:any
+  ID:any
   
 
   ErrorMessage:any
@@ -29,7 +30,13 @@ elemento = {
        private modalCtrl: ModalController,
       private alertController: AlertController,
       private loading: LoadingService,
-  ) { }
+  ) { 
+
+if(this.email == "") {
+this.email = this.ID+"@correoculto.com"
+}
+
+  }
 
   ngOnInit() {
   }

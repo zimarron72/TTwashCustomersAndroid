@@ -69,6 +69,10 @@ salida_regular() {
   
     }
 
+    deleteCuenta(){
+      this.router.navigate(['delete-cuenta/delete']);
+    }
+
 
 
 }

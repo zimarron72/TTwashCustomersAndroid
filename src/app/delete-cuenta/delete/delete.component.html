@@ -1,0 +1,35 @@
+<ion-content class="ion-padding"><br><br>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+       <h3 style="text-align: center; color:#f2f2f2">Deleting your TTwash Customers account </h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+    <ion-col>  
+  <div style="text-align:justify; color:#f2f2f2;">
+<span style="color:#f2f2f2; font-weight: bold;">By ACCEPT</span> as prompted below, your TTwash Customers account will be deleted. 
+All information collected during the use and operation of your account in our system (appointments, orders, profile data, etc.) and by any third parties possibly involved will be immediately and irreversibly deleted. Specific information related to your payments
+or billing will only be retained for the company's accounting purposes.<br /><br />
+    </div>
+   
+      <ion-toggle [enableOnOffLabels]="true" (ionChange)="toggleChanged($event)" labelPlacement="stacked" alignment="center" color="primary"><span style="color:#f2f2f2">I AGREE TO DELETE MY TTWASH CUSTOMERS ACCOUNT</span></ion-toggle><br><br>
+   
+    <div style="text-align:center;">
+     
+ <ion-button [disabled]="!toggleState" color="primary" expand="block"  (click)="continuar0()">CONTINUE</ion-button>     
+      <br><br>
+  <ion-button color="success"  expand="block"  (click)="cancelar()">CANCEL</ion-button>      
+      
+    </div>
+   
+  </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col></ion-col>
+  </ion-row>
+  </ion-grid>
+
+</ion-content>  
