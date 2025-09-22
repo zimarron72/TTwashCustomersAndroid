@@ -1,15 +1,20 @@
 <ion-header>
-  <ion-toolbar color="primary">   
-    <ion-title>Add a vehicle to your fleet</ion-title> 
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="salir()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title>Start adding a vehicle to your fleet</ion-title> 
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  <div style="text-align: justify;" *ngIf="modo == 0">Describe the vehicle you want to wash and start registering your fleet. Maintain a fleet of vehicles with us and receive frequent discount coupons.</div>
+  <div style="text-align: justify;"><p>Describe the vehicle you want to wash and start registering your fleet. Maintain a fleet of vehicles with us and receive frequent discount coupons.</p></div>
   
-  <ion-list>
+  <ion-list lines="none">
 
     <ion-item>    
-      <ion-select
+      <ion-select style="text-transform: uppercase;"
       [interfaceOptions]="tipoVehiclePopoverOptions" interface="popover" fill="outline"
       label="Type vehicle" labelPlacement="stacked" id = "tipoVehicle" name = "tipoVehicle" placeholder="Your vehicle's type" [(ngModel)]="truck.tipov" (ionChange)="selectVehiculos($event)">
       <ion-select-option *ngFor="let vehiculo of vehiculos"  [value]="vehiculo.category_id">  
@@ -21,7 +26,7 @@
 
     <ion-item>
      
-         <ion-select 
+         <ion-select style="text-transform: uppercase;"
       [interfaceOptions]="modeloVehiclePopoverOptions" interface="popover" fill="outline"
       label="Vehicle model" labelPlacement="stacked" id = "model" name = "model" placeholder="Your vehicle's model" [(ngModel)]="truck.model" >
       <ion-select-option *ngFor="let modelo of modelos"  [value]="modelo.category_id">  
@@ -31,30 +36,30 @@
     </ion-item>
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Vehicle brand" id = 'brand' name = 'brand'  type = 'text' [(ngModel)]="truck.brand" placeholder="Brand of your vehicle" />
+      <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="Vehicle brand" id = 'brand' name = 'brand'  type = 'text' [(ngModel)]="truck.brand" placeholder="Brand of your vehicle" />
     </ion-item>
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Color of the vehicle" id = 'color' name = 'color' type = 'text' [(ngModel)]="truck.color" placeholder="Color of your vehicle" />
+      <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="Color of the vehicle" id = 'color' name = 'color' type = 'text' [(ngModel)]="truck.color" placeholder="Color of your vehicle" />
 
     </ion-item>
 
   <ion-item>
-    <ion-input labelPlacement="stacked" label="License" id = 'license' name = 'license' type = 'text' [(ngModel)]="truck.license" placeholder="Vehicle driver's license" />
+    <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="License" id = 'license' name = 'license' type = 'text' [(ngModel)]="truck.license" placeholder="Vehicle driver's license" />
   </ion-item>
 
   <ion-item>
-    <ion-input labelPlacement="stacked" label="Vehicle number" id = 'unitnumber' name = 'unitnumber' type = 'text' [(ngModel)]="truck.unitnumber" placeholder="Number of your vehicle" />
+    <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="Vehicle number" id = 'unitnumber' name = 'unitnumber' type = 'text' [(ngModel)]="truck.unitnumber" placeholder="Number of your vehicle" />
 
   </ion-item>
 
   <ion-item>
-    <ion-select labelPlacement="stacked" 
+    <ion-select labelPlacement="stacked" style="text-transform: uppercase;"
     [interfaceOptions]="detallesPopoverOptions" 
     interface="popover" 
         fill="outline"   
     label="Vehicle details" 
-
+placeholder="Its general appearance"
     id = 'detallev' name = 'detallev' [(ngModel)]="truck.detallev" >
   
       <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
@@ -67,8 +72,8 @@
 
 
 </ion-list>
-<div style="text-align: center;" *ngIf="modo != 1">
-<ion-button  color="primary" (click) = "continue1()">
+<div style="text-align: center;" >
+<ion-button  color="primary" (click) = "continue()">
   Continue
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
@@ -76,14 +81,3 @@
 
    <div  style="text-align: center;"> <img src="./assets/imgs/fleet_app.png" /></div>
 </ion-content>
-<ion-footer *ngIf="modo != 0">
-  <ion-toolbar color="primary" >
-    <ion-buttons slot="start">
-      <ion-button color="warning" (click)="cancel()">Cancel</ion-button>
-    </ion-buttons>
-    <ion-title></ion-title>
-    <ion-buttons slot="end">
-      <ion-button color="success" (click)="continue()" [strong]="true">Continue</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute,  Params } from '@angular/router';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
 import { LoadingService } from '../../servicios/loading.services';
-import { AlertController } from '@ionic/angular';
+import { AlertController,  MenuController    } from '@ionic/angular';
 
 interface Vehiculos {
   [index: number]: Vehiculo
@@ -27,6 +27,8 @@ interface Vehiculo {
 })
 export class TipovehiculosComponent implements OnInit {
 
+  modo:any
+
   vehiculos: any;
   user: any
   vehicle: any
@@ -41,10 +43,29 @@ export class TipovehiculosComponent implements OnInit {
     private router: Router,
     private loading: LoadingService,
     private localstorage: StorageService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private menuCtrl: MenuController,
+     private rutaActiva: ActivatedRoute,
   ) {
 
-   
+  this.modo = this.rutaActiva.snapshot.params['modo'];
+    this.rutaActiva.params.subscribe(
+      (params: Params) => {
+        this.modo = params['modo'];    
+      }
+    );
+
+    switch(this.modo){
+   case 'more':
+this.menuCtrl.open('unico-menu');
+   break; 
+  case 'verprecio':
+//NADA
+   break;    
+
+    }
+
+    
   }
 
   
@@ -57,6 +78,7 @@ export class TipovehiculosComponent implements OnInit {
 
 
    async ionViewWillEnter() {  
+   
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
@@ -87,9 +109,9 @@ export class TipovehiculosComponent implements OnInit {
           this.router.navigate(['/login'])   
           this.aviso(header,mensaje,code)                       
           break;            
-          case 'PERFIL_INCOMPLETO':
+        /*  case 'PERFIL_INCOMPLETO': viejo
           this.router.navigate(['/tabs/tabtobooks/putprofile']);
-          break; 
+          break; */
           case 'CONTINUAR':
             this.vehiculos = res.data  
               console.log(this.vehiculos)            
@@ -140,12 +162,12 @@ export class TipovehiculosComponent implements OnInit {
             doRefresh(event: { target: { complete: () => void; }; }) {
               event.target.complete();
              
-              this.loading.simpleLoader()
+            
               var url = 'https://washtt.com/v1_api_clientes_tipodevehiculos.php'
               var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
               this.cHttps(url, data1).subscribe(
                 async (res: any) => {
-                  this.loading.dismissLoader()
+                 
                   console.log(res)
                   let mensaje
                   let header

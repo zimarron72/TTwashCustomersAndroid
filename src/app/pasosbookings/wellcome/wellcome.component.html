@@ -1,0 +1,89 @@
+<!--<div class="ion-page" id="main-content">-->
+<ion-header>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="salir()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title>Welcome</ion-title> 
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="caja1">
+         <ion-icon color="dark" name="car"></ion-icon>
+        &ensp;<br>
+         &ensp;<br>
+        Fleet vehicles<br>{{fleet}}
+      </ion-col>
+     
+          <ion-col class="caja2">
+           <ion-icon color="dark" name="calendar"></ion-icon><br> 
+        Bookings scheduled<br>{{bookings}}
+      </ion-col>
+        
+        <ion-col class="caja3">
+            <ion-icon color="dark" name="location-outline"></ion-icon> 
+          &ensp;<br>
+          &ensp;<br>
+        Locations<br>{{locations}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="primary" (click) = "bookNow()">
+ BOOK NOW
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+      <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="primary" (click) = "bookCheck()">
+ CHECKOUT YOUR BOOKING
+ <ion-icon color="dark" slot="start" name="calendar"></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+      <ion-row>
+      <ion-col style="text-align: center;">
+         <ion-button  color="primary" (click) = "bookPrice()">
+ CHECK OUR PRICE
+ <ion-icon color="dark" slot="start" name="pricetags"></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+   </ion-row> 
+   <ion-row>  
+      <ion-col style="text-align: center;">
+         <ion-button  color="primary" (click) = "findMore()">
+ FINDS MORE
+ <ion-icon name="pint" color="dark" slot="start" ></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+</ion-content>
+<!--</div>
+  <ion-menu menuId="first-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>First Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">This is the first menu content.</ion-content>
+</ion-menu>-->

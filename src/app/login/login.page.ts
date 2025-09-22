@@ -149,7 +149,7 @@ resetpassword (){
   
   async openAppleSignIn1()  {
 
- SignInWithApple.authorize().then(async (res) => {
+SignInWithApple.authorize().then(async (res) => {
         if (res.response && res.response.identityToken) {
 
  const auth = getAuth();         
@@ -250,7 +250,8 @@ this.loading.dismissLoader()
                     this.wonderPush.setUserId(data.userid)
                     this.wonderPush.addTag('clientes')
                     await this.localstorage.setData('autenticacion_tipo', 'apple');                   
-                    this.router.navigate(['/tabs/tabtobooks']);      
+                  //  this.router.navigate(['/tabs/tabtobooks']); *viejo
+                       this.router.navigate(['pasos/comienzo']) 
                      
                   }
 

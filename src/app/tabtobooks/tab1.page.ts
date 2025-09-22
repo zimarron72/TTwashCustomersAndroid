@@ -15,7 +15,7 @@ export class Tab1Page  {
   Pages = [
     {
       title: 'To book',
-      url: '/tabs/tabtobooks/tipovehiculos',
+      url: '/pasos/paso1',
       icon: 'calendar-clear'
     },
 
@@ -48,8 +48,8 @@ private router: Router,
 
   ) {
 
-
-this.router.navigate(['/tabs/tabtobooks/tipovehiculos']);
+//viejo
+//this.router.navigate(['/tabs/tabtobooks/tipovehiculos']);
         
 
 

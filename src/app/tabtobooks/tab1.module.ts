@@ -35,7 +35,9 @@ import { PaysquarechargeComponent } from './paysquarecharge/paysquarecharge.comp
 import { TipopagosComponent} from './tipopagos/tipopagos.component';
 import { PaymentsComponent} from './payments/payments.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { Paso1BookingComponent } from './paso1-booking/paso1-booking.component';
+import { Paso2BookingComponent } from './paso2-booking/paso2-booking.component';
+import { Paso3BookingComponent } from './paso3-booking/paso3-booking.component';
 
 
 
@@ -73,7 +75,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     PaysquareComponent,
     PaysquarechargeComponent,
     TipopagosComponent,
-     PaymentsComponent
+     PaymentsComponent,
+     Paso1BookingComponent,
+     Paso2BookingComponent,
+     Paso3BookingComponent
   ],
   providers: [SquareService],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA],

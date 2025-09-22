@@ -3,17 +3,18 @@ import { CapacitorHttp,  HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
 import {  AlertController  } from '@ionic/angular';
-import { Router,  ActivatedRoute, Params } from '@angular/router';
+import { Router} from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
+import {AutenticacionService} from '../../servicios/autenticacion'
 @Component({
-  selector: 'app-addcar',
-  templateUrl: './addcar.component.html',
-  styleUrls: ['./addcar.component.scss'],
+  selector: 'app-comienzo',
+  templateUrl: './comienzo.component.html',
+  styleUrls: ['./comienzo.component.scss'],
   standalone:false
 })
-export class AddcarComponent  implements OnInit {
+export class ComienzoComponent  implements OnInit {
 
- user: any
+user: any
   tipos!: any;
   detalles!:any
   idtoken!: any
@@ -29,42 +30,29 @@ modo : any
     brand: "",
     color : "",
     license: "",
-    unitnumber: null,
+    unitnumber: '',
     detallev: "",
     favorito: ""
   }
 
-
-
   constructor(
-    //private modalCtrl: ModalController,
-    private localstorage:StorageService, 
+      private localstorage:StorageService, 
     private alertController: AlertController,
      private router: Router,
       private loading: LoadingService,
-         private rutaActiva: ActivatedRoute,
-  ) { 
-
-       this.modo = this.rutaActiva.snapshot.params['modo'];
-    this.rutaActiva.params.subscribe(
-      (params: Params) => {
-        this.modo = params['modo'];
-      }
-    );
-
-
-  }
+      private AutenticacionService : AutenticacionService,
+      
+  ) { }
 
   ngOnInit() {}
-
-  validateForm(){ 
+ validateForm(){ 
 
     var ValidationFlag = true
 
 
        if(this.truck.tipov == "")  
     {
-        this.ErrorMessage = "The model of your vehicle must be filled out";
+        this.ErrorMessage = "The type of your vehicle must be filled out";
         ValidationFlag = false;
     } 
   
@@ -105,11 +93,7 @@ modo : any
                     ValidationFlag = false;
                 }
 
-       else  if(this.truck.favorito == "")  
-                  {
-                      this.ErrorMessage = "Is this your favorite vehicle?";
-                      ValidationFlag = false;
-                  }
+
 
    else { }
     return (ValidationFlag) ? true : false; 
@@ -195,7 +179,7 @@ modo : any
 
     async selectVehiculos(event:any){
       var car = event.detail.value
-      alert(car)
+   
             var url = 'https://washtt.com/v2_api_clientes_get_modelos.php'
         var data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, id: car }
         this.cHttps(url, data).subscribe(
@@ -225,29 +209,40 @@ modo : any
         )  
   }
 
+  detallesPopoverOptions = {
+
+   // header: 'General details of the vehicle',
+    subHeader: 'We count on your sincere selection:',
+
+  };
+
+  tipoVehiclePopoverOptions = {
+
+   // header: 'General details of the vehicle',
+    subHeader: 'If not listed, select Other:',
+
+  };
+
+    modeloVehiclePopoverOptions = {
+
+   // header: 'General details of the vehicle',
+    subHeader: 'Within the type of your vehicle, how can we classify it?:',
+
+  };
 
 
-  cancel() {
-   // return this.modalCtrl.dismiss(null, 'cancel');
-  }
+mainPopoverOptions = {
 
- async continue() {
-  /*  if(this.validateForm()){
-  this.modalCtrl.dismiss({      
-      vehicletypes : this.truck.tipov,
-      model : this.truck.model,
-      mark : this.truck.brand,
-     color : this.truck.color,
-     licenseplate:this.truck.license,
-     detail:this.truck.detallev,
-     unitnumber:this.truck.unitnumber,
-     defaults:this.truck.favorito
-      },       
-       'continue');
-  }*/
+   // header: 'Main vehicle',
+    subHeader: 'Does it is main vehicle your fleet?',
+
+  };
+
+salir() {
+ this.AutenticacionService.logout_regular()
 }
 
-async continue1() {
+async continue() {
     if(this.validateForm()){
   this.loading.simpleLoader()
         let url = 'https://washtt.com/v2_api_clientes_addcamion.php'
@@ -283,7 +278,7 @@ async continue1() {
             
             case 'OK_TRUCK':
             
-             this.router.navigate(['tabs/tabtobooks/paso2', res.data.id ,this.truck.model]);
+             this.router.navigate(['pasos/paso2', res.data.id ,this.truck.model]);
              
   
             break;  
@@ -299,39 +294,6 @@ async continue1() {
     await this.aviso('',mensaje,'')
   }
 
-  }    
-
-
-detallesPopoverOptions = {
-
-   // header: 'General details of the vehicle',
-    subHeader: 'We count on your sincere selection:',
-
-  };
-
-  tipoVehiclePopoverOptions = {
-
-   // header: 'General details of the vehicle',
-    subHeader: 'If not listed, select Other:',
-
-  };
-
-    modeloVehiclePopoverOptions = {
-
-   // header: 'General details of the vehicle',
-    subHeader: 'Within the type of your vehicle, how can we classify it?:',
-
-  };
-
-
-mainPopoverOptions = {
-
-   // header: 'Main vehicle',
-    subHeader: 'Does it is main vehicle your fleet?',
-
-  };
-
-
-
+  } 
 
 }

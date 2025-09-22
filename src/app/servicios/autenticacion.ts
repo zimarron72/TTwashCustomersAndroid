@@ -82,7 +82,8 @@ export class AutenticacionService {
                     this.wonderPush.setUserId(res.data.userid)
                     this.wonderPush.addTag('clientes')
                     await this.localstorage.setData('autenticacion_tipo', 'correo_pass');                   
-                    this.router.navigate(['/tabs/tabtobooks']);
+                  this.router.navigate(['pasos/wellcome'])
+                    // this.router.navigate(['/tabs/tabtobooks']);
                     break;
 
                   case 'TOKEN ERROR':
@@ -226,7 +227,7 @@ var url = "https://washtt.com/v1_api_clientes_registro.php"
               this.wonderPush.addTag('clientes')
               await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
              
-             this.router.navigate(['/tabs/tabtobooks']);
+             this.router.navigate(['pasos/comienzo']);
               break;  
               
               
