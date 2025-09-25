@@ -22,7 +22,7 @@ user: any
   vehiculos:any
   modelos:any
   ErrorMessage = ''
-modo : any
+
 
   truck = {
     tipov: "",
@@ -247,7 +247,7 @@ async continue() {
   this.loading.simpleLoader()
         let url = 'https://washtt.com/v2_api_clientes_addcamion.php'
         let data = { 
-        modo : this.modo,  
+        modo : '0',  
         idtoken: this.idtoken,
         autenticacion_tipo: this.autenticacion_tipo,
         email : this.user.email,
@@ -270,9 +270,10 @@ async continue() {
               case 'ERROR':
               code = ''
               header = 'Error'
-              mensaje = 'an error occurred,please login again'
+              /*mensaje = 'an error occurred,please login again'
               this.localstorage.clearData()
-              this.router.navigate(['/login']);
+              this.router.navigate(['/login']);*/
+              mensaje = res.data.mensaje
               this.aviso(header, mensaje, code)
               break;  
             

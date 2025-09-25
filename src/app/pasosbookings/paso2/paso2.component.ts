@@ -13,8 +13,13 @@ import { LoadingService } from '../../servicios/loading.services';
 })
 export class Paso2Component  implements OnInit {
 
-fleetVehiculo:any
-modelVehiculo:any
+ servicios!: any; 
+ 
+  user: any
+  idtoken! : string
+  autenticacion_tipo! : string
+  token_notificacion! : string
+  id_category:any
 
   constructor(
      private localstorage:StorageService, 
@@ -24,12 +29,11 @@ modelVehiculo:any
          private rutaActiva: ActivatedRoute,
   ) {
 
-  this.fleetVehiculo = this.rutaActiva.snapshot.params['fleetVehiculo'];
-  this.modelVehiculo = this.rutaActiva.snapshot.params['modelVehiculo'];
+  
+  this.id_category = this.rutaActiva.snapshot.params['id_category'];
     this.rutaActiva.params.subscribe(
       (params: Params) => {
-        this.fleetVehiculo = params['fleetVehiculo'];
-          this.modelVehiculo = params['modelVehiculo'];
+        this.id_category = params['id_category'];        
       }
     );
 
@@ -70,7 +74,114 @@ modelVehiculo:any
     return from(CapacitorHttp.post(options))
   }
 
+  async ionViewWillEnter() { 
+    this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    this.idtoken = await this.localstorage.getData('idtoken')
+    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+  
+    var url = 'https://washtt.com/v1_api_clientes_tipodeservicios.php'
+    var data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, id: this.id_category }
+    this.cHttps(url, data).subscribe(
+      async (res: any) => {
+    
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'an error occurred,please login again'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code)                       
+          break;            
+         
+          default:
+            this.servicios = res.data
+            console.log('KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'+res.data)
 
-wellcome() {}
+        }
+                      
+      }
+    )
+    
+    } 
+    
+
+     async doRefresh(event: { target: { complete: () => void; }; }) {
+
+ this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    this.idtoken = await this.localstorage.getData('idtoken')
+    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+     
+    var url = 'https://washtt.com/v1_api_clientes_tipodeservicios.php'
+    var data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, id: this.id_category }
+    this.cHttps(url, data).subscribe(
+      async (res: any) => {
+      
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'an error occurred,please login again'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code)                       
+          break;            
+         
+          default:
+            this.servicios = res.data
+             console.log('KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK'+res.data)
+        }
+                      
+      }
+    )
+     
+     }
+
+
+  async selectService(id:any,name:any,image:any,precioyarda:any,preciomobil:any) {
+   
+    let itemcart = JSON.parse(await this.localstorage.getData('itemcart'))
+    itemcart.push({
+      servicio : name,
+      image : image,
+      servicioid : id
+    })
+
+ await this.localstorage.setObject('itemcart',itemcart)
+this.router.navigate(['pasos/paso3', id]);   
+
+
+}
+
+
+  async atras() {
+   this.router.navigate(['/pasos/paso1']);
+   await this.localstorage.removeData('itemcart')
+   
+}
 
 }

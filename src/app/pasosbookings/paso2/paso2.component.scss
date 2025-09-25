@@ -1,0 +1,26 @@
+ion-thumbnail {
+
+  --border-radius: 12px;
+    border: solid 2px #CA083F;
+  font-size: 30px;
+}
+
+ion-item::part(native) {
+  
+    background-color: #f2f2f2;
+
+  border-color: solid 2px #CA083F;
+
+color:black;
+font-size: larger;
+
+font-weight: bold;
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+ion-item::part(detail-icon) {
+  color: black; 
+  opacity: 1; 
+  font-size: 20px;
+}

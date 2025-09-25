@@ -5,16 +5,14 @@ import { StorageService } from '../../servicios/storage.service';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { LoadingService } from '../../servicios/loading.services';
-
-
-
+import {AutenticacionService} from '../../servicios/autenticacion'
 @Component({
-  selector: 'app-putprofile',
-  templateUrl: './putprofile.component.html',
-  styleUrls: ['./putprofile.component.scss'],
-  standalone: false
+  selector: 'app-perfilmobil',
+  templateUrl: './perfilmobil.component.html',
+  styleUrls: ['./perfilmobil.component.scss'],
+  standalone:false
 })
-export class PutprofileComponent  implements OnInit {
+export class PerfilmobilComponent  implements OnInit {
 
    array = {
     mobilephone: "",  
@@ -31,6 +29,7 @@ export class PutprofileComponent  implements OnInit {
   private router: Router,
   private localstorage: StorageService,
     private loading: LoadingService,
+     private AutenticacionService : AutenticacionService,
   ) {
 
     
@@ -102,6 +101,10 @@ validateForm() {
 
     return (ValidationFlag) ? true : false;
   }  
+
+  salir() {
+ this.AutenticacionService.logout_regular()
+}
 
   async continue() {
 

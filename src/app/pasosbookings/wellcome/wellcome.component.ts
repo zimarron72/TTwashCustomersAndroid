@@ -87,7 +87,17 @@ export class WellcomeComponent  implements OnInit {
             this.localstorage.clearData()
             this.router.navigate(['/login'])       
             this.aviso(header, mensaje, code)              
-            break;         
+            break;
+
+               case 'PERFIL_INCOMPLETO':          
+            this.router.navigate(['/pasos/perfilFaltante'])                    
+            break;
+
+                 case 'NOT_FLEET':          
+            this.router.navigate(['/pasos/comienzo'])                    
+            break;
+           
+            
         
           default:
             this.fleet= res.data.fleet

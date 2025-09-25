@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="salir()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title>Beginning Profile</ion-title> 
+  </ion-toolbar>
+    <ion-toolbar color="primary">
+    <ion-icon name="information-circle" slot='start' style="color: #f2f2f2;"></ion-icon>
+    <ion-title size="small" style="color: #f2f2f2;">Before we begin, we require a little more basic information from you.</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+<ion-grid>
+<ion-row>
+<ion-col> 
+
+    <ion-list >
+
+<ion-item>
+
+  <ion-icon name="phone-portrait-outline" color="light" slot="end"></ion-icon>   
+<ion-input [counter]="true"  helperText="Do not use any letters or separator symbols." labelPlacement="stacked" label ="Mobile phone" type = "tel" minlength="11" class="custom" id = "mobilephone" name = "mobilephone" [(ngModel)]="array.mobilephone"  (ionBlur)="mascaraDeTelefono($event)" placeholder="Ejemplo: 04141234567"></ion-input>
+</ion-item>
+
+<ion-item>
+
+<ion-input labelPlacement="stacked" label="First name"  type="text"  class="custom" id = "firstname" name = "firstname" [(ngModel)]="array.firstname" ></ion-input>
+</ion-item>
+ 
+<ion-item>
+
+<ion-input labelPlacement="stacked" label = "Last name"  type="text"  class="custom" id = "lastname" name = "lastname" [(ngModel)]="array.lastname" ></ion-input>
+</ion-item>
+ 
+    
+ 
+
+</ion-list>
+
+</ion-col> 
+</ion-row> 
+
+<ion-row>
+  <ion-col>
+<ion-button color="primary" expand="block"  (click)="continue()">Continue</ion-button>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-col>
+</ion-row> 
+
+</ion-grid>
+</ion-content>

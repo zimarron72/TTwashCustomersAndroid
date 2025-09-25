@@ -43,9 +43,71 @@ export class AutenticacionService {
     private wonderPush: WonderPush,
   ) { }
   
+  cHttps(url: string, data: any) {
+    const options: HttpOptions = {
+      url,
+      headers: {
+        // 'Authorization': 'Token asdf',
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      },
+      data
+    }
+    return from(CapacitorHttp.post(options))
+  }
+
+  async aviso(header : string,mensaje : string, code : string) {
+if(code == '') {
+  const alert = await this.alertController.create({
+    header,
+    message: mensaje,
+    buttons: ['OK'],
+  });
+  await alert.present();  
+}
+else {
+  const alert = await this.alertController.create({
+    header,
+    message: code + ' Sorry, ' + mensaje,
+    buttons: ['OK'],
+  });
+  await alert.present();  
+}
+}
 
 
+  async presentAlert(x: any) {
+    if (x == 0) {
+      const alert = await this.alertController.create({
+        header: 'Login Failed',
+        message: 'Please try again later',
+        buttons: ['OK'],
+      });
+      await alert.present();
 
+    }
+    else {
+      const alert = await this.alertController.create({
+        header: 'Wellcome',
+        message: x,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+
+  }
+
+   async presentAlert2(mensaje: any) {
+    
+      const alert = await this.alertController.create({
+        header: 'Apple',
+        message: mensaje,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    
+
+  }
 
   //////////////////////AUTHENTICATION FIREBASE///////////////////
 
@@ -83,7 +145,7 @@ export class AutenticacionService {
                     this.wonderPush.addTag('clientes')
                     await this.localstorage.setData('autenticacion_tipo', 'correo_pass');                   
                   this.router.navigate(['pasos/wellcome'])
-                    // this.router.navigate(['/tabs/tabtobooks']);
+                    // this.router.navigate(['/tabs/tabtobooks']); viejo
                     break;
 
                   case 'TOKEN ERROR':
@@ -156,37 +218,7 @@ export class AutenticacionService {
     )
   }
 
-  cHttps(url: string, data: any) {
-    const options: HttpOptions = {
-      url,
-      headers: {
-        // 'Authorization': 'Token asdf',
-        'Content-Type': 'application/json',
-        'accept': 'application/json'
-      },
-      data
-    }
-    return from(CapacitorHttp.post(options))
-  }
 
-  async aviso(header : string,mensaje : string, code : string) {
-if(code == '') {
-  const alert = await this.alertController.create({
-    header,
-    message: mensaje,
-    buttons: ['OK'],
-  });
-  await alert.present();  
-}
-else {
-  const alert = await this.alertController.create({
-    header,
-    message: code + ' Sorry, ' + mensaje,
-    buttons: ['OK'],
-  });
-  await alert.present();  
-}
-}
 
 register(email: string , password: string, name: string) {
   this.loading.simpleLoader()
@@ -311,38 +343,6 @@ resetpassword(email : string) {
 
 
 
-  async presentAlert(x: any) {
-    if (x == 0) {
-      const alert = await this.alertController.create({
-        header: 'Login Failed',
-        message: 'Please try again later',
-        buttons: ['OK'],
-      });
-      await alert.present();
-
-    }
-    else {
-      const alert = await this.alertController.create({
-        header: 'Wellcome',
-        message: x,
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
-
-  }
-
-   async presentAlert2(mensaje: any) {
-    
-      const alert = await this.alertController.create({
-        header: 'Apple',
-        message: mensaje,
-        buttons: ['OK'],
-      });
-      await alert.present();
-    
-
-  }
 
 
   async borrarCuenta() {

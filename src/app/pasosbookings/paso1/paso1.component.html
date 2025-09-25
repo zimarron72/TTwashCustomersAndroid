@@ -6,7 +6,128 @@
           </ion-button>   
     </ion-buttons>   
     <ion-title>Select a Vehicle</ion-title> 
+         <ion-buttons slot="end">
+      <ion-button (click)="cancel()">       
+        <ion-icon slot="icon-only" name="sync" color="light"></ion-icon>
+          </ion-button> 
+     </ion-buttons>         
   </ion-toolbar>
+
 </ion-header>
-<ion-content class="ion-padding"></ion-content>
+<ion-content class="ion-padding">
+  <div *ngIf="select">
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="primary" (click) = "carFleet()">
+SELECT A VEHICLE FROM YOUR FLEET
+
+ <ion-icon color="dark" slot="start" name="add-circle"></ion-icon>
+  <ion-icon color="light" slot="end" name="square"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+      <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="warning" (click) = "carNew()">
+GET STARTED WITH A NEW VEHICLE
+ <ion-icon color="dark" slot="start" name="checkmark-circle"></ion-icon>
+  <ion-icon color="light" slot="end" name="square"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+</div>
+<div *ngIf="new">
+  <div style="text-align: justify;"><p>Remember maintain a fleet of vehicles with us and receive frequent discount coupons.</p></div>
+  <ion-list lines="none">
+
+    <ion-item>    
+      <ion-select style="text-transform: uppercase;"
+      [interfaceOptions]="tipoVehiclePopoverOptions" interface="popover" fill="outline"
+      label="Type vehicle" labelPlacement="stacked" id = "tipoVehicle" name = "tipoVehicle" placeholder="Your vehicle's type" [(ngModel)]="truck.tipov" (ionChange)="selectVehiculos($event)">
+      <ion-select-option *ngFor="let vehiculo of vehiculos"  [value]="vehiculo.category_id">  
+        {{vehiculo.name}}
+        </ion-select-option>         
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+     
+         <ion-select style="text-transform: uppercase;"
+      [interfaceOptions]="modeloVehiclePopoverOptions" interface="popover" fill="outline"
+      label="Vehicle model" labelPlacement="stacked" id = "model" name = "model" placeholder="Your vehicle's model" [(ngModel)]="truck.model" >
+      <ion-select-option *ngFor="let modelo of modelos"  [value]="modelo.category_id">  
+        {{modelo.name}}
+        </ion-select-option>         
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="Vehicle brand" id = 'brand' name = 'brand'  type = 'text' [(ngModel)]="truck.brand" placeholder="Brand of your vehicle" />
+    </ion-item>
+
+    <ion-item>
+      <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="Color of the vehicle" id = 'color' name = 'color' type = 'text' [(ngModel)]="truck.color" placeholder="Color of your vehicle" />
+
+    </ion-item>
+
+  <ion-item>
+    <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="License" id = 'license' name = 'license' type = 'text' [(ngModel)]="truck.license" placeholder="Vehicle driver's license" />
+  </ion-item>
+
+  <ion-item>
+    <ion-input style="text-transform: uppercase;" labelPlacement="stacked" label="Vehicle number" id = 'unitnumber' name = 'unitnumber' type = 'text' [(ngModel)]="truck.unitnumber" placeholder="Number of your vehicle" />
+
+  </ion-item>
+
+  <ion-item>
+    <ion-select labelPlacement="stacked" style="text-transform: uppercase;"
+    [interfaceOptions]="detallesPopoverOptions" 
+    interface="popover" 
+        fill="outline"   
+    label="Vehicle details" 
+placeholder="Its general appearance"
+    id = 'detallev' name = 'detallev' [(ngModel)]="truck.detallev" >
+  
+      <ion-select-option *ngFor="let detalle of detalles"  [value]="detalle.valor">  
+      {{detalle.etiqueta}}
+    </ion-select-option>        
+    </ion-select>
+
+  </ion-item>
+
+
+
+</ion-list>
+<div style="text-align: center;" >
+<ion-button  color="primary" (click) = "continue()">
+  Continue
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+</div>
+</div>
+
+<div *ngIf="fleet">
+ <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> 
+   <ion-list>
+
+      <ion-item lines="none" color="primary" class="customer-list"  *ngFor="let vehiculo of fleetx" (click)="selectVehiculo(vehiculo.row_id_cat)"  >
+        <ion-thumbnail slot="end">
+          <img src="https://www.washtt.com/components/com_jshopping/files/img_categories/{{vehiculo.category_image}}" />
+          
+        
+        </ion-thumbnail>  
+        <ion-label>
+           {{vehiculo.type_vehicle}} {{vehiculo.model}}<br><span style="font-size:smaller">Number: {{vehiculo.unit_number}} License: {{vehiculo.license}}</span>
+             </ion-label>
+        </ion-item>
+      </ion-list>
+</div>
+
+   <div  style="text-align: center;"> <img src="./assets/imgs/fleet_app.png" /></div>
+</ion-content>
 

@@ -142,13 +142,13 @@ async ionViewWillEnter() {
 
 doRefresh(event: { target: { complete: () => void; }; }) {
   event.target.complete();
-  this.loading.simpleLoader()
+
   if(this.user) {
     let url = 'https://washtt.com/v1_api_clientes_getfleetcliente.php'
     let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email}
     this.cHttps(url, data).subscribe(
       async (res: any) => {
-        this.loading.dismissLoader()  
+       
         let mensaje
         let header
         let code
