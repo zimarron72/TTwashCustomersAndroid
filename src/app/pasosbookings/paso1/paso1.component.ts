@@ -418,13 +418,13 @@ mainPopoverOptions = {
      camionmdl : res.data.tipomodelo, 
       camionmar : this.truck.brand,
      camioncolor : this.truck.color,
-     license:this.truck.license,
-     camiondetalles:this.truck.detallev,
-     camionn:this.truck.unitnumber,
-     image:res.data.image
+     license : this.truck.license,
+     camiondetalles : this.truck.detallev,
+     camionn : this.truck.unitnumber,
+     image : res.data.image
   }
  
-await this.localstorage.setObject('itemcart',itemcart)
+await this.localstorage.setObject('itemcart', itemcart)
 this.router.navigate(['pasos/paso2', this.truck.model]);
             break;  
   
@@ -497,13 +497,13 @@ selectVehiculo(id:any) {
      camionmdl : res.data.tipomodelo, 
       camionmar : res.data.marca,
      camioncolor : res.data.color,
-     license:res.data.license,
-     camiondetalles:res.data.detalle,
-     camionn: res.data.unitnumber,
-     image:res.data.image
+     license : res.data.license,
+     camiondetalles : res.data.detalle,
+     camionn : res.data.unitnumber,
+     image : res.data.image
   }
  
-await this.localstorage.setObject('itemcart',itemcart)
+await this.localstorage.setObject('itemcart', itemcart)
 this.router.navigate(['pasos/paso2', id]);
 
           break;

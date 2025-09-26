@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { Paso3Component } from './paso3.component';
+import { SelectyardaComponent } from './selectyarda.component';
 
-describe('Paso3Component', () => {
-  let component: Paso3Component;
-  let fixture: ComponentFixture<Paso3Component>;
+describe('SelectyardaComponent', () => {
+  let component: SelectyardaComponent;
+  let fixture: ComponentFixture<SelectyardaComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ Paso3Component ],
+      declarations: [ SelectyardaComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Paso3Component);
+    fixture = TestBed.createComponent(SelectyardaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

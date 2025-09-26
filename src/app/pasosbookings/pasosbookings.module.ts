@@ -8,8 +8,10 @@ import { ComienzoComponent } from './comienzo/comienzo.component';
 import { WellcomeComponent } from './wellcome/wellcome.component';
 import { Paso1Component } from './paso1/paso1.component';
 import { Paso2Component } from './paso2/paso2.component';
-import { Paso3Component } from './paso3/paso3.component';
 import { PerfilmobilComponent } from './perfilmobil/perfilmobil.component';
+import { SelectyardaComponent } from './selectyarda/selectyarda.component';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,8 +24,8 @@ import { PerfilmobilComponent } from './perfilmobil/perfilmobil.component';
     WellcomeComponent,
     Paso1Component,
     Paso2Component,
-    Paso3Component,
-    PerfilmobilComponent
+    PerfilmobilComponent,
+    SelectyardaComponent
   ]
 })
 export class PasosbookingsPageModule {}

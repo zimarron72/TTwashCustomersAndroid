@@ -5,51 +5,40 @@
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
-    <ion-title>Select a type's wash</ion-title> 
+    <ion-title>Select a type's Service or Wash</ion-title> 
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
 <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
- <!--<ion-list >
-      <ion-item  *ngFor="let servicio of servicios" (click) ="selectService(servicio.name,servicio.image,servicio.product_price,servicio.price_mobil,servicio.id)"  >
-      <ion-thumbnail slot="end">
-        <img src="https://www.washtt.com/components/com_jshopping/files/img_products/{{servicio.image}}" />
-      </ion-thumbnail> 
-      <ion-label >
-        {{servicio.name}}
-      </ion-label>      
-    </ion-item> 
-  </ion-list>-->
-
-
 <ion-accordion-group *ngFor="let servicio of servicios; let i = index " expand="inset" >
   <ion-accordion value=i>
     <ion-item slot="header" >
-      <!--<ion-icon name="car-outline"></ion-icon>
-      <ion-label><p>{{element.type_vehicle}}</p><p>Number: {{element.unit_number}}</p> </ion-label>-->
-
-       <ion-thumbnail slot="end">
+             <ion-thumbnail slot="end">
         <img src="https://www.washtt.com/components/com_jshopping/files/img_products/{{servicio.image}}" />
       </ion-thumbnail> 
       <ion-label >
         {{servicio.name}}
       </ion-label> 
-
     </ion-item>
-    <div class="ion-padding" slot="content">
-   <div style="text-align: center;" >
-<ion-button  color="primary" (click) ="selectService(servicio.name,servicio.image,servicio.product_price,servicio.price_mobil,servicio.id)">
-  Continue
+    <div class="ion-padding" slot="content"> 
+<h4 style="text-align: center; font-size: larger; font-weight: bold; color:#2E4F9C ">CHARACTERISTICS</h4>
+<div style="text-align: justify; color:black; font-weight: bold; " >{{servicio.description}}</div>
+<div style="text-align: center;" >
+<ion-button  color="warning" (click) ="selectServiceMobil(servicio.name,servicio.image,servicio.price_mobil,servicio.id)">
+  Price mobil: {{ servicio.price_mobil | currency }}
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
 </div>
-<div style="text-align: justify; color:#f2f2f2;">{{servicio.description}}</div>
-<div style="text-align: justify; color:#f2f2f2;">{{servicio.price_mobil}}</div>
-<div style="text-align: justify; color:#f2f2f2;">{{servicio.product_price}}</div>
-<p style="text-align: justify; color:#f2f2f2;">The company will only place two solid waste bags and personal items for the disposal of these materials. We are NOT responsible for sorting or selecting items and we are not responsible FOR LOSS OF valuables. <span style="font-weight:bolder">SO WE RECOMMEND TO REMOVE EVERYTHING BEFORE DOING THIS SERVICE.THE HANDLING OF WASTE AND ARTICLES HAS ADDITIONAL VALUE</span>.</p>
+<div style="text-align: center;" >
+<ion-button  color="primary" (click) ="selectServiceOnsite(servicio.name,servicio.image,servicio.product_price,servicio.id)">
+Price onsite: {{ servicio.product_price | currency }}
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+</div>
+<h4 style="text-align: center;font-size: larger; font-weight: bold; color:crimson ">WARNING</h4>
+<p style="text-align: justify; color:black">The company will only place two solid waste bags and personal items for the disposal of these materials. We are NOT responsible for sorting or selecting items and we are not responsible FOR LOSS OF valuables. <span style="font-weight:bolder">SO WE RECOMMEND TO REMOVE EVERYTHING BEFORE DOING THIS SERVICE.THE HANDLING OF WASTE AND ARTICLES HAS ADDITIONAL VALUE</span>.</p>
 
     </div>
   </ion-accordion>   

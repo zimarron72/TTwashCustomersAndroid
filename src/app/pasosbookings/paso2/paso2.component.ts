@@ -40,6 +40,9 @@ export class Paso2Component  implements OnInit {
 
    }
 
+ 
+
+
   ngOnInit() {}
 
  async aviso(header : string, mensaje : string, code : string) {
@@ -119,7 +122,7 @@ export class Paso2Component  implements OnInit {
     
 
      async doRefresh(event: { target: { complete: () => void; }; }) {
-
+ event.target.complete();
  this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
@@ -162,18 +165,50 @@ export class Paso2Component  implements OnInit {
      }
 
 
-  async selectService(id:any,name:any,image:any,precioyarda:any,preciomobil:any) {
-   
+  async selectServiceMobil(name:any,image:any,precio:any,id:any) {
+
+ const formatter$ = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+
     let itemcart = JSON.parse(await this.localstorage.getData('itemcart'))
     itemcart.push({
       servicio : name,
       image : image,
-      servicioid : id
+      servicioid : id,
+      costo: precio,
+      precio:formatter$.format(precio)
     })
 
  await this.localstorage.setObject('itemcart',itemcart)
-this.router.navigate(['pasos/paso3', id]);   
+//this.router.navigate(['pasos/paso3', id]);  
 
+}
+
+  async selectServiceOnsite(name:any,image:any,precio:any,id:any) {
+   
+     const formatter$ = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+
+    
+    const itemcart = JSON.parse(await this.localstorage.getData('itemcart'))
+
+  const newitemcart = {
+    ...itemcart,
+      servicio : name,
+      image : image,
+      servicioid : id,
+      costo : precio,
+      precio : formatter$.format(precio)
+    }
+
+ await this.localstorage.setObject('itemcart', newitemcart)
+this.router.navigate(['/pasos/selectyarda']);  
 
 }
 

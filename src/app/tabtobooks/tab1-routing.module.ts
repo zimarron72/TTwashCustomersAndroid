@@ -22,9 +22,7 @@ import { SlidergaleryComponent } from './slidergalery/slidergalery.component';
 import { PaysquareComponent } from './paysquare/paysquare.component';
 import { TipopagosComponent} from './tipopagos/tipopagos.component';
 import { PaymentsComponent} from './payments/payments.component';
-import { Paso1BookingComponent } from './paso1-booking/paso1-booking.component';
-import { Paso2BookingComponent } from './paso2-booking/paso2-booking.component';
-import { Paso3BookingComponent } from './paso3-booking/paso3-booking.component';
+
 
 
 
@@ -55,9 +53,7 @@ const routes: Routes = [
       { path: 'archivarcita', component: AarchivarComponent},
       { path: 'viewphoto/:order_item_id', component: SlidergaleryComponent },
       { path: 'Pay1', component: PaysquareComponent },
-      { path: 'paso1', component: Paso1BookingComponent },
-      { path: 'paso2/:fleetVehiculoId/:modelVehiculoId', component: Paso2BookingComponent },
-      { path: 'paso3/:fleetVehiculoId/:serviceVehiculoId', component: Paso3BookingComponent },
+   
       
     
     ]
