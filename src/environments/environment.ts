@@ -11,6 +11,7 @@ export const environment = {
   firebaseConfig: {
     production: false,
     apiKey: "AIzaSyBZEtr0V9MgGvpYXWx-EnI0cVU1tSWHDO4",
+    mapApiKey: "AIzaSyDwXvxLDStykxb9WIKWmM2z2RfZFOpEocQ",
     authDomain: "ttwash-customers.firebaseapp.com",  
     projectId: "ttwash-customers",  
     storageBucket: "ttwash-customers.appspot.com",  

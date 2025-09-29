@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="atras()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title style="text-align: center;">SELECT A TIME AND DAY<br> FOR YOUR BOOKING</ion-title> 
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+ <ion-list [inset]="true" lines="none">
+
+<ion-item >
+
+    <ion-label position="floating" class="titulo">Select time</ion-label><br>
+      <ion-select 
+       [interfaceOptions]="timePopoverOptions" interface="alert" 
+       labelPlacement="stacked"  id = "horacita" name = "horacita" [(ngModel)]="mobil.horacita" (ionChange) = done1()>
+      <ion-select-option *ngFor="let hora of horario"  [value]="hora.valor">  
+        {{hora.etiqueta}}
+      </ion-select-option>        
+      </ion-select>
+    </ion-item>
+
+      <ion-item>
+  <ion-label position="floating" class="titulo">Select day</ion-label><br><br>
+      <ion-datetime  placeholder = 'Select a Reservation Date'  presentation="date" first-day-of-week="1" [min] = 'hoy'   [(ngModel)]="mobil.diacita" id = "diacita" name = 'diacita' (ionChange) = done2()>
+      </ion-datetime>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

@@ -209,7 +209,7 @@ export class Paso2Component  implements OnInit {
 
  await this.localstorage.setObject('itemcart', newitemcart)
 this.router.navigate(['/pasos/selectyarda']);  
-
+//this.router.navigate(['/pasos/map']);
 }
 
 

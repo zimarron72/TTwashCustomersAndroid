@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute,  Params } from '@angular/router';
-import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
+import { CapacitorHttp,  HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
 import { LoadingService } from '../../servicios/loading.services';

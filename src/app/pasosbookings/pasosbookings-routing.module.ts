@@ -8,6 +8,9 @@ import { Paso2Component } from './paso2/paso2.component';
 import { WellcomeComponent } from './wellcome/wellcome.component';
 import { PerfilmobilComponent } from './perfilmobil/perfilmobil.component';
 import { SelectyardaComponent } from './selectyarda/selectyarda.component';
+import { MapComponent } from './map/map.component';
+import { SelectcitaComponent } from './selectcita/selectcita.component';
+
 
 const routes: Routes = [
   {
@@ -20,7 +23,9 @@ const routes: Routes = [
  { path: 'paso2/:id_category', component: Paso2Component },
  { path: 'perfilFaltante', component: PerfilmobilComponent },
   { path: 'selectyarda', component: SelectyardaComponent },
- 
+    { path: 'map/:lat/:lng/:direccion/:yard_nombre', component: MapComponent },
+    { path: 'selectcita', component: SelectcitaComponent },
+  
     ]
   }
 ];

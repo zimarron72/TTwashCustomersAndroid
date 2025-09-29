@@ -29,7 +29,7 @@ import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { Capacitor } from '@capacitor/core';
 
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -69,6 +69,8 @@ import { Capacitor } from '@capacitor/core';
 
 
   ],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
+
 })
 export class AppModule { }

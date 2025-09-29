@@ -1,0 +1,27 @@
+ion-item::part(native) {
+  
+    background-color: #f2f2f2;
+
+  border-color: solid 2px #CA083F;
+
+color:black;
+font-size: larger;
+
+font-weight: bold;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin-top: 5px;
+}
+
+ion-item::part(detail-icon) {
+  color: black; 
+  opacity: 1; 
+  font-size: 20px;
+}
+
+div[slot="content"] {
+  background: #f0f0f0;
+  border-radius: 0 0 8px 8px;
+  padding: 15px;
+  font-size: 14px;
+}
