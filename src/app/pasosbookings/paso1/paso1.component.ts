@@ -232,9 +232,11 @@ wellcome() {
         
   }
 
-  doRefresh(event: { target: { complete: () => void; }; }) {
+  async doRefresh(event: { target: { complete: () => void; }; }) {
   event.target.complete();
-
+this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    this.idtoken = await this.localstorage.getData('idtoken')
+    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
  var url = 'https://washtt.com/v2_api_clientes_get_tipodevehiculos.php'
     var data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
     this.cHttps(url, data).subscribe(
@@ -315,37 +317,7 @@ wellcome() {
 
 }
 
-    async selectVehiculos(event:any){
-      var car = event.detail.value
-   
-            var url = 'https://washtt.com/v2_api_clientes_get_modelos.php'
-        var data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, id: car }
-        this.cHttps(url, data).subscribe(
-          async (res: any) => {
-            this.loading.dismissLoader()
-            console.log(res)
-            let mensaje
-            let header
-            let code
-            switch (res.data.respuesta) {
-              case 'ERROR':
-                code = '01'
-                header = 'Error'
-                mensaje = 'an error occurred,please login again'
-                this.localstorage.clearData()
-                this.router.navigate(['/login'])       
-                this.aviso(header, mensaje, code)              
-                break;     
-                 
-             
-              default:
-                this.modelos = res.data 
-                console.log('zzzzzzzz'+this.modelos)     
-            }
-                          
-          }
-        )  
-  }
+
 
   detallesPopoverOptions = {
 
@@ -413,7 +385,7 @@ mainPopoverOptions = {
             case 'OK_TRUCK':        
             
              
-  let itemcart = {
+  let itemcartVehiculo1 = {
  camiont : res.data.tipovehiculo,
      camionmdl : res.data.tipomodelo, 
       camionmar : this.truck.brand,
@@ -424,7 +396,7 @@ mainPopoverOptions = {
      image : res.data.image
   }
  
-await this.localstorage.setObject('itemcart', itemcart)
+await this.localstorage.setObject('itemcartVehiculo1', itemcartVehiculo1)
 this.router.navigate(['pasos/paso2', this.truck.model]);
             break;  
   
@@ -459,9 +431,9 @@ cancel(){
   this.fleet = false
 }
 
-selectVehiculo(id:any) {
+selectVehiculo(id:any, categoryid:any) {
    let url = 'https://washtt.com/v2_api_clientes_selectVehiculoFleet.php'
-    let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email, id:id}
+    let data = {  id:id}
     this.cHttps(url, data).subscribe(
       async (res: any) => {
   
@@ -491,8 +463,8 @@ selectVehiculo(id:any) {
           break;   
         
           case '200_OK':           
-         
-  let itemcart = {
+        
+  let itemcartVehiculo1 = {
  camiont : res.data.tipovehiculo,
      camionmdl : res.data.tipomodelo, 
       camionmar : res.data.marca,
@@ -503,12 +475,44 @@ selectVehiculo(id:any) {
      image : res.data.image
   }
  
-await this.localstorage.setObject('itemcart', itemcart)
-this.router.navigate(['pasos/paso2', id]);
+await this.localstorage.setObject('itemcartVehiculo1', itemcartVehiculo1)
+this.router.navigate(['pasos/paso2', categoryid]);
 
           break;
         }  
       })
 }
+
+    async selectVehiculos(event:any){
+      var car = event.detail.value
+   
+            var url = 'https://washtt.com/v2_api_clientes_get_modelos.php'
+        var data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, id: car }
+        this.cHttps(url, data).subscribe(
+          async (res: any) => {
+            this.loading.dismissLoader()
+            console.log(res)
+            let mensaje
+            let header
+            let code
+            switch (res.data.respuesta) {
+              case 'ERROR':
+                code = '01'
+                header = 'Error'
+                mensaje = 'an error occurred,please login again'
+                this.localstorage.clearData()
+                this.router.navigate(['/login'])       
+                this.aviso(header, mensaje, code)              
+                break;     
+                 
+             
+              default:
+                this.modelos = res.data 
+                console.log('zzzzzzzz'+this.modelos)     
+            }
+                          
+          }
+        )  
+  }
  
 }

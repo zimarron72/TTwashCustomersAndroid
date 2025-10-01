@@ -173,16 +173,16 @@ export class Paso2Component  implements OnInit {
       minimumFractionDigits: 2
     });
 
-    let itemcart = JSON.parse(await this.localstorage.getData('itemcart'))
-    itemcart.push({
+    let itemcartServicio = {
       servicio : name,
       image : image,
       servicioid : id,
       costo: precio,
-      precio:formatter$.format(precio)
-    })
+      precio:formatter$.format(precio),
+      
+    }
 
- await this.localstorage.setObject('itemcart',itemcart)
+ await this.localstorage.setObject('itemcartServicio',itemcartServicio)
 //this.router.navigate(['pasos/paso3', id]);  
 
 }
@@ -196,18 +196,17 @@ export class Paso2Component  implements OnInit {
     });
 
     
-    const itemcart = JSON.parse(await this.localstorage.getData('itemcart'))
-
-  const newitemcart = {
-    ...itemcart,
+   
+  let itemcartServicio = {    
       servicio : name,
       image : image,
       servicioid : id,
       costo : precio,
-      precio : formatter$.format(precio)
+      precio : formatter$.format(precio),
+     
     }
 
- await this.localstorage.setObject('itemcart', newitemcart)
+ await this.localstorage.setObject('itemcartServicio', itemcartServicio)
 this.router.navigate(['/pasos/selectyarda']);  
 //this.router.navigate(['/pasos/map']);
 }

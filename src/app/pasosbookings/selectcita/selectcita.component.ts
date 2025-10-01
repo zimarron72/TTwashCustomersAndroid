@@ -26,6 +26,7 @@ mobil = {
 
 }
 
+ErrorMessage:any
 
 hoy: any
 currentDate: any
@@ -36,7 +37,9 @@ currentDate: any
         private alertController: AlertController,
          private router: Router,
     
-  ) { }
+  ) {
+     this.hoy = new Date().toISOString()
+   }
 
   ngOnInit() {}
 
@@ -57,10 +60,27 @@ done2() {
   var header
   var mensaje
   var fecha = formatDate(this.mobil.diacita,'d MMM YYYY','en-US');
+  var hoy = formatDate(this.hoy,'d MMM YYYY','en-US');
+ /*   code = ''
+  header = "Selected day"
+  mensaje = fecha+"  "+hoy
+  this.aviso(header, mensaje, code)*/ 
+if(fecha == hoy) {
   code = ''
-  header = 'Selected appointment date'
-  mensaje = fecha
+  header = 'AVISO IMPORTANTE'
+  mensaje = "The selected date is today: "+fecha+". If you proceed with this selection, we recommend that you contact us at +1 (407) 569-9122 after completing this application."
   this.aviso(header, mensaje, code) 
+}
+else {
+  code = ''
+  header = "Selected day"
+  mensaje = fecha
+    this.aviso(header, mensaje, code) 
+}
+
+
+
+
 
 }
 
@@ -139,6 +159,51 @@ done1() {
   
   }
 
+   validateForm(){ 
 
+    var ValidationFlag = true
+
+
+       if(this.mobil.horacita == "")  
+    {
+        this.ErrorMessage = "Select a time for your booking";
+        ValidationFlag = false;
+    } 
+  
+  
+    else if(this.mobil.diacita == "")  
+    {
+        this.ErrorMessage = "Select a date for your booking";
+        ValidationFlag = false;
+    } 
+
+   else { }
+    return (ValidationFlag) ? true : false; 
+    }
+
+  async continue() {
+if(this.validateForm()) {
+
+
+let itemcartTime = {
+ 
+      diacita : formatDate(this.mobil.diacita,'d MMM YYYY','en-US'),
+      horacita : this.mobil.horacita,
+      
+    }
+
+ await this.localstorage.setObject('itemcartTime', itemcartTime)
+this.router.navigate(['/pasos/checkout']);  
+}
+else {
+var code
+  var header
+  var mensaje
+  code = ''
+  header = ''
+  mensaje = this.ErrorMessage
+  this.aviso(header, mensaje, code) 
+}
+}
 
 }

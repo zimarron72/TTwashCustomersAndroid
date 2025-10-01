@@ -41,6 +41,6 @@ this.servicioauth.borrarCuenta().then(
 
 async cancelar() {
 
-  this.router.navigate(['/tabs/tabtobooks/tipovehiculos']);
+ this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']);
 }
 }

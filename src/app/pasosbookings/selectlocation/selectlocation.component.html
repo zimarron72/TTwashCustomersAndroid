@@ -5,9 +5,9 @@
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
-    <ion-title>Select a Vehicle</ion-title> 
+    <ion-title>DESCRIBE YOUR LOCATION</ion-title> 
          <ion-buttons slot="end">
-      <ion-button (click)="cancel()">       
+       <ion-button (click)="atras()">       
         <ion-icon slot="icon-only" name="sync" color="light"></ion-icon>
           </ion-button> 
      </ion-buttons>         
@@ -19,8 +19,8 @@
   <ion-grid>
     <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "carFleet()">
-SELECT A VEHICLE FROM YOUR FLEET
+        <ion-button  color="primary" (click) = "locationList()">
+SELECT AN ADDRESS FROM YOUR LIST OF LOCATIONS
 
  <ion-icon color="dark" slot="start" name="add-circle"></ion-icon>
   <ion-icon color="light" slot="end" name="square"></ion-icon>
@@ -29,8 +29,8 @@ SELECT A VEHICLE FROM YOUR FLEET
     </ion-row>
       <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="warning" (click) = "carNew()">
-GET STARTED WITH A NEW VEHICLE
+        <ion-button  color="warning" (click) = "locatioNew()">
+INDICATE A NEW LOCATION
  <ion-icon color="dark" slot="start" name="checkmark-circle"></ion-icon>
   <ion-icon color="light" slot="end" name="square"></ion-icon>
 </ion-button>
@@ -39,7 +39,7 @@ GET STARTED WITH A NEW VEHICLE
     </ion-grid>
 </div>
 <div *ngIf="new">
-  <div style="text-align: justify;"><p>Remember maintain a fleet of vehicles with us and receive frequent discount coupons.</p></div>
+  <div style="text-align: justify;"><p>This location will be stored in your list of locations for another time.</p></div>
   <ion-list lines="none">
 
     <ion-item>    
@@ -130,4 +130,3 @@ placeholder="Its general appearance"
 
    <div  style="text-align: center;"> <img src="./assets/imgs/fleet_app.png" /></div>
 </ion-content>
-

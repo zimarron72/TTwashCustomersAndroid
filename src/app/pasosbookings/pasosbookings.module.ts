@@ -13,6 +13,8 @@ import { SelectyardaComponent } from './selectyarda/selectyarda.component';
 import { MapComponent } from './map/map.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SelectcitaComponent } from './selectcita/selectcita.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { SelectlocationComponent } from './selectlocation/selectlocation.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -28,7 +30,9 @@ import { SelectcitaComponent } from './selectcita/selectcita.component';
     PerfilmobilComponent,
     SelectyardaComponent,
     MapComponent,
-    SelectcitaComponent
+    SelectcitaComponent,
+    CheckoutComponent,
+SelectlocationComponent
     
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA],

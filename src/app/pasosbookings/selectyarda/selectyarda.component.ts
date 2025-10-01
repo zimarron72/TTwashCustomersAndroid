@@ -122,16 +122,16 @@ const direccion = nombre + " : " + address
     }
 
  async selectCita(yard_nombre:any) {
-   const itemcart = JSON.parse(await this.localstorage.getData('itemcart'))
+  
 
-  const newitemcart = {
-    ...itemcart,
-      donde : 1, //onsite
+  let itemcartOnsite = {
+   
+       donde : 1, //onsite
       sitioid : 0,
       yard_nombre : yard_nombre,
     }
 
- await this.localstorage.setObject('itemcart', newitemcart)
+ await this.localstorage.setObject('itemcartOnsite', itemcartOnsite)
 this.router.navigate(['/pasos/selectcita']);  
  }   
 
