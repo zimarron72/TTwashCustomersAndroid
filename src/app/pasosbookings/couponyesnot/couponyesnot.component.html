@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="atras()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title style="text-align: center;">FINISH<br>CHECKOUT BOOKING</ion-title> 
+
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+
+<h1 style="text-align: center; font-weight: bold; color:#f2f2f2">Do You want to finish applying a Coupon on this service?</h1>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="warning" (click) = "notCoupon()">
+ON ANOTHER OCCASION
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+      <ion-row>
+      <ion-col style="text-align: center;">
+  <ion-button  color="primary" (click) = "yesCoupon()">
+YES, I DO
+ <ion-icon color="dark" slot="start" name="calendar"></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+
+
+</ion-content>

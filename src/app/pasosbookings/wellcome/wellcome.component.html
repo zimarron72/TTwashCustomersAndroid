@@ -39,8 +39,26 @@
   <ion-grid>
     <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "bookNow()">
- BOOK NOW
+        <ion-button  color="primary" (click) = "bookNowTT()">
+BOOK NOW || truck or trailer
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+      <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="primary" (click) = "bookNowOther()">
+BOOK NOW || other vehicles or services
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+          <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="primary" (click) = "bookNowFleets()">
+BOOK NOW || fleets
  <ion-icon color="dark" slot="start" name="apps"></ion-icon>
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>

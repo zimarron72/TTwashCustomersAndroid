@@ -17,6 +17,10 @@ servicio:any
 tipo:any
 precio:any
 time:any
+onsite:any
+mobil:any
+locationmobil:any
+locationonsite:any
   constructor(
      private localstorage:StorageService, 
         private alertController: AlertController,
@@ -40,11 +44,14 @@ this.servicio = servicioData.servicio
 
 this.precio = servicioData.precio
 
-if(mobilData) {
-this.tipo = "MOBIL"
+this.onsite = onsiteData.donde
+this.mobil = mobilData.donde
+
+if(this.onsite == 'nada') {
+  this.locationmobil = 'AT YOUR ADDRESS: '+mobilData.address+" "+mobilData.city+" "+mobilData.zip
 }
-if(onsiteData) {
-this.tipo = "ONSITE"
+if(this.mobil == 'nada') {
+  this.locationonsite = 'AT OUR LOCATION: '+mobilData.address+" "+mobilData.city+" "+mobilData.zip
 }
 
 this.time = timeData.diacita+" "+timeData.horacita
@@ -55,9 +62,11 @@ this.time = timeData.diacita+" "+timeData.horacita
 
   ngOnInit() {}
 
-  bookNow(){}
+  continuar(){
+     this.router.navigate(['/pasos/couponyesnot']);
+  }
 
-bookOther(){}
+
 
 
      async doRefresh(event: { target: { complete: () => void; }; }) {
@@ -67,7 +76,11 @@ bookOther(){}
 
       async atras() {
    this.router.navigate(['/pasos/paso1']);
-   await this.localstorage.removeData('itemcart')
+   await this.localstorage.removeData('itemcartVehiculo1')
+     await this.localstorage.removeData('itemcartServicio')
+       await this.localstorage.removeData('itemcartOnsite')
+         await this.localstorage.removeData('itemcartMobil')
+           await this.localstorage.removeData('itemcartTime')
    
 }   
 

@@ -17,38 +17,30 @@
   <ion-item >
     <ion-label >
       <h2 style="text-align: center;">SUMMARY OF YOUR BOOKING</h2>
+      <hr style="border: solid 1px #6d6b6b; ">      
       <p class="pi1">VEHICLE:<br><span style="color:#CA083F">{{vehiculo}}</span></p>
       <p class="pi1">SERVICE:<br><span style="color:#CA083F">{{servicio}}</span></p>
-       <p class="pi1">TYPE:<br><span style="color:#CA083F">{{tipo}}</span></p>
+       <p *ngIf="onsite != 'nada'"  class="pi1">TYPE:<br><span style="color:#CA083F">ONSITE</span></p>
+          <p *ngIf="mobil != 'nada'"  class="pi1">TYPE:<br><span style="color:#CA083F">MOBIL</span></p>
        <p class="pi1">BOOKING SCHEDULED FOR:<br><span style="color:#CA083F">{{time}}</span></p>
+       <p *ngIf="onsite == 'nada'" class="pi1">PLACE:<br><span style="color:#CA083F">{{locationmobil}}</span></p>
+       <p *ngIf="mobil == 'nada'" class="pi1">PLACE:<br><span style="color:#CA083F">{{locationonsite}}</span></p>
            <p class="pi1">PRICE:<br><span style="color:#CA083F">{{precio}}</span></p>
     </ion-label>
   </ion-item>
 </ion-list>
 
-<h1 style="text-align: center; font-weight: bold; color:#f2f2f2">Do you want to apply this service, type, and scheduled reservation to other vehicles in your fleet?</h1>
+<!--<h1 style="text-align: center; font-weight: bold; color:#f2f2f2">Do you want to apply this service, type, and scheduled reservation to other vehicles in your fleet?</h1>-->
 
-  <ion-grid>
-    <ion-row>
-      <ion-col style="text-align: center;">
-        <ion-button  color="warning" (click) = "bookNow()">
-YES
+ 
+      <div style="text-align: center;">
+        <ion-button  color="warning" (click) = "continuar()">
+CONTINUE
  <ion-icon color="dark" slot="start" name="apps"></ion-icon>
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
-      </ion-col>
-    </ion-row>
-      <ion-row>
-      <ion-col style="text-align: center;">
-  <ion-button  color="primary" (click) = "bookOther()">
-MAYBE LATER
- <ion-icon color="dark" slot="start" name="calendar"></ion-icon>
-  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
-</ion-button>
-      </ion-col>
-    </ion-row>
-    
-  </ion-grid>
+</div>
+   
 
 
 

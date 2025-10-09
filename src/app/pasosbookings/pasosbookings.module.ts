@@ -15,6 +15,12 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SelectcitaComponent } from './selectcita/selectcita.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SelectlocationComponent } from './selectlocation/selectlocation.component';
+import { PreguntasComponent } from './preguntas/preguntas.component';
+import { CouponyesnotComponent } from './couponyesnot/couponyesnot.component';
+import { CouponsComponent } from './coupons/coupons.component';
+import { BooknowotherComponent } from './booknowother/booknowother.component';
+import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +38,13 @@ import { SelectlocationComponent } from './selectlocation/selectlocation.compone
     MapComponent,
     SelectcitaComponent,
     CheckoutComponent,
-SelectlocationComponent
+SelectlocationComponent,
+PreguntasComponent,
+CouponyesnotComponent,
+CouponsComponent,
+BooknowfleetsComponent,
+BooknowotherComponent,
+
     
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA],

@@ -44,8 +44,12 @@ currentDate: any
   ngOnInit() {}
 
     async atras() {
-   this.router.navigate(['/pasos/paso1']);
-   await this.localstorage.removeData('itemcart')
+    this.router.navigate(['/pasos/paso1']);
+   await this.localstorage.removeData('itemcartVehiculo1')
+     await this.localstorage.removeData('itemcartServicio')
+       await this.localstorage.removeData('itemcartOnsite')
+         await this.localstorage.removeData('itemcartMobil')
+           await this.localstorage.removeData('itemcartTime')
    
 }
 

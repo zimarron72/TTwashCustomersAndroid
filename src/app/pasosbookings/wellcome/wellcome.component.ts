@@ -152,8 +152,16 @@ export class WellcomeComponent  implements OnInit {
  this.AutenticacionService.logout_regular()
 }
 
-bookNow() {
+bookNowTT() {
   this.router.navigate(['pasos/paso1']);   
+}
+
+bookNowOther() {
+  this.router.navigate(['pasos/bookother']);   
+}
+
+bookNowFleets() {
+  this.router.navigate(['pasos/bookfleets']);   
 }
 
 bookCheck() {

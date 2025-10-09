@@ -109,8 +109,12 @@ token_notificacion! : string
 
 
   async atras() {
-   this.router.navigate(['/pasos/paso1']);
-   await this.localstorage.removeData('itemcart')
+  this.router.navigate(['/pasos/paso1']);
+   await this.localstorage.removeData('itemcartVehiculo1')
+     await this.localstorage.removeData('itemcartServicio')
+       await this.localstorage.removeData('itemcartOnsite')
+         await this.localstorage.removeData('itemcartMobil')
+           await this.localstorage.removeData('itemcartTime')
    
 }
 
@@ -121,7 +125,7 @@ const direccion = nombre + " : " + address
   this.router.navigate(['pasos/map',lat,lng,direccion,yard_id])
     }
 
- async selectCita(yard_nombre:any) {
+ async selectCita(yard_nombre:any, address:any) {
   
 
   let itemcartOnsite = {
@@ -129,9 +133,17 @@ const direccion = nombre + " : " + address
        donde : 1, //onsite
       sitioid : 0,
       yard_nombre : yard_nombre,
+      address : address
     }
 
+    let itemcartMobil = {
+   
+       donde : 'nada'
+  
+    } 
+
  await this.localstorage.setObject('itemcartOnsite', itemcartOnsite)
+  await this.localstorage.setObject('itemcartMobil', itemcartMobil)
 this.router.navigate(['/pasos/selectcita']);  
  }   
 

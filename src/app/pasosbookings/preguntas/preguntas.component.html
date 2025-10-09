@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+ 
+    <ion-title>WORKING CONDITIONS<br>AT YOUR LOCATION</ion-title>  
+     
+  </ion-toolbar>
+      
+
+</ion-header>
+<ion-content class="ion-padding">
+<ion-list lines="none" [inset]="true"> 
+
+  
+        <ion-item>
+      <ion-select  label="Power supply"
+       [interfaceOptions]="powerPopoverOptions" interface="popover" fill="outline"
+      
+      labelPlacement="stacked" placeholder="Select" id = "power" name = "power" [(ngModel)]="site.power" >
+      <ion-select-option *ngFor="let power of powers"  [value]="power.valor">  
+        {{power.etiqueta}}
+      </ion-select-option>        
+      </ion-select>
+     
+    </ion-item>
+
+    <ion-item>
+      <ion-select label="Water supply" placeholder="Select"
+       [interfaceOptions]="waterPopoverOptions" interface="popover" fill="outline"
+      labelPlacement="stacked"  id = "water" name = "water" [(ngModel)]="site.water" >
+      <ion-select-option *ngFor="let water of waters"  [value]="water.valor">  
+        {{water.etiqueta}}
+      </ion-select-option>        
+      </ion-select>
+     
+    </ion-item>
+
+    <ion-item>
+      <ion-select 
+      label="Will you to be there?" placeholder="Select"
+       [interfaceOptions]="presenciaPopoverOptions" interface="popover" fill="outline"
+      labelPlacement="stacked"  id = "ensitio" name = "ensitio" [(ngModel)]="site.ensitio" >
+      <ion-select-option *ngFor="let ensitio of ensitios"  [value]="ensitio.valor">  
+        {{ensitio.etiqueta}}
+      </ion-select-option>        
+      </ion-select>
+    
+    </ion-item>
+
+
+  
+  </ion-list>
+
+
+
+<div style="text-align: center;" >
+<ion-button  color="primary" (click) = "continue()">
+  Continue
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button><br><br>
+
+<ion-button  color="light" (click) = "cancel()">
+ Cancel  
+</ion-button>
+
+
+</div>
+
+</ion-content>
