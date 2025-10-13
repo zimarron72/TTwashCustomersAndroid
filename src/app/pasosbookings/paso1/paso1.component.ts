@@ -329,7 +329,7 @@ this.user = JSON.parse(await this.localstorage.getData('usuario'))
   tipoVehiclePopoverOptions = {
 
    // header: 'General details of the vehicle',
-    subHeader: 'If not listed, select Other:',
+    subHeader: 'Select one from the set of vehicles:',
 
   };
 

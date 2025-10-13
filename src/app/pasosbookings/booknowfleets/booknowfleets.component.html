@@ -1,10 +1,85 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar color="primary"> 
          <ion-buttons slot="start">
       <ion-button (click)="wellcome()">       
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
-    <ion-title>BOOK NOW<br>fleets</ion-title> 
-         
+    <ion-title style="margin-bottom: 10px;">BOOK NOW | Fleets<br></ion-title>         
   </ion-toolbar>
+ </ion-header> 
+<ion-content class="ion-padding">
+   <p style="text-align: center; font-weight: bold; color:#f2f2f2">From now on, make your reservation for your partial or complete fleet of vehicles.</p>
+
+<ion-list [inset]="true" lines="none">
+
+<ion-item>    
+      <ion-select 
+      [interfaceOptions]="tipoVehiclePopoverOptions" interface="popover" fill="outline"
+      label="Type vehicle" labelPlacement="stacked" id = "tipoV" name = "tipoV" placeholder="Your vehicle's type" [(ngModel)]="book.tipoV" >
+      <ion-select-option *ngFor="let vehiculo of vehiculos"  [value]="vehiculo.valor">  
+        {{vehiculo.key}}
+        </ion-select-option>         
+      </ion-select>
+</ion-item>
+
+
+<ion-item>
+      <ion-input   labelPlacement="stacked" label="Number of vehicles" id = 'numberV'  name = 'numberV' type="number" min="3" max="12" [(ngModel)]="book.numberV" placeholder="00" helperText = 'minimum 3 maximum 12' />
+</ion-item>
+
+<ion-item>    
+      <ion-select 
+      [interfaceOptions]="tipoServicePopoverOptions" interface="popover" fill="outline"
+      label="Type service" labelPlacement="stacked" id = "tipoS" name = "tipoS" placeholder="Type service" [(ngModel)]="book.tipoS" >
+      <ion-select-option *ngFor="let service of services"  [value]="service.valor">  
+        {{service.key}}
+        </ion-select-option>         
+      </ion-select>
+</ion-item>
+
+<ion-item >
+
+    <ion-label position="floating" class="titulo">Schedule time for:</ion-label><br>
+      <ion-select 
+ 
+       [interfaceOptions]="timePopoverOptions" interface="alert" 
+       labelPlacement="stacked"  id = "horaCita" name = "horaCita" [(ngModel)]="book.horaCita" (ionChange) = done1()>
+     <ion-select-option value="">
+Select
+     </ion-select-option >
+
+       <ion-select-option *ngFor="let hora of horario"  [value]="hora.valor">        
+        {{hora.etiqueta}}
+      </ion-select-option>        
+      </ion-select>
+</ion-item>
+
+<ion-item>
+  <ion-label position="floating" class="titulo">Schedule the day for:</ion-label><br><br>
+      <ion-datetime  placeholder = 'Select a date for your booking'  presentation="date" first-day-of-week="1" [min] = 'hoy'   [(ngModel)]="book.diaCita" id = "diaCita" name = 'diaCita' (ionChange) = done2()>
+      </ion-datetime>
+</ion-item>
+
+
+</ion-list>
+
+
+
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="primary">
+   <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+<ion-button  color="secondary" shape="round" (click) = "continue()">
+  CONTINUE
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+    </ion-toolbar>
+</ion-footer>
