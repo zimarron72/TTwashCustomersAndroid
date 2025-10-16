@@ -301,7 +301,7 @@ done1() {
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
 
-    var url = 'https://washtt.com/v2_api_clientes_checkout_formNowFleet.php'
+    var url = 'https://app.washtt.com/v2_api_clientes_checkout_formNowOther.php'
     var data = { 
       idtoken: this.idtoken,
       autenticacion_tipo: this.autenticacion_tipo,
@@ -309,8 +309,13 @@ done1() {
     tipoV : this.book.tipoV,
     tipoS: this.book.tipoS,
     numberV: this.book.unitnumber,
-    horaCita: this.book.horaCita,
-    diaCita: this.book.diaCita
+   horaCita:  this.book.horaCita,            
+    diaCita: formatDate(this.book.diaCita,'mm-dd-yyyy','en-US'),
+    modelV : this.book.model,
+    brandV : this.book.brand,
+    colorV : this.book.color,
+    licenseV : this.book.license,
+    detalleV : this.book.detallev
 
     }
     this.cHttps(url, data).subscribe(

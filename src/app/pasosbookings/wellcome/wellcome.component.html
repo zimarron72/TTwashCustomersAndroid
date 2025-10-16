@@ -6,29 +6,28 @@
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
-    <ion-title>Welcome</ion-title> 
+    <ion-title style="font-weight: bold;">OVERVIEW</ion-title> 
   </ion-toolbar>
 </ion-header>
 <ion-content >
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
+  <ion-grid style="margin: top 10px;">
     <ion-row>
       <ion-col class="caja1">
-         <ion-icon color="dark" name="car"></ion-icon>
-        &ensp;<br>
+         <ion-icon color="primary" style="font-weight: bold; font-size:50px;"  name="car"></ion-icon>
          &ensp;<br>
         Fleet vehicles<br>{{fleet}}
       </ion-col>
      
           <ion-col class="caja2">
-           <ion-icon color="dark" name="calendar"></ion-icon><br> 
+           <ion-icon color="primary" style="font-weight: bold; font-size: 50px;"  name="calendar"></ion-icon><br> 
         Bookings scheduled<br>{{bookings}}
       </ion-col>
         
         <ion-col class="caja3">
-            <ion-icon color="dark" name="location-outline"></ion-icon> 
+            <ion-icon color="primary" style="font-weight: bold; font-size: 50px;"  name="location-outline"></ion-icon> 
           &ensp;<br>
           &ensp;<br>
         Locations<br>{{locations}}
@@ -39,36 +38,41 @@
   <ion-grid>
     <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "bookNowTT()">
-BOOK NOW || truck or trailer
+        <ion-button  color="warning" (click) = "bookNowTT()">
+<span style="color:black; font-weight: bold; font-size: large; ">BOOK NOW || Truck or Trailer</span>
  <ion-icon color="dark" slot="start" name="apps"></ion-icon>
-  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
       </ion-col>
     </ion-row>
       <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "bookNowOther()">
-BOOK NOW || other vehicles or services
+        <ion-button  color="warning" (click) = "bookNowOther()">
+<span style="color:black; font-weight: bold; font-size: large; ">BOOK NOW || Other Vehicles or Services</span>
  <ion-icon color="dark" slot="start" name="apps"></ion-icon>
-  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
       </ion-col>
     </ion-row>
           <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "bookNowFleets()">
-BOOK NOW || fleets
+        <ion-button  color="warning" (click) = "bookNowFleets()">
+<span style="color:black; font-weight: bold; font-size: large; ">BOOK NOW || Fleets</span>
  <ion-icon color="dark" slot="start" name="apps"></ion-icon>
-  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <hr style="border: solid 1px #fff">
       </ion-col>
     </ion-row>
       <ion-row>
       <ion-col style="text-align: center;">
         <ion-button  color="primary" (click) = "bookCheck()">
- CHECKOUT YOUR BOOKING
- <ion-icon color="dark" slot="start" name="calendar"></ion-icon>
+ <span style=" font-weight: bold; font-size: large; ">CHECKOUT YOUR BOOKING</span>
+ <ion-icon color="light" slot="start" name="calendar"></ion-icon>
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
       </ion-col>
@@ -76,8 +80,8 @@ BOOK NOW || fleets
       <ion-row>
       <ion-col style="text-align: center;">
          <ion-button  color="primary" (click) = "bookPrice()">
- CHECK OUR PRICE
- <ion-icon color="dark" slot="start" name="pricetags"></ion-icon>
+ <span style=" font-weight: bold; font-size: large; ">CHECK OUR PRICE</span>
+ <ion-icon color="light" slot="start" name="pricetags"></ion-icon>
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
       </ion-col>
@@ -85,8 +89,8 @@ BOOK NOW || fleets
    <ion-row>  
       <ion-col style="text-align: center;">
          <ion-button  color="primary" (click) = "findMore()">
- FINDS MORE
- <ion-icon name="pint" color="dark" slot="start" ></ion-icon>
+ <span style=" font-weight: bold; font-size: large; ">FINDS MORE</span>
+ <ion-icon name="pint" color="light" slot="start" ></ion-icon>
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
       </ion-col>

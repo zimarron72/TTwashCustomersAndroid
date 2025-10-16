@@ -109,12 +109,10 @@ token_notificacion! : string
 
 
   async atras() {
-  this.router.navigate(['/pasos/paso1']);
+  this.router.navigate(['/pasos/paso2']);
    await this.localstorage.removeData('itemcartVehiculo1')
      await this.localstorage.removeData('itemcartServicio')
-       await this.localstorage.removeData('itemcartOnsite')
-         await this.localstorage.removeData('itemcartMobil')
-           await this.localstorage.removeData('itemcartTime')
+      
    
 }
 

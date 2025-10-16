@@ -5,7 +5,7 @@ import { StorageService } from '../../servicios/storage.service';
 import {  AlertController  } from '@ionic/angular';
 import { Router} from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
-import {AutenticacionService} from '../../servicios/autenticacion'
+
 @Component({
   selector: 'app-paso1',
   templateUrl: './paso1.component.html',
@@ -44,7 +44,6 @@ fleetx: any
     private alertController: AlertController,
      private router: Router,
       private loading: LoadingService,
-      private AutenticacionService : AutenticacionService,
   ) { 
    this.select = true
   this.new = false

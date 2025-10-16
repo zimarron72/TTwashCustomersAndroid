@@ -15,7 +15,7 @@ export class Tab1Page  {
   Pages = [
     {
       title: 'To book',
-      url: '/pasos/paso1',
+      url: '/pasos/wellcome',
       icon: 'calendar-clear'
     },
 

@@ -44,12 +44,12 @@ currentDate: any
   ngOnInit() {}
 
     async atras() {
-    this.router.navigate(['/pasos/paso1']);
+    this.router.navigate(['/pasos/paso2']);
    await this.localstorage.removeData('itemcartVehiculo1')
      await this.localstorage.removeData('itemcartServicio')
        await this.localstorage.removeData('itemcartOnsite')
          await this.localstorage.removeData('itemcartMobil')
-           await this.localstorage.removeData('itemcartTime')
+          
    
 }
 
@@ -191,7 +191,7 @@ if(this.validateForm()) {
 
 let itemcartTime = {
  
-      diacita : formatDate(this.mobil.diacita,'d MMM YYYY','en-US'),
+      diacita : formatDate(this.mobil.diacita,'mm-dd-yyyy','en-US'),
       horacita : this.mobil.horacita,
       
     }
