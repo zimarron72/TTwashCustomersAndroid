@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CapacitorHttp,  HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
-import {  AlertController  } from '@ionic/angular';
+import {  AlertController , ModalController } from '@ionic/angular';
 import { Router  } from '@angular/router';
-
+import { CartComponent } from '../cart/cart.component';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -24,15 +24,19 @@ onsite:any
 mobil:any
 locationmobil:any
 locationonsite:any
+
   constructor(
   private localstorage:StorageService, 
   private alertController: AlertController,
   private router: Router,
+   private modalCtrl: ModalController,
   ) { 
 
 
 
   }
+
+
 
   async ionViewWillEnter() {
     let vehiculoData = JSON.parse(await this.localstorage.getData('itemcartVehiculo1'))
@@ -100,19 +104,44 @@ ngOnInit() {}
 
 
  async notCoupon() {
+
   this.user = JSON.parse(await this.localstorage.getData('usuario'))
       this.idtoken = await this.localstorage.getData('idtoken')
       this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+      var itemcartVehiculo1 = JSON.parse(await this.localstorage.getData("itemcartVehiculo1"))
+      var itemcartServicio = JSON.parse(await this.localstorage.getData("itemcartServicio"))
+      var itemcartMobil = JSON.parse(await this.localstorage.getData("itemcartMobil"))
+      var itemcartOnsite = JSON.parse(await this.localstorage.getData("itemcartOnsite"))
+      var itemcartTime = JSON.parse(await this.localstorage.getData("itemcartTime"))
+
+const modal = await this.modalCtrl.create({
+      component: CartComponent,
+  componentProps: {
+  respuesta : "no"
+  } 
+    });
+    modal.present();
   
-      var url = 'https://app.washtt.com/v2_api_clientes_checkout_formNowOther.php'
-      var data = { 
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirmado') {
+ 
+  var url1 = 'https://app.washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
+      var data1 = { 
+
         idtoken: this.idtoken,
         autenticacion_tipo: this.autenticacion_tipo,
         email: this.user.email,
+     itemcartVehiculo1 : itemcartVehiculo1,
+      itemcartServicio : itemcartServicio,
+      itemcartMobil : itemcartMobil,
+      itemcartOnsite : itemcartOnsite,
+      itemcartTime : itemcartTime,
+      idcoupon:data.idcoupon
       
   
       }
-      this.cHttps(url, data).subscribe(
+      this.cHttps(url1, data1).subscribe(
         async (res: any) => {
           console.log(res)
           let mensaje
@@ -135,24 +164,84 @@ ngOnInit() {}
                         
         }
       )
+
+    }
+
+    
  }
 
-yesCoupon() {}
+  async yesCoupon() {
+  
+    this.user = JSON.parse(await this.localstorage.getData('usuario'))
+      this.idtoken = await this.localstorage.getData('idtoken')
+      this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+      var itemcartVehiculo1 = JSON.parse(await this.localstorage.getData("itemcartVehiculo1"))
+      var itemcartServicio = JSON.parse(await this.localstorage.getData("itemcartServicio"))
+      var itemcartMobil = JSON.parse(await this.localstorage.getData("itemcartMobil"))
+      var itemcartOnsite = JSON.parse(await this.localstorage.getData("itemcartOnsite"))
+      var itemcartTime = JSON.parse(await this.localstorage.getData("itemcartTime"))
+
+const modal = await this.modalCtrl.create({
+      component: CartComponent,
+  componentProps: {
+  respuesta : "si"
+  } 
+    });
+    modal.present();
+  
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirmado') {
+ 
+  var url1 = 'https://app.washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
+      var data1 = { 
+
+        idtoken: this.idtoken,
+        autenticacion_tipo: this.autenticacion_tipo,
+        email: this.user.email,
+     itemcartVehiculo1 : itemcartVehiculo1,
+      itemcartServicio : itemcartServicio,
+      itemcartMobil : itemcartMobil,
+      itemcartOnsite : itemcartOnsite,
+      itemcartTime : itemcartTime,
+      idcoupon:data.idcoupon
+      
+  
+      }
+      this.cHttps(url1, data1).subscribe(
+        async (res: any) => {
+          console.log(res)
+          let mensaje
+          let header
+          let code
+          switch (res.data.respuesta) {
+            case 'ERROR':
+              code = '01'
+              header = 'Error'
+              mensaje = 'an error occurred,please login again'
+              this.localstorage.clearData()
+              this.router.navigate(['/login'])       
+              this.aviso(header, mensaje, code)              
+              break;         
+          
+            default:
+              this.router.navigate(['/tabs/tabtobooks/successtobook']);
+              
+          }
+                        
+        }
+      )
+
+    }
+}
 
 
-     async doRefresh(event: { target: { complete: () => void; }; }) {
- event.target.complete();
-     }
+ 
 
 
       async atras() {
-   this.router.navigate(['/pasos/selectcita']);
-   await this.localstorage.removeData('itemcartVehiculo1')
-     await this.localstorage.removeData('itemcartServicio')
-       await this.localstorage.removeData('itemcartOnsite')
-         await this.localstorage.removeData('itemcartMobil')
            await this.localstorage.removeData('itemcartTime')
-   
+   this.router.navigate(['/pasos/selectcita']);   
 }   
 
 }

@@ -16,10 +16,10 @@ import { SelectcitaComponent } from './selectcita/selectcita.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SelectlocationComponent } from './selectlocation/selectlocation.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
-import { CouponyesnotComponent } from './couponyesnot/couponyesnot.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { BooknowotherComponent } from './booknowother/booknowother.component';
 import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   imports: [
@@ -28,7 +28,9 @@ import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component'
     IonicModule,
     PasosbookingsPageRoutingModule
   ],
-  declarations: [PasosbookingsPage,
+  declarations: [
+    
+    PasosbookingsPage,
     ComienzoComponent,
     WellcomeComponent,
     Paso1Component,
@@ -40,10 +42,10 @@ import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component'
     CheckoutComponent,
 SelectlocationComponent,
 PreguntasComponent,
-CouponyesnotComponent,
 CouponsComponent,
 BooknowfleetsComponent,
 BooknowotherComponent,
+CartComponent
 
     
   ],

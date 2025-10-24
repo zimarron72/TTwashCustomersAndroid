@@ -183,6 +183,7 @@ export class Paso2Component  implements OnInit {
     }
 
  await this.localstorage.setObject('itemcartServicio',itemcartServicio)
+ await this.localstorage.setData("id_category",this.id_category)
 this.router.navigate(['/pasos/selectlocation']); 
 
 }
@@ -207,15 +208,17 @@ this.router.navigate(['/pasos/selectlocation']);
     }
 
  await this.localstorage.setObject('itemcartServicio', itemcartServicio)
+ await this.localstorage.setData("id_category",this.id_category)
 this.router.navigate(['/pasos/selectyarda']);  
 //this.router.navigate(['/pasos/map']);
 }
 
 
   async atras() {
+    await this.localstorage.removeData('itemcartVehiculo1')
+    await this.localstorage.removeData('id_category') 
     this.router.navigate(['/pasos/paso1']);
-   await this.localstorage.removeData('itemcartVehiculo1')
-     
+   
    
 }
 

@@ -12,10 +12,10 @@ import { MapComponent } from './map/map.component';
 import { SelectcitaComponent } from './selectcita/selectcita.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SelectlocationComponent } from './selectlocation/selectlocation.component';
-import { CouponyesnotComponent } from './couponyesnot/couponyesnot.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { BooknowotherComponent } from './booknowother/booknowother.component';
 import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
@@ -32,11 +32,11 @@ const routes: Routes = [
     { path: 'map/:lat/:lng/:direccion/:yard_nombre', component: MapComponent },
     { path: 'selectcita', component: SelectcitaComponent },
       { path: 'checkout', component: CheckoutComponent },
-    { path: 'selectlocation', component: SelectlocationComponent },
-      { path: 'couponyesnot', component: CouponyesnotComponent },
+    { path: 'selectlocation', component: SelectlocationComponent },      
        { path: 'listcoupon', component: CouponsComponent },
    { path: 'bookother', component: BooknowotherComponent },
      { path: 'bookfleets', component: BooknowfleetsComponent },
+      { path: 'cart', component: CartComponent },
     ]
   }
 ];

@@ -50,8 +50,7 @@ site = {
      private localstorage:StorageService, 
     private alertController: AlertController,
      private router: Router,
-      private loading: LoadingService,
- 
+      private loading: LoadingService, 
        private modalCtrl: ModalController,
   ) 
    { 
@@ -62,9 +61,11 @@ site = {
   ngOnInit() {}
 
     async atras() {
-   this.router.navigate(['/pasos/paso2']);
-   await this.localstorage.removeData('itemcartVehiculo1')
+ await this.localstorage.removeData('itemcartVehiculo1')
      await this.localstorage.removeData('itemcartServicio')
+   var id_category =  await this.localstorage.getData('id_category')
+   this.router.navigate(['/pasos/paso2', id_category ]);
+  
       
    
 }
