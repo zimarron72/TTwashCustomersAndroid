@@ -131,7 +131,7 @@ this.footcart = false
   this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
 
 
-    let url1 = 'https://app.washtt.com/v2_api_clientes_get_coupon.php'
+    let url1 = 'https://washtt.com/v2_api_clientes_get_coupons.php'
     let data1= { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email}
     this.cHttps(url1, data1).subscribe(
       async (res: any) => {
@@ -154,14 +154,8 @@ this.footcart = false
 
           default:
 
-          /* this.couponsUser = Object.values(res.data.cuponesUser)
-      this.couponsUser = this.couponsUser
-       this.couponsForAll = Object.values(res.data.cuponesForAll)
-      this.couponsForAll = this.couponsForAll*/
-
-this.couponsUser = Object.values(res.data)
-      this.couponsUser = this.couponsUser
-
+this.couponsUser = res.data.cuponesUser
+this.couponsForAll = res.data.cuponesForAll
     
  if(this.isObjectEmpty(this.couponsUser) && this.isObjectEmpty(this.couponsForAll)) {
 
