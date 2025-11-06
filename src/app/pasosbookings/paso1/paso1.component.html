@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
-    <ion-title>SELECT VEHICLE</ion-title> 
+    <ion-title>SELECT YOUR VEHICLE</ion-title> 
          <ion-buttons slot="end">
       <ion-button (click)="cancel()">       
         <ion-icon slot="icon-only" name="sync" color="light"></ion-icon>
@@ -19,7 +19,7 @@
   <ion-grid>
     <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "carFleet()">
+        <ion-button  color="primary" (click) = "carFleet()" shape="round">
 SELECT A VEHICLE FROM YOUR FLEET
 
  <ion-icon color="dark" slot="start" name="add-circle"></ion-icon>
@@ -29,7 +29,7 @@ SELECT A VEHICLE FROM YOUR FLEET
     </ion-row>
       <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="warning" (click) = "carNew()">
+        <ion-button  color="warning" (click) = "carNew()" shape="round" >
 GET STARTED WITH A NEW VEHICLE
  <ion-icon color="dark" slot="start" name="checkmark-circle"></ion-icon>
   <ion-icon color="light" slot="end" name="square"></ion-icon>
@@ -102,8 +102,8 @@ placeholder="Its general appearance"
 
 </ion-list>
 <div style="text-align: center;" >
-<ion-button  color="primary" (click) = "continue()">
-  Continue
+<ion-button  color="primary" (click) = "continue()" shape="round">
+  CONTINUE
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
 </div>

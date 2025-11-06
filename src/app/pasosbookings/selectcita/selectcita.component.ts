@@ -45,7 +45,7 @@ currentDate: any
 
     async atras() {
  
-   await this.localstorage.removeData('itemcartVehiculo1')
+
      await this.localstorage.removeData('itemcartServicio')
        await this.localstorage.removeData('itemcartOnsite')
          await this.localstorage.removeData('itemcartMobil')
@@ -193,7 +193,7 @@ if(this.validateForm()) {
 
 let itemcartTime = {
  
-      diacita : formatDate(this.mobil.diacita,'mm-dd-yyyy','en-US'),
+      diacita : formatDate(this.mobil.diacita,'MM-dd-yyyy','en-US'),
       horacita : this.mobil.horacita,
       
     }

@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
-    <ion-title>Select a type's Service or Wash</ion-title> 
+    <ion-title>SELECT A<br> SERVICE OR WASH</ion-title> 
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
@@ -26,14 +26,14 @@
 <h4 style="text-align: center; font-size: larger; font-weight: bold; color:#2E4F9C ">CHARACTERISTICS</h4>
 <div style="text-align: justify; color:black; font-weight: bold; " >{{servicio.description}}</div>
 <div style="text-align: center;" >
-<ion-button  color="warning" (click) ="selectServiceMobil(servicio.name,servicio.image,servicio.price_mobil,servicio.id)">
-  Price mobil: {{ servicio.price_mobil | currency }}
+<ion-button shape="round"  color="warning" (click) ="selectServiceMobil(servicio.name,servicio.image,servicio.price_mobil,servicio.product_id)">
+ PRICE MOBIL: {{ servicio.price_mobil | currency }}
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
 </div>
 <div style="text-align: center;" >
-<ion-button  color="primary" (click) ="selectServiceOnsite(servicio.name,servicio.image,servicio.product_price,servicio.id)">
-Price onsite: {{ servicio.product_price | currency }}
+<ion-button shape="round"  color="primary" (click) ="selectServiceOnsite(servicio.name,servicio.image,servicio.product_price,servicio.product_id)">
+PRICE ONSITE: {{ servicio.product_price | currency }}
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
 </div>

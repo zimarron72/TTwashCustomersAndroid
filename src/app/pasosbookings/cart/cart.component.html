@@ -5,8 +5,9 @@
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title *ngIf="listcupones != true" style="text-align: center;">CART</ion-title>
-    <ion-title *ngIf="cart != true " style="text-align: center;">COUPONS</ion-title>
+    <ion-title *ngIf="cabeza == 'cart'" style="text-align: center;">CART</ion-title>
+    <ion-title *ngIf="cabeza == 'coupons' " style="text-align: center;">COUPONS</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
@@ -31,94 +32,67 @@
         </ion-label>
       </ion-item>
     </ion-list>
+
+        <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center;">
+    <ion-button  color="primary" shape="round" (click) = "continue()">
+ FINISH
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>    
+  </ion-grid>
    
   </div>
 
   <div *ngIf="listcupones">
-  <p style="text-align: center; font-size: large; ">Coupons earned through your loyalty</p> 
+  <p style="text-align: center; font-size: larger; ">Coupons earned through your loyalty</p> 
 
     <ion-list lines="none" [inset]="true" >
 
-      <ion-item color="primary" class="customer-list" *ngFor="let coupon of couponsUser" (click)="selectcoupon(coupon.valor,coupon.tipo)">
-     
+    <ion-item   class="customer-list" *ngFor="let coupon of couponsUser" (click)="selectcoupon(coupon.valor,coupon.tipo,coupon.usado,coupon.id)">
+       <ion-icon slot="start" name="gift" color="primary"></ion-icon> 
 
-        <div *ngIf = "coupon.usado == 'ACTIVO'">
-        <ion-label>
-             <ion-icon slot="start" name="gift" color="primary"></ion-icon>  
-          Code: {{coupon.codigo}}<br><span style="font-size:smaller">Value: {{coupon.valor}}</span><span *ngIf="coupon.tipo == 'Value' ">$</span><span *ngIf="coupon.tipo == 'Porcent' ">%</span><br>
-          <p style="color:#2dd36f; text-align: center;" >ACTIVE</p>
-        </ion-label>   
-    <ion-icon color="success" slot="end" name="radio-button-off"></ion-icon> 
-          
-        </div>   
-        
-              <div *ngIf = "coupon.usado == 'USADO'">
-        <ion-label>
-             <ion-icon slot="start" name="gift" color="primary"></ion-icon>  
-          Code: {{coupon.codigo}}<br><span style="font-size:smaller">Value: {{coupon.valor}}</span><span *ngIf="coupon.tipo == 'Value' ">$</span><span *ngIf="coupon.tipo == 'Porcent' ">%</span><br>
-          <p style="color:#2E4F9C; text-align: center;" >USED</p>
-        </ion-label>
-        <ion-button shape="round">
-    <ion-icon color="secondary" slot="end" name="radio-button-on"></ion-icon> 
-</ion-button>            
-        </div> 
+    <ion-label  >            
+    Code: {{coupon.codigo}}<br>Discount: <span *ngIf="coupon.tipo == 'Value' ">{{coupon.valor}} $ Off</span><span *ngIf="coupon.tipo == 'Porcent' ">{{coupon.valor}} % Off</span><br>
+    Expired date:<br> {{coupon.fecha_expiracion}}<br>
+    {{coupon.usado}}             
+    </ion-label> 
+      <ion-icon color="success" slot="end" name="radio-button-off" *ngIf = "coupon.usado == 'ACTIVE'"
+></ion-icon> 
+      <ion-icon color="secondary" slot="end" name="radio-button-on" *ngIf = "coupon.usado == 'USED'"></ion-icon>      
 
-                <div *ngIf = "coupon.usado == 'VENCIDO'">
-        <ion-label>
-             <ion-icon slot="start" name="gift" color="primary"></ion-icon>  
-          Code: {{coupon.codigo}}<br><span style="font-size:smaller">Value: {{coupon.valor}}</span><span *ngIf="coupon.tipo == 'Value' ">$</span><span *ngIf="coupon.tipo == 'Porcent' ">%</span><br>
-          <p style="color:#CA083F; text-align: center;" >EXPIRED</p>
-        </ion-label>
-        <ion-button shape="round">
-    <ion-icon color="primary" slot="end" name="ellipse"></ion-icon> 
-</ion-button>            
-        </div>  
-        
+      <ion-icon color="primary" slot="end" name="ellipse" *ngIf = "coupon.usado == 'EXPIRED'"></ion-icon>    
+      
 
-      </ion-item>
+     </ion-item>
+
+   
+
+    
         </ion-list>
 
 
- <p style="text-align: center; font-size: large;">Seasonal Promotions and others</p> 
+<p style="text-align: center; font-size: larger;">Seasonal Promotions and others</p> 
 
         <ion-list lines="none" [inset]="true" >
 
- <ion-item color="primary" class="customer-list" *ngFor="let coupon of couponsForAll" (click)="selectcoupon(coupon.valor,coupon.tipo)">
+ <ion-item color="primary" class="customer-list" *ngFor="let coupon of couponsForAll" (click)="selectcoupon(coupon.valor,coupon.tipo,coupon.usado,coupon.id)">
         
-      
-   <div *ngIf = "coupon.usado == 'ACTIVO'">
-        <ion-label>
-             <ion-icon slot="start" name="gift" color="success"></ion-icon>  
-          Code: {{coupon.codigo}}<br><span style="font-size:smaller">Value: {{coupon.valor}}</span><span *ngIf="coupon.tipo == 'Value' ">$</span><span *ngIf="coupon.tipo == 'Porcent' ">%</span><br>
-          <p style="color:#2dd36f; text-align: center;" >ACTIVE</p>
-        </ion-label>   
-    <ion-icon color="success" slot="end" name="radio-button-off"></ion-icon> 
-          
-        </div>   
-        
-              <div *ngIf = "coupon.usado == 'USADO'">
-        <ion-label>
-             <ion-icon slot="start" name="gift" color="success"></ion-icon> 
-          Code: {{coupon.codigo}}<br><span style="font-size:smaller">Value: {{coupon.valor}}</span><span *ngIf="coupon.tipo == 'Value' ">$</span><span *ngIf="coupon.tipo == 'Porcent' ">%</span><br>
-          <p style="color:#2E4F9C; text-align: center;" >USED</p>
-        </ion-label>    
-        
-    <ion-icon color="secondary" slot="end" name="radio-button-on"></ion-icon> 
-           
-        </div> 
+       <ion-icon slot="start" name="gift" color="success"></ion-icon> 
 
-                <div *ngIf = "coupon.usado == 'VENCIDO'">
-        <ion-label>
-   <ion-icon slot="start" name="gift" color="success"></ion-icon> 
+    <ion-label  >            
+    Code: {{coupon.codigo}}<br>Discount: <span *ngIf="coupon.tipo == 'Value' ">{{coupon.valor}} $ Off</span><span *ngIf="coupon.tipo == 'Porcent' ">{{coupon.valor}} % Off</span><br>
+    Expired date:<br> {{coupon.fecha_expiracion}}
+    <br>{{coupon.usado}}             
+    </ion-label> 
+      <ion-icon color="success" slot="end" name="radio-button-off" *ngIf = "coupon.usado == 'ACTIVE'"
+></ion-icon> 
+      <ion-icon color="secondary" slot="end" name="radio-button-on" *ngIf = "coupon.usado == 'USED'"></ion-icon>      
 
-          Code: {{coupon.codigo}}<br><span style="font-size:smaller">Value: {{coupon.valor}}</span><span *ngIf="coupon.tipo == 'Value' ">$</span><span *ngIf="coupon.tipo == 'Porcent' ">%</span><br>
-          <p style="color:#CA083F; text-align: center;" >EXPIRED</p>
-        </ion-label>
-        <ion-button shape="round">
-    <ion-icon color="primary" slot="end" name="ellipse"></ion-icon> 
-</ion-button>            
-        </div>     
-
+      <ion-icon color="primary" slot="end" name="ellipse" *ngIf = "coupon.usado == 'EXPIRED'"></ion-icon>  
+ 
 
       </ion-item>
 
@@ -130,27 +104,25 @@
   </div>
 
   <div *ngIf="invitacion">
-    <h1 style="text-align: center; font-weight: bold; color:#f2f2f2">Do You want to finish applying a Coupon on this service?</h1>
+    <h1 style="text-align: center; font-weight: bold; color:#f2f2f2">Collect services through the use of our app and constantly receive coupons and discounts</h1>
 
      <ion-img src="./assets/imgs/location_app.png" ></ion-img>
-  </div>
-
-</ion-content>
-
-<ion-footer class="ion-no-border" *ngIf="footcart">
-  <ion-toolbar color="primary">
-   <ion-grid>
+            <ion-grid>
     <ion-row>
-      <ion-col></ion-col>
-      <ion-col></ion-col>
-      <ion-col>
-<ion-button  color="secondary" shape="round" (click) = "continue()">
+      <ion-col style="text-align: center;">
+    <ion-button  color="primary" shape="round" (click) = "continue()">
  FINISH
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
       </ion-col>
-    </ion-row>
-   </ion-grid>
-    </ion-toolbar>
-</ion-footer>
+    </ion-row>    
+  </ion-grid>
+  </div>
+
+
+
+
+</ion-content>
+
+
 

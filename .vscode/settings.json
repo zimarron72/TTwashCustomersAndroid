@@ -3,5 +3,6 @@
     "@ionic/angular/common",
     "@ionic/angular/standalone"
   ],
-  "editor.fontSize": 18
+  "editor.fontSize": 18,
+  "editor.defaultFormatter": null
 }

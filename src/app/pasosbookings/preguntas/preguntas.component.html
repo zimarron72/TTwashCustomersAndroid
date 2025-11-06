@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary"> 
- 
+      <ion-buttons slot="start">
+      <ion-button (click)="cancel()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>  
     <ion-title>WORKING CONDITIONS<br>AT YOUR LOCATION</ion-title>  
      
   </ion-toolbar>
@@ -53,14 +57,12 @@
 
 
 <div style="text-align: center;" >
-<ion-button  color="primary" (click) = "continue()">
-  Continue
+<ion-button  color="primary" (click) = "continue()" shape="round">
+  CONTINUE
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
-</ion-button><br><br>
-
-<ion-button  color="light" (click) = "cancel()">
- Cancel  
 </ion-button>
+
+
 
 
 </div>

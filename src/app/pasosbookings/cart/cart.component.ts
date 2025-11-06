@@ -41,6 +41,9 @@ mobil:any
 locationmobil:any
 locationonsite:any
 
+cabeza:any
+cuponid:any
+
 
   constructor(
        private localstorage:StorageService, 
@@ -114,7 +117,7 @@ if(this.onsite == 'nada') {
   this.locationmobil = 'AT YOUR ADDRESS: '+mobilData.address+" "+mobilData.city+" "+mobilData.zip
 }
 if(this.mobil == 'nada') {
-  this.locationonsite = 'AT OUR LOCATION: '+mobilData.address+" "+mobilData.city+" "+mobilData.zip
+  this.locationonsite = 'AT OUR LOCATION: '+onsiteData.address
 }
 
 this.time = timeData.diacita+" "+timeData.horacita
@@ -123,6 +126,7 @@ this.time = timeData.diacita+" "+timeData.horacita
 if(this.respuesta == 'si') {
 
 this.listcupones  = true
+this.cabeza = 'coupons'
 this.cart = false
 this.footcart = false
 
@@ -176,6 +180,7 @@ else if(this.respuesta == 'no') {
 
 this.listcupones  = false
 this.cart = true
+this.cabeza = 'cart'
 this.invitacion = false
 this.footcart = true
 
@@ -186,7 +191,7 @@ this.totalString = this.subtotalString
 this.subtotalCifra = this.itemcartServicio.costo
 this.totalCifra =  this.subtotalCifra  
 this.discountCifra = 0.00
-
+this.cuponid = 0
 
 }
 
@@ -199,16 +204,16 @@ this.discountCifra = 0.00
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  async selectcoupon(value:any,tipo:any) {
+  async selectcoupon(value:any,tipo:any,estado:any,couponid:any) {
 
+if(estado == 'ACTIVE') {
     const formatter$ = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2
     });
 
-
-this.subtotalCifra = this.itemcartServicio.costo
+    this.subtotalCifra = this.itemcartServicio.costo
 
 this.subtotalString = this.itemcartServicio.precio
 switch(tipo) {
@@ -221,21 +226,91 @@ this.discountCifra = value
 }
 this.discountString = formatter$.format(this.discountCifra),
 this.totalString = formatter$.format(this.subtotalCifra - this.discountCifra)
+this.totalCifra = this.subtotalCifra - this.discountCifra
+this.cuponid = couponid
 
 this.listcupones  = false
 this.cart = true
+this.cabeza = 'cart'
+this.invitacion = false
+this.footcart = true
+}
+
+else if (estado == 'USED') {
+
+            let code = ''
+            let header = 'Warning'
+            let mensaje = 'Oops! This coupon has already been used'   
+            this.aviso(header, mensaje, code) 
+
+this.listcupones  = false
+this.cart = true
+this.cabeza = 'cart'
 this.invitacion = false
 this.footcart = true
 
+this.subtotalString = this.itemcartServicio.precio
+this.discountString = '00.00 $'
+this.totalString = this.subtotalString
 
+this.subtotalCifra = this.itemcartServicio.costo
+this.totalCifra =  this.subtotalCifra  
+this.discountCifra = 0.00
 
+this.cuponid = 0
+}
+
+else if (estado == 'EXPIRED') {
+  
+            let code = ''
+            let header = 'Warning'
+            let mensaje = 'Oops! This coupon has expired'   
+            this.aviso(header, mensaje, code) 
+
+this.listcupones  = false
+this.cart = true
+this.cabeza = 'cart'
+this.invitacion = false
+this.footcart = true
+
+this.subtotalString = this.itemcartServicio.precio
+this.discountString = '00.00 $'
+this.totalString = this.subtotalString
+
+this.subtotalCifra = this.itemcartServicio.costo
+this.totalCifra =  this.subtotalCifra  
+this.discountCifra = 0.00
+this.cuponid = 0
+}
 
   }
 
   continue() {
-    return this.modalCtrl.dismiss({discountCifra:this.discountCifra,totalCifra:this.totalCifra,subtotal:this.subtotalCifra}, 'continue');
+    return this.modalCtrl.dismiss({
+      discountCifra:this.discountCifra,
+      totalCifra:this.totalCifra,
+      subtotalCifra:this.subtotalCifra,
+    cuponid:this.cuponid}, 'confirmado');
 
   }
+
+  /*convertDate(fecha_entrada:any) {
+  
+
+  const date = new Date(fecha_entrada);      
+
+  
+  // Extraer día, mes y año
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexados
+  const year = date.getFullYear();
+  
+  // Formato DD-MM-YYYY
+  const formattedDate = `${day}-${month}-${year}`;
+  
+ return formattedDate;
+
+}*/
 
 
 

@@ -5,6 +5,7 @@ import { StorageService } from '../../servicios/storage.service';
 import {  AlertController , ModalController } from '@ionic/angular';
 import { Router  } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
+import { LoadingService } from '../../servicios/loading.services';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -30,6 +31,7 @@ locationonsite:any
   private alertController: AlertController,
   private router: Router,
    private modalCtrl: ModalController,
+   private loading: LoadingService,
   ) { 
 
 
@@ -58,7 +60,7 @@ if(this.onsite == 'nada') {
   this.locationmobil = 'AT YOUR ADDRESS: '+mobilData.address+" "+mobilData.city+" "+mobilData.zip
 }
 if(this.mobil == 'nada') {
-  this.locationonsite = 'AT OUR LOCATION: '+mobilData.address+" "+mobilData.city+" "+mobilData.zip
+  this.locationonsite = 'AT OUR LOCATION: '+onsiteData.address
 }
 
 this.time = timeData.diacita+" "+timeData.horacita
@@ -125,24 +127,27 @@ const modal = await this.modalCtrl.create({
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirmado') {
- 
-  var url1 = 'https://app.washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
+ this.loading.simpleLoader()
+  var url1 = 'https://washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
       var data1 = { 
 
         idtoken: this.idtoken,
         autenticacion_tipo: this.autenticacion_tipo,
         email: this.user.email,
-     itemcartVehiculo1 : itemcartVehiculo1,
-      itemcartServicio : itemcartServicio,
-      itemcartMobil : itemcartMobil,
-      itemcartOnsite : itemcartOnsite,
-      itemcartTime : itemcartTime,
-      idcoupon:data.idcoupon
-      
+     dataVehiculo : itemcartVehiculo1,
+     dataServicio : itemcartServicio,
+     dataMobil : itemcartMobil,
+     dataOnsite : itemcartOnsite,
+     dataTime : itemcartTime,
+     subtotalCifra:data.subtotalCifra,
+     discountCifra:data.discountCifra,
+     totalCifra:data.totalCifra,
+      cuponid : data.cuponid
   
       }
       this.cHttps(url1, data1).subscribe(
         async (res: any) => {
+             this.loading.dismissLoader()
           console.log(res)
           let mensaje
           let header
@@ -157,7 +162,7 @@ const modal = await this.modalCtrl.create({
               this.aviso(header, mensaje, code)              
               break;         
           
-            default:
+            case '200_OK':
               this.router.navigate(['/tabs/tabtobooks/successtobook']);
               
           }
@@ -192,24 +197,27 @@ const modal = await this.modalCtrl.create({
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirmado') {
- 
-  var url1 = 'https://app.washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
+  this.loading.simpleLoader()
+  var url1 = 'https://washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
       var data1 = { 
 
         idtoken: this.idtoken,
         autenticacion_tipo: this.autenticacion_tipo,
         email: this.user.email,
-     itemcartVehiculo1 : itemcartVehiculo1,
-      itemcartServicio : itemcartServicio,
-      itemcartMobil : itemcartMobil,
-      itemcartOnsite : itemcartOnsite,
-      itemcartTime : itemcartTime,
-      idcoupon:data.idcoupon
-      
+   dataVehiculo : itemcartVehiculo1,
+     dataServicio : itemcartServicio,
+     dataMobil : itemcartMobil,
+     dataOnsite : itemcartOnsite,
+     dataTime : itemcartTime,
+     subtotalCifra:data.subtotalCifra,
+     discountCifra:data.discountCifra,
+     totalCifra:data.totalCifra,
+      cuponid : data.cuponid
   
       }
       this.cHttps(url1, data1).subscribe(
         async (res: any) => {
+             this.loading.dismissLoader()
           console.log(res)
           let mensaje
           let header

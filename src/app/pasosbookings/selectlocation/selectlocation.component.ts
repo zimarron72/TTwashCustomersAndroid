@@ -393,7 +393,7 @@ this.router.navigate(['/pasos/selectcita']);
       city: data.city,
       power: data.power,
       water: data.water,
-      presencia: data.ensitio
+      presencia: data.presencia
 
       
     }

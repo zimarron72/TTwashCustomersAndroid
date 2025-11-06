@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
-    <ion-title style="text-align: center;">Select one of our<br>workstations</ion-title> 
+    <ion-title style="text-align: center;">SELECT ONE OF OUR<br>WORKSTATIONS</ion-title> 
   </ion-toolbar>
 </ion-header>
 
@@ -26,7 +26,7 @@
 <h4 style="text-align: center; font-size: larger; font-weight: bold; color:#2E4F9C ">ADDRESS</h4>
 <div style="text-align: justify; color:black; font-weight: bold; " >{{yard.direccion}}</div>
     <div style="text-align: center;" >
-<ion-button  color="warning" (click)="selectCita(yard.nombre_yard,yard.direccion)">
+<ion-button  color="warning" (click)="selectCita(yard.nombre_yard,yard.direccion)" shape="round" >
 SELECT NOW
 <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
@@ -36,8 +36,8 @@ SELECT NOW
   alt="{{yard.nombre_yard}}"
 style="border-radius: 12px;"></ion-img><br>
   <div style="text-align: center;" >
-<ion-button  color="primary" (click)="createMap(yard.lat, yard.lng, yard.direccion, yard.nombre_yard,yard.id)">
-View on map VIEW ON MAP
+<ion-button  color="primary" (click)="createMap(yard.lat, yard.lng, yard.direccion, yard.nombre_yard,yard.id)" shape="round">
+VIEW ON MAP
 <ion-icon color="light" slot="end" name="map"></ion-icon>
 </ion-button>
 </div>

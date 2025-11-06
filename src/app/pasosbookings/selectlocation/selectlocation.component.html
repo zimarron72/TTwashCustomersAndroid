@@ -21,7 +21,7 @@
 
     <ion-row *ngIf="ocultaboton">
       <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "locationList()">
+        <ion-button  color="primary" (click) = "locationList()"  shape="round">
 SELECT AN ADDRESS FROM YOUR LIST OF LOCATIONS
 
  <ion-icon color="dark" slot="start" name="add-circle"></ion-icon>
@@ -32,7 +32,7 @@ SELECT AN ADDRESS FROM YOUR LIST OF LOCATIONS
 
       <ion-row>
       <ion-col style="text-align: center;">
-        <ion-button  color="warning" (click) = "locationNew()">
+        <ion-button  color="warning" (click) = "locationNew()" shape="round" >
 INDICATE A NEW LOCATION
  <ion-icon color="dark" slot="start" name="checkmark-circle"></ion-icon>
   <ion-icon color="light" slot="end" name="square"></ion-icon>
@@ -150,8 +150,8 @@ INDICATE A NEW LOCATION
 
 
 <div style="text-align: center;" >
-<ion-button  color="primary" (click) = "continue()">
-  Continue
+<ion-button  color="primary" (click) = "continue()"  shape="round">
+  CONTINUE
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
 </div>

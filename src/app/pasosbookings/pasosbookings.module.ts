@@ -16,7 +16,6 @@ import { SelectcitaComponent } from './selectcita/selectcita.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SelectlocationComponent } from './selectlocation/selectlocation.component';
 import { PreguntasComponent } from './preguntas/preguntas.component';
-import { CouponsComponent } from './coupons/coupons.component';
 import { BooknowotherComponent } from './booknowother/booknowother.component';
 import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component';
 import { CartComponent } from './cart/cart.component';
@@ -42,7 +41,6 @@ import { CartComponent } from './cart/cart.component';
     CheckoutComponent,
 SelectlocationComponent,
 PreguntasComponent,
-CouponsComponent,
 BooknowfleetsComponent,
 BooknowotherComponent,
 CartComponent

@@ -392,7 +392,8 @@ mainPopoverOptions = {
      license : this.truck.license,
      camiondetalles : this.truck.detallev,
      camionn : this.truck.unitnumber,
-     image : res.data.image
+     image : res.data.image,
+      vehiculoid : res.data.id
   }
  
 await this.localstorage.setObject('itemcartVehiculo1', itemcartVehiculo1)
@@ -471,7 +472,8 @@ selectVehiculo(id:any, categoryid:any) {
      license : res.data.license,
      camiondetalles : res.data.detalle,
      camionn : res.data.unitnumber,
-     image : res.data.image
+     image : res.data.image,
+     vehiculoid : id
   }
  
 await this.localstorage.setObject('itemcartVehiculo1', itemcartVehiculo1)
