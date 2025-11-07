@@ -5,6 +5,9 @@ import { StorageService } from '../../servicios/storage.service';
 import {  AlertController  } from '@ionic/angular';
 import { Router} from '@angular/router';
 import { formatDate } from '@angular/common';
+import { LoadingService } from '../../servicios/loading.services';
+
+
 @Component({
   selector: 'app-booknowother',
   templateUrl: './booknowother.component.html',
@@ -42,6 +45,7 @@ detalles: any
       private localstorage:StorageService, 
         private alertController: AlertController,
          private router: Router,
+         private loading: LoadingService,
       
   ) { 
      this.hoy = new Date().toISOString()
@@ -76,11 +80,12 @@ detalles: any
            ValidationFlag = false;
         }
 
-         else if(this.book.brand == "")  
+         else if(this.book.color == "")  
         {
             this.ErrorMessage = "Indicate the color of the vehicle";
            ValidationFlag = false;
         }
+
 
       else if(this.book.unitnumber == "")  
         {
@@ -162,7 +167,7 @@ detalles: any
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
 
-    var url = 'https://app.washtt.com/v2_api_clientes_poblar_formNowFleet.php'
+    var url = 'https://app.washtt.com/v2_api_clientes_poblar_formNowOther.php'
     var data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
     this.cHttps(url, data).subscribe(
       async (res: any) => {
@@ -181,7 +186,7 @@ detalles: any
             break;         
         
           default:
-            this.vehiculos = res.data.vehiculos
+            this.detalles = res.data.detalles
             this.services = res.data.servicios
             this.horario = res.data.horario 
             
@@ -300,8 +305,8 @@ done1() {
    this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
-
-    var url = 'https://app.washtt.com/v2_api_clientes_checkout_formNowOther.php'
+this.loading.simpleLoader()
+    var url = 'https://washtt.com/v2_api_clientes_checkout_formNO.php'
     var data = { 
       idtoken: this.idtoken,
       autenticacion_tipo: this.autenticacion_tipo,
@@ -310,7 +315,7 @@ done1() {
     tipoS: this.book.tipoS,
     numberV: this.book.unitnumber,
    horaCita:  this.book.horaCita,            
-    diaCita: formatDate(this.book.diaCita,'mm-dd-yyyy','en-US'),
+    diaCita: formatDate(this.book.diaCita,'MM-dd-yyyy','en-US'),
     modelV : this.book.model,
     brandV : this.book.brand,
     colorV : this.book.color,
@@ -320,6 +325,7 @@ done1() {
     }
     this.cHttps(url, data).subscribe(
       async (res: any) => {
+        this.loading.dismissLoader()
         console.log(res)
         let mensaje
         let header
@@ -334,8 +340,9 @@ done1() {
             this.aviso(header, mensaje, code)              
             break;         
         
-          default:
+          case 'OK':
             this.router.navigate(['/tabs/tabtobooks/successtobook']);
+          break;  
             
         }
                       
@@ -343,6 +350,7 @@ done1() {
     )
   }
 else {
+  this.loading.dismissLoader()
 var code
   var header
   var mensaje

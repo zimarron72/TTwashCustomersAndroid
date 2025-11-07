@@ -4,7 +4,7 @@ import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
 import {  AlertController , ModalController } from '@ionic/angular';
 import { Router  } from '@angular/router';
-import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
