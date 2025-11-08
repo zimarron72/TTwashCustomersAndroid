@@ -5,6 +5,8 @@ import { StorageService } from '../../servicios/storage.service';
 import {  AlertController  } from '@ionic/angular';
 import { Router} from '@angular/router';
 import { formatDate } from '@angular/common';
+import { LoadingService } from '../../servicios/loading.services';
+
 @Component({
   selector: 'app-booknowfleets',
   templateUrl: './booknowfleets.component.html',
@@ -16,7 +18,7 @@ export class BooknowfleetsComponent  implements OnInit {
 book = {
     tipoV: "", 
     tipoS: ""  , 
-    numberV: '',
+    numberV: 0,
     diaCita: "",
     horaCita: ""
   }
@@ -35,6 +37,7 @@ ErrorMessage = ''
       private localstorage:StorageService, 
         private alertController: AlertController,
          private router: Router,
+         private loading: LoadingService,
       
   ) { 
      this.hoy = new Date().toISOString()
@@ -57,9 +60,11 @@ ErrorMessage = ''
         ValidationFlag = false;
     } 
 
-      else if(this.book.numberV == "")  
+   
+
+         else if(this.book.numberV < 3)  
         {
-            this.ErrorMessage = "How many vehicles will be cleaned?";
+            this.ErrorMessage = "The minimum number of vehicles must be 3";
            ValidationFlag = false;
         }
   
@@ -261,8 +266,8 @@ done1() {
    this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
-
-    var url = 'https://app.washtt.com/v2_api_clientes_checkout_formNowFleet.php'
+this.loading.simpleLoader()
+    var url = 'https://washtt.com/v2_api_clientes_checkout_formNF.php'
     var data = { 
       idtoken: this.idtoken,
       autenticacion_tipo: this.autenticacion_tipo,
@@ -271,11 +276,12 @@ done1() {
     tipoS: this.book.tipoS,
     cantidadV: this.book.numberV,
     horaCita:  this.book.horaCita,            
-    diaCita: formatDate(this.book.diaCita,'mm-dd-yyyy','en-US'),
+    diaCita: formatDate(this.book.diaCita,'MM-dd-yyyy','en-US'),
 
     }
     this.cHttps(url, data).subscribe(
       async (res: any) => {
+          this.loading.dismissLoader()
         console.log(res)
         let mensaje
         let header
@@ -290,8 +296,9 @@ done1() {
             this.aviso(header, mensaje, code)              
             break;         
         
-          default:
+          case 'OK':
             this.router.navigate(['/tabs/tabtobooks/successtobook']);
+            break;
             
         }
                       
@@ -299,6 +306,7 @@ done1() {
     )
   }
 else {
+    this.loading.dismissLoader()
 var code
   var header
   var mensaje
