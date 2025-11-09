@@ -35,7 +35,8 @@ import { PaysquarechargeComponent } from './paysquarecharge/paysquarecharge.comp
 import { TipopagosComponent} from './tipopagos/tipopagos.component';
 import { PaymentsComponent} from './payments/payments.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { TipocitasfleetsComponent } from './tipocitasfleets/tipocitasfleets.component';
+import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.component';
 
 
 
@@ -74,6 +75,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     PaysquarechargeComponent,
     TipopagosComponent,
      PaymentsComponent,
+     TipocitasfleetsComponent,
+     TipocitasothersComponent
 
   ],
   providers: [SquareService],

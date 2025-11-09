@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
 
 @Component({
-  selector: 'app-tipocitas',
-  templateUrl: './tipocitas.component.html',
-  styleUrls: ['./tipocitas.component.scss'],
-  standalone : false
+  selector: 'app-tipocitasothers',
+  templateUrl: './tipocitasothers.component.html',
+  styleUrls: ['./tipocitasothers.component.scss'],
+  standalone:false
 })
-export class TipocitasComponent  implements OnInit {
+export class TipocitasothersComponent  implements OnInit {
 
-  inhold: any
+ inhold: any
   confirmed: any
   cancelled: any
   completed: any
@@ -125,7 +125,7 @@ async aviso(header : string, mensaje : string, code : string) {
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
    
-    var url = 'https://washtt.com/v2_api_clientes_getappointment.php'
+    var url = 'https://washtt.com/v2_api_clientes_getCitaOther.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {

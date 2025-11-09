@@ -20,14 +20,19 @@ export class Tab1Page  {
     },
 
     {
-      title: 'Appointments',
+      title: 'Truck and Trailer Appoinments',
       url: '/tabs/tabtobooks/tipocitas',
-      icon: 'calendar'
+      icon: 'stop'
     },
-    {
-      title: 'Cart',
-      url: '/tabs/tabtobooks/cart',
-      icon: 'cart'
+     {
+      title: 'Fleet Appoinments',
+      url: '/tabs/tabtobooks/tipocitasfleets',
+      icon: 'grid'
+    },
+      {
+      title: "Other vehicles and service's appoinments",
+      url: '/tabs/tabtobooks/tipocitasothers',
+      icon: 'car-sport'
     },
     {
       title: 'Payments',

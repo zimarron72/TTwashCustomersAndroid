@@ -35,7 +35,9 @@ verfiltros : boolean = true
   token_notificacion!: string
   user: any
 
-  conjunto:any
+  conjunto:any //onevehiculo
+  fleet:any
+  other:any
   
   descending: boolean = false;
   order!: number;

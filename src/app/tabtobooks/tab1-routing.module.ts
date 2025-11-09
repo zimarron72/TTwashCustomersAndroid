@@ -22,6 +22,8 @@ import { SlidergaleryComponent } from './slidergalery/slidergalery.component';
 import { PaysquareComponent } from './paysquare/paysquare.component';
 import { TipopagosComponent} from './tipopagos/tipopagos.component';
 import { PaymentsComponent} from './payments/payments.component';
+import { TipocitasfleetsComponent } from './tipocitasfleets/tipocitasfleets.component';
+import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.component';
 
 
 
@@ -48,6 +50,8 @@ const routes: Routes = [
       { path: 'cupon', component: CuponComponent },
       { path: 'successtobook', component: SuccesstobookComponent },
       { path: 'tipocitas', component: TipocitasComponent },
+      { path: 'tipocitasfleets', component: TipocitasfleetsComponent },
+      { path: 'tipocitasothers', component: TipocitasothersComponent },
       { path: 'tipopagos', component: TipopagosComponent },
       { path: 'cancelarcita', component: AcancelarComponent },
       { path: 'archivarcita', component: AarchivarComponent},
