@@ -37,7 +37,7 @@ import { PaymentsComponent} from './payments/payments.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TipocitasfleetsComponent } from './tipocitasfleets/tipocitasfleets.component';
 import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.component';
-
+import { AllcitasComponent } from './allcitas/allcitas.component';
 
 
 @NgModule({
@@ -76,7 +76,9 @@ import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.comp
     TipopagosComponent,
      PaymentsComponent,
      TipocitasfleetsComponent,
-     TipocitasothersComponent
+     TipocitasothersComponent,
+     AllcitasComponent
+     
 
   ],
   providers: [SquareService],

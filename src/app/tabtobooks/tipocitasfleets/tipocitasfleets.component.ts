@@ -73,7 +73,8 @@ async aviso(header : string, mensaje : string, code : string) {
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
     this.loading.simpleLoader()
-    var url = 'https://washtt.com/v2_api_clientes_getCitasFleet.php'
+    var url = 'https://washtt.com/v2_api_clientes_getCitaTipoFleet.php'
+    
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {
@@ -125,7 +126,7 @@ async aviso(header : string, mensaje : string, code : string) {
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
    
-    var url = 'https://washtt.com/v2_api_clientes_getappointment.php'
+    var url = 'https://washtt.com/v2_api_clientes_getCitaTipoFleet.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {

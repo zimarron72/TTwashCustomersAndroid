@@ -165,7 +165,7 @@ bookNowFleets() {
 }
 
 bookCheck() {
-    this.router.navigate(['/tabs/tabtobooks/tipocitas']);  
+    this.router.navigate(['/tabs/tabtobooks/allcitas']);  
 }
 
 bookPrice() {

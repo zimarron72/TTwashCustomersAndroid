@@ -24,6 +24,7 @@ import { TipopagosComponent} from './tipopagos/tipopagos.component';
 import { PaymentsComponent} from './payments/payments.component';
 import { TipocitasfleetsComponent } from './tipocitasfleets/tipocitasfleets.component';
 import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.component';
+import { AllcitasComponent } from './allcitas/allcitas.component';
 
 
 
@@ -57,6 +58,7 @@ const routes: Routes = [
       { path: 'archivarcita', component: AarchivarComponent},
       { path: 'viewphoto/:order_item_id', component: SlidergaleryComponent },
       { path: 'Pay1', component: PaysquareComponent },
+      { path: 'allcitas', component: AllcitasComponent },
    
       
     
