@@ -38,7 +38,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TipocitasfleetsComponent } from './tipocitasfleets/tipocitasfleets.component';
 import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.component';
 import { AllcitasComponent } from './allcitas/allcitas.component';
-
+import { CitasfleetComponent } from './citasfleet/citasfleet.component';
+import { CitasotherComponent } from './citasother/citasother.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,8 @@ import { AllcitasComponent } from './allcitas/allcitas.component';
     Tab1Page,
     TipovehiculosComponent,
     CitasComponent,
+     CitasfleetComponent,
+      CitasotherComponent,
     PutprofileComponent,
     TiposerviciosComponent,
     TipolavadosComponent,

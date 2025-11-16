@@ -14,11 +14,10 @@ export class Tab1Page  {
 
   Pages = [
     {
-      title: 'To book',
+      title: 'Dashboard',
       url: '/pasos/wellcome',
-      icon: 'calendar-clear'
+      icon: 'speedometer'
     },
-
     {
       title: 'Truck and Trailer Appoinments',
       url: '/tabs/tabtobooks/tipocitas',

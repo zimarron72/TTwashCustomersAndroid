@@ -25,6 +25,8 @@ import { PaymentsComponent} from './payments/payments.component';
 import { TipocitasfleetsComponent } from './tipocitasfleets/tipocitasfleets.component';
 import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.component';
 import { AllcitasComponent } from './allcitas/allcitas.component';
+import { CitasfleetComponent } from './citasfleet/citasfleet.component';
+import { CitasotherComponent } from './citasother/citasother.component';
 
 
 
@@ -37,6 +39,8 @@ const routes: Routes = [
       
       { path: 'tipovehiculos/:modo', component: TipovehiculosComponent },
       { path: 'citas/:n', component: CitasComponent },
+       { path: 'citasfleet/:n', component: CitasfleetComponent },
+        { path: 'citasother/:n', component: CitasotherComponent },
       { path: 'payments/:n', component: PaymentsComponent },
       { path: 'putprofile', component: PutprofileComponent },
       { path: 'tiposervicios/:vehiculo/:lavado/:lavadoid', component: TiposerviciosComponent },

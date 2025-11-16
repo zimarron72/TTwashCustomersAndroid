@@ -1,4 +1,4 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../servicios/storage.service';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
@@ -14,12 +14,12 @@ import { PaysquarechargeComponent } from '../paysquarecharge/paysquarecharge.com
 import { SlidergaleryComponent } from '../slidergalery/slidergalery.component';
 
 @Component({
-  selector: 'app-citas',
-  templateUrl: './citas.component.html',
-  styleUrls: ['./citas.component.scss'],
-  standalone : false
+  selector: 'app-citasother',
+  templateUrl: './citasother.component.html',
+  styleUrls: ['./citasother.component.scss'],
+  standalone:false
 })
-export class CitasComponent  implements OnInit {
+export class CitasotherComponent  implements OnInit {
 
   n!: number
 
@@ -37,8 +37,6 @@ verfiltros : boolean = true
 
   conjunto:any //onevehiculo
   terms: any = ""
- 
-
 
   constructor(
     private localstorage: StorageService,
@@ -47,18 +45,18 @@ verfiltros : boolean = true
     private loading: LoadingService,
     private alertController: AlertController,
     private modalCtrl: ModalController,
-   
   ) { 
 
-    this.n = this.rutaActiva.snapshot.params['n'];
+ this.n = this.rutaActiva.snapshot.params['n'];
     this.rutaActiva.params.subscribe(
       (params: Params) => {
         this.n = params['n'];    
       }
     );
 
-
   }
+
+ 
 
 isObjectEmpty(obj: any): boolean {
   return Object.keys(obj).length === 0;
@@ -108,7 +106,7 @@ async aviso(header : string, mensaje : string, code : string) {
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
     this.loading.simpleLoader()
-    var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+    var url = 'https://washtt.com/v2_api_clientes_getCitasOther.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {
@@ -138,7 +136,7 @@ async aviso(header : string, mensaje : string, code : string) {
           
       default:
 
-      
+ 
 
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
@@ -164,7 +162,7 @@ this.verfiltros = false;
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
     
-    var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+    var url = 'https://washtt.com/v2_api_clientes_getCitasOther.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {
@@ -195,7 +193,7 @@ this.verfiltros = false;
           
       default:
 
-     
+      
 
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
@@ -400,7 +398,7 @@ case "tipopagos":
 break;
 
 case "successpay":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+  var url = 'https://washtt.com/v2_api_clientes_getCitasOther.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {            
@@ -445,7 +443,7 @@ this.verfiltros = false;
 break; 
 
 case "successpaycond":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+  var url = 'https://washtt.com/v2_api_clientes_getCitasOther.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {            
@@ -474,7 +472,8 @@ case "successpaycond":
           
       default:
 
-    
+   
+
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
 
@@ -530,7 +529,7 @@ case "tipopagos":
 break;
 
 case "successpay":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+  var url = 'https://washtt.com/v2_api_clientes_getCitasOther.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {            
@@ -560,6 +559,7 @@ case "successpay":
       default:
 
    
+
       var sinfiltrardatos = Object.values(res.data)
       this.conjunto = sinfiltrardatos
  if(this.isObjectEmpty(this.conjunto)) {
@@ -574,7 +574,7 @@ this.verfiltros = false;
 break; 
 
 case "successpaycond":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
+  var url = 'https://washtt.com/v2_api_clientes_getCitasOther.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {            
@@ -656,11 +656,5 @@ break;
   veryard(){
     this.terms = "Yard"
   }
-
- 
-
-
-
-
 
 }

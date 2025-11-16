@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
         <ion-menu-button autoHide="false"></ion-menu-button>
       </ion-buttons>
-      <ion-title>TRUCK AND TRAILER<br>APPOINMENTS</ion-title>
+      <ion-title>FLEET APPOINMENTS</ion-title>
       
     </ion-toolbar>
     <div *ngIf="n == 1" class="waiting" style="font-weight: bolder;
@@ -95,12 +95,14 @@
  <ion-accordion-group *ngFor="let element of conjunto | sortcitas : terms  ; let i = index " expand="inset" >
     <ion-accordion value=i>     
       <ion-item slot="header" color="light" >
-        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success"></ion-icon>
-        <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary"></ion-icon>
+    <ion-icon *ngIf="element.location == ''" name="warning" color="warning"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Mobile'" name="rocket" color="success"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Onsite'" name="golf" color="tertiary"></ion-icon>
         <ion-label>
-          <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
-          <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
-          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}       
+          <strong *ngIf="element.location == ''" class="advertencia">Evaluating your order</strong>
+          <strong *ngIf="element.location == 'Mobile'" class="mobile">{{element.location}}</strong>
+          <strong *ngIf="element.location == 'Onsite'" class="yard">{{element.location}}</strong><br>
+          {{element.diaCita}} | {{element.horaCita}}<br>{{element.tipoS}}       
         </ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
@@ -110,7 +112,7 @@
             <ion-col class="neon">Order nº</ion-col>          
           </ion-row>
           <ion-row>
-            <ion-col class="argon">{{element.Order}}</ion-col>          
+            <ion-col class="argon">{{element.nReporte}}</ion-col>          
           </ion-row>
 
           <ion-row>
@@ -120,9 +122,9 @@
           </ion-row>
 
           <ion-row>
-            <ion-col class="argon">{{element.Price_item_string}}</ion-col>
-            <ion-col class="argon">{{element.Descuento_item_string}}</ion-col>
-            <ion-col class="argon">{{element.Total_item_string}}</ion-col>
+            <ion-col class="argon">{{element.priceString}}</ion-col>
+            <ion-col class="argon">{{element.descuentoString}}</ion-col>
+            <ion-col class="argon">{{element.totalString}}</ion-col>
             
           </ion-row>
 
@@ -133,30 +135,30 @@
      
   
           <div *ngIf="n == 7">
-            <hr class="linea" *ngIf="element.vercharge_item">
-  <div class="neon" *ngIf="element.vercharge_item">Servicio Charge</div>
-            <p *ngIf="element.vercharge_item" class="neon">Monto:</p>
-            <p *ngIf="element.vercharge_item" class="argon">{{element.rp_monto_item}}</p>
-              <p *ngIf="element.vercharge_item" class="neon">Concepto:</p>
-              <p *ngIf="element.vercharge_item" class="argon">{{element.rp_concepto_item}}</p>
+            <hr class="linea" *ngIf="element.vercharge">
+  <div class="neon" *ngIf="element.vercharge">Servicio Charge</div>
+            <p *ngIf="element.vercharge" class="neon">Monto:</p>
+            <p *ngIf="element.vercharge" class="argon">{{element.rp_monto}}</p>
+              <p *ngIf="element.vercharge" class="neon">Concepto:</p>
+              <p *ngIf="element.vercharge" class="argon">{{element.rp_concepto}}</p>
           </div>
           <div *ngIf="n == 7">
             <hr>
-  <div *ngIf="element.vercharge_item">        
-                <ion-button  shape="round" color="warning"   (click)="Galery(element.order_item_id)" > TO SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
+  <div *ngIf="element.vercharge">        
+                <ion-button  shape="round" color="warning"   (click)="Galery(element.id)" > TO SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
                  </ion-button>               
-           <ion-button  shape="round" color="secondary" (click)="Pay2(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total,element.rp_monto,element.rp_concepto_item)" >TO PAY NOW  
+           <ion-button  shape="round" color="secondary" (click)="Pay2(element.tipoS, element.precio, element.id, element.wash_id, element.discount, element.total,element.rp_monto,element.rp_concepto)" >TO PAY NOW  
            <ion-icon name="card" slot="start" ></ion-icon>             
             </ion-button>             
           </div>
-                 <ion-button *ngIf="element.verenlace3_item" shape="round" color="warning"  (click)="Galery(element.order_item_id)">TO SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
+                 <ion-button *ngIf="element.verenlace3" shape="round" color="warning"  (click)="Galery(element.id)">TO SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
           </ion-button>           
-        <ion-button *ngIf="element.verenlace3_item" shape="round" color="secondary"  (click)="Pay1(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total)">TO PAY NOW    <ion-icon name="card"></ion-icon>
+        <ion-button *ngIf="element.verenlace3" shape="round" color="secondary"  (click)="Pay1(element.tipoS, element.precio, element.id, element.id_wash, element.descuento, element.total)">TO PAY NOW    <ion-icon name="card"></ion-icon>
                          </ion-button>            
           </div>
 
           <div *ngIf=" 2 >= n" > 
-            <ion-button shape="round" color="secondary"  (click)="Cancelar(element.order_item_id)">
+            <ion-button shape="round" color="secondary"  (click)="Cancelar(element.id)">
               <ion-icon name="close-circle" slot="start"></ion-icon>
               Cancel
             </ion-button>
@@ -164,7 +166,7 @@
 
         <div *ngIf="n == 9">
             <div>
-            <ion-button shape="round" color="secondary"  (click)="Archive(element.order_item_id)">           
+            <ion-button shape="round" color="secondary"  (click)="Archive(element.id)">           
               <ion-icon name="archive-sharp" slot="start" color="medium" ></ion-icon>
               Archive
             </ion-button>
@@ -173,7 +175,7 @@
 
           <div *ngIf="n == 8">
             <div>
-            <ion-button shape="round" color="secondary"  (click)="Archive(element.order_item_id)">             
+            <ion-button shape="round" color="secondary"  (click)="Archive(element.id)">             
               <ion-icon name="archive-sharp" slot="start" color="medium" ></ion-icon>
               Archive
             </ion-button>
@@ -184,8 +186,8 @@
 
         <div *ngIf="element.archived === '1'">
           
-          <div class="neon" *ngIf="element.Order_Item_Status == 8"><ion-text color="warning"><ion-icon name="diamond-sharp"></ion-icon></ion-text> Service completed</div> 
-          <div class="neon" *ngIf="element.Order_Item_Status == 9"><ion-text color="warning"><ion-icon name="star-half-sharp"></ion-icon></ion-text> Service canceled</div>     
+          <div class="neon" *ngIf="element.status == 8"><ion-text color="warning"><ion-icon name="diamond-sharp"></ion-icon></ion-text> Service completed</div> 
+          <div class="neon" *ngIf="element.status == 9"><ion-text color="warning"><ion-icon name="star-half-sharp"></ion-icon></ion-text> Service canceled</div>     
         </div>
      
           
@@ -195,7 +197,3 @@
     </ion-accordion>   
   </ion-accordion-group>
 </ion-content>
-
-
-
-

@@ -4,7 +4,7 @@ import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
 import {  AlertController } from '@ionic/angular';
 import { Router   } from '@angular/router';
-import {AutenticacionService} from '../../servicios/autenticacion'
+//import {AutenticacionService} from '../../servicios/autenticacion'
 @Component({
   selector: 'app-wellcome',
   templateUrl: './wellcome.component.html',
@@ -25,7 +25,7 @@ export class WellcomeComponent  implements OnInit {
     private alertController: AlertController,
      private router: Router,
 
-         private AutenticacionService : AutenticacionService,
+      //   private AutenticacionService : AutenticacionService,
     
   ) { }
 
@@ -148,9 +148,9 @@ export class WellcomeComponent  implements OnInit {
             
             }
 
-  salir() {
+ /* salir() {
  this.AutenticacionService.logout_regular()
-}
+}*/
 
 bookNowTT() {
   this.router.navigate(['pasos/paso1']);   
@@ -172,8 +172,12 @@ bookPrice() {
  this.router.navigate(['/tabs/tabtobooks/tipovehiculos/verprecios']); 
 }
 
-findMore() {
+/*findMore() {
 this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']);
+}*/
+
+menu() {
+ this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']); 
 }
 
 }
