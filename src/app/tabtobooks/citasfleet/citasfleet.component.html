@@ -99,10 +99,11 @@
         <ion-icon *ngIf="element.location == 'Mobile'" name="rocket" color="success"></ion-icon>
         <ion-icon *ngIf="element.location == 'Onsite'" name="golf" color="tertiary"></ion-icon>
         <ion-label>
-          <strong *ngIf="element.location == ''" class="advertencia">Evaluating your order</strong>
+          <strong *ngIf="element.location == ''" class="advertencia">Confirmation in process</strong>
           <strong *ngIf="element.location == 'Mobile'" class="mobile">{{element.location}}</strong>
           <strong *ngIf="element.location == 'Onsite'" class="yard">{{element.location}}</strong><br>
-          {{element.diaCita}} | {{element.horaCita}}<br>{{element.tipoS}}       
+          {{element.diaCita}} | {{element.horaCita}}<br>Service: {{element.tipoS}}<br>Vehicules: {{element.tipoV}}<br>
+          Quantity: {{element.cantidadV}}     
         </ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
@@ -121,11 +122,14 @@
             <ion-col class="neon">Total to pay</ion-col>
           </ion-row>
 
-          <ion-row>
+            <ion-row *ngIf="element.location == ''">
+               <ion-col class="argon">Awaiting confirmation.</ion-col>        
+          </ion-row>
+
+          <ion-row *ngIf="element.location != ''">
             <ion-col class="argon">{{element.priceString}}</ion-col>
             <ion-col class="argon">{{element.descuentoString}}</ion-col>
-            <ion-col class="argon">{{element.totalString}}</ion-col>
-            
+            <ion-col class="argon">{{element.totalString}}</ion-col>            
           </ion-row>
 
          

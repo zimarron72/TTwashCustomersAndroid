@@ -236,7 +236,7 @@ goBack(): void {
 
      
       this.loading.simpleLoader()
-     var url = 'https://washtt.com/v1_api_clientes_cancelar_item_order.php'
+     var url = 'https://washtt.com/v2_api_clientes_cancelCitaOther.php'
      var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, itemid:id }
      this.cHttps(url, data1).subscribe(
       async (res: any) => {
@@ -285,12 +285,12 @@ goBack(): void {
           break; 
 
           case '200_OK':
-
+ this.router.navigate(['/tabs/tabtobooks/tipocitasothers'])  
           code = ''
           header = 'Warning' 
           mensaje = 'Appointment successfully cancelled'             
           this.aviso(header,mensaje,code) 
-          this.router.navigate(['/tabs/tabtobooks/tipocitas']) 
+        
                     
               
         

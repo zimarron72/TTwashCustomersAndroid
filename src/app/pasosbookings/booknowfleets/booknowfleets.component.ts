@@ -18,7 +18,7 @@ export class BooknowfleetsComponent  implements OnInit {
 book = {
     tipoV: "", 
     tipoS: ""  , 
-    numberV: 0,
+    numberV: 0 ,
     diaCita: "",
     horaCita: ""
   }
@@ -317,6 +317,9 @@ var code
 }
 
 }
+
+
+
 
 
 }

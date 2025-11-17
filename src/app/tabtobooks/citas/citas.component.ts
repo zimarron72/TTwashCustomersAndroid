@@ -222,7 +222,7 @@ this.verfiltros = false;
 }
 
 goBack(): void {
-   this.router.navigate(['/tabs/tabtobooks/tipocitasothers'])  
+   this.router.navigate(['/tabs/tabtobooks/tipocitas'])  
 }
 
   async Cancelar(id: number): Promise<void> {
@@ -287,12 +287,11 @@ goBack(): void {
           break; 
 
           case '200_OK':
-
+          this.router.navigate(['/tabs/tabtobooks/tipocitas']) 
           code = ''
           header = 'Warning' 
           mensaje = 'Appointment successfully cancelled'             
-          this.aviso(header,mensaje,code) 
-          this.router.navigate(['/tabs/tabtobooks/tipocitas']) 
+          this.aviso(header,mensaje,code)        
                     
               
         
@@ -316,7 +315,7 @@ goBack(): void {
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
-    if (role === 'continue') {
+    if (role === 'confirm') {
 
    this.loading.simpleLoader()
      var url = 'https://washtt.com/v1_api_clientes_archivar_item_order.php'
@@ -655,6 +654,14 @@ break;
   }
   veryard(){
     this.terms = "Yard"
+  }
+
+  verlistos() {
+     this.terms = 8
+  }
+
+  vercancel() {
+    this.terms = 9
   }
 
  
