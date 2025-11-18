@@ -38,6 +38,9 @@ verfiltros : boolean = true
   conjunto:any //onevehiculo
   terms: any = ""
  
+  all:any
+  paid:any
+  cancel:any
 
 
   constructor(
@@ -138,16 +141,23 @@ async aviso(header : string, mensaje : string, code : string) {
           
       default:
 
-      
-
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
+      if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
     
- if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
 
-}
+
          
         }
                       
@@ -194,16 +204,22 @@ this.verfiltros = false;
          
           
       default:
-
-     
-
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
-
+        
+ if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
       if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -428,14 +444,21 @@ case "successpay":
           
       default:
 
-     
-
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
- if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -473,14 +496,21 @@ case "successpaycond":
           
       default:
 
+     if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
     
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
-
       if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -559,12 +589,21 @@ case "successpay":
       default:
 
    
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
- if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -604,13 +643,21 @@ case "successpaycond":
 
      
 
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
-
-   if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -657,11 +704,11 @@ break;
   }
 
   verlistos() {
-     this.terms = 8
+     this.conjunto = this.paid
   }
 
   vercancel() {
-    this.terms = 9
+   this.conjunto = this.cancel
   }
 
  

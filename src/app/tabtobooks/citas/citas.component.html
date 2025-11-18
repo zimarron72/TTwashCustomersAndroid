@@ -89,13 +89,13 @@
         <ion-row *ngIf="n == 11">
         <ion-col class="radio">
           <ion-button size="small" (click)="verlistos()" shape="round" color="light">
-            <ion-icon slot="start" name="rocket" color="success"></ion-icon >           
+            <ion-icon slot="start" name="diamond" color="warning"></ion-icon >           
             Completed
           </ion-button>
         </ion-col>
         <ion-col class="radio">
           <ion-button size="small" (click)="vercancel()" shape="round" color="light">
-            <ion-icon slot="start" name="golf" color="tertiary"></ion-icon>           
+            <ion-icon slot="start" name="thunderstorm" color="success"></ion-icon>           
             Canceled
           </ion-button>
         </ion-col>
@@ -106,7 +106,7 @@
     
     
 
-  
+ <div *ngIf="n != 11">
  <ion-accordion-group *ngFor="let element of conjunto | sortcitas : terms  ; let i = index " expand="inset" >
     <ion-accordion value=i>     
       <ion-item slot="header" color="light" >
@@ -115,9 +115,8 @@
         <ion-label>
           <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
           <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
-          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}<br> 
-               <strong *ngIf="element.Order_Item_Status == 8" class="completed">completed</strong>
-                <strong *ngIf="element.Order_Item_Status == 9" class="completed">canceled</strong>
+          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}
+     
         </ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
@@ -199,10 +198,66 @@
 
        
 
+
+     
+          
+
+
+      </div>
+    </ion-accordion>   
+  </ion-accordion-group>
+  </div>
+  
+   <div *ngIf="n == 11">
+ <ion-accordion-group *ngFor="let element of conjunto ; let i = index " expand="inset" >
+    <ion-accordion value=i>     
+      <ion-item slot="header" color="light" >
+        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success"></ion-icon>
+        <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary"></ion-icon>
+        <ion-label>
+          <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
+          <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
+          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}<br> 
+            
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+
+          <ion-row>
+            <ion-col class="neon">Order nº</ion-col>          
+          </ion-row>
+          <ion-row>
+            <ion-col class="argon">{{element.Order}}</ion-col>          
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="neon" >Price</ion-col>
+            <ion-col class="neon">Discount</ion-col>
+            <ion-col class="neon">Total to pay</ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="argon">{{element.Price_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Descuento_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Total_item_string}}</ion-col>
+            
+          </ion-row>
+
+         
+
+
+        </ion-grid>
+     
+  
+          
+
+       
+
         <div *ngIf="element.archived === '1'">
           
-          <div class="neon" *ngIf="element.Order_Item_Status == 8"><ion-text color="warning"><ion-icon name="diamond-sharp"></ion-icon></ion-text> Service completed</div> 
-          <div class="neon" *ngIf="element.Order_Item_Status == 9"><ion-text color="warning"><ion-icon name="star-half-sharp"></ion-icon></ion-text> Service canceled</div>     
+          <div class="neon" *ngIf="element.Order_Item_Status == 8"><ion-text color="warning"><ion-icon name="diamond"></ion-icon></ion-text> Service completed</div> 
+          <div class="neon" *ngIf="element.Order_Item_Status == 9"><ion-text color="success"><ion-icon name="thunderstorm"></ion-icon></ion-text> Service canceled</div>     
         </div>
      
           
@@ -211,6 +266,7 @@
       </div>
     </ion-accordion>   
   </ion-accordion-group>
+  </div>
 
 
 

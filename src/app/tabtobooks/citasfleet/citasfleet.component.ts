@@ -37,6 +37,10 @@ verfiltros : boolean = true
   conjunto:any //onevehiculo
   terms: any = ""
 
+   all:any
+  paid:any
+  cancel:any
+
   constructor(
     private localstorage: StorageService,
     private router: Router,
@@ -135,16 +139,22 @@ async aviso(header : string, mensaje : string, code : string) {
           
       default:
 
- 
-
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
+if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
     
- if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
 
-}
          
         }
                       
@@ -192,15 +202,22 @@ this.verfiltros = false;
           
       default:
 
-      
-
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
-
+      if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
       if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
+
          
         }
                       
@@ -314,10 +331,10 @@ this.router.navigate(['/tabs/tabtobooks/tipocitasfleets'])
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
-    if (role === 'continue') {
+    if (role === 'confirm') {
 
    this.loading.simpleLoader()
-     var url = 'https://washtt.com/v1_api_clientes_archivar_item_order.php'
+     var url = 'https://washtt.com/v2_api_clientes_archivarCitaFleet.php'
      var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, itemid:id }
      this.cHttps(url, data1).subscribe(
       async (res: any) => {
@@ -429,12 +446,21 @@ case "successpay":
 
      
 
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
- if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -560,12 +586,21 @@ case "successpay":
 
    
 
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
- if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+ if(this.n != 11) {
+      this.conjunto = Object.values(res.data)       
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -657,7 +692,13 @@ break;
     this.terms = "Yard"
   }
 
+  verlistos() {
+     this.conjunto = this.paid
+  }
 
+  vercancel() {
+   this.conjunto = this.cancel
+  }
 
 
 

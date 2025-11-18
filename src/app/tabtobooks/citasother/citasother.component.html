@@ -70,8 +70,8 @@
     </ion-refresher>
 
    <div *ngIf ='vermensaje' style="text-align: center; color:#f2f2f2"> <img src="./assets/imgs/icono_exclamacion.png" /><h4>Sorry, there is no information for this type of Appointment.</h4></div>
-    <ion-grid color="primary" *ngIf ='verfiltros'>    
-      <ion-row>
+  <ion-grid color="primary" *ngIf ='verfiltros'>    
+      <ion-row *ngIf="n != 11">
         <ion-col class="radio">
           <ion-button size="small" (click)="vermobil()" shape="round" color="light">
             <ion-icon slot="start" name="rocket" color="success"></ion-icon >           
@@ -85,13 +85,28 @@
           </ion-button>
         </ion-col>
       </ion-row>
+
+        <ion-row *ngIf="n == 11">
+        <ion-col class="radio">
+          <ion-button size="small" (click)="verlistos()" shape="round" color="light">
+            <ion-icon slot="start" name="diamond" color="warning"></ion-icon >           
+            Completed
+          </ion-button>
+        </ion-col>
+        <ion-col class="radio">
+          <ion-button size="small" (click)="vercancel()" shape="round" color="light">
+            <ion-icon slot="start" name="thunderstorm" color="success"></ion-icon>           
+            Canceled
+          </ion-button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
 
 
     
     
 
-  
+ <div *ngIf="n != 11">
  <ion-accordion-group *ngFor="let element of conjunto | sortcitas : terms  ; let i = index " expand="inset" >
     <ion-accordion value=i>     
       <ion-item slot="header" color="light" >
@@ -202,4 +217,69 @@
       </div>
     </ion-accordion>   
   </ion-accordion-group>
+  </div> 
+   <div *ngIf="n == 11">
+ <ion-accordion-group *ngFor="let element of conjunto   ; let i = index " expand="inset" >
+    <ion-accordion value=i>     
+      <ion-item slot="header" color="light" >
+        <ion-icon *ngIf="element.location == ''" name="warning" color="warning"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Mobile'" name="rocket" color="success"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Onsite'" name="golf" color="tertiary"></ion-icon>
+        <ion-label>
+             <strong *ngIf="element.location == ''" class="advertencia">confirmation cancelled</strong>
+          <strong *ngIf="element.location == 'Mobile'" class="mobile">{{element.location}}</strong>
+          <strong *ngIf="element.location == 'Onsite'" class="yard">{{element.location}}</strong><br>
+          {{element.diaCita}} | {{element.horaCita}}<br>Service: {{element.tipoS}}<br>Vehicules: {{element.tipoV}}<br>
+              
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+
+          <ion-row>
+            <ion-col class="neon">Order nº</ion-col>          
+          </ion-row>
+          <ion-row>
+            <ion-col class="argon">{{element.nReporte}}</ion-col>          
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="neon" >Price</ion-col>
+            <ion-col class="neon">Discount</ion-col>
+            <ion-col class="neon">Total to pay</ion-col>
+          </ion-row>
+
+
+        
+
+          <ion-row *ngIf="element.location != ''">
+            <ion-col class="argon">{{element.priceString}}</ion-col>
+            <ion-col class="argon">{{element.descuentoString}}</ion-col>
+            <ion-col class="argon">{{element.totalString}}</ion-col>
+            
+          </ion-row>
+
+         
+
+
+        </ion-grid>
+     
+  
+    
+
+       
+
+        <div *ngIf="element.archived === '1'">
+          
+           <div class="neon" *ngIf="element.status == 8"><ion-text color="warning"><ion-icon name="diamond"></ion-icon></ion-text> Service completed</div> 
+          <div class="neon" *ngIf="element.status == 9"><ion-text color="success"><ion-icon name="thunderstorm"></ion-icon></ion-text> Service canceled</div>   
+        </div>
+     
+          
+
+
+      </div>
+    </ion-accordion>   
+  </ion-accordion-group>
+  </div> 
 </ion-content>
