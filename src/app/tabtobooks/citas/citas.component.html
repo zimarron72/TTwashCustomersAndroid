@@ -113,6 +113,11 @@
         <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success"></ion-icon>
         <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary"></ion-icon>
         <ion-label>
+          <strong *ngIf="element.Order_Item_Status == 1" class="advertencia">Confirmation in process<br></strong>
+          <strong *ngIf="element.Order_Item_Status == 2" class="advertencia">In progress<br></strong>
+          <strong *ngIf="element.Order_Item_Status == 7" class="advertencia">Executed | Unpaid<br></strong>
+           <strong *ngIf="element.Order_Item_Status == 8" class="advertencia">Executed | Paid<br></strong>
+            <strong *ngIf="element.Order_Item_Status == 9" class="advertencia">Incomplete | Cancelled <br></strong>
           <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
           <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
           {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}
@@ -167,7 +172,7 @@
           </div>
                  <ion-button *ngIf="element.verenlace3_item" shape="round" color="warning"  (click)="Galery(element.order_item_id)">TO SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
           </ion-button>           
-        <ion-button *ngIf="element.verenlace3_item" shape="round" color="secondary"  (click)="Pay1(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total)">TO PAY NOW    <ion-icon name="card"></ion-icon>
+        <ion-button *ngIf="element.verenlace3_item" shape="round" color="secondary"  (click)="Pay1(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total)">TO PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
                          </ion-button>            
           </div>
 
