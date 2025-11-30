@@ -3,7 +3,7 @@
     <!--<ion-buttons slot="start">
       <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
     </ion-buttons>-->
-    <ion-title style = "color:#f2f2f2">Payment method</ion-title>
+    <ion-title style = "color:#f2f2f2">METHOD OF PAYMENT</ion-title>
     <!--<ion-buttons slot="end">
       <ion-button (click)="continue()" [strong]="true">Continue</ion-button>
     </ion-buttons>-->
@@ -12,58 +12,64 @@
 <ion-content class="ion-padding">
   <div style="text-align:center">
     <img src="https://www.washtt.com/images/square-logo.png" alt="logo square">
-    <div style="color:#f2f2f2"> <small>Powered by Square</small> </div> 
+    <div style="color:#f2f2f2; font-weight: bold;"> <small>Powered by Square</small> </div> 
    </div>
   <form id="payment-form">
+    <div id="card-container"></div>
     <div id="billing">
   
       <div class="label">Service</div> 
-      <input type="text" id="concept" name="concept" class="form-control" value ='{{concepto}}' readonly />
+      <input type="text" id="concept" name="concept" class="form-control custom1" value ='{{concepto}}' readonly />
   
       
   
       <div class="label" >Price</div> 
-      <input type="text" id="sub-total" name="sub-total" class="form-control" value ='{{subtotal_string}}' readonly /> 
+      <input type="text" id="sub-total" name="sub-total" class="form-control custom2" value ='{{subtotal_string}}' readonly /> 
    
       
   
       <div class="label">Discount</div> 
-      <input type="text" id="descuento" name="descuento" class="form-control" value ='{{descuento_string}}' readonly /> 
+      <input type="text" id="descuento" name="descuento" class="form-control custom2" value ='{{descuento_string}}' readonly /> 
   
       
   
       <div class="label">Total</div> 
-      <input type="text" id="total" name="total" class="form-control" value ='{{total_string}}' readonly /> 
+      <input type="text" id="total" name="total" class="form-control custom2" value ='{{total_string}}' readonly /> 
   
       
       
-      <div style="text-align: center; color:#f2f2f2"> Would you like to add a tip?</div>
+      <div style="text-align: center; color:#f2f2f2; font-weight: bold; font-size: larger;"> Tip is not expected, but appreciated</div>
       <div class="tip">Tip</div> 
-      <input type="tel" id="tip" name="tip" class="form-control" value="" placeholder="tip?"><br>  
- </div><br>
-  
-    <div id="card-container"></div>
-
-<ion-row>
-    <ion-col>
-      <ion-button   color="primary" expand="block" (click) = "eventHandler()" >To pay</ion-button>
-    </ion-col>
-  </ion-row>
-   
-
-  
+      <input type="tel" id="tip" name="tip" class="form-control custom3" value="" ><br>  
+ </div>  
 </form>
 <div id="payment-status-container"></div>
 
-<ion-row>
-  <ion-col>
-    <ion-button   color="primary" expand="block" (click) = "cancel()" >Cancel</ion-button>
-  </ion-col>
-</ion-row>
+
 
 
 </ion-content>
-
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="primary">
+   <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button  color="secondary" shape="round" (click) = "cancel()">
+  CANCEL
+  <ion-icon color="light" slot="start" name="arrow-back"></ion-icon>
+</ion-button>
+</ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+<ion-button  color="secondary" shape="round" (click) = "eventHandler()">
+  PAY
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+    </ion-toolbar>
+</ion-footer>
 
 
 

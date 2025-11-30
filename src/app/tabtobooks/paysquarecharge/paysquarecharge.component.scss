@@ -6,10 +6,41 @@
     text-align: center;
 }
 
-.form-control {
+.custom2 {
     width: 100%;
 text-align: center;
 background-color: #f2f2f2 !important ;
+font-size:larger; 
+    --padding-bottom: 5px;
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-top: 5px;
+    border-radius: 5px;
+}
+
+.custom3 {
+    width: 100%;
+text-align: center;
+background-color: #f2f2f2 !important ;
+font-size:larger; 
+    --padding-bottom: 5px;
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-top: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.custom1 {
+    width: 100%;
+text-align: center;
+background-color: #f2f2f2 !important ;
+
+    --padding-bottom: 5px;
+    --padding-end: 5px;
+    --padding-start: 5px;
+    --padding-top: 5px;
+    border-radius: 5px;
 }
 
 #payment-status-container {
@@ -18,12 +49,19 @@ background-color: #f2f2f2 !important ;
 }
 
 .label {
-    background-color: #2E4F9C ;
-    color: #f2f2f2
+     background-color: #2E4F9C ;
+    color: #f2f2f2;
+    font-size: larger;
+    font-weight:bold;
+ text-align: center;
 }
 
 .tip {
-    background-color: #30be04 ;
+  background-color: #30be04 ;
     color: #142f5f;
     text-align: center;
+     font-size: larger;
+    font-weight:bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }

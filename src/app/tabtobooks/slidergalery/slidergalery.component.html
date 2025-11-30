@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar style ="color:#f2f2f2;" color="primary">
     <ion-buttons slot="start">
-      <ion-button color="warning" (click)="cancel()"> <ion-icon slot="start" name="chevron-back-outline"></ion-icon>  
-      Back
+      <ion-button color="light" (click)="cancel()"> <ion-icon slot="start" name="chevron-back-outline"></ion-icon>  
+   
       </ion-button>
     </ion-buttons>
     <ion-title><ion-icon name="sparkles"></ion-icon>  Images of Job</ion-title>   
@@ -11,7 +11,7 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar  style ="color:#f2f2f2;" color="primary"> 
-        <ion-title size="small">The images presented correspond to your vehicle after cleaning.</ion-title>  
+        <ion-title >Images of the vehicle<br> after cleaning</ion-title>  
     
   </ion-toolbar>
 
@@ -35,7 +35,7 @@
 <swiper-slide *ngFor="let imagen of imagenes">																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																			 
   <ion-card >
     <ion-card-header >
-      <ion-card-title>{{imagen.titulo}}</ion-card-title>
+      <ion-card-title style="color:#5a5858">{{imagen.titulo}}</ion-card-title>
       <ion-card-subtitle>{{imagen.frase}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>

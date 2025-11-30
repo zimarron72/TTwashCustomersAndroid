@@ -390,7 +390,7 @@ goBack(): void {
       component: PaysquareComponent,
        componentProps: { 
         
-        concepto : service,
+        concepto : 'TTS | '+service,
         subtotal : subtotal,
         descuento : descuento,
         total : total,
@@ -532,7 +532,7 @@ break;
       component: PaysquarechargeComponent,
        componentProps: { 
         
-        concepto : service,
+        concepto : 'TTS | '+service,
         subtotal : subtotal,
         descuento : descuento,
         total : total,
@@ -679,6 +679,7 @@ break;
       component: SlidergaleryComponent,
       componentProps: { 
         item: id,
+        modoService:'TTS'
         
       }
     });

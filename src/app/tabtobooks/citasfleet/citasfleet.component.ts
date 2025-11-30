@@ -35,11 +35,16 @@ verfiltros : boolean = true
   user: any
 
   conjunto:any //onevehiculo
-  terms: any = ""
+  
 
    all:any
   paid:any
   cancel:any
+  mobiles:any
+  onsites:any
+filtros:boolean = true
+
+
 
   constructor(
     private localstorage: StorageService,
@@ -104,7 +109,7 @@ async aviso(header : string, mensaje : string, code : string) {
 
 
   async ionViewWillEnter() {
-    this.terms = ""
+    this.filtros = false
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
@@ -140,7 +145,19 @@ async aviso(header : string, mensaje : string, code : string) {
       default:
 
 if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -155,6 +172,8 @@ if(this.n != 11) {
       this.verfiltros = false;
       }
 
+
+
          
         }
                       
@@ -164,7 +183,7 @@ if(this.n != 11) {
 
 
   async doRefresh(event: { target: { complete: () => void; }; }) {
-   this.terms = ""
+  
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
   if(this.user){   
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
@@ -202,8 +221,20 @@ if(this.n != 11) {
           
       default:
 
-      if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+    if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -385,12 +416,12 @@ this.router.navigate(['/tabs/tabtobooks/tipocitasfleets'])
     
   }
 
-  async Pay1(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {
+  async Pay1(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquareComponent,
        componentProps: { 
         
-        concepto : service,
+        concepto : 'FS | '+service +' '+vehiculo,
         subtotal : subtotal,
         descuento : descuento,
         total : total,
@@ -446,8 +477,20 @@ case "successpay":
 
      
 
-      if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+    if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -499,14 +542,33 @@ case "successpaycond":
       default:
 
    
+if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
 
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
-
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
       if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
          
         }
                       
@@ -523,12 +585,12 @@ break;
   
   }
 
-  async Pay2(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any): Promise<void> {
+  async Pay2(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquarechargeComponent,
        componentProps: { 
         
-        concepto : service,
+        concepto : 'FS | '+service +' '+vehiculo,
         subtotal : subtotal,
         descuento : descuento,
         total : total,
@@ -585,9 +647,20 @@ case "successpay":
       default:
 
    
+if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
 
- if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -638,15 +711,35 @@ case "successpaycond":
           
       default:
 
+     if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
+      }
+      else if(this.n == 11) {
+      this.all =   Object.values(res.data.all)
+      this.paid =   Object.values(res.data.paid)
+      this.cancel =   Object.values(res.data.cancel)
+      this.conjunto = this.all
+      console.log(res.data)
+      }     
+    
+      if(this.isObjectEmpty(this.conjunto)) {
+      this.vermensaje = true;
+      this.verfiltros = false;
+      }
+
      
-
-      var sinfiltrardatos = Object.values(res.data)
-      this.conjunto = sinfiltrardatos
-
-   if(this.isObjectEmpty(this.conjunto)) {
-this.vermensaje = true;
-this.verfiltros = false;
-}
          
         }
                       
@@ -668,7 +761,7 @@ break;
       component: SlidergaleryComponent,
       componentProps: { 
         item: id,
-        
+        modoService:'FS'
       }
     });
      modal.present();
@@ -686,10 +779,10 @@ break;
 
 
   vermobil(){
-    this.terms = "Mobil"
+    this.conjunto = this.mobiles
   }
   veryard(){
-    this.terms = "Yard"
+    this.conjunto = this.onsites
   }
 
   verlistos() {

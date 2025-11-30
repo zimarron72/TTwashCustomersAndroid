@@ -26,7 +26,8 @@ export class SlidergaleryComponent  implements OnInit {
   token_notificacion!: string
   user: any
   imagenes: any
-
+  fotos: string[] = [];
+modoService:any
   
 
 
@@ -95,7 +96,7 @@ async aviso(header : string, mensaje : string, code : string) {
  
     if(this.user) {
       var url = 'https://washtt.com/v1_api_clientes_getfotosjob.php'
-      var data1 = { idtoken : this.idtoken , autenticacion_tipo : this.autenticacion_tipo ,  id : this.item }
+      var data1 = { idtoken : this.idtoken , autenticacion_tipo : this.autenticacion_tipo ,  id : this.item, modoS:this.modoService }
       this.cHttps(url, data1).subscribe(
         async (res: any) => {
           
@@ -125,8 +126,7 @@ async aviso(header : string, mensaje : string, code : string) {
         default:
   
         this.imagenes = res.data
-       console.log("veo "+this.imagenes)
-           
+       console.log("veo "+this.imagenes)           
           }
                         
         }

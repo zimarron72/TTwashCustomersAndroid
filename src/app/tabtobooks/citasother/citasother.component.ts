@@ -41,6 +41,9 @@ verfiltros : boolean = true
    all:any
   paid:any
   cancel:any
+   mobiles:any
+  onsites:any
+filtros:boolean = true
 
   constructor(
     private localstorage: StorageService,
@@ -142,8 +145,20 @@ async aviso(header : string, mensaje : string, code : string) {
 
  
 
-     if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+   if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -205,9 +220,20 @@ async aviso(header : string, mensaje : string, code : string) {
       default:
 
       
+if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
 
-      if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -221,6 +247,7 @@ async aviso(header : string, mensaje : string, code : string) {
       this.vermensaje = true;
       this.verfiltros = false;
       }
+    
          
         }
                       
@@ -387,12 +414,12 @@ goBack(): void {
     
   }
 
-  async Pay1(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {
+  async Pay1(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquareComponent,
        componentProps: { 
         
-        concepto : service,
+        concepto : 'OS | '+service +' '+vehiculo,
         subtotal : subtotal,
         descuento : descuento,
         total : total,
@@ -447,8 +474,20 @@ case "successpay":
       default:
 
      
- if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -500,8 +539,20 @@ case "successpaycond":
       default:
 
    
- if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -531,12 +582,12 @@ break;
   
   }
 
-  async Pay2(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any): Promise<void> {
+  async Pay2(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquarechargeComponent,
        componentProps: { 
         
-        concepto : service,
+        concepto : 'OS | '+service +' '+vehiculo,
         subtotal : subtotal,
         descuento : descuento,
         total : total,
@@ -593,8 +644,20 @@ case "successpay":
       default:
 
    
- if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -646,8 +709,20 @@ case "successpaycond":
       default:
 
      
- if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+if(this.n != 11) {
+   this.all =   Object.values(res.data.all)
+      this.mobiles =   Object.values(res.data.mobile)
+      this.onsites =   Object.values(res.data.onsite)
+      this.conjunto = this.all
+
+     if(this.isObjectEmpty(this.mobiles) && this.isObjectEmpty( this.onsites)) {
+      this.filtros = false;
+      
+      }
+      else {
+ this.filtros = true;
+      } 
+        
       }
       else if(this.n == 11) {
       this.all =   Object.values(res.data.all)
@@ -682,6 +757,7 @@ break;
       component: SlidergaleryComponent,
       componentProps: { 
         item: id,
+        modoService:'OS'
         
       }
     });
@@ -700,10 +776,10 @@ break;
 
 
   vermobil(){
-    this.terms = "Mobil"
+    this.conjunto = this.mobiles
   }
   veryard(){
-    this.terms = "Yard"
+    this.conjunto = this.onsites
   }
 
 

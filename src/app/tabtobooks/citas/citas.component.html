@@ -110,8 +110,8 @@
  <ion-accordion-group *ngFor="let element of conjunto | sortcitas : terms  ; let i = index " expand="inset" >
     <ion-accordion value=i>     
       <ion-item slot="header" color="light" >
-        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success"></ion-icon>
-        <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary"></ion-icon>
+        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success" slot="start"></ion-icon>
+        <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary" slot="start"></ion-icon>
         <ion-label>
           <strong *ngIf="element.Order_Item_Status == 1" class="advertencia">Confirmation in process<br></strong>
           <strong *ngIf="element.Order_Item_Status == 2" class="advertencia">In progress<br></strong>
@@ -151,30 +151,50 @@
 
 
         </ion-grid>
-     
+
+       <div *ngIf="n == 7">
+    <ion-grid *ngIf="element.vercharge_item">
+      <ion-row>
+        <ion-col>
+            <ion-button  shape="round" color="warning"   (click)="Galery(element.order_item_id)" > SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
+                 </ion-button> 
+        </ion-col>
+        <ion-col>
+           <ion-button  shape="round" color="secondary" (click)="Pay2(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total,element.rp_monto,element.rp_concepto_item)" > PAY NOW  
+           <ion-icon name="card" slot="start" ></ion-icon>             
+            </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>   
+    
+    <ion-grid *ngIf="element.verenlace3_item">
+      <ion-row>
+        <ion-col>
+          <ion-button  shape="round" color="warning"  (click)="Galery(element.order_item_id)"> SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button  shape="round" color="secondary"  (click)="Pay1(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total)"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
+                         </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+                            
+                 
+          </div>
   
           <div *ngIf="n == 7">
             <hr class="linea" *ngIf="element.vercharge_item">
-  <div class="neon" *ngIf="element.vercharge_item">Servicio Charge</div>
-            <p *ngIf="element.vercharge_item" class="neon">Monto:</p>
+  <div class="neon2" *ngIf="element.vercharge_item">
+    <p class="neon1">Service Charge</p>
+            <p *ngIf="element.vercharge_item" class="neon1">Amount:</p>
             <p *ngIf="element.vercharge_item" class="argon">{{element.rp_monto_item}}</p>
-              <p *ngIf="element.vercharge_item" class="neon">Concepto:</p>
+              <p *ngIf="element.vercharge_item" class="neon1">Concept:</p>
               <p *ngIf="element.vercharge_item" class="argon">{{element.rp_concepto_item}}</p>
+              </div>
           </div>
-          <div *ngIf="n == 7">
-            <hr>
-  <div *ngIf="element.vercharge_item">        
-                <ion-button  shape="round" color="warning"   (click)="Galery(element.order_item_id)" > TO SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
-                 </ion-button>               
-           <ion-button  shape="round" color="secondary" (click)="Pay2(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total,element.rp_monto,element.rp_concepto_item)" >TO PAY NOW  
-           <ion-icon name="card" slot="start" ></ion-icon>             
-            </ion-button>             
-          </div>
-                 <ion-button *ngIf="element.verenlace3_item" shape="round" color="warning"  (click)="Galery(element.order_item_id)">TO SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
-          </ion-button>           
-        <ion-button *ngIf="element.verenlace3_item" shape="round" color="secondary"  (click)="Pay1(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total)">TO PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
-                         </ion-button>            
-          </div>
+        
 
           <div *ngIf=" 2 >= n" > 
             <ion-button shape="round" color="secondary"  (click)="Cancelar(element.order_item_id)">
@@ -217,8 +237,8 @@
  <ion-accordion-group *ngFor="let element of conjunto ; let i = index " expand="inset" >
     <ion-accordion value=i>     
       <ion-item slot="header" color="light" >
-        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success"></ion-icon>
-        <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary"></ion-icon>
+        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success" slot="start"></ion-icon>
+        <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary" slot="start"></ion-icon>
         <ion-label>
           <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
           <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
