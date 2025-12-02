@@ -395,7 +395,8 @@ goBack(): void {
         descuento : descuento,
         total : total,
         item : item_id,
-        wash : wash_id
+        wash : wash_id,
+        modoS: 'TTS'
         
       }
     });
@@ -539,7 +540,8 @@ break;
         item : item_id,
         wash : wash_id,
         recargo_concepto : recargo_concepto,
-        recargo_monto : recargo_monto
+        recargo_monto : recargo_monto,
+        modoS: 'TTS'
         
       }
     });

@@ -426,7 +426,8 @@ this.router.navigate(['/tabs/tabtobooks/tipocitasfleets'])
         descuento : descuento,
         total : total,
         item : item_id,
-        wash : wash_id
+        wash : wash_id,
+        modoS: 'FS'
         
       }
     });
@@ -597,7 +598,8 @@ break;
         item : item_id,
         wash : wash_id,
         recargo_concepto : recargo_concepto,
-        recargo_monto : recargo_monto
+        recargo_monto : recargo_monto,
+        modoS: 'FS'
         
       }
     });

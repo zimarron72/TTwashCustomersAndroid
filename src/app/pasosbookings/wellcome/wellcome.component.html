@@ -14,25 +14,53 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid style="margin: top 10px;">
+     <ion-row>
+      <ion-col class="caja6"> 
+              <ion-icon color="light" style=" font-size: 50px;"  name="calendar"></ion-icon><br>
+        Bookings scheduled
+      </ion-col>      
+    </ion-row>
     <ion-row>
       <ion-col class="caja1">
+       <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
+        Waiting<br>{{bookings}}
+      </ion-col>
+     
+          <ion-col class="caja2">
+           <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
+       Confirmed<br>{{bookings}}
+      </ion-col>
+        
+        <ion-col class="caja3">
+           <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
+        Atendido<br>{{bookings}}
+      </ion-col>
+  
+    </ion-row>
+    <ion-row>
+      <ion-col>
+         <hr style="border: solid 1px #fff">
+      </ion-col>
+    </ion-row>
+        <ion-row>
+      <ion-col class="caja4">
          <ion-icon color="primary" style=" font-size:50px;"  name="car"></ion-icon>
          &ensp;<br>
         Fleet vehicles<br>{{fleet}}
       </ion-col>
      
-          <ion-col class="caja2">
+          <!--<ion-col class="caja2">
            <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
         Bookings scheduled<br>{{bookings}}
-      </ion-col>
+      </ion-col>-->
         
-        <ion-col class="caja3">
+        <ion-col class="caja5">
             <ion-icon color="primary" style=" font-size: 50px;"  name="location-outline"></ion-icon> 
-          &ensp;<br>
-          &ensp;<br>
+          &ensp;<br>         
         Locations<br>{{locations}}
       </ion-col>
     </ion-row>
+
   </ion-grid>
 
   <ion-grid>

@@ -31,7 +31,8 @@ total_string !: string
   total : any
   item : any
   wash : any
-
+  modoS : any
+  url : any
   card : any
 
   constructor(
@@ -128,9 +129,17 @@ this.loading.dismissLoader()
 
       if (result.status === 'OK') {
 
-        console.log(`Payment token is ${result.token}`);
-
-        var url = 'https://www.washtt.com/v1_api_clientes_pagosquareconcargo.php';
+        //console.log(`Payment token is ${result.token}`);
+        if(this.modoS == 'TTS') {
+        this.url = 'https://www.washtt.com/v1_api_clientes_pagosquareconcargo.php';
+        }
+        else if(this.modoS == 'FS') {
+        this.url = 'https://www.washtt.com/v2_api_clientes_pagoSquareFS.php';
+        }
+        else if(this.modoS == 'OS') {
+        this.url = 'https://www.washtt.com/v2_api_clientes_pagoSquareOS.php';
+        }
+       
       var data = {
         idtoken : idtoken,
         autenticacion_tipo : autenticacion_tipo,
@@ -141,14 +150,16 @@ this.loading.dismissLoader()
         total : this.total ,        
         tip : ((document.getElementById("tip") as HTMLInputElement).value) ,
         nonce : result.token,
-        itemid : this.item,
+          
+        
+        emid : this.item,
         washid : this.wash,
         charge : 0,
         charge_concepto : 'NA',
         charge_status : 'NA'
       };
 
-        fetch(url, {
+        fetch(this.url, {
           method: 'POST', // or 'PUT'
           body: JSON.stringify(data), // data can be `string` or {object}!
           headers:{
@@ -197,7 +208,7 @@ this.loading.dismissLoader()
           break; 
           case 'ERROR2':
             this.localstorage.clearData()              
-            code = '01'
+            code = ''
             header = 'Error'
             mensaje = 'Sorry, an error occurred,please login again2'
             this.localstorage.clearData()               
@@ -209,7 +220,7 @@ this.loading.dismissLoader()
           break;
           case 'YA PAGADO':
 
-              code = '01'
+              code = ''
             header = 'Waiting'
             mensaje = 'There is already a payment registered for this service. Still in verification'
             this.localstorage.clearData()               
