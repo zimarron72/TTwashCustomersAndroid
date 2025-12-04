@@ -46,7 +46,7 @@ total_string !: string
 
   ngOnInit() {}
 
-  async aviso(header : string, mensaje : string, code : string) {
+  async aviso(header : string, mensaje : any, code : string) {
     if (code == '') {
       const alert = await this.alertController.create({
         header,
@@ -70,8 +70,8 @@ total_string !: string
     this.loading.simpleLoader()
      //ojo square-sandbox or square segun las credenciales
      
-    //await this.dsls.loadScript('square-sandbox')
- await this.dsls.loadScript('square')
+    await this.dsls.loadScript('square-sandbox')
+ //await this.dsls.loadScript('square')
 
   const formatter$ = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -87,8 +87,8 @@ total_string !: string
   
   //async function main() {
 
-//const appId = 'sandbox-sq0idb-RrvT24qkMyTSr91-Qy080w';
- const appId = 'sq0idp-vuSagOWbgJlfqKv2PoID5A';
+const appId = 'sandbox-sq0idb-RrvT24qkMyTSr91-Qy080w';
+ //const appId = 'sq0idp-vuSagOWbgJlfqKv2PoID5A';
   const locationId = 'JCQ7Q20HXQTZ8';
  //const locationId = 'JCQ7Q20HXQTZ8';
 
@@ -118,7 +118,7 @@ this.loading.dismissLoader()
 
 
   async eventHandler() {
-  this.loading.simpleLoader()
+ 
   //  event.preventDefault();
   var user = JSON.parse(await this.localstorage.getData('usuario'))
   var idtoken = await this.localstorage.getData('idtoken')
@@ -128,7 +128,7 @@ this.loading.dismissLoader()
       const result = await this.card.tokenize();
 
       if (result.status === 'OK') {
-
+ this.loading.simpleLoader()
         //console.log(`Payment token is ${result.token}`);
         if(this.modoS == 'TTS') {
         this.url = 'https://www.washtt.com/v1_api_clientes_pagosquareconcargo.php';
@@ -149,10 +149,8 @@ this.loading.dismissLoader()
         descuento : this.descuento, 
         total : this.total ,        
         tip : ((document.getElementById("tip") as HTMLInputElement).value) ,
-        nonce : result.token,
-          
-        
-        emid : this.item,
+        nonce : result.token,       
+        itemid : this.item,
         washid : this.wash,
         charge : 0,
         charge_concepto : 'NA',
@@ -168,11 +166,15 @@ this.loading.dismissLoader()
         }).then(res => res.json())
         .catch(error => { 
       
-(<HTMLInputElement>document.getElementById('payment-status-container')).innerText = 'SORRY BUT THERE ARE TROUBLE PROCESSING PAYMENT';
+//(<HTMLInputElement>document.getElementById('payment-status-container')).innerText = 'SORRY BUT THERE ARE TROUBLE PROCESSING PAYMENT';
          
-          console.error('Error:', error); 
-          
-          this.loading.dismissLoader()
+          console.error('Error:', error);
+
+           let code = ''
+            let header = 'Error'
+            let mensaje = 'SORRY BUT THERE ARE TROUBLE PROCESSING PAYMENT'                        
+            this.aviso(header, mensaje, code) 
+        
      
         } )
         .then(async response => { 
@@ -185,40 +187,94 @@ this.loading.dismissLoader()
         let header
         let code
           switch(response.respuesta) {
-            case 'ERROR1':
 
-            code = '01'
+            case 'ERROR1':
+            code = ''
             header = 'Error'
             mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
  this.modalCtrl.dismiss(null,'cancel');
-
-
             break;
+
+            case 'ERROR2':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR3':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR4':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR5':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code)
+             this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR6':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR7':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR8':
+            code = ''
+            header = 'Error'                        
+            mensaje = response.mensaje;           
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR9':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+
             case 'TOKEN ERROR':
+              
               this.localstorage.clearData()               
               code = '01'
             header = 'Error'
-            mensaje = 'Invalid or expired token,please login again'
-            this.localstorage.clearData()               
+            mensaje = 'Invalid or expired token,please login again'                        
             this.aviso(header, mensaje, code) 
               this.modalCtrl.dismiss({      
       accion : "alogin",   
       },'continue');
             
-          break; 
-          case 'ERROR2':
-            this.localstorage.clearData()              
-            code = ''
-            header = 'Error'
-            mensaje = 'Sorry, an error occurred,please login again2'
-            this.localstorage.clearData()               
-            this.aviso(header, mensaje, code)  
-          this.modalCtrl.dismiss({      
-      accion : "alogin",   
-      },'continue');
-         
-          break;
+          break;        
           case 'YA PAGADO':
+
 
               code = ''
             header = 'Waiting'
@@ -235,8 +291,7 @@ this.loading.dismissLoader()
              // (<HTMLInputElement>document.getElementById('payment-status-container')).innerText = 'COMPLETED PAYMENT';
              code = ''
             header = 'Success'
-            mensaje = 'Thank you for your payment.'
-            this.localstorage.clearData()               
+            mensaje = 'Thank you for your payment.'                    
             this.aviso(header, mensaje, code) 
               this.modalCtrl.dismiss({      
       accion : "successpay",   
