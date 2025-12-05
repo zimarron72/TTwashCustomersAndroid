@@ -19,6 +19,8 @@ import { PreguntasComponent } from './preguntas/preguntas.component';
 import { BooknowotherComponent } from './booknowother/booknowother.component';
 import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component';
 import { CartComponent } from './cart/cart.component';
+import { PayokeyComponent } from './payokey/payokey.component';
+import { PaycondComponent } from './paycond/paycond.component';
 
 @NgModule({
   imports: [
@@ -43,7 +45,9 @@ SelectlocationComponent,
 PreguntasComponent,
 BooknowfleetsComponent,
 BooknowotherComponent,
-CartComponent
+CartComponent,
+PayokeyComponent,
+PaycondComponent
 
     
   ],

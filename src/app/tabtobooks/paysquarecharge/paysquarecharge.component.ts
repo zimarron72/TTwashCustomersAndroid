@@ -35,7 +35,8 @@ charge_string !: string
   total : any
   item : any
   wash : any
-
+ modoS : any
+  url : any
   card : any
 
   constructor(
@@ -122,7 +123,7 @@ this.loading.dismissLoader()
 
 
   async eventHandler() {
-  this.loading.simpleLoader()
+
   //  event.preventDefault();
   var user = JSON.parse(await this.localstorage.getData('usuario'))
   var idtoken = await this.localstorage.getData('idtoken')
@@ -132,10 +133,19 @@ this.loading.dismissLoader()
       const result = await this.card.tokenize();
 
       if (result.status === 'OK') {
+ this.loading.simpleLoader()
+        //console.log(`Payment token is ${result.token}`);
 
-        console.log(`Payment token is ${result.token}`);
-
-        var url = 'https://www.washtt.com/v1_api_clientes_pagosquareconcargo.php';
+                //console.log(`Payment token is ${result.token}`);
+        if(this.modoS == 'TTS') {
+        this.url = 'https://www.washtt.com/v1_api_clientes_pagosquareconcargo.php';
+        }
+        else if(this.modoS == 'FS') {
+        this.url = 'https://www.washtt.com/v2_api_clientes_pagoSquareFS.php';
+        }
+        else if(this.modoS == 'OS') {
+        this.url = 'https://www.washtt.com/v2_api_clientes_pagoSquareOS.php';
+        }
       var data = {
         idtoken : idtoken,
         autenticacion_tipo : autenticacion_tipo,
@@ -153,7 +163,7 @@ this.loading.dismissLoader()
         charge_status : 2
       };
 
-        fetch(url, {
+        fetch(this.url, {
           method: 'POST', // or 'PUT'
           body: JSON.stringify(data), // data can be `string` or {object}!
           headers:{
@@ -162,62 +172,114 @@ this.loading.dismissLoader()
         }).then(res => res.json())
         .catch(error => { 
       
-(<HTMLInputElement>document.getElementById('payment-status-container')).innerText = 'SORRY BUT THERE ARE TROUBLE PROCESSING PAYMENT';
+//(<HTMLInputElement>document.getElementById('payment-status-container')).innerText = 'SORRY BUT THERE ARE TROUBLE PROCESSING PAYMENT'
          
-          console.error('Error:', error); 
-          
-          this.loading.dismissLoader()
+        let code = ''
+            let header = 'Error'
+            let mensaje = 'SORRY BUT THERE ARE TROUBLE PROCESSING PAYMENT'                        
+            this.aviso(header, mensaje, code) 
      
         } )
         .then(async response => { 
- this.loading.dismissLoader()
+ 
           console.log(response)          
-          const destroyed = await this.card.destroy();
-
-         
+          const destroyed = await this.card.destroy(); 
+          this.loading.dismissLoader()        
         let mensaje
         let header
         let code
-          switch(response.respuesta) {
+        switch(response.respuesta) {
             case 'ERROR1':
-
-            code = '01'
+            code = ''
             header = 'Error'
             mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
  this.modalCtrl.dismiss(null,'cancel');
-
-
             break;
+
+            case 'ERROR2':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR3':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR4':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR5':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code)
+             this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR6':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR7':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR8':
+            code = ''
+            header = 'Error'                        
+            mensaje = response.mensaje;           
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+            case 'ERROR9':
+            code = ''
+            header = 'Error'
+            mensaje = response.mensaje
+            this.aviso(header, mensaje, code) 
+            this.modalCtrl.dismiss(null,'cancel');
+            break;
+
+
             case 'TOKEN ERROR':
+              
               this.localstorage.clearData()               
               code = '01'
             header = 'Error'
-            mensaje = 'Invalid or expired token,please login again'
-            this.localstorage.clearData()               
+            mensaje = 'Invalid or expired token,please login again'                        
             this.aviso(header, mensaje, code) 
               this.modalCtrl.dismiss({      
       accion : "alogin",   
       },'continue');
             
-          break; 
-          case 'ERROR2':
-            this.localstorage.clearData()              
-            code = '01'
-            header = 'Error'
-            mensaje = 'Sorry, an error occurred,please login again2'
-            this.localstorage.clearData()               
-            this.aviso(header, mensaje, code)  
-          this.modalCtrl.dismiss({      
-      accion : "alogin",   
-      },'continue');
-         
-          break;
+          break;        
           case 'YA PAGADO':
 
-              code = '01'
+
+              code = ''
             header = 'Waiting'
-            mensaje = 'There is already a payment registered for this service. Still in verification'
-            this.localstorage.clearData()               
+            mensaje = 'There is already a payment registered for this service. Still in verification'                          
             this.aviso(header, mensaje, code)  
           this.modalCtrl.dismiss({      
       accion : "tipopagos",   
@@ -227,25 +289,15 @@ this.loading.dismissLoader()
            
             case 'TODO_OK':
              // (<HTMLInputElement>document.getElementById('payment-status-container')).innerText = 'COMPLETED PAYMENT';
-             code = ''
-            header = 'Success'
-            mensaje = 'Thank you for your payment.'
-            this.localstorage.clearData()               
-            this.aviso(header, mensaje, code) 
+        
               this.modalCtrl.dismiss({      
       accion : "successpay",   
       },'continue');   
             
             break;
             
-            case 'PAGO CONDICIONADO':      
-             
-
-               code = ''
-            header = 'Waiting'
-            mensaje = 'A difficulty occurred with this transaction. However please give us some time to verify the same'
-            this.localstorage.clearData()               
-            this.aviso(header, mensaje, code)  
+            case 'PAGO CONDICIONADO':   
+                           
           this.modalCtrl.dismiss({      
       accion : "successpaycond",   
       },'continue');      

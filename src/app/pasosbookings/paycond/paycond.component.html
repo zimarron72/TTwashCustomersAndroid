@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="secondary">   
+    <ion-title></ion-title> 
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col class="box2">
+      <div>
+ <img src="./assets/imgs/payEspera.png" />
+ </div>
+    </ion-col>
+  </ion-row>
+    <ion-row>
+    <ion-col class="box1">
+  <h4>THANK YOU FOR YOUR PAYMENT.<br>BUT this has been received with difficulty.<br>
+     It may take us a little longer to verify.</h4>
+    </ion-col>
+  </ion-row>
+   <ion-row>
+    <ion-col class="box1">
+  <h5>WHAT WOULD YOU LIKE TO DO NEXT?</h5>
+    </ion-col>
+  </ion-row>
+     <ion-row>
+    <ion-col class="box1">
+   <ion-button  color="warning" (click) = "otherPay()" shape="round" >
+<span style="color:black;  font-size: large; ">MAKE OTHER PAYMENT</span>
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+    </ion-col>
+  </ion-row>
+      <ion-row>
+    <ion-col class="box1">
+   <ion-button  color="warning" (click) = "wellcome()" shape="round" >
+<span style="color:black;  font-size: large; ">DASHBOARD</span>
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

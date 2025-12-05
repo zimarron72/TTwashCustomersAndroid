@@ -40,7 +40,7 @@
       
       <div style="text-align: center; color:#f2f2f2; font-weight: bold; font-size: larger;"> Tip is not expected, but appreciated</div>
       <div class="tip">Tip</div> 
-      <input type="tel" id="tip" name="tip" class="form-control custom3" value="" ><br>  
+      <input type="text" id="tip" name="tip" class="form-control custom3"    (keyup)="onKeyUp($event)"  value='{{monedaString}}'><br>  
  </div>  
 </form>
 <div id="payment-status-container" style="color:#f2f2f2; font-size: larger; font-weight: bold;"></div>
@@ -61,6 +61,7 @@
 </ion-col>
       <ion-col></ion-col>
       <ion-col>
+<!--<ion-button  color="secondary" shape="round" (click) = "simuladorPay()">-->
 <ion-button  color="secondary" shape="round" (click) = "eventHandler()">
   PAY
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>

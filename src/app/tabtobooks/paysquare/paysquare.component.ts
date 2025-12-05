@@ -35,6 +35,9 @@ total_string !: string
   url : any
   card : any
 
+  monedaCifra!: any
+  monedaString: any = 0.00
+
   constructor(
     private modalCtrl: ModalController,
     private dsls: SquareService, 
@@ -64,6 +67,29 @@ total_string !: string
       await alert.present();
     }
   }
+
+  removerSignoDeMoneda(valor: string): number {
+  // Elimina el signo de dólar, comas y cualquier otro carácter no numérico
+  const soloNumero = valor.replace(/[^\d.-]/g, '');
+  // Convierte la cadena resultante a un número de punto flotante
+  return parseFloat(soloNumero);
+}
+
+  formatearMoneda(valor: string, moneda: string, locale: string = 'en-US'): any {
+   let numero = this.removerSignoDeMoneda(valor);
+  const formateador = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: moneda,
+    minimumFractionDigits: 2 // Asegura dos decimales
+  });
+
+var result = formateador.format(numero); 
+if(result == "NaN") {
+return ''
+}
+else if(result != "NaN")
+ return result 
+}
 
   async ionViewWillEnter() {
 
@@ -181,13 +207,11 @@ this.loading.dismissLoader()
 
           console.log(response)          
           const destroyed = await this.card.destroy();
-
           this.loading.dismissLoader()
         let mensaje
         let header
         let code
           switch(response.respuesta) {
-
             case 'ERROR1':
             code = ''
             header = 'Error'
@@ -278,8 +302,7 @@ this.loading.dismissLoader()
 
               code = ''
             header = 'Waiting'
-            mensaje = 'There is already a payment registered for this service. Still in verification'
-            this.localstorage.clearData()               
+            mensaje = 'There is already a payment registered for this service. Still in verification'                          
             this.aviso(header, mensaje, code)  
           this.modalCtrl.dismiss({      
       accion : "tipopagos",   
@@ -289,24 +312,15 @@ this.loading.dismissLoader()
            
             case 'TODO_OK':
              // (<HTMLInputElement>document.getElementById('payment-status-container')).innerText = 'COMPLETED PAYMENT';
-             code = ''
-            header = 'Success'
-            mensaje = 'Thank you for your payment.'                    
-            this.aviso(header, mensaje, code) 
+        
               this.modalCtrl.dismiss({      
       accion : "successpay",   
       },'continue');   
             
             break;
             
-            case 'PAGO CONDICIONADO':      
-             
-
-               code = ''
-            header = 'Waiting'
-            mensaje = 'A difficulty occurred with this transaction. However please give us some time to verify the same'
-            this.localstorage.clearData()               
-            this.aviso(header, mensaje, code)  
+            case 'PAGO CONDICIONADO':   
+                           
           this.modalCtrl.dismiss({      
       accion : "successpaycond",   
       },'continue');      
@@ -353,12 +367,36 @@ this.loading.dismissLoader()
        
 
   }
+
+  /*async simuladorPay() {
+
+const result = await this.card.tokenize();
+
+      if (result.status === 'OK') {
+      this.modalCtrl.dismiss({      
+      accion : "successpay",   
+      },'continue');
+
+      }
+
+        
+  }*/
  
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
+  onKeyUp(event: KeyboardEvent) { // 'any' se usa a menudo, pero es mejor usar un tipo más específico como KeyboardEvent
   
+    const valorDelInput = (event.target as HTMLInputElement).value;
+    this.monedaCifra = this.removerSignoDeMoneda(valorDelInput)
+    console.log('El valor del input es:', valorDelInput);
+    // Aquí puedes hacer lo que necesites con el valor
+    //console.log(this.formatearMoneda(valorDelInput,'USD'))
+    this.monedaString =  this.formatearMoneda(valorDelInput,'USD')
+    console.log(this.monedaString);
+ 
+  } 
 
 }

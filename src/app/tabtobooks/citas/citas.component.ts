@@ -416,107 +416,11 @@ case "tipopagos":
 break;
 
 case "successpay":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
-    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
-    this.cHttps(url, data1).subscribe(
-      async (res: any) => {            
-        console.log(res)
-        let mensaje
-        let header
-        let code
-        switch (res.data.respuesta) {
-          case 'ERROR':
-            code = '01'
-            header = 'Error'
-            mensaje = 'Sorry, an error occurred,please login again2'
-            this.localstorage.clearData()
-            this.router.navigate(['/login'])       
-            this.aviso(header, mensaje, code)              
-            break;         
-          case 'TOKEN ERROR':
-          code = '01'
-          header = 'Error' 
-          mensaje = 'Invalid or expired token,please login again'
-          this.localstorage.clearData()
-          this.router.navigate(['/login'])   
-          this.aviso(header,mensaje,code) 
-                   break;            
-         
-          
-      default:
-
-      if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
-      }
-      else if(this.n == 11) {
-      this.all =   Object.values(res.data.all)
-      this.paid =   Object.values(res.data.paid)
-      this.cancel =   Object.values(res.data.cancel)
-      this.conjunto = this.all
-      console.log(res.data)
-      }     
-    
-      if(this.isObjectEmpty(this.conjunto)) {
-      this.vermensaje = true;
-      this.verfiltros = false;
-      }
-         
-        }
-                      
-      }
-    )
+ this.router.navigate(['/pasos/pagoexitoso'])  
 break; 
 
 case "successpaycond":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
-    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
-    this.cHttps(url, data1).subscribe(
-      async (res: any) => {            
-        console.log(res)
-        let mensaje
-        let header
-        let code
-        switch (res.data.respuesta) {
-          case 'ERROR':
-            code = '01'
-            header = 'Error'
-            mensaje = 'Sorry, an error occurred,please login again2'
-            this.localstorage.clearData()
-            this.router.navigate(['/login'])       
-            this.aviso(header, mensaje, code)              
-            break;         
-          case 'TOKEN ERROR':
-          code = '01'
-          header = 'Error' 
-          mensaje = 'Invalid or expired token,please login again'
-          this.localstorage.clearData()
-          this.router.navigate(['/login'])   
-          this.aviso(header,mensaje,code) 
-                   break;            
-         
-          
-      default:
-
-     if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
-      }
-      else if(this.n == 11) {
-      this.all =   Object.values(res.data.all)
-      this.paid =   Object.values(res.data.paid)
-      this.cancel =   Object.values(res.data.cancel)
-      this.conjunto = this.all
-      console.log(res.data)
-      }     
-    
-      if(this.isObjectEmpty(this.conjunto)) {
-      this.vermensaje = true;
-      this.verfiltros = false;
-      }
-         
-        }
-                      
-      }
-    )
+ this.router.navigate(['/pasos/pagocond'])  
 break;
 
 
@@ -561,110 +465,11 @@ case "tipopagos":
 break;
 
 case "successpay":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
-    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
-    this.cHttps(url, data1).subscribe(
-      async (res: any) => {            
-        console.log(res)
-        let mensaje
-        let header
-        let code
-        switch (res.data.respuesta) {
-          case 'ERROR':
-            code = '01'
-            header = 'Error'
-            mensaje = 'Sorry, an error occurred,please login again2'
-            this.localstorage.clearData()
-            this.router.navigate(['/login'])       
-            this.aviso(header, mensaje, code)              
-            break;         
-          case 'TOKEN ERROR':
-          code = '01'
-          header = 'Error' 
-          mensaje = 'Invalid or expired token,please login again'
-          this.localstorage.clearData()
-          this.router.navigate(['/login'])   
-          this.aviso(header,mensaje,code) 
-                   break;            
-         
-          
-      default:
-
-   
-      if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
-      }
-      else if(this.n == 11) {
-      this.all =   Object.values(res.data.all)
-      this.paid =   Object.values(res.data.paid)
-      this.cancel =   Object.values(res.data.cancel)
-      this.conjunto = this.all
-      console.log(res.data)
-      }     
-    
-      if(this.isObjectEmpty(this.conjunto)) {
-      this.vermensaje = true;
-      this.verfiltros = false;
-      }
-         
-        }
-                      
-      }
-    )
+ this.router.navigate(['/pasos/pagoexitoso'])  
 break; 
 
 case "successpaycond":
-  var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
-    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
-    this.cHttps(url, data1).subscribe(
-      async (res: any) => {            
-        console.log(res)
-        let mensaje
-        let header
-        let code
-        switch (res.data.respuesta) {
-          case 'ERROR':
-            code = '01'
-            header = 'Error'
-            mensaje = 'Sorry, an error occurred,please login again2'
-            this.localstorage.clearData()
-            this.router.navigate(['/login'])       
-            this.aviso(header, mensaje, code)              
-            break;         
-          case 'TOKEN ERROR':
-          code = '01'
-          header = 'Error' 
-          mensaje = 'Invalid or expired token,please login again'
-          this.localstorage.clearData()
-          this.router.navigate(['/login'])   
-          this.aviso(header,mensaje,code) 
-                   break;            
-         
-          
-      default:
-
-     
-
-      if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
-      }
-      else if(this.n == 11) {
-      this.all =   Object.values(res.data.all)
-      this.paid =   Object.values(res.data.paid)
-      this.cancel =   Object.values(res.data.cancel)
-      this.conjunto = this.all
-      console.log(res.data)
-      }     
-    
-      if(this.isObjectEmpty(this.conjunto)) {
-      this.vermensaje = true;
-      this.verfiltros = false;
-      }
-         
-        }
-                      
-      }
-    )
+this.router.navigate(['/pasos/pagocond'])  
 break;
 
 

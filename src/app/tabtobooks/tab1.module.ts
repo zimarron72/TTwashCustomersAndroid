@@ -41,13 +41,13 @@ import { AllcitasComponent } from './allcitas/allcitas.component';
 import { CitasfleetComponent } from './citasfleet/citasfleet.component';
 import { CitasotherComponent } from './citasother/citasother.component';
 
+
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-   
+    ReactiveFormsModule,   
     Tab1PageRoutingModule,
     RouterModule,
   ],
@@ -80,7 +80,8 @@ import { CitasotherComponent } from './citasother/citasother.component';
      PaymentsComponent,
      TipocitasfleetsComponent,
      TipocitasothersComponent,
-     AllcitasComponent
+     AllcitasComponent,
+    
      
 
   ],

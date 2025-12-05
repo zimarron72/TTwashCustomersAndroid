@@ -31,6 +31,8 @@ import { CitasotherComponent } from './citasother/citasother.component';
 
 
 
+
+
 const routes: Routes = [
   {
     path: '',
@@ -63,6 +65,8 @@ const routes: Routes = [
       { path: 'viewphoto/:order_item_id', component: SlidergaleryComponent },
       { path: 'Pay1', component: PaysquareComponent },
       { path: 'allcitas', component: AllcitasComponent },
+     
+      
    
       
     

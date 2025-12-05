@@ -16,6 +16,8 @@ import { SelectlocationComponent } from './selectlocation/selectlocation.compone
 import { BooknowotherComponent } from './booknowother/booknowother.component';
 import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component';
 import { CartComponent } from './cart/cart.component';
+import { PayokeyComponent } from './payokey/payokey.component';
+import { PaycondComponent } from './paycond/paycond.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,8 @@ const routes: Routes = [
    { path: 'bookother', component: BooknowotherComponent },
      { path: 'bookfleets', component: BooknowfleetsComponent },
       { path: 'cart', component: CartComponent },
+       { path: 'pagoexitoso', component: PayokeyComponent },
+        { path: 'pagocond', component: PaycondComponent },
     ]
   }
 ];
