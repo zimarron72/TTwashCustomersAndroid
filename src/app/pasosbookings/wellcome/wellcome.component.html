@@ -7,7 +7,14 @@
           </ion-button>   
     </ion-buttons>   
     <ion-title style="font-weight: bold;">DASHBOARD</ion-title> 
+  </ion-toolbar >
+  <ion-toolbar style="text-align: center;" color="primary">
+      <ion-button  color="light" (click) = "Buscar()" shape="round" >
+ <span style="  font-size: large; ">SEARCH</span>
+ <ion-icon color="dark" slot="end" name="search"></ion-icon>  
+</ion-button>
   </ion-toolbar>
+
 </ion-header>
 <ion-content >
 <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
@@ -16,24 +23,24 @@
   <ion-grid style="margin: top 10px;">
      <ion-row>
       <ion-col class="caja6"> 
-              <ion-icon color="light" style=" font-size: 50px;"  name="calendar"></ion-icon><br>
+              <ion-icon color="light" style=" font-size: 25px;"  name="calendar"></ion-icon><br>
         Bookings scheduled
       </ion-col>      
     </ion-row>
     <ion-row>
-      <ion-col class="caja1">
-       <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
-        Waiting<br>{{bookings}}
+      <ion-col class="caja1" (click)="verSin()">
+       <ion-icon color="dark" style=" font-size: 25px;"  name="calendar"></ion-icon><br> 
+        Waiting<br>{{sinconfirmar}}
       </ion-col>
      
-          <ion-col class="caja2">
-           <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
-       Confirmed<br>{{bookings}}
+          <ion-col class="caja2" (click)="verCon()">
+           <ion-icon color="dark" style=" font-size: 25px;"  name="calendar"></ion-icon><br> 
+       Confirmed<br>{{confirmados}}
       </ion-col>
         
-        <ion-col class="caja3">
-           <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
-        Atendido<br>{{bookings}}
+        <ion-col class="caja3" (click)="verPay()">
+           <ion-icon color="dark" style=" font-size: 25px;"  name="calendar"></ion-icon><br> 
+       Attended<br>{{completados}}
       </ion-col>
   
     </ion-row>
@@ -43,8 +50,8 @@
       </ion-col>
     </ion-row>
         <ion-row>
-      <ion-col class="caja4">
-         <ion-icon color="primary" style=" font-size:50px;"  name="car"></ion-icon>
+      <ion-col class="caja4" (click)="verFleet()">
+         <ion-icon color="dark" style=" font-size:25px;"  name="car"></ion-icon>
          &ensp;<br>
         Fleet vehicles<br>{{fleet}}
       </ion-col>
@@ -54,8 +61,8 @@
         Bookings scheduled<br>{{bookings}}
       </ion-col>-->
         
-        <ion-col class="caja5">
-            <ion-icon color="primary" style=" font-size: 50px;"  name="location-outline"></ion-icon> 
+        <ion-col class="caja5" (click)="verSite()">
+            <ion-icon color="dark" style=" font-size: 25px;"  name="location-outline"></ion-icon> 
           &ensp;<br>         
         Locations<br>{{locations}}
       </ion-col>

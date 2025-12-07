@@ -36,7 +36,7 @@ total_string !: string
   card : any
 
   monedaCifra!: any
-  monedaString: any = 0.00
+  monedaString: any 
 
   constructor(
     private modalCtrl: ModalController,
@@ -68,6 +68,8 @@ total_string !: string
     }
   }
 
+
+
   removerSignoDeMoneda(valor: string): number {
   // Elimina el signo de dólar, comas y cualquier otro carácter no numérico
   const soloNumero = valor.replace(/[^\d.-]/g, '');
@@ -83,16 +85,13 @@ total_string !: string
     minimumFractionDigits: 2 // Asegura dos decimales
   });
 
-var result = formateador.format(numero); 
-if(result == "NaN") {
-return ''
-}
-else if(result != "NaN")
- return result 
+return formateador.format(numero); 
+
 }
 
   async ionViewWillEnter() {
-
+this.monedaString = "$0.00"
+this.monedaCifra = 0
     this.loading.simpleLoader()
      //ojo square-sandbox or square segun las credenciales
      
@@ -173,8 +172,9 @@ this.loading.dismissLoader()
         concept: this.concepto, 
         subtotal : this.subtotal , 
         descuento : this.descuento, 
-        total : this.total ,        
-        tip : ((document.getElementById("tip") as HTMLInputElement).value) ,
+        total : this.total ,
+        tip : this.monedaCifra, 
+       // tip : ((document.getElementById("tip") as HTMLInputElement).value) ,
         nonce : result.token,       
         itemid : this.item,
         washid : this.wash,
@@ -387,16 +387,27 @@ const result = await this.card.tokenize();
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  onKeyUp(event: KeyboardEvent) { // 'any' se usa a menudo, pero es mejor usar un tipo más específico como KeyboardEvent
+onChange(event: any) { // 'any' se usa a menudo, pero es mejor usar un tipo más específico como KeyboardEvent
   
     const valorDelInput = (event.target as HTMLInputElement).value;
     this.monedaCifra = this.removerSignoDeMoneda(valorDelInput)
     console.log('El valor del input es:', valorDelInput);
+    console.log('El valor del monedaCifra es:', this.monedaCifra);
     // Aquí puedes hacer lo que necesites con el valor
     //console.log(this.formatearMoneda(valorDelInput,'USD'))
-    this.monedaString =  this.formatearMoneda(valorDelInput,'USD')
-    console.log(this.monedaString);
+    if(valorDelInput == "$" || valorDelInput == "") {
+   this.monedaString = '$0.00' 
+    }
+    else {
+     this.monedaString =  this.formatearMoneda(valorDelInput,'USD')   
+    }
+    console.log('El valor del monedaString es:',this.monedaString);
  
   } 
 
-}
+onClick(event: any) {
+this.monedaString = '' 
+}  
+
+
+  }

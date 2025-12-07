@@ -17,7 +17,9 @@ export class WellcomeComponent  implements OnInit {
   idtoken: any
   autenticacion_tipo:any
   fleet:any
-  bookings:any
+  sinconfirmar:any
+  confirmados:any
+   completados:any
   locations:any
 
   constructor(
@@ -102,7 +104,10 @@ export class WellcomeComponent  implements OnInit {
           default:
             this.fleet= res.data.fleet
             this.locations = res.data.locations
-            this.bookings = res.data.bookings
+            this.sinconfirmar = res.data.sinconfirmar
+            this.confirmados = res.data.confirmados
+            this.completados = res.data.completados
+
             console.log('xxxxxxxxxx'+res.data.fleet + res.data.locations + res.data.bookings) 
         }
                       
@@ -135,9 +140,11 @@ export class WellcomeComponent  implements OnInit {
             break;         
         
           default:
-            this.fleet= res.data.fleet
+           this.fleet= res.data.fleet
             this.locations = res.data.locations
-            this.bookings = res.data.bookings
+            this.sinconfirmar = res.data.sinconfirmar
+            this.confirmados = res.data.confirmados
+            this.completados = res.data.completados
             console.log('xxxxxxxxxx'+res.data.fleet + res.data.locations + res.data.bookings) 
         }
                       
@@ -180,4 +187,70 @@ menu() {
  this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']); 
 }
 
+Buscar(){}
+
+verSin(){
+  if(this.sinconfirmar != 0) {
+this.router.navigate(['/tabs/tabtobooks/citas/1']);  
+  }
+  else {
+     let mensaje
+        let header
+        let code
+         code = ''
+            header = ''
+            mensaje = 'Currently, there are no reservations awaiting confirmation.'       
+            this.aviso(header, mensaje, code)  
+  }
+   
+}
+
+verCon(){
+    if(this.confirmados != 0) {
+this.router.navigate(['/tabs/tabtobooks/citas/2']);  
+  }
+  else {
+     let mensaje
+        let header
+        let code
+         code = ''
+            header = ''
+            mensaje = 'It currently has no confirmed reservations.'       
+            this.aviso(header, mensaje, code)  
+  }
+}
+
+verPay(){
+     if(this.completados != 0) {
+this.router.navigate(['/tabs/tabtobooks/citas/7']);  
+  }
+  else {
+     let mensaje
+        let header
+        let code
+         code = ''
+            header = ''
+            mensaje = 'Currently, there are no reservations pending payment.'       
+            this.aviso(header, mensaje, code)  
+  }
+}
+
+verSite(){
+     if(this.locations != 0) {
+this.router.navigate(['/tabs/tabprofile/nav-profile']);  
+  }
+  else {
+  // this.router.navigate(['/tabs/tabprofile/addsitio']);  
+  }
+}
+
+verFleet(){
+     if(this.fleet != 0) {
+this.router.navigate(['/tabs/tabprofile/nav-profile']);  
+  }
+  else {
+ //this.router.navigate(['/tabs/tabprofile/addcar']);  
+  }
+}
+ 
 }

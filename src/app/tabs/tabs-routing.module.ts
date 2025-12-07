@@ -16,14 +16,14 @@ const routes: Routes = [
         loadChildren: () => import('../tabprofile/tab2.module').then(m => m.Tab2PageModule)
       },
     
-      {
+     {
         path: '',
         redirectTo: '/tabs/tabtobooks',
         pathMatch: 'full'
       }
     ]
   },
-  {
+ {
     path: '',
     redirectTo: '/tabs/tabtobooks',
     pathMatch: 'full'

@@ -3,8 +3,23 @@
     <ion-buttons slot="start">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Payments:<br><span [style.color]=colorp>{{n}}</span></ion-title>
+    <ion-title *ngIf="n == 'Verifying'">PAYMENTS:<br><span [style.color]=colorp>VERIFYING</span></ion-title>
+     <ion-title *ngIf="n == 'Processed'">PAYMENTS:<br><span [style.color]=colorp>PROCESSED</span></ion-title>
+      <ion-title *ngIf="n == 'Denied'">PAYMENTS:<br><span [style.color]=colorp>DENIED</span></ion-title>
   </ion-toolbar>
+
+     <ion-toolbar *ngIf="n == 'Verifying'" class ="colorfont"  color="primary">    
+      <ion-icon name="information-circle" slot='start'  class ="colorfont" ></ion-icon>
+      <ion-title size="small">This payment(s) has been successfully received 
+        but is currently undergoing a brief verification process by our administrative team.</ion-title>     
+    </ion-toolbar>
+
+       <ion-toolbar *ngIf="n == 'Processed'" class ="colorfont"  color="primary">    
+      <ion-icon name="information-circle" slot='start'  class ="colorfont" ></ion-icon>
+      <ion-title size="small">All these payments have been received and successfully verified
+         by our administrative team.</ion-title>     
+    </ion-toolbar> 
+
 </ion-header>
 
   <ion-content>
@@ -28,35 +43,41 @@
       <div class="ion-padding" slot="content">
    <ion-grid>
 
-          <ion-row>
+          <!--<ion-row>
             <ion-col class="neon">Report nº </ion-col>  
             <ion-col class="argon">{{element.report_number}}</ion-col>        
           </ion-row>
+           <ion-row>
+            <ion-col class="neon">Order nº </ion-col>  
+            <ion-col class="argon">{{element.order_number}}</ion-col>        
+          </ion-row>-->
          
 
           <ion-row>
             <ion-col class="neon" >Price</ion-col>
             <ion-col class="neon">Discount</ion-col>
-            <ion-col class="neon">Total paid</ion-col>
+            <ion-col class="neon">Tip</ion-col>
+            <ion-col class="neon">Paid</ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="argon">{{element.Price_item_string}}</ion-col>
             <ion-col class="argon">{{element.Descuento_item_string}}</ion-col>
-            <ion-col class="argon">{{element.Amount_string}}</ion-col>
-            
+            <ion-col class="argon">{{element.Propina_string}}</ion-col>
+            <ion-col class="argon">{{element.Amount_string}}</ion-col>            
           </ion-row>      
 
 
         </ion-grid>   
         
          <hr class="linea" *ngIf="element.vercharge_item">
-                <div *ngIf="element.vercharge_item" class="neon" >Servicio charge</div>
-          <p *ngIf="element.vercharge_item" class="neon" >Monto:</p>
+                <div *ngIf="element.vercharge_item" class="neon2" >
+                <p class="neon1">Service Charge</p>
+          <p *ngIf="element.vercharge_item" class="neon1" >Monto:</p>
           <p *ngIf="element.vercharge_item" class="argon" >{{element.rp_monto_item_string}}</p>
-            <p *ngIf="element.vercharge_item" class="neon" >Concepto:</p>
+            <p *ngIf="element.vercharge_item" class="neon1" >Concepto:</p>
             <p *ngIf="element.vercharge_item" class="argon" >{{element.rp_concepto_item}}</p>
-
+</div>
 
 
 

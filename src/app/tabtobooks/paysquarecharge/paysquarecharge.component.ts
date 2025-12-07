@@ -39,6 +39,9 @@ charge_string !: string
   url : any
   card : any
 
+  monedaCifra!: any
+  monedaString: any 
+
   constructor(
      private modalCtrl: ModalController,
     private dsls: SquareService, 
@@ -69,8 +72,28 @@ charge_string !: string
     }
   }
 
-  async ionViewWillEnter() {
+    removerSignoDeMoneda(valor: string): number {
+  // Elimina el signo de dólar, comas y cualquier otro carácter no numérico
+  const soloNumero = valor.replace(/[^\d.-]/g, '');
+  // Convierte la cadena resultante a un número de punto flotante
+  return parseFloat(soloNumero);
+}
 
+  formatearMoneda(valor: string, moneda: string, locale: string = 'en-US'): any {
+   let numero = this.removerSignoDeMoneda(valor);
+  const formateador = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: moneda,
+    minimumFractionDigits: 2 // Asegura dos decimales
+  });
+
+return formateador.format(numero); 
+
+}
+
+  async ionViewWillEnter() {
+this.monedaString = "$0.00"
+this.monedaCifra = 0
     this.loading.simpleLoader()
      //ojo square-sandbox or square segun las credenciales
      
@@ -153,8 +176,9 @@ this.loading.dismissLoader()
         concept: this.concepto, 
         subtotal : this.subtotal , 
         descuento : this.descuento, 
-        total : this.total ,        
-        tip : ((document.getElementById("tip") as HTMLInputElement).value) ,
+        total : this.total ,
+        tip : this.monedaCifra, 
+        //tip : ((document.getElementById("tip") as HTMLInputElement).value) ,
         nonce : result.token,
         itemid : this.item,
         washid : this.wash,
@@ -349,5 +373,28 @@ this.loading.dismissLoader()
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
+
+
+onChange(event: any) { // 'any' se usa a menudo, pero es mejor usar un tipo más específico como KeyboardEvent
+  
+    const valorDelInput = (event.target as HTMLInputElement).value;
+    this.monedaCifra = this.removerSignoDeMoneda(valorDelInput)
+    console.log('El valor del input es:', valorDelInput);
+    console.log('El valor del monedaCifra es:', this.monedaCifra);
+    // Aquí puedes hacer lo que necesites con el valor
+    //console.log(this.formatearMoneda(valorDelInput,'USD'))
+    if(valorDelInput == "$" || valorDelInput == "") {
+   this.monedaString = '$0.00' 
+    }
+    else {
+     this.monedaString =  this.formatearMoneda(valorDelInput,'USD')   
+    }
+    console.log('El valor del monedaString es:',this.monedaString);
+ 
+  } 
+
+onClick(event: any) {
+this.monedaString = '' 
+} 
 
 }

@@ -40,7 +40,7 @@
       
       <div style="text-align: center; color:#f2f2f2; font-weight: bold; font-size: larger;"> Tip is not expected, but appreciated</div>
       <div class="tip">Tip</div> 
-      <input type="text" id="tip" name="tip" class="form-control custom3"    (keyup)="onKeyUp($event)"  value='{{monedaString}}'><br>  
+      <input type="text" id="tip" name="tip" class="form-control custom3"  (click)="onClick($event)"   (change)="onChange($event)"  value='{{monedaString}}'><br>  
  </div>  
 </form>
 <div id="payment-status-container" style="color:#f2f2f2; font-size: larger; font-weight: bold;"></div>
