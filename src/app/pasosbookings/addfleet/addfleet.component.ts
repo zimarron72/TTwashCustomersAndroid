@@ -6,15 +6,14 @@ import {  AlertController  } from '@ionic/angular';
 import { Router} from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
 @Component({
-  selector: 'app-modaladdtruck',
-  templateUrl: './modaladdtruck.component.html',
-  styleUrls: ['./modaladdtruck.component.scss'],
+  selector: 'app-addfleet',
+  templateUrl: './addfleet.component.html',
+  styleUrls: ['./addfleet.component.scss'],
   standalone:false
 })
-export class ModaladdtruckComponent  implements OnInit {
- 
-  
- user: any
+export class AddfleetComponent  implements OnInit {
+
+user: any
   tipos!: any;
   detalles!:any
   idtoken!: any
@@ -37,8 +36,6 @@ export class ModaladdtruckComponent  implements OnInit {
 
 
 
-
- 
   constructor(
    private localstorage:StorageService, 
     private alertController: AlertController,
@@ -46,9 +43,27 @@ export class ModaladdtruckComponent  implements OnInit {
       private loading: LoadingService,
   ) { }
 
-  async ngOnInit() {
-   
-  }
+  ngOnInit() {}
+
+     async aviso(header : string, mensaje : string, code : string) {
+    if (code == '') {
+      const alert = await this.alertController.create({
+        header,
+        message: mensaje,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+    else {
+      const alert = await this.alertController.create({
+        header,
+        message: code + ' Sorry, ' + mensaje,
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+
+}
 
  validateForm(){ 
 
@@ -104,26 +119,6 @@ export class ModaladdtruckComponent  implements OnInit {
     return (ValidationFlag) ? true : false; 
     }
 
-   async aviso(header : string, mensaje : string, code : string) {
-    if (code == '') {
-      const alert = await this.alertController.create({
-        header,
-        message: mensaje,
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
-    else {
-      const alert = await this.alertController.create({
-        header,
-        message: code + ' Sorry, ' + mensaje,
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
-
-}
-
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
       url,
@@ -137,7 +132,7 @@ export class ModaladdtruckComponent  implements OnInit {
     return from(CapacitorHttp.post(options))
   }
 
- async ionViewWillEnter() {
+  async ionViewWillEnter() {
 
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
@@ -183,11 +178,11 @@ export class ModaladdtruckComponent  implements OnInit {
         
   }
 
-   cancel() {
-  this.router.navigate(['/tabs/tabprofile/fleet']); 
+ cancel() {
+  this.router.navigate(['pasos/fleet']);  
   }
 
- confirm() {
+  confirm() {
 
     if(this.validateForm()){
 
@@ -224,7 +219,7 @@ export class ModaladdtruckComponent  implements OnInit {
             code = ''
             header = 'Warning'
             mensaje = 'OOPS! The vehicle was already registered in your fleet'             
-            this.router.navigate(['/tabs/tabprofile/fleet']); 
+            this.router.navigate(['/pasos/fleet']);
             this.aviso(header, mensaje, code) 
           break; 
   
@@ -234,7 +229,7 @@ export class ModaladdtruckComponent  implements OnInit {
    header = ""
    mensaje = "The vehicle was successfully added"
     this.aviso(header,mensaje,code)
-    this.router.navigate(['/tabs/tabprofile/nav-profile']); 
+   this.router.navigate(['pasos/wellcome']);
             break;  
   
             }

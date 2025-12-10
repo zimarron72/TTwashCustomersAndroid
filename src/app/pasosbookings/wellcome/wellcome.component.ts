@@ -237,19 +237,19 @@ this.router.navigate(['/tabs/tabtobooks/citas/7']);
 
 verSite(){
      if(this.locations != 0) {
-this.router.navigate(['/tabs/tabprofile/nav-profile']);  
+this.router.navigate(['/pasos/locations']);  
   }
   else {
-  // this.router.navigate(['/tabs/tabprofile/addsitio']);  
+  this.router.navigate(['/pasos/addLocation']);  
   }
 }
 
 verFleet(){
      if(this.fleet != 0) {
-this.router.navigate(['/tabs/tabprofile/nav-profile']);  
+this.router.navigate(['/pasos/fleet']);  
   }
   else {
- //this.router.navigate(['/tabs/tabprofile/addcar']);  
+  this.router.navigate(['/pasos/addFleet']);  
   }
 }
  

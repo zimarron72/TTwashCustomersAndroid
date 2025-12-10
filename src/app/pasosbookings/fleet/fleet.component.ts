@@ -5,6 +5,7 @@ import { LoadingService } from '../../servicios/loading.services';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { AlertController , ModalController  } from '@ionic/angular';
+
 @Component({
   selector: 'app-fleet',
   templateUrl: './fleet.component.html',
@@ -17,10 +18,8 @@ export class FleetComponent  implements OnInit {
   user: any
   idtoken!: string
   autenticacion_tipo!: string
- data:any
+  data!: any
  
-  showlist:boolean = true
-  showadd:boolean = false
 
   constructor(
       private alertController: AlertController,
@@ -32,13 +31,11 @@ export class FleetComponent  implements OnInit {
 
   ngOnInit() {}
 
-  profile() {
-   this.router.navigate(['/tabs/tabprofile/nav-profile']);  
+   wellcome() {
+   this.router.navigate(['/pasos/wellcome']);   
 }
 
-   isObjectEmpty(obj: any): boolean {
-  return Object.keys(obj).length === 0;
-}
+
 
 
   cHttps(url: string, data: any) {
@@ -115,16 +112,7 @@ async ionViewWillEnter() {
           
           this.fleet = Object.values(res.data)
           this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
- if(this.isObjectEmpty(this.fleet)) {
-            this.showadd = true
-            this.showlist = false
-            }
-            else {
-             this.showadd = false
-            this.showlist = true 
-          this.data = this.fleet         
-          console.log(this.data)
-            }
+
 
 
           break;
@@ -181,16 +169,7 @@ doRefresh(event: { target: { complete: () => void; }; }) {
             
   this.fleet = Object.values(res.data)
           this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
- if(this.isObjectEmpty(this.fleet)) {
-            this.showadd = true
-            this.showlist = false
-            }
-            else {
-             this.showadd = false
-            this.showlist = true 
-          this.data = this.fleet         
-          console.log(this.data)
-            }
+
 
           break;
         }  
@@ -209,7 +188,7 @@ doRefresh(event: { target: { complete: () => void; }; }) {
 }
 
 async add() {
- this.router.navigate(['/tabs/tabprofile/addcar']);
+ this.router.navigate(['pasos/addFleet']);
 }
 
 borrar(id : number) {
@@ -292,16 +271,7 @@ borrar(id : number) {
             
   this.fleet = Object.values(res.data)
           this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
- if(this.isObjectEmpty(this.fleet)) {
-            this.showadd = true
-            this.showlist = false
-            }
-            else {
-             this.showadd = false
-            this.showlist = true 
-          this.data = this.fleet         
-          console.log(this.data)
-            }
+
 
           break;
         }  

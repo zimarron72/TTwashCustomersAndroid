@@ -21,6 +21,10 @@ import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component'
 import { CartComponent } from './cart/cart.component';
 import { PayokeyComponent } from './payokey/payokey.component';
 import { PaycondComponent } from './paycond/paycond.component';
+import { AddfleetComponent } from './addfleet/addfleet.component';
+import { AddlocationComponent } from './addlocation/addlocation.component';
+import { FleetComponent } from './fleet/fleet.component';
+import { LocationsComponent } from './locations/locations.component';
 
 @NgModule({
   imports: [
@@ -47,8 +51,11 @@ BooknowfleetsComponent,
 BooknowotherComponent,
 CartComponent,
 PayokeyComponent,
-PaycondComponent
-
+PaycondComponent,
+AddfleetComponent,
+AddlocationComponent,
+FleetComponent,
+LocationsComponent
     
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA],

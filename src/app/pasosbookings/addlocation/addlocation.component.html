@@ -1,56 +1,14 @@
 <ion-header>
   <ion-toolbar color="primary"> 
-         <ion-buttons slot="start">
-      <ion-button (click)="atras()">       
-        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
-          </ion-button>   
-    </ion-buttons>   
-    <ion-title>YOUR LOCATION</ion-title>  
-            <ion-buttons slot="end">
-      <ion-button (click)="cancel()" *ngIf !="invitacion">       
-        <ion-icon slot="icon-only" name="sync" color="light"></ion-icon>
-          </ion-button> 
-     </ion-buttons>   
+       
+    <ion-title>ADD A NEW LOCATION</ion-title> 
+       
   </ion-toolbar>
-      
 
 </ion-header>
+
 <ion-content class="ion-padding">
-
-<p style="text-align: justify;" *ngIf="invitacion" >You need to open your set of locations to continue.</p>
-
-  <div *ngIf="select">
-  <ion-grid>
-
-    <ion-row *ngIf="ocultaboton">
-      <ion-col style="text-align: center;">
-        <ion-button  color="primary" (click) = "locationList()"  shape="round">
-SELECT AN ADDRESS FROM YOUR LIST OF LOCATIONS
-
- <ion-icon color="dark" slot="start" name="add-circle"></ion-icon>
-  <ion-icon color="light" slot="end" name="square"></ion-icon>
-</ion-button>
-      </ion-col>
-    </ion-row>
-
-      <ion-row>
-      <ion-col style="text-align: center;">
-        <ion-button  color="warning" (click) = "locationNew()" shape="round" >
-INDICATE A NEW LOCATION
- <ion-icon color="dark" slot="start" name="checkmark-circle"></ion-icon>
-  <ion-icon color="light" slot="end" name="square"></ion-icon>
-</ion-button>
-      </ion-col>
-    </ion-row>
-
-
-
-    </ion-grid><br>
-      <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
-
-</div>
-<div *ngIf="new">
-  <div style="text-align: justify;"><p>This location will be stored in your list of locations for another time.</p></div>
+ <div style="text-align: justify;"><p>This location will be stored in your list of locations for another time.</p></div>
 
 <ion-list>
     <ion-item>
@@ -150,33 +108,29 @@ INDICATE A NEW LOCATION
   
   </ion-list>
 
+<div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
 
-
-<div style="text-align: center;" >
-<ion-button  color="primary" (click) = "continue()"  shape="round">
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="primary">
+   <ion-grid>
+    <ion-row>
+      <ion-col>
+     
+      <ion-button color="secondary" shape="round" (click)="cancel()">
+       CANCEL
+ <ion-icon color="light" slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    
+  </ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+<ion-button  color="secondary" shape="round" (click) = "confirm()">
   CONTINUE
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
-</div>
-</div>
-
-<div *ngIf="locations">
- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> 
-
-   <ion-list lines="none" [inset]="true">
-
-      <ion-item  color="primary" class="customer-list"  *ngFor="let address of locationsx" (click)="selectLocation(address.id)"  >
- <ion-icon slot="start" name="map-outline" color="primary"></ion-icon>
-        <ion-label>
-           {{address.address}}<br><span style="font-size:smaller">City: {{address.city}}<br> Zip code: {{address.zip}}</span>
-             </ion-label>
-             <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
-        </ion-item>
-      </ion-list><br>
-        <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
-</div>
-
-  
-</ion-content>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+    </ion-toolbar>
+</ion-footer>

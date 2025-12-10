@@ -45,6 +45,8 @@ site = {
   cities:any
 
   ocultaboton:boolean = false
+invitacion:any
+
 
   constructor(
      private localstorage:StorageService, 
@@ -56,7 +58,13 @@ site = {
    { 
      this.new = false
   this.locations = false
+  this.invitacion = false
    }
+
+   isObjectEmpty(obj: any): boolean {
+  return Object.keys(obj).length === 0;
+}
+
 
   ngOnInit() {}
 
@@ -209,15 +217,20 @@ validateForm(){
             this.aviso(header, mensaje, code) 
           break;   
 
-           case 'NADA':          
-          this.ocultaboton = false
-          break;
         
           case '200_OK': 
              this.ocultaboton = true      
           this.locationsx = Object.values(res.data)
           this.locationsx =  this.locationsx.filter(((valor: string | any[]) => valor !== '200_OK'))
-
+ if(this.isObjectEmpty(this.locations)) {
+           this.select = false
+  this.new = true
+  this.locations = false
+  this.invitacion = true
+            }
+              else {
+          this.invitacion = false  
+            }     
           break;
         }  
       })
@@ -269,10 +282,7 @@ doRefresh(event: { target: { complete: () => void; }; }) {
             
            
           break;       
-          
-           case 'NADA':          
-          this.ocultaboton = false
-          break;
+
         
         
           case '200_OK':
@@ -280,8 +290,15 @@ doRefresh(event: { target: { complete: () => void; }; }) {
           this.ocultaboton = true
           this.locationsx = Object.values(res.data)
           this.locationsx =  this.locationsx.filter(((valor: string | any[]) => valor !== '200_OK'))
-
-          
+if(this.isObjectEmpty(this.locations)) {
+           this.select = false
+  this.new = true
+  this.locations = false
+  this.invitacion = true
+            }
+            else {
+          this.invitacion = false    
+            }          
 
 
           break;
@@ -432,6 +449,7 @@ cancel(){
   this.select = true
   this.new = false
   this.locations = false
+
 }
 
     powerPopoverOptions = {

@@ -1,15 +1,19 @@
 <ion-header>
-  <ion-toolbar  color="primary"><ion-buttons slot="start">
-    <ion-back-button></ion-back-button>
-  </ion-buttons>  
-    <ion-title>Locations</ion-title>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="wellcome()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title>LOCATIONS</ion-title>       
   </ion-toolbar>
-  <ion-toolbar color="primary">
+
+    <ion-toolbar color="primary">
     <ion-icon name="information-circle" slot='start' style="color:#f2f2f2"></ion-icon>
     <ion-title size="small" style="color: #ffffff;">Hold two or more locations for your future reservations</ion-title>
   </ion-toolbar>
-</ion-header>
 
+</ion-header>
 
 <ion-content>
  <div *ngIf='showlist'> 
@@ -39,14 +43,14 @@
       <ion-grid>
         <ion-row>
          
-          <ion-col><ion-button expand="full" color="secondary" (click) = "add()"  >
+          <ion-col><ion-button shape="round" color="secondary" (click) = "add()"  >
             <ion-icon slot="start" name="add-outline"></ion-icon> 
             Add a new location
           </ion-button></ion-col>
         </ion-row>
           <ion-row>
 
-          <ion-col><ion-button expand="full" color="secondary" (click) = "borrar(element.id,element.default)">
+          <ion-col><ion-button shape="round" color="secondary" (click) = "borrar(element.id,element.default)">
             <ion-icon slot="start" name="trash-outline"></ion-icon>
             Delete this location
           </ion-button></ion-col>
@@ -58,7 +62,7 @@
   </ion-accordion-group>
  </div>
 
- <diV  *ngIf='showadd'> <br><br><ion-button  expand="block" color="warning" (click) = add()>Register your location now!</ion-button>
+ <diV  *ngIf='showadd'> <br><br><ion-button  shape="round" color="warning" (click) = add()>Register your location now!</ion-button>
 <br><br>
    <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
 </diV>

@@ -2,17 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../servicios/storage.service';
 import { Router } from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
-import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
+import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
-import { AlertController , ModalController } from '@ionic/angular';
-
-import { ModaladdsiteComponent  } from '../modaladdsite/modaladdsite.component';
+import { AlertController  } from '@ionic/angular';
 
 @Component({
   selector: 'app-locations',
   templateUrl: './locations.component.html',
   styleUrls: ['./locations.component.scss'],
-  standalone : false
+  standalone:false
 })
 export class LocationsComponent  implements OnInit {
 
@@ -25,21 +23,18 @@ data!: any
  showlist:boolean = true
   showadd:boolean = false
 
-message = 'This modal example uses the modalController to present and dismiss modals.';
-
   constructor(
-    private alertController: AlertController,
+      private alertController: AlertController,
     private localstorage: StorageService,
     private router: Router,
-    private loading : LoadingService, 
-    private modalCtrl: ModalController,
- 
-    
+    private loading : LoadingService,   
   ) { }
 
-  async ngOnInit() {
-   
-  }
+  ngOnInit() {}
+
+   wellcome() {
+   this.router.navigate(['/pasos/wellcome']);   
+}
 
    isObjectEmpty(obj: any): boolean {
   return Object.keys(obj).length === 0;
@@ -222,31 +217,10 @@ doRefresh(event: { target: { complete: () => void; }; }) {
 
 
 async add() {
-  const modal = await this.modalCtrl.create({
-    component: ModaladdsiteComponent
-  });
-  modal.present();
 
-  const { data, role } = await modal.onWillDismiss();
-
-  if (role === 'confirm') {
-
-    this.procesar(data.suite,data.street,data.address,data.estado,data.ciudad,data.zip,data.favorito)
+   this.router.navigate(['/pasos/addLocations']);
 
 }
-
-if(role === 'cancel'){
-
-  this.router.navigate(['/tabs/tabprofile/nav-profile']); 
-
-}
-
-}
-
-
-
-
-
 
 
 borrar(id : number , status : number) {
@@ -295,7 +269,57 @@ borrar(id : number , status : number) {
             header = 'Notice'
             mensaje = 'Location deleted successfully'
             this.aviso(header, mensaje, code) 
-            this.router.navigate(['/tabs/tabprofile/nav-profile']);
+               let url = 'https://washtt.com/v1_api_clientes_getlocationscliente.php'
+    let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email}
+    this.cHttps(url, data).subscribe(
+      async (res: any) => {
+      //  this.loading.dismissLoader()  
+        let mensaje
+        let header
+        let code
+        switch(res.data.respuesta) {
+         
+          case 'ERROR':
+            code = ''
+            header = 'Error'
+            mensaje = 'an error occurred,please login again'
+            this.localstorage.clearData()
+            this.router.navigate(['/login']);
+            this.aviso(header, mensaje, code) 
+            
+           
+          break;
+        
+          case 'TOKEN ERROR':
+            code = ''
+            header = 'Error'
+            mensaje = 'Invalid or expired token,please login again'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])   
+            this.aviso(header, mensaje, code) 
+          break;   
+        
+          case '200_OK':
+
+          
+          this.locations = Object.values(res.data)
+          this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
+
+          if(this.isObjectEmpty(this.locations)) {
+            this.showadd = true
+            this.showlist = false
+            }
+            else {
+             this.showadd = false
+            this.showlist = true 
+          this.data = this.locations         
+          console.log(this.data)
+            }
+
+
+          break;
+        }  
+      })
 
           break;
         }  
@@ -314,74 +338,7 @@ borrar(id : number , status : number) {
 }
 
 
-procesar(suite : any, street: any, address : any, estado: any, ciudad: any, zip: any, defaults:any ) {
-  this.loading.simpleLoader()
-  if(this.user) {
-    let url = 'https://washtt.com/v1_api_clientes_addsitio.php'
-    let datax = { 
-    idtoken: this.idtoken,
-    autenticacion_tipo: this.autenticacion_tipo,
-    email : this.user.email,
-    suite : suite , 
-    street : street,
-    address : address,
-state  : estado,
-city : ciudad,
-zip : zip,
-defaults : defaults
-  }
-    this.cHttps(url, datax).subscribe(
-      async (res: any) => {
-        this.loading.dismissLoader()  
-        let mensaje
-        let header
-        let code
-        switch(res.data.respuesta) {
-          case 'ERROR':
-          code = ''
-          header = 'Error'
-          mensaje = 'an error occurred,please login again'
-          this.localstorage.clearData()
-          this.router.navigate(['/login']);
-          this.aviso(header, mensaje, code)
-          break;
 
-          case 'TOKEN ERROR':
-          code = ''
-          header = 'Error'
-          mensaje = 'Invalid or expired token,please login again'
-          this.localstorage.clearData()
-          this.router.navigate(['/login'])   
-          this.aviso(header, mensaje, code) 
-        break; 
-
-       
-
-        case 'OK_TODO':
-        
-          code = ''
-          header = 'Notice'
-          mensaje = 'Location added successfully'
-          this.aviso(header, mensaje, code) 
-          this.router.navigate(['/tabs/tabprofile/nav-profile']);
-
-        break;  
-
-        }
-  }
-)
-      }
-      else {
-        let mensaje = 'please login again'
-  let header = 'Warning'
-  let code = ''
-  this.loading.dismissLoader() 
-  this.localstorage.clearData()
-  this.router.navigate(['/login']);
-  this.aviso(header, mensaje, code)  
-      }
-
-}
 
 }
 

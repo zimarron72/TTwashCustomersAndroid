@@ -39,6 +39,9 @@ user: any
   new:boolean = false
   fleet:boolean = false
 fleetx: any
+
+invitacion: boolean = false
+
   constructor(
       private localstorage:StorageService, 
     private alertController: AlertController,
@@ -48,6 +51,7 @@ fleetx: any
    this.select = true
   this.new = false
   this.fleet = false
+  this.invitacion = false
   }
 
   ngOnInit() {}
@@ -129,6 +133,9 @@ wellcome() {
     }
   }
 
+    isObjectEmpty(obj: any): boolean {
+  return Object.keys(obj).length === 0;
+}
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -220,7 +227,16 @@ wellcome() {
           
             this.fleetx = Object.values(res.data)
           this.fleetx =  this.fleetx.filter(((valor: string | any[]) => valor !== '200_OK'))
-         
+                   if(this.isObjectEmpty(this.fleetx)) {
+       this.select = false
+  this.new = true
+  this.fleet = false       
+  this.invitacion = true
+            }
+               else {
+          this.invitacion = false    
+            } 
+      
 
 
           break;
@@ -307,7 +323,15 @@ this.user = JSON.parse(await this.localstorage.getData('usuario'))
           
             this.fleetx = Object.values(res.data)
           this.fleetx =  this.fleetx.filter(((valor: string | any[]) => valor !== '200_OK'))
-         
+      if(this.isObjectEmpty(this.fleetx)) {
+       this.select = false
+  this.new = true
+  this.fleet = false       
+  this.invitacion = true
+            }
+               else {
+          this.invitacion = false    
+            } 
 
 
           break;
@@ -340,19 +364,13 @@ this.user = JSON.parse(await this.localstorage.getData('usuario'))
   };
 
 
-mainPopoverOptions = {
 
-   // header: 'Main vehicle',
-    subHeader: 'Does it is main vehicle your fleet?',
-
-  };
 
  async continue() {
     if(this.validateForm()){
   this.loading.simpleLoader()
         let url = 'https://washtt.com/v2_api_clientes_addcamion.php'
-        let data = { 
-        modo : '1',  
+        let data = {   
         idtoken: this.idtoken,
         autenticacion_tipo: this.autenticacion_tipo,
         email : this.user.email,
@@ -363,7 +381,7 @@ mainPopoverOptions = {
      licenseplate:this.truck.license,
      detail:this.truck.detallev,
      unitnumber:this.truck.unitnumber,
-     defaults: 0
+
       }
         this.cHttps(url, data).subscribe(
           async (res: any) => {
@@ -380,6 +398,17 @@ mainPopoverOptions = {
               this.router.navigate(['/login']);
               this.aviso(header, mensaje, code)
               break;  
+
+               case 'COUNT':
+            code = ''
+            header = 'Warning'
+            mensaje = 'OOPS! The vehicle was already registered in your fleet'             
+            this.aviso(header, mensaje, code)
+             this.select = false
+  this.new = false
+  this.fleet = true
+          break; 
+
             
             case 'OK_TRUCK':        
             
@@ -429,6 +458,7 @@ cancel(){
   this.select = true
   this.new = false
   this.fleet = false
+
 }
 
 selectVehiculo(id:any, categoryid:any) {

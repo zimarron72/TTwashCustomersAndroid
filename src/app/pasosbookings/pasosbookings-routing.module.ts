@@ -18,6 +18,10 @@ import { BooknowfleetsComponent } from './booknowfleets/booknowfleets.component'
 import { CartComponent } from './cart/cart.component';
 import { PayokeyComponent } from './payokey/payokey.component';
 import { PaycondComponent } from './paycond/paycond.component';
+import { AddfleetComponent } from './addfleet/addfleet.component';
+import { AddlocationComponent } from './addlocation/addlocation.component';
+import { FleetComponent } from './fleet/fleet.component';
+import { LocationsComponent } from './locations/locations.component';
 
 
 const routes: Routes = [
@@ -41,6 +45,13 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
        { path: 'pagoexitoso', component: PayokeyComponent },
         { path: 'pagocond', component: PaycondComponent },
+        { path: 'addFleet', component: AddfleetComponent },
+         { path: 'addLocations', component: AddlocationComponent },
+
+           { path: 'fleet', component: FleetComponent },
+            { path: 'locations', component: LocationsComponent },
+
+
     ]
   }
 ];

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary"> 
          <ion-buttons slot="start">
-      <ion-button (click)="profile()">       
+      <ion-button (click)="wellcome()">       
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
@@ -10,17 +10,16 @@
 
     <ion-toolbar  color="primary">
     <ion-icon name="information-circle" slot='start' style="color:#f2f2f2"></ion-icon>
-    <ion-title size="small" style="color: #ffffff;">With your registered fleet, you gain more benefits and discounts.</ion-title>
+    <ion-title size="small" style="color: #ffffff;">With a fleet you acquire benefits and discounts</ion-title>
   </ion-toolbar>
 
 </ion-header>
 
 <ion-content > 
-<div *ngIf='showlist'>   
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher> 
-<ion-accordion-group *ngFor="let element of data; let i = index " expand="inset" >
+<ion-accordion-group *ngFor="let element of fleet; let i = index " expand="inset" >
   <ion-accordion value=i>
     <ion-item slot="header" color="light">
       <ion-thumbnail slot="end">
@@ -80,19 +79,10 @@
     </div>
   </ion-accordion>   
 </ion-accordion-group>
-</div>
 
-<div style="text-align: center;" *ngIf='showadd'> <br><br><ion-button  shape="round" color="warning" (click) = add()>Register your fleet now</ion-button>
-<br><br>
-
-</div>
 
    <div  style="text-align: center;"> <img src="./assets/imgs/vehiculos_app.png" /></div>
 
 
 
 </ion-content>
-
-
-
-

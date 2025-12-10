@@ -2,43 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../servicios/storage.service';
 import { Router } from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
-import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
+import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
-import { AlertController , ModalController  } from '@ionic/angular';
+import { AlertController  } from '@ionic/angular';
+
 @Component({
-  selector: 'app-fleet',
-  templateUrl: './fleet.component.html',
-  styleUrls: ['./fleet.component.scss'],
+  selector: 'app-locations',
+  templateUrl: './locations.component.html',
+  styleUrls: ['./locations.component.scss'],
   standalone:false
 })
-export class FleetComponent  implements OnInit {
+export class LocationsComponent  implements OnInit {
 
- fleet: any
-  user: any
-  idtoken!: string
-  autenticacion_tipo!: string
- data:any
- 
-  showlist:boolean = true
+locations: any
+user: any
+idtoken!: string
+autenticacion_tipo!: string
+data!: any
+
+ showlist:boolean = true
   showadd:boolean = false
 
   constructor(
       private alertController: AlertController,
     private localstorage: StorageService,
     private router: Router,
-    private loading : LoadingService, 
-    private modalCtrl: ModalController
+    private loading : LoadingService,   
   ) { }
 
   ngOnInit() {}
 
-  profile() {
-   this.router.navigate(['/tabs/tabprofile/nav-profile']);  
+   wellcome() {
+   this.router.navigate(['/pasos/wellcome']);   
 }
 
-   isObjectEmpty(obj: any): boolean {
-  return Object.keys(obj).length === 0;
-}
 
 
   cHttps(url: string, data: any) {
@@ -74,13 +71,13 @@ async aviso(header : string, mensaje : string, code : string) {
 
 }
 
-async ionViewWillEnter() { 
+async ionViewWillEnter() {  
   this.user = JSON.parse(await this.localstorage.getData('usuario'))
   this.idtoken = await this.localstorage.getData('idtoken')
   this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
   this.loading.simpleLoader()
   if(this.user) {
-    let url = 'https://washtt.com/v1_api_clientes_getfleetcliente.php'
+    let url = 'https://washtt.com/v1_api_clientes_getlocationscliente.php'
     let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email}
     this.cHttps(url, data).subscribe(
       async (res: any) => {
@@ -113,18 +110,11 @@ async ionViewWillEnter() {
           case '200_OK':
 
           
-          this.fleet = Object.values(res.data)
-          this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
- if(this.isObjectEmpty(this.fleet)) {
-            this.showadd = true
-            this.showlist = false
-            }
-            else {
-             this.showadd = false
-            this.showlist = true 
-          this.data = this.fleet         
-          console.log(this.data)
-            }
+          this.locations = Object.values(res.data)
+          this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
+
+
+       
 
 
           break;
@@ -145,13 +135,13 @@ async ionViewWillEnter() {
 
 doRefresh(event: { target: { complete: () => void; }; }) {
   event.target.complete();
-
+  //this.loading.simpleLoader()
   if(this.user) {
-    let url = 'https://washtt.com/v1_api_clientes_getfleetcliente.php'
+    let url = 'https://washtt.com/v1_api_clientes_getlocationscliente.php'
     let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email}
     this.cHttps(url, data).subscribe(
       async (res: any) => {
-       
+      //  this.loading.dismissLoader()  
         let mensaje
         let header
         let code
@@ -178,19 +168,13 @@ doRefresh(event: { target: { complete: () => void; }; }) {
           break;   
         
           case '200_OK':
-            
-  this.fleet = Object.values(res.data)
-          this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
- if(this.isObjectEmpty(this.fleet)) {
-            this.showadd = true
-            this.showlist = false
-            }
-            else {
-             this.showadd = false
-            this.showlist = true 
-          this.data = this.fleet         
-          console.log(this.data)
-            }
+
+          
+          this.locations = Object.values(res.data)
+          this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
+
+    
+
 
           break;
         }  
@@ -201,22 +185,29 @@ doRefresh(event: { target: { complete: () => void; }; }) {
     let mensaje = 'please login again'
     let header = 'Warning'
     let code = ''
-    this.loading.dismissLoader() 
+   // this.loading.dismissLoader() 
     this.localstorage.clearData()
     this.router.navigate(['/login']);
     this.aviso(header, mensaje, code) 
-  } 
+  }
+
 }
 
+
+
+
 async add() {
- this.router.navigate(['/tabs/tabprofile/addcar']);
+
+   this.router.navigate(['/pasos/addLocations']);
+
 }
+
 
 borrar(id : number) {
   this.loading.simpleLoader()
   if(this.user) {
-    let url = 'https://washtt.com/v1_api_clientes_deletevehiculocliente.php'
-    let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, idvehiculo : id ,email : this.user.email}
+    let url = 'https://washtt.com/v1_api_clientes_deletesitiocliente.php'
+    let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, idsitio : id }
     this.cHttps(url, data).subscribe(
       async (res: any) => {
         this.loading.dismissLoader()  
@@ -247,7 +238,7 @@ borrar(id : number) {
           case 'NO BORRAR':
             code = ''
             header = 'Warning'
-            mensaje = 'Sorry, can not be deleted: your fleet must contain at least one vehicle'
+            mensaje = 'can not be deleted: the site is your current billing address'
             this.aviso(header, mensaje, code) 
           break;  
           
@@ -256,13 +247,13 @@ borrar(id : number) {
 
           code = ''
             header = 'Notice'
-            mensaje = 'Vehicle deleted successfully'
-            this.aviso(header, mensaje, code)            
-             let url = 'https://washtt.com/v1_api_clientes_getfleetcliente.php'
+            mensaje = 'Location deleted successfully'
+            this.aviso(header, mensaje, code) 
+               let url = 'https://washtt.com/v1_api_clientes_getlocationscliente.php'
     let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email : this.user.email}
     this.cHttps(url, data).subscribe(
       async (res: any) => {
-       
+      //  this.loading.dismissLoader()  
         let mensaje
         let header
         let code
@@ -289,19 +280,13 @@ borrar(id : number) {
           break;   
         
           case '200_OK':
-            
-  this.fleet = Object.values(res.data)
-          this.fleet =  this.fleet.filter(((valor: string | any[]) => valor !== '200_OK'))
- if(this.isObjectEmpty(this.fleet)) {
-            this.showadd = true
-            this.showlist = false
-            }
-            else {
-             this.showadd = false
-            this.showlist = true 
-          this.data = this.fleet         
-          console.log(this.data)
-            }
+
+          
+          this.locations = Object.values(res.data)
+          this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
+
+
+
 
           break;
         }  
@@ -312,14 +297,18 @@ borrar(id : number) {
       })
   }
   else {
-    this.loading.dismissLoader()    
-    this.localstorage.clearData()
-    this.router.navigate(['/login']);
+  
     let mensaje = 'please login again'
     let header = 'Warning'
     let code = ''
+    this.loading.dismissLoader() 
+    this.localstorage.clearData()
+    this.router.navigate(['/login']);
     this.aviso(header, mensaje, code) 
-  }  
+  }
 }
+
+
+
 
 }

@@ -7,7 +7,7 @@
     </ion-buttons>   
     <ion-title>SELECT YOUR VEHICLE</ion-title> 
          <ion-buttons slot="end">
-      <ion-button (click)="cancel()">       
+      <ion-button (click)="cancel()" *ngIf !="invitacion">       
         <ion-icon slot="icon-only" name="sync" color="light"></ion-icon>
           </ion-button> 
      </ion-buttons>         
@@ -38,6 +38,9 @@ GET STARTED WITH A NEW VEHICLE
     </ion-row>
     </ion-grid>
 </div>
+<h2 style="text-align: justify;" *ngIf="invitacion" >You need to start your vehicle fleet to continue.</h2>
+
+
 <div *ngIf="new">
   <div style="text-align: justify;"><p>Remember maintain a fleet of vehicles with us and receive frequent discount coupons.</p></div>
   <ion-list lines="none">
@@ -122,7 +125,7 @@ placeholder="Its general appearance"
         
         </ion-thumbnail>  
         <ion-label>
-           {{vehiculo.type_vehicle}} {{vehiculo.model}}<br><span style="font-size:smaller">Number: {{vehiculo.unit_number}} License: {{vehiculo.license}}</span>
+           {{vehiculo.type_vehicle}} {{vehiculo.model}}<br><span style="font-size:smaller">Number: {{vehiculo.unit_number}}</span>
              </ion-label>
         </ion-item>
       </ion-list>

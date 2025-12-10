@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="wellcome()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title>LOCATIONS</ion-title>       
+  </ion-toolbar>
+
+    <ion-toolbar color="primary">
+    <ion-icon name="information-circle" slot='start' style="color:#f2f2f2"></ion-icon>
+    <ion-title size="small" style="color: #ffffff;">Hold two or more locations for your future reservations</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-accordion-group *ngFor="let element of locations; let i = index " expand="inset" >
+    <ion-accordion value=i>
+      <ion-item slot="header" color="light">
+        <ion-icon name="map-outline" color="primary" slot="start"></ion-icon>
+        <ion-label>Address: {{element.address}}<br> Zip code: {{element.zip}}</ion-label>
+      </ion-item>
+ <div class="ion-padding" slot="content">     
+<ion-grid>
+  <ion-row>
+    <ion-col class="box1">Suite</ion-col>
+    <ion-col class="box2">Street</ion-col>
+  </ion-row>
+   <ion-row>
+    <ion-col class="box3">{{element.suite}}</ion-col>
+    <ion-col class="box3">{{element.street_nr}}</ion-col>
+  </ion-row>
+
+    <ion-row>
+    <ion-col class="box1">State</ion-col>
+    <ion-col class="box2">City</ion-col>
+  </ion-row>
+   <ion-row>
+    <ion-col class="box3">{{element.state}}</ion-col>
+    <ion-col class="box3">{{element.city}}</ion-col>
+  </ion-row>
+</ion-grid>
+      <ion-grid>
+        <ion-row>
+         
+          <ion-col><ion-button shape="round" color="secondary" (click) = "add()"  >
+            <ion-icon slot="start" name="add-outline"></ion-icon> 
+           ADD
+          </ion-button>
+        </ion-col>
+   
+
+          <ion-col><ion-button shape="round" color="secondary" (click) = "borrar(element.id)">
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            DELETE
+          </ion-button></ion-col>
+       
+        </ion-row>
+      </ion-grid>
+      </div>
+    </ion-accordion>   
+  </ion-accordion-group>
+ 
+
+  <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
+
+
+
+
+</ion-content>
