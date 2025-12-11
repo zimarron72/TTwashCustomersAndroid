@@ -23,11 +23,6 @@
     
     </ion-item>
 
-    <ion-item>
-      <ion-input labelPlacement="stacked" label="Address" id = 'address' name = 'address' type = 'text' [(ngModel)]="site.address" placeholder="your address" />
-      <br/>
-   
-    </ion-item>
 
     <ion-item>
       <ion-input labelPlacement="stacked" label="Code postal" id = 'zip' name = 'zip' type = 'number' [(ngModel)]="site.zip" placeholder="your code postal" />
@@ -68,43 +63,6 @@
       <br/>
      
     </ion-item>
-  
-        <ion-item>
-      <ion-select  label="Power supply"
-       [interfaceOptions]="powerPopoverOptions" interface="popover" fill="outline"
-      
-      labelPlacement="stacked" placeholder="Select" id = "power" name = "power" [(ngModel)]="site.power" >
-      <ion-select-option *ngFor="let power of powers"  [value]="power.valor">  
-        {{power.etiqueta}}
-      </ion-select-option>        
-      </ion-select>
-     
-    </ion-item>
-
-    <ion-item>
-      <ion-select label="Water supply" placeholder="Select"
-       [interfaceOptions]="waterPopoverOptions" interface="popover" fill="outline"
-      labelPlacement="stacked"  id = "water" name = "water" [(ngModel)]="site.water" >
-      <ion-select-option *ngFor="let water of waters"  [value]="water.valor">  
-        {{water.etiqueta}}
-      </ion-select-option>        
-      </ion-select>
-     
-    </ion-item>
-
-    <ion-item>
-      <ion-select 
-      label="Will you to be there?" placeholder="Select"
-       [interfaceOptions]="presenciaPopoverOptions" interface="popover" fill="outline"
-      labelPlacement="stacked"  id = "ensitio" name = "ensitio" [(ngModel)]="site.ensitio" >
-      <ion-select-option *ngFor="let ensitio of ensitios"  [value]="ensitio.valor">  
-        {{ensitio.etiqueta}}
-      </ion-select-option>        
-      </ion-select>
-    
-    </ion-item>
-
-
   
   </ion-list>
 

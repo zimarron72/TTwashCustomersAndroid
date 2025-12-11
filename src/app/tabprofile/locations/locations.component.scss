@@ -1,24 +1,24 @@
-ion-accordion {
-  margin: 0 auto;
+.box1 {
+    border-radius: 12px;
+    color:#f2f2f2;
+    background-color: #2E4F9C;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
-
-ion-accordion.accordion-expanding,
-ion-accordion.accordion-expanded {
-  width: calc(100% - 32px);
-
-  margin: 16px auto;
+.box2 {
+    border-radius: 12px;
+    color:#f2f2f2;
+    background-color: #2E4F9C;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-
-.ticket {
-font-weight:bold;
-  text-align: center;
-  margin: unset;
-}
-
-.tickets {
-
-  text-align: left;
-  margin: unset;
-  color: #f2f2f2;
-font-weight: bolder;
+.box3 {
+    text-align: center;
+    color:#f2f2f2;    
+    font-weight: bold;
 }

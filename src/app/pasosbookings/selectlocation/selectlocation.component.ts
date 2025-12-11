@@ -96,11 +96,7 @@ validateForm(){
         ValidationFlag = false;
     } 
   
-    else if(this.site.address == "")  
-        {
-            this.ErrorMessage = "Please provide the address";
-           ValidationFlag = false;
-        }
+
   
     else if(this.site.zip == "")  
           {
@@ -222,7 +218,7 @@ validateForm(){
              this.ocultaboton = true      
           this.locationsx = Object.values(res.data)
           this.locationsx =  this.locationsx.filter(((valor: string | any[]) => valor !== '200_OK'))
- if(this.isObjectEmpty(this.locations)) {
+ if(this.isObjectEmpty(this.locationsx)) {
            this.select = false
   this.new = true
   this.locations = false
@@ -290,7 +286,7 @@ doRefresh(event: { target: { complete: () => void; }; }) {
           this.ocultaboton = true
           this.locationsx = Object.values(res.data)
           this.locationsx =  this.locationsx.filter(((valor: string | any[]) => valor !== '200_OK'))
-if(this.isObjectEmpty(this.locations)) {
+if(this.isObjectEmpty(this.locationsx)) {
            this.select = false
   this.new = true
   this.locations = false
@@ -311,7 +307,12 @@ if(this.isObjectEmpty(this.locations)) {
 
 continue() {
 
+  
+
     if(this.validateForm()) {
+
+  this.site.address = this.site.suite+" "+this.site.street
+
     let url = 'https://washtt.com/v1_api_clientes_addsitio.php'
     let datax = { 
     idtoken: this.idtoken,

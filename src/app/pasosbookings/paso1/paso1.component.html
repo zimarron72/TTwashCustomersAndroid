@@ -38,7 +38,7 @@ GET STARTED WITH A NEW VEHICLE
     </ion-row>
     </ion-grid>
 </div>
-<h2 style="text-align: justify;" *ngIf="invitacion" >You need to start your vehicle fleet to continue.</h2>
+<h3 style="text-align: justify;" *ngIf="invitacion" >You need to start your vehicle fleet to continue.</h3>
 
 
 <div *ngIf="new">
@@ -104,12 +104,7 @@ placeholder="Its general appearance"
 
 
 </ion-list>
-<div style="text-align: center;" >
-<ion-button  color="primary" (click) = "continue()" shape="round">
-  CONTINUE
-  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
-</ion-button>
-</div>
+
 </div>
 
 <div *ngIf="fleet">
@@ -134,3 +129,20 @@ placeholder="Its general appearance"
    <div  style="text-align: center;"> <img src="./assets/imgs/fleet_app.png" /></div>
 </ion-content>
 
+<ion-footer class="ion-no-border" *ngIf="new">
+  <ion-toolbar color="primary">
+   <ion-grid>
+    <ion-row>
+      <ion-col>    
+  </ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+<ion-button  color="secondary" shape="round" (click) = "continue()">
+  CONTINUE
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+    </ion-toolbar>
+</ion-footer>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary"> 
          <ion-buttons slot="start">
-      <ion-button (click)="wellcome()">       
+      <ion-button (click)="profile()">       
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
           </ion-button>   
     </ion-buttons>   
@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-content>
- <div *ngIf='showlist'> 
+<div *ngIf='showlist'>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -24,35 +24,42 @@
   <ion-accordion-group *ngFor="let element of data; let i = index " expand="inset" >
     <ion-accordion value=i>
       <ion-item slot="header" color="light">
-        <ion-icon name="map-outline"></ion-icon>
-        <ion-label>{{element.suite}}</ion-label>
+        <ion-icon name="map-outline" color="primary" slot="start"></ion-icon>
+        <ion-label>Address: {{element.address}}<br> Zip code: {{element.zip}}</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">
-        <p style="font-weight:bold; text-align: left; margin: unset;" >Address:</p> 
-        <p style=" text-align: left; margin: unset;color: #f2f2f2;
-      font-weight: bolder;" >{{element.address}}</p>
-        <p style="font-weight:bold; text-align: left; margin: unset;" >Street No:</p> 
-        <p style=" text-align: left; margin: unset;color: #f2f2f2;
-      font-weight: bolder;" >{{element.street_nr}}</p>        
-        <p style="font-weight:bold; text-align: left; margin: unset;" >State:</p>
-        <p style=" text-align: left; margin: unset;color: #f2f2f2;
-      font-weight: bolder;"  >{{element.state}}</p>
-        <p style="font-weight:bold; text-align: left; margin: unset;" >City:</p>
-        <p style=" text-align: left; margin: unset;color: #f2f2f2;
-      font-weight: bolder;"  >{{element.city}}</p><br>
+ <div class="ion-padding" slot="content">     
+<ion-grid>
+  <ion-row>
+    <ion-col class="box1">Suite</ion-col>
+    <ion-col class="box2">Street</ion-col>
+  </ion-row>
+   <ion-row>
+    <ion-col class="box3">{{element.suite}}</ion-col>
+    <ion-col class="box3">{{element.street_nr}}</ion-col>
+  </ion-row>
+
+    <ion-row>
+    <ion-col class="box1">State</ion-col>
+    <ion-col class="box2">City</ion-col>
+  </ion-row>
+   <ion-row>
+    <ion-col class="box3">{{element.state}}</ion-col>
+    <ion-col class="box3">{{element.city}}</ion-col>
+  </ion-row>
+</ion-grid>
       <ion-grid>
         <ion-row>
          
           <ion-col><ion-button shape="round" color="secondary" (click) = "add()"  >
             <ion-icon slot="start" name="add-outline"></ion-icon> 
-            Add a new location
-          </ion-button></ion-col>
-        </ion-row>
-          <ion-row>
+           ADD
+          </ion-button>
+        </ion-col>
+   
 
-          <ion-col><ion-button shape="round" color="secondary" (click) = "borrar(element.id,element.default)">
+          <ion-col><ion-button shape="round" color="secondary" (click) = "borrar(element.id)">
             <ion-icon slot="start" name="trash-outline"></ion-icon>
-            Delete this location
+            DELETE
           </ion-button></ion-col>
        
         </ion-row>
@@ -62,10 +69,13 @@
   </ion-accordion-group>
  </div>
 
- <diV  *ngIf='showadd'> <br><br><ion-button  shape="round" color="warning" (click) = add()>Register your location now!</ion-button>
+ <div style="text-align: center;" *ngIf='showadd'> <br><br><ion-button  shape="round" color="warning" (click) = add()>Register your location now</ion-button>
 <br><br>
-   <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
-</diV>
+
+</div>
+
+  <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
+
 
 
 

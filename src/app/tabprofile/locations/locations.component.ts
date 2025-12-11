@@ -32,13 +32,14 @@ data!: any
 
   ngOnInit() {}
 
-   wellcome() {
-   this.router.navigate(['/pasos/wellcome']);   
+  profile() {
+   this.router.navigate(['/tabs/tabprofile/nav-profile']);  
 }
 
    isObjectEmpty(obj: any): boolean {
   return Object.keys(obj).length === 0;
 }
+
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -183,8 +184,7 @@ doRefresh(event: { target: { complete: () => void; }; }) {
           
           this.locations = Object.values(res.data)
           this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
-
-          if(this.isObjectEmpty(this.locations)) {
+ if(this.isObjectEmpty(this.locations)) {
             this.showadd = true
             this.showlist = false
             }
@@ -194,6 +194,7 @@ doRefresh(event: { target: { complete: () => void; }; }) {
           this.data = this.locations         
           console.log(this.data)
             }
+    
 
 
           break;
@@ -218,16 +219,16 @@ doRefresh(event: { target: { complete: () => void; }; }) {
 
 async add() {
 
-   this.router.navigate(['/pasos/addLocations']);
+  this.router.navigate(['/tabs/tabprofile/addsitio']);
 
 }
 
 
-borrar(id : number , status : number) {
+borrar(id : number) {
   this.loading.simpleLoader()
   if(this.user) {
     let url = 'https://washtt.com/v1_api_clientes_deletesitiocliente.php'
-    let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, idsitio : id ,status : status}
+    let data = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, idsitio : id }
     this.cHttps(url, data).subscribe(
       async (res: any) => {
         this.loading.dismissLoader()  
@@ -304,8 +305,7 @@ borrar(id : number , status : number) {
           
           this.locations = Object.values(res.data)
           this.locations =  this.locations.filter(((valor: string | any[]) => valor !== '200_OK'))
-
-          if(this.isObjectEmpty(this.locations)) {
+ if(this.isObjectEmpty(this.locations)) {
             this.showadd = true
             this.showlist = false
             }
@@ -315,6 +315,7 @@ borrar(id : number , status : number) {
           this.data = this.locations         
           console.log(this.data)
             }
+
 
 
           break;
@@ -341,4 +342,3 @@ borrar(id : number , status : number) {
 
 
 }
-

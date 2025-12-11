@@ -86,11 +86,7 @@ validateForm(){
         ValidationFlag = false;
     } 
   
-    else if(this.site.address == "")  
-        {
-            this.ErrorMessage = "Please provide the address";
-           ValidationFlag = false;
-        }
+
   
     else if(this.site.zip == "")  
           {
@@ -110,23 +106,7 @@ validateForm(){
                 ValidationFlag = false;
             }  
             
-          else if(this.site.power == '')  
-            {
-                this.ErrorMessage = "Please indicate the availability of electricity supply in your location.";
-                ValidationFlag = false;
-            }  
-            
-              else if(this.site.water == '')  
-            {
-                this.ErrorMessage = "Please indicate the availability of water supply in your location.";
-                ValidationFlag = false;
-            } 
-            
-              else if(this.site.ensitio == '')  
-            {
-                this.ErrorMessage = "Will be present on the day of service?";
-                ValidationFlag = false;
-            }   
+        
   
  
 
@@ -187,6 +167,8 @@ validateForm(){
   
     if(this.validateForm()){
 
+ this.site.address = this.site.suite+" "+this.site.street
+
        let url = 'https://washtt.com/v1_api_clientes_addsitio.php'
     let datax = { 
     idtoken: this.idtoken,
@@ -238,23 +220,7 @@ zip : this.site.zip,
    
     }
 
-  powerPopoverOptions = {
-
-    subHeader: 'Is there electricity on site?',
-
-  };
-
-    waterPopoverOptions = {
-
-    subHeader: 'Is there a water supply on site?',
-
-  };
-
-    presenciaPopoverOptions = {
-
-    subHeader: 'That day, will we to meet you?',
-
-  };
+ 
 
     ciudadPopoverOptions = {
 
@@ -270,21 +236,6 @@ estadoPopoverOptions = {
 
   };
 
-  powers = [
-  
-  { etiqueta: 'YES' , valor: 'YES THERE ARE'},
-  { etiqueta: 'NOT' , valor: 'THERE IS NOT'},
-   ]
-waters = [
-  
-    { etiqueta: 'YES' , valor: 'YES THERE ARE'},
-    { etiqueta: 'NOT' , valor: 'THERE IS NOT'},
-     ]
-     
-ensitios = [
-   
-      { etiqueta: 'YES' , valor: 'YES'},
-      { etiqueta: 'NOT' , valor: 'NOT'},
-       ]
+
 
 }
