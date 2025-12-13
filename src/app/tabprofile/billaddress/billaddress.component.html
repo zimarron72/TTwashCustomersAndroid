@@ -22,7 +22,7 @@
 <div *ngIf = "xnombre">
     <ion-item>
       <ion-label class="ion-text-wrap">
-        <ion-text style="color:#f2f2f2; font-weight: bold;">
+        <ion-text >
           <h3>Firstname</h3>
         </ion-text>       
         <ion-text style="color:#f2f2f2">
@@ -41,14 +41,14 @@
         <ion-input  style="color:#f2f2f2"  formControlName="firstname" type="text" required ></ion-input>       
       </ion-item>     
       </form>
-      <ion-button   color="primary" expand="block" (click) = "update_firstname()">Update</ion-button>
-      <ion-button   class="cancel" expand="block" (click) = "cancel_firstname()" >Cancel</ion-button>
+      <ion-button   color="light" shape="round" (click) = "update_firstname()">Update</ion-button>
+      <ion-button     color="light" shape="round" (click) = "cancel_firstname()" >Close</ion-button>
 </div>      
 
 <div *ngIf = "xapellido">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Lastname</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -67,14 +67,14 @@
       <ion-input style="color:#f2f2f2"  formControlName="lastname" type="text" required ></ion-input>       
     </ion-item>   
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_lastname()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_lastname()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_lastname()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_lastname()" >Close</ion-button>
 </div>
 
 <div *ngIf = "xfullname">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Fullname</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -93,14 +93,14 @@
       <ion-input  style="color:#f2f2f2"  formControlName="fullname" type="text" required ></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_fullname()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_fullname()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_fullname()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_fullname()" >Close</ion-button>
 </div> 
 
 <div *ngIf = "xcustomer">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Customer type</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -123,15 +123,15 @@
       </ion-select>
        </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_customer()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_customer()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_customer()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_customer()" >Close</ion-button>
 </div> 
 <div *ngIf="ver">
 
 <div *ngIf = "xempresa">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Company</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -150,14 +150,14 @@
       <ion-input  style="color:#f2f2f2"  formControlName="empresa" type="text" required ></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_empresa()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_empresa()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_empresa()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_empresa()" >Close</ion-button>
 </div>
 
 <div *ngIf = "xrif">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Tax ID</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -177,8 +177,8 @@
       ></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_rif()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_rif()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_rif()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_rif()" >Close</ion-button>
 </div> 
 
 </div>
@@ -186,7 +186,7 @@
 <div *ngIf = "xcasa">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Suite</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -205,14 +205,14 @@
       <ion-input  style="color:#f2f2f2"  formControlName="casa" type="text" required ></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_casa()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_casa()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_casa()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_casa()" >Close</ion-button>
 </div>
 
 <div *ngIf = "xcalle">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Street No.</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -231,14 +231,14 @@
       <ion-input  style="color:#f2f2f2"  formControlName="calle" type="text" required ></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_calle()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_calle()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_calle()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_calle()" >Close</ion-button>
 </div> 
 
 <div *ngIf = "xdireccion">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Address</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -257,14 +257,14 @@
       <ion-input  style="color:#f2f2f2"  formControlName="direccion" type="text" required ></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_direccion()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_direccion()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_direccion()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_direccion()" >Close</ion-button>
 </div> 
 
 <div *ngIf = "xzip">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Postal Code</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -283,14 +283,14 @@
       <ion-input  style="color:#f2f2f2"  formControlName="zip" type="text" required ></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_zip()">Update</ion-button>
-    <ion-button  class="cancel" expand="block" (click) = "cancel_zip()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_zip()">Update</ion-button>
+    <ion-button   color="light" shape="round" (click) = "cancel_zip()" >Close</ion-button>
 </div> 
 
 <div *ngIf = "xestado">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>State</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -313,14 +313,14 @@
       </ion-select>
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_estado()">Update</ion-button>
-    <ion-button  class="cancel" expand="block" (click) = "cancel_estado()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_estado()">Update</ion-button>
+    <ion-button   color="light" shape="round" (click) = "cancel_estado()" >Close</ion-button>
 </div>
 
 <div *ngIf = "xciudad">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>City</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -343,14 +343,14 @@
     </ion-select>
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_ciudad()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_ciudad()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_ciudad()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_ciudad()" >Close</ion-button>
 </div>
 
 <div *ngIf = "xtelefono">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Phone</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -369,14 +369,14 @@
       <ion-input  style="color:#f2f2f2"  formControlName="phone" type="tel" maxlength = "14" (keyup)="phoneFormat($event)" value="{{ telefonox }}"></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_telefono()">Update</ion-button>
-    <ion-button  class="cancel" expand="block" (click) = "cancel_telefono()" >Cancel</ion-button>
+    <ion-button    color="light" shape="round" (click) = "update_telefono()">Update</ion-button>
+    <ion-button   color="light" shape="round" (click) = "cancel_telefono()" >Close</ion-button>
 </div> 
 
 <div *ngIf = "xcelular">
   <ion-item>
     <ion-label class="ion-text-wrap">
-      <ion-text style="color:#f2f2f2; font-weight: bold;">
+      <ion-text >
         <h3>Mobil</h3>
       </ion-text>       
       <ion-text style="color:#f2f2f2">
@@ -395,8 +395,8 @@
       <ion-input  style="color:#f2f2f2"  formControlName="mobil" type="tel" maxlength = "14" (keyup)="mobilFormat($event)" value="{{ mobilx }}"></ion-input>       
     </ion-item>
     </form>
-    <ion-button   color="primary" expand="block" (click) = "update_celular()">Update</ion-button>
-    <ion-button   class="cancel" expand="block" (click) = "cancel_celular()" >Cancel</ion-button>
+    <ion-button   color="light" shape="round" (click) = "update_celular()">Update</ion-button>
+    <ion-button    color="light" shape="round" (click) = "cancel_celular()" >Close</ion-button>
 </div> 
 
 

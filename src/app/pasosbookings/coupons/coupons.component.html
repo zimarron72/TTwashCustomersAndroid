@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="atras()">
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title   style="text-align: center;">COUPONS</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> 
+  <p style="text-align: center; font-size: larger; ">Coupons earned through your loyalty</p> 
+
+    <ion-list lines="none" [inset]="true" >
+
+    <ion-item   class="customer-list" *ngFor="let coupon of couponsUser" (click)="tobook()">
+       <ion-icon slot="start" name="gift" color="primary"></ion-icon> 
+
+    <ion-label  >            
+    Code: {{coupon.codigo}}<br>Discount: <span *ngIf="coupon.tipo == 'Value' ">{{coupon.valor}} $ Off</span><span *ngIf="coupon.tipo == 'Porcent' ">{{coupon.valor}} % Off</span><br>
+    Expired date:<br> {{coupon.fecha_expiracion}}<br>
+    {{coupon.usado}}             
+    </ion-label> 
+      <ion-icon color="success" slot="end" name="radio-button-off" *ngIf = "coupon.usado == 'ACTIVE'"
+></ion-icon> 
+      <ion-icon color="secondary" slot="end" name="radio-button-on" *ngIf = "coupon.usado == 'USED'"></ion-icon>      
+
+      <ion-icon color="primary" slot="end" name="ellipse" *ngIf = "coupon.usado == 'EXPIRED'"></ion-icon>    
+      
+
+     </ion-item>
+
+   
+
+    
+        </ion-list>
+
+
+<p style="text-align: center; font-size: larger;">Seasonal Promotions and others</p> 
+
+        <ion-list lines="none" [inset]="true" >
+
+ <ion-item color="primary" class="customer-list" *ngFor="let coupon of couponsForAll" (click)="tobook()">
+        
+       <ion-icon slot="start" name="gift" color="success"></ion-icon> 
+
+    <ion-label  >            
+    Code: {{coupon.codigo}}<br>Discount: <span *ngIf="coupon.tipo == 'Value' ">{{coupon.valor}} $ Off</span><span *ngIf="coupon.tipo == 'Porcent' ">{{coupon.valor}} % Off</span><br>
+    Expired date:<br> {{coupon.fecha_expiracion}}
+    <br>{{coupon.usado}}             
+    </ion-label> 
+      <ion-icon color="success" slot="end" name="radio-button-off" *ngIf = "coupon.usado == 'ACTIVE'"
+></ion-icon> 
+      <ion-icon color="secondary" slot="end" name="radio-button-on" *ngIf = "coupon.usado == 'USED'"></ion-icon>      
+
+      <ion-icon color="primary" slot="end" name="ellipse" *ngIf = "coupon.usado == 'EXPIRED'"></ion-icon>  
+ 
+
+      </ion-item>
+
+
+
+    </ion-list>
+  </ion-content> 

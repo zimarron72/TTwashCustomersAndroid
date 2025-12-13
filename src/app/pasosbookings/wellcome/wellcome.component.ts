@@ -21,6 +21,7 @@ export class WellcomeComponent  implements OnInit {
   confirmados:any
    completados:any
   locations:any
+  coupons:any
 
   constructor(
      private localstorage:StorageService, 
@@ -107,6 +108,7 @@ export class WellcomeComponent  implements OnInit {
             this.sinconfirmar = res.data.sinconfirmar
             this.confirmados = res.data.confirmados
             this.completados = res.data.completados
+            this.coupons = res.data.coupons
 
             console.log('xxxxxxxxxx'+res.data.fleet + res.data.locations + res.data.bookings) 
         }
@@ -145,6 +147,7 @@ export class WellcomeComponent  implements OnInit {
             this.sinconfirmar = res.data.sinconfirmar
             this.confirmados = res.data.confirmados
             this.completados = res.data.completados
+            this.coupons = res.data.coupons
             console.log('xxxxxxxxxx'+res.data.fleet + res.data.locations + res.data.bookings) 
         }
                       
@@ -250,6 +253,21 @@ this.router.navigate(['/pasos/fleet']);
   }
   else {
   this.router.navigate(['/pasos/addFleet']);  
+  }
+}
+
+verCoupons() {
+  if(this.coupons != 0) {
+this.router.navigate(['/pasos/coupons']);  
+  }
+  else {
+   let mensaje
+        let header
+        let code
+         code = ''
+            header = ''
+            mensaje = 'Currently, there are no Coupons Active.'       
+            this.aviso(header, mensaje, code)  
   }
 }
  

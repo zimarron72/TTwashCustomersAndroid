@@ -7,6 +7,7 @@ import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import type { OverlayEventDetail } from '@ionic/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
+import { icon } from 'leaflet';
 
 
 @Component({
@@ -20,21 +21,23 @@ export class ProfileComponent  implements OnInit {
 
   public actionSheetButtons = [
     {
-      text: 'camera',
+      text: 'CAMERA',
       role: 'camara',
+      icon: 'camera',
       data: {
         action: 'camara',
       },
     },
     {
-      text: 'gallery',
+      text: 'GALERY',
       role: 'galeria',
+      icon: 'image',
       data: {
         action: 'galeria',
       },
     },
     {
-      text: 'Cancel',
+      text: 'CANCEL',
       role: 'cancel',
       data: {
         action: 'cancel',

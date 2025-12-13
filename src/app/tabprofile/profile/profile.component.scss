@@ -75,12 +75,13 @@ ion-icon[name="eye"], ion-icon[name="eye-off"] {
 }
 
 ion-action-sheet.my-custom-class {
-  --background: #f2f2f2;
+  --background: #cb033c;
   --backdrop-opacity: 0.6;
   --button-background-selected: #2E4F9C;
-  --button-color: #cb033c;
-  --color: #2E4F9C;
+  --button-color: #f2f2f2;
+  --color: #ffc409;
   /* role: "destructive" button iOS styling override */
-  --ion-color-danger: #2E4F9C;
+  --ion-color-danger: #646060;
 }
+
 

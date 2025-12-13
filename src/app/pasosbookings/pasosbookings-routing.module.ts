@@ -22,6 +22,7 @@ import { AddfleetComponent } from './addfleet/addfleet.component';
 import { AddlocationComponent } from './addlocation/addlocation.component';
 import { FleetComponent } from './fleet/fleet.component';
 import { LocationsComponent } from './locations/locations.component';
+import { CouponsComponent } from './coupons/coupons.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,8 @@ const routes: Routes = [
 
            { path: 'fleet', component: FleetComponent },
             { path: 'locations', component: LocationsComponent },
+              { path: 'coupons', component: CouponsComponent },
+
 
 
     ]

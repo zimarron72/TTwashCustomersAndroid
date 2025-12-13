@@ -29,7 +29,7 @@
     </ion-row>
     <ion-row>
       <ion-col class="caja1" (click)="verSin()">
-       <ion-icon color="dark" style=" font-size: 25px;"  name="calendar"></ion-icon><br> 
+       <ion-icon color="light" style=" font-size: 25px;"  name="calendar"></ion-icon><br> 
         Waiting<br>{{sinconfirmar}}
       </ion-col>
      
@@ -54,18 +54,21 @@
          <ion-icon color="dark" style=" font-size:25px;"  name="car"></ion-icon>
          &ensp;<br>
         Fleet vehicles<br>{{fleet}}
-      </ion-col>
-     
-          <!--<ion-col class="caja2">
-           <ion-icon color="primary" style=" font-size: 50px;"  name="calendar"></ion-icon><br> 
-        Bookings scheduled<br>{{bookings}}
-      </ion-col>-->
+      </ion-col>        
         
         <ion-col class="caja5" (click)="verSite()">
             <ion-icon color="dark" style=" font-size: 25px;"  name="location-outline"></ion-icon> 
           &ensp;<br>         
         Locations<br>{{locations}}
       </ion-col>
+
+     <ion-col class="caja7" (click)="verCoupons()">
+
+           <ion-icon color="dark" style=" font-size: 25px;"  name="gift"></ion-icon>
+            &ensp;<br> 
+        Coupons<br>{{coupons}}
+      </ion-col>
+
     </ion-row>
 
   </ion-grid>
