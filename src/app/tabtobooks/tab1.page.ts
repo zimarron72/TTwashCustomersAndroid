@@ -37,6 +37,11 @@ export class Tab1Page  {
       title: 'Payments',
       url: '/tabs/tabtobooks/tipopagos',
       icon: 'card'
+    },
+    {
+      title: 'Coupons',
+      url: '/pasos/coupons',
+      icon: 'gift'
     }
   ]; 
 

@@ -127,6 +127,10 @@ autenticacion_tipo!: string
   
   }
 
+   profile() {
+   this.router.navigate(['/tabs/tabprofile/nav-profile']);  
+} 
+
   async ionViewWillEnter() {  
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')

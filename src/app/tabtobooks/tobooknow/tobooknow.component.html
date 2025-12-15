@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>TO BOOK</ion-title>
+  </ion-toolbar>
+</ion-header>
+<div style="background-color:#cb033c; color: #fff">
+  <ion-button>     
+    Please select
+  </ion-button>
+</div>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="warning" (click) = "bookNowTT()" shape="round">
+<span style="color:black; font-size: large; ">BOOK NOW || Truck or Trailer</span>
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+      <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="warning" (click) = "bookNowOther()" shape="round" >
+<span style="color:black;  font-size: large; ">BOOK NOW || Other Vehicles or Services</span>
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+          <ion-row>
+      <ion-col style="text-align: center;">
+        <ion-button  color="warning" (click) = "bookNowFleets()" shape="round">
+<span style="color:black;  font-size: large; ">BOOK NOW || Fleets</span>
+ <ion-icon color="dark" slot="start" name="apps"></ion-icon>
+  <ion-icon color="dark" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

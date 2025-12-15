@@ -40,7 +40,7 @@ import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.comp
 import { AllcitasComponent } from './allcitas/allcitas.component';
 import { CitasfleetComponent } from './citasfleet/citasfleet.component';
 import { CitasotherComponent } from './citasother/citasother.component';
-
+import { TobooknowComponent } from './tobooknow/tobooknow.component';
 
 @NgModule({
   imports: [
@@ -81,6 +81,7 @@ import { CitasotherComponent } from './citasother/citasother.component';
      TipocitasfleetsComponent,
      TipocitasothersComponent,
      AllcitasComponent,
+     TobooknowComponent
     
      
 

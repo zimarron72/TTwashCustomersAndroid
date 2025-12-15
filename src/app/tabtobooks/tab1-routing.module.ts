@@ -27,6 +27,7 @@ import { TipocitasothersComponent } from './tipocitasothers/tipocitasothers.comp
 import { AllcitasComponent } from './allcitas/allcitas.component';
 import { CitasfleetComponent } from './citasfleet/citasfleet.component';
 import { CitasotherComponent } from './citasother/citasother.component';
+import { TobooknowComponent } from './tobooknow/tobooknow.component';
 
 
 
@@ -66,7 +67,7 @@ const routes: Routes = [
       { path: 'viewphoto/:order_item_id', component: SlidergaleryComponent },
       { path: 'Pay1', component: PaysquareComponent },
       { path: 'allcitas', component: AllcitasComponent },
-     
+      { path: 'tobooknow/:modo', component: TobooknowComponent },
      
      
       

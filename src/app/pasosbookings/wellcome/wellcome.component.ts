@@ -178,16 +178,15 @@ bookCheck() {
     this.router.navigate(['/tabs/tabtobooks/allcitas']);  
 }
 
-bookPrice() {
- this.router.navigate(['/tabs/tabtobooks/tipovehiculos/verprecios']); 
-}
+
 
 /*findMore() {
 this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']);
 }*/
 
 menu() {
- this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']); 
+ //this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']); 
+ this.router.navigate(['/tabs/tabtobooks/tobooknow/menu']); 
 }
 
 Buscar(){}
