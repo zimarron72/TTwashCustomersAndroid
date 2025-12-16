@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="wellcome()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title>SEARCH</ion-title>         
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="text-align: center;"><p>By Vehicle Number</p></div>
+  <ion-list lines="none">
+        <ion-item>
+      <ion-input    id = 'Vnumber' name = 'Vnumber'  type = 'text' [(ngModel)]="Vnumber" placeholder="vehicle number" />
+    </ion-item>
+</ion-list>
+
+  <div style="text-align: center;"><p>Or<br>By Order Number</p></div>
+  <ion-list lines="none">
+        <ion-item>
+      <ion-input    id = 'Onumber' name = 'Onumber'  type = 'text' [(ngModel)]="Onumber" placeholder="order number" />
+    </ion-item>
+</ion-list>
+
+  <div style="text-align: center;"><p>Or<br>By Date</p></div>
+<ion-grid>
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col size="auto"> <ion-datetime  placeholder = 'Select a date'  presentation="date" first-day-of-week="1"    [(ngModel)]="fecha" id = "fecha" name = 'fecha' (ionChange) = done2()>
+      </ion-datetime></ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-grid>
+     
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="primary">
+   <ion-grid>
+    <ion-row>
+      <ion-col>
+     
+      <ion-button color="secondary" shape="round" (click)="wellcome()">
+       CANCEL
+ <ion-icon color="light" slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    
+  </ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+<ion-button  color="secondary" shape="round" (click) = "continue()">
+  CONTINUE
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+    </ion-toolbar>
+</ion-footer>

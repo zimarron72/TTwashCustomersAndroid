@@ -189,7 +189,9 @@ menu() {
  this.router.navigate(['/tabs/tabtobooks/tobooknow/menu']); 
 }
 
-Buscar(){}
+Buscar(){
+    this.router.navigate(['pasos/buscar']);   
+}
 
 verSin(){
   if(this.sinconfirmar != 0) {
