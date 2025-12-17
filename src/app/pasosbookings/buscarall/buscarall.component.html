@@ -7,24 +7,83 @@
     </ion-buttons>   
     <ion-title>SEARCH</ion-title>         
   </ion-toolbar>
-</ion-header>
+ 
 
-<ion-content class="ion-padding">
-  <div style="text-align: center;"><p>By Vehicle Number</p></div>
+
+</ion-header>
+    <ion-segment value="First">
+      <ion-segment-button value="First" content-id="first">
+        <ion-label>BY VEHICULO</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="second" content-id="second">
+        <ion-label>BY ORDER</ion-label>
+      </ion-segment-button>
+        <ion-segment-button value="third" content-id="third">
+        <ion-label>BY DATE</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+<ion-segment-view>
+  <ion-segment-content id="first">
+ <ion-content class="ion-padding">
+  <div style="text-align: center;"><p>Enter the number of the vehicle you are looking for</p></div>
   <ion-list lines="none">
         <ion-item>
       <ion-input    id = 'Vnumber' name = 'Vnumber'  type = 'text' [(ngModel)]="Vnumber" placeholder="vehicle number" />
     </ion-item>
 </ion-list>
 
-  <div style="text-align: center;"><p>Or<br>By Order Number</p></div>
+  
+     
+<ion-grid>
+    <ion-row>
+      <ion-col>    
+  </ion-col>
+      <ion-col>
+        <ion-button  color="primary" shape="round" (click) = "buscarV()">
+  CONTINUE
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+
+
+
+  </ion-content>
+  </ion-segment-content>
+  <ion-segment-content id="second">
+    <ion-content class="ion-padding">
+    <div style="text-align: center;"><p>Enter the order number you are looking for</p></div>
   <ion-list lines="none">
         <ion-item>
       <ion-input    id = 'Onumber' name = 'Onumber'  type = 'text' [(ngModel)]="Onumber" placeholder="order number" />
     </ion-item>
 </ion-list>
 
-  <div style="text-align: center;"><p>Or<br>By Date</p></div>
+
+     
+<ion-grid>
+    <ion-row>
+      <ion-col>    
+  </ion-col>
+      <ion-col>
+        <ion-button  color="primary" shape="round" (click) = "buscarO()">
+  CONTINUE
+  <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
+</ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+   </ion-content>
+  </ion-segment-content>
+  <ion-segment-content id="third">
+    <ion-content class="ion-padding">
+ <div style="text-align: center;"><p>Enter the date of the appointment you are looking for</p></div>
 <ion-grid>
   <ion-row>
     <ion-col></ion-col>
@@ -34,29 +93,24 @@
   </ion-row>
 </ion-grid>
      
-
-</ion-content>
-
-<ion-footer class="ion-no-border">
-  <ion-toolbar color="primary">
-   <ion-grid>
+<ion-grid>
     <ion-row>
-      <ion-col>
-     
-      <ion-button color="secondary" shape="round" (click)="wellcome()">
-       CANCEL
- <ion-icon color="light" slot="start" name="arrow-back"></ion-icon>
-      </ion-button>
-    
+      <ion-col>    
   </ion-col>
-      <ion-col></ion-col>
       <ion-col>
-<ion-button  color="secondary" shape="round" (click) = "continue()">
+        <ion-button  color="primary" shape="round" (click) = "buscarCita()">
   CONTINUE
   <ion-icon color="light" slot="end" name="arrow-forward"></ion-icon>
 </ion-button>
       </ion-col>
+      <ion-col>
+      </ion-col>
     </ion-row>
    </ion-grid>
-    </ion-toolbar>
-</ion-footer>
+</ion-content>
+  </ion-segment-content>
+</ion-segment-view>
+
+
+
+

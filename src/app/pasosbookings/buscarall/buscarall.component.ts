@@ -5,6 +5,7 @@ import { CapacitorHttp,  HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { StorageService } from '../../servicios/storage.service';
 import {  AlertController  } from '@ionic/angular';
+import { LoadingService } from '../../servicios/loading.services';
 @Component({
   selector: 'app-buscarall',
   templateUrl: './buscarall.component.html',
@@ -13,9 +14,9 @@ import {  AlertController  } from '@ionic/angular';
 })
 export class BuscarallComponent  implements OnInit {
 
-Vnumber:any
-Onumber:any 
-fecha:any 
+Vnumber:any = ''
+Onumber:any = ''
+fecha:any = ''
 user:any
 idtoken:any
 autenticacion_tipo:any
@@ -25,9 +26,16 @@ ErrorMessage:any
      private router: Router,
       private localstorage:StorageService, 
         private alertController: AlertController,
-  ) { }
+          private loading: LoadingService,
+  ) {
+    
+   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.user = JSON.parse(await this.localstorage.getData('usuario'))
+    this.idtoken = await this.localstorage.getData('idtoken')
+    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
+  }
 
   cHttps(url: string, data: any) {
       const options: HttpOptions = {
@@ -96,46 +104,119 @@ else {
 }
 
 
-  /* validateForm(){ 
+ validateFormV(){ 
 
     var ValidationFlag = true
 
 
        if(this.Vnumber == "")  
     {
-        this.ErrorMessage = "Select a time for your booking";
+        this.ErrorMessage = "Enter the vehicle number to continue";
         ValidationFlag = false;
     } 
   
-  
-    else if(this.Onumber == "")  
-    {
-        this.ErrorMessage = "Select a date for your booking";
-        ValidationFlag = false;
-    }
-
-     else if(this.fecha == "")  
-    {
-        this.ErrorMessage = "Select a date for your booking";
-        ValidationFlag = false;
-    } 
-
-   else { }
     return (ValidationFlag) ? true : false; 
-    }*/
+    }
+ validateFormO(){ 
 
-  async continue() {
-      this.user = JSON.parse(await this.localstorage.getData('usuario'))
-    this.idtoken = await this.localstorage.getData('idtoken')
-    this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
-      var url2 = 'https://app.washtt.com/v2_api_clientes_buscar.php'
-          var data2 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo}
+    var ValidationFlag = true
+
+
+       if(this.Onumber == "")  
+    {
+        this.ErrorMessage = "Enter the order number to continue";
+        ValidationFlag = false;
+    } 
+  
+    return (ValidationFlag) ? true : false; 
+    }
+validateFormCita(){ 
+
+    var ValidationFlag = true
+
+
+       if(this.fecha == "")  
+    {
+        this.ErrorMessage = "Select a date to continue";
+        ValidationFlag = false;
+    } 
+  
+    return (ValidationFlag) ? true : false; 
+    }  
+
+  async buscarV() {
+
+    if(this.validateFormV()) {
+      this.loading.simpleLoader
+var url2 = 'https://app.washtt.com/v2_api_clientes_buscarV.php'
+          var data2 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, numberV:this.Vnumber}
           this.cHttps(url2, data2).subscribe(
             async (res: any) => {
               
            
               }
             )
+    } 
+    else {
+      this.loading.dismissLoader()
+var code
+  var header
+  var mensaje
+  code = ''
+  header = ''
+  mensaje = this.ErrorMessage
+  this.aviso(header, mensaje, code) 
+    } 
+      
+}
+
+ async buscarO() {
+     if(this.validateFormO()) {
+      this.loading.simpleLoader  
+      var url2 = 'https://app.washtt.com/v2_api_clientes_buscarO.php'
+          var data2 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, numberO:this.Onumber}
+          this.cHttps(url2, data2).subscribe(
+            async (res: any) => {
+              
+           
+              }
+            )
+  } 
+    else {
+      this.loading.dismissLoader()
+var code
+  var header
+  var mensaje
+  code = ''
+  header = ''
+  mensaje = this.ErrorMessage
+  this.aviso(header, mensaje, code) 
+    } 
+
+}
+
+ async buscarCita() {
+     if(this.validateFormCita()) {
+      this.loading.simpleLoader      
+      var url2 = 'https://app.washtt.com/v2_api_clientes_buscarCita.php'
+          var data2 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, fechaCita:this.fecha}
+          this.cHttps(url2, data2).subscribe(
+            async (res: any) => {
+              
+           
+              }
+            )
+   } 
+    else {
+      this.loading.dismissLoader()
+var code
+  var header
+  var mensaje
+  code = ''
+  header = ''
+  mensaje = this.ErrorMessage
+  this.aviso(header, mensaje, code) 
+    }           
 }
     
 }
