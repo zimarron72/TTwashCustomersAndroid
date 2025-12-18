@@ -26,7 +26,7 @@ import { AddlocationComponent } from './addlocation/addlocation.component';
 import { FleetComponent } from './fleet/fleet.component';
 import { LocationsComponent } from './locations/locations.component';
 import { CouponsComponent } from './coupons/coupons.component';
-import { BuscarallComponent } from './buscarall/buscarall.component';
+
 
 @NgModule({
   imports: [
@@ -58,8 +58,7 @@ AddfleetComponent,
 AddlocationComponent,
 FleetComponent,
 LocationsComponent,
-CouponsComponent,
-BuscarallComponent
+CouponsComponent
     
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA],

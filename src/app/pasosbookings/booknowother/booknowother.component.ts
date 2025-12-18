@@ -338,7 +338,11 @@ this.loading.simpleLoader()
             this.localstorage.clearData()
             this.router.navigate(['/login'])       
             this.aviso(header, mensaje, code)              
-            break;         
+            break;     
+            
+            case 'NOPROCESAR':
+              this.router.navigate(['/pasos/alerta/',res.data.mensaje]);
+              break;
         
           case 'OK':
             this.router.navigate(['/tabs/tabtobooks/successtobook']);
