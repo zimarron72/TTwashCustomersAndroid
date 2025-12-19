@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar color="primary"> 
+<ion-header >
+  <ion-toolbar color="primary" *ngIf="!enproceso"> 
          <ion-buttons slot="start">
       <ion-button (click)="atras()">       
         <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
@@ -7,8 +7,11 @@
     </ion-buttons>   
     <ion-title style="text-align: center;">CHECKOUT BOOKING</ion-title> 
   </ion-toolbar>
+    <ion-toolbar color="secondary" *ngIf="enproceso"> 
+     
+  </ion-toolbar>
 </ion-header>
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" *ngIf="!enproceso">
 
 
 <ion-list [inset]="true"  line="none">
@@ -55,5 +58,21 @@ YES, I DO
    
 
 
+
+</ion-content>
+
+<ion-content class="ion-padding" *ngIf="enproceso"><br><br><br><br><br>
+<div  style="text-align: center; color:#f2f2f2" *ngIf="!noprocesar">
+  <h4>Do not close the application while this process is running.</h4>
+  <br><img src="./assets/imgs/enproceso.gif" />
+</div>
+
+<div  style="text-align: center; color:#f2f2f2" *ngIf="noprocesar">
+  <img src="./assets/imgs/arrow.gif" />
+</div><br><br>
+
+<div  style="text-align: center; color:#f2f2f2" *ngIf="noprocesar">
+  <h4>{{mensaje}}</h4><br><br> <img src="./assets/imgs/icono_exclamacion.png" />
+</div>
 
 </ion-content>

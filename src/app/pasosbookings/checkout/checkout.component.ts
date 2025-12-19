@@ -25,6 +25,9 @@ export class CheckoutComponent implements OnInit {
   mobil: any
   locationmobil: any
   locationonsite: any
+  enproceso:boolean = true
+  noprocesar: boolean = false
+  mensaje: any;
 
   constructor(
     private localstorage: StorageService,
@@ -34,8 +37,9 @@ export class CheckoutComponent implements OnInit {
     private loading: LoadingService,
   ) {
 
-
-
+ this.enproceso = false
+      this.noprocesar = false
+this.mensaje=''
   }
 
 
@@ -127,7 +131,8 @@ export class CheckoutComponent implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirmado') {
-      this.loading.simpleLoader()
+      this.enproceso = true
+      this.noprocesar = false
       var url1 = 'https://washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
       var data1 = {
 
@@ -147,7 +152,7 @@ export class CheckoutComponent implements OnInit {
       }
       this.cHttps(url1, data1).subscribe(
         async (res: any) => {
-          this.loading.dismissLoader()
+         
           console.log(res)
           let mensaje
           let header
@@ -163,7 +168,9 @@ export class CheckoutComponent implements OnInit {
               break;
 
                case 'NOPROCESAR':
-              this.router.navigate(['/pasos/alerta/',res.data.mensaje]);
+               this.enproceso = true
+      this.noprocesar = true
+      this.mensaje = res.data.mensaje
               break;
 
 
@@ -204,7 +211,8 @@ export class CheckoutComponent implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirmado') {
-      this.loading.simpleLoader()
+     this.enproceso = true
+      this.noprocesar = false
       var url1 = 'https://washtt.com/v2_api_clientes_checkout_unSoloVehiculo.php'
       var data1 = {
 
@@ -224,7 +232,7 @@ export class CheckoutComponent implements OnInit {
       }
       this.cHttps(url1, data1).subscribe(
         async (res: any) => {
-          this.loading.dismissLoader()
+       
           console.log(res)
           let mensaje
           let header
@@ -240,7 +248,9 @@ export class CheckoutComponent implements OnInit {
               break;
 
              case 'NOPROCESAR':
-              this.router.navigate(['/pasos/alerta/',res.data.mensaje]);
+               this.enproceso = true
+      this.noprocesar = true
+      this.mensaje = res.data.mensaje
               break;  
 
             default:
