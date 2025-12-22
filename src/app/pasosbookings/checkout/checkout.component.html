@@ -1,4 +1,11 @@
-<ion-header >
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary" *ngIf="noprocesar">
+     <ion-buttons slot="start">
+      <ion-button (click)="wellcome()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>  
+  </ion-toolbar>
   <ion-toolbar color="primary" *ngIf="!enproceso"> 
          <ion-buttons slot="start">
       <ion-button (click)="atras()">       
@@ -10,6 +17,7 @@
     <ion-toolbar color="secondary" *ngIf="enproceso"> 
      
   </ion-toolbar>
+
 </ion-header>
 <ion-content class="ion-padding" *ngIf="!enproceso">
 
@@ -72,7 +80,7 @@ YES, I DO
 </div><br><br>
 
 <div  style="text-align: center; color:#f2f2f2" *ngIf="noprocesar">
-  <h4>{{mensaje}}</h4><br><br> <img src="./assets/imgs/icono_exclamacion.png" />
+  <h4>{{mensaje}}</h4><br><br> <img src="./assets/imgs/icono_exclamacion.png" style="background-color: #f2f2f2; padding: 10px; border-radius: 50%;"/>
 </div>
 
 </ion-content>

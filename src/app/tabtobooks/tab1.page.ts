@@ -13,11 +13,11 @@ export class Tab1Page  {
  //activePageTitle = 'To book';
 
   Pages = [
-    {
+    /*{
       title: 'Dashboard',
       url: '/pasos/wellcome',
       icon: 'speedometer'
-    },
+    },*/
     {
       title: 'Truck and Trailer Appoinments',
       url: '/tabs/tabtobooks/tipocitas',
@@ -64,6 +64,10 @@ private router: Router,
 
     
       }
+
+   wellcome(){
+    window.location.assign('pasos/wellcome')
+   }
 
    async ionViewWillEnter() {  
     this.user = JSON.parse(await this.localstorage.getData('usuario'))

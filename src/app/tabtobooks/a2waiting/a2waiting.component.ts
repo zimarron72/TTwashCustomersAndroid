@@ -1,4 +1,4 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../../servicios/storage.service';
 import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
@@ -7,61 +7,35 @@ import { Router, ActivatedRoute,  Params} from '@angular/router';
 import { LoadingService } from '../../servicios/loading.services';
 
 import { AcancelarComponent } from '../acancelar/acancelar.component';
-import { AarchivarComponent } from '../aarchivar/aarchivar.component';
-
-import { PaysquareComponent } from '../paysquare/paysquare.component';
-import { PaysquarechargeComponent } from '../paysquarecharge/paysquarecharge.component';
-import { SlidergaleryComponent } from '../slidergalery/slidergalery.component';
-
 @Component({
-  selector: 'app-citas',
-  templateUrl: './citas.component.html',
-  styleUrls: ['./citas.component.scss'],
-  standalone : false
+  selector: 'app-a2waiting',
+  templateUrl: './a2waiting.component.html',
+  styleUrls: ['./a2waiting.component.scss'],
+  standalone:false
 })
-export class CitasComponent  implements OnInit {
-
-  n!: number
-
-  vermensaje : boolean = false
-verfiltros : boolean = true
-
- 
-  verenlace1 : boolean = false 
-  verenlace2 : boolean = false
+export class A2waitingComponent  implements OnInit {
 
   idtoken!: string
   autenticacion_tipo!: string
   token_notificacion!: string
   user: any
 
-  conjunto:any //onevehiculo
-  terms: any = ""
+  conjunto1:any 
+  conjunto2:any 
+  conjunto3:any 
+
+  vermensaje1: boolean = false
+vermensaje2: boolean = false
+vermensaje3: boolean = false
  
-  all:any
-  paid:any
-  cancel:any
-
-
   constructor(
     private localstorage: StorageService,
     private router: Router,
-    private rutaActiva: ActivatedRoute,
     private loading: LoadingService,
     private alertController: AlertController,
     private modalCtrl: ModalController,
-   
-  ) { 
+  ) { }
 
-    this.n = this.rutaActiva.snapshot.params['n'];
-    this.rutaActiva.params.subscribe(
-      (params: Params) => {
-        this.n = params['n'];    
-      }
-    );
-
-
-  }
 
 isObjectEmpty(obj: any): boolean {
   return Object.keys(obj).length === 0;
@@ -100,19 +74,22 @@ async aviso(header : string, mensaje : string, code : string) {
     }
   }
 
+ wellcome() {
+ window.location.assign("/pasos/wellcome");
+} 
+
   ngOnInit() {}
-
-
-
-
-  async ionViewWillEnter() {
-    this.terms = ""
+ 
+ async ionViewWillEnter() {
+ this.vermensaje1 = false
+this.vermensaje2 = false
+this.vermensaje3 = false
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
     this.loading.simpleLoader()
-    var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
-    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
+    var url = 'https://washtt.com/v2_api_clientes_getWaiting.php'
+    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email}
     this.cHttps(url, data1).subscribe(
       async (res: any) => {
         this.loading.dismissLoader()
@@ -141,21 +118,37 @@ async aviso(header : string, mensaje : string, code : string) {
           
       default:
 
-      if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
+ if(this.isObjectEmpty(res.data.TTS)) {
+     this.vermensaje1 = true
       }
-      else if(this.n == 11) {
-      this.all =   Object.values(res.data.all)
-      this.paid =   Object.values(res.data.paid)
-      this.cancel =   Object.values(res.data.cancel)
-      this.conjunto = this.all
+ else {
+this.conjunto1 = Object.values(res.data.TTS) 
+ this.vermensaje1 = false
+ }  
+ 
+  if(this.isObjectEmpty(res.data.OS)) {
+     this.vermensaje2 = true
+      }
+ else {
+this.conjunto2 = Object.values(res.data.OS) 
+ this.vermensaje2 = false
+ }  
+
+ if(this.isObjectEmpty(res.data.FS)) {
+     this.vermensaje3 = true
+      }
+ else {
+this.conjunto3 = Object.values(res.data.FS) 
+ this.vermensaje3 = false
+ }  
+
+
+  
+     
       console.log(res.data)
-      }     
+       
     
-      if(this.isObjectEmpty(this.conjunto)) {
-      this.vermensaje = true;
-      this.verfiltros = false;
-      }
+     
 
 
          
@@ -163,23 +156,22 @@ async aviso(header : string, mensaje : string, code : string) {
                       
       }
     )
-  }
-
+  } 
 
   async doRefresh(event: { target: { complete: () => void; }; }) {
-   this.terms = ""
-    this.user = JSON.parse(await this.localstorage.getData('usuario'))
-  if(this.user){   
+ this.vermensaje1 = false
+this.vermensaje2 = false
+this.vermensaje3 = false
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
-    
-    var url = 'https://washtt.com/v2_api_clientes_getipoappointment.php'
-    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, n : this.n }
+
+    var url = 'https://washtt.com/v2_api_clientes_getWaiting.php'
+    var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email}
     this.cHttps(url, data1).subscribe(
       async (res: any) => {
-        if (event)
-          event.target.complete();
+       if (event)
+          event.target.complete(); 
         console.log(res)
         let mensaje
         let header
@@ -204,44 +196,48 @@ async aviso(header : string, mensaje : string, code : string) {
          
           
       default:
-        
- if(this.n != 11) {
-      this.conjunto = Object.values(res.data)       
-      }
-      else if(this.n == 11) {
-      this.all =   Object.values(res.data.all)
-      this.paid =   Object.values(res.data.paid)
-      this.cancel =   Object.values(res.data.cancel)
-      this.conjunto = this.all
-      console.log(res.data)
-      }     
+
     
-      if(this.isObjectEmpty(this.conjunto)) {
-      this.vermensaje = true;
-      this.verfiltros = false;
+      if(this.isObjectEmpty(res.data.TTS)) {
+     this.vermensaje1 = true
       }
+ else {
+this.conjunto1 = Object.values(res.data.TTS) 
+ this.vermensaje1 = false
+ }  
+ 
+  if(this.isObjectEmpty(res.data.OS)) {
+     this.vermensaje2 = true
+      }
+ else {
+this.conjunto2 = Object.values(res.data.OS) 
+ this.vermensaje2 = false
+ }  
+
+ if(this.isObjectEmpty(res.data.FS)) {
+     this.vermensaje3 = true
+      }
+ else {
+this.conjunto3 = Object.values(res.data.FS) 
+ this.vermensaje3 = false
+ } 
+  
+     
+      console.log(res.data)
+       
+    
+     
+
+
          
         }
                       
       }
     )
-  }
-  else {
-    let mensaje = 'please login again'
-    let header = 'Warning'
-    let code = ''
-   
-    this.localstorage.clearData()
-    this.router.navigate(['/login']);
-    this.aviso(header, mensaje, code) 
-   } 
-}
+  } 
 
-goBack(): void {
-   this.router.navigate(['/tabs/tabtobooks/tipocitas'])  
-}
 
-  async Cancelar(id: number): Promise<void> {
+ async Cancelar1(id: number): Promise<void> {
  
  const modal = await this.modalCtrl.create({
       component: AcancelarComponent
@@ -303,11 +299,11 @@ goBack(): void {
           break; 
 
           case '200_OK':
-          this.router.navigate(['/tabs/tabtobooks/tipocitas']) 
-          code = ''
+          this.router.navigate(['/pasos/wellcome']) 
+     code = ''
           header = 'Warning' 
           mensaje = 'Appointment successfully cancelled'             
-          this.aviso(header,mensaje,code)        
+          this.aviso(header,mensaje,code)      
                     
               
         
@@ -324,17 +320,20 @@ goBack(): void {
   }
 
 
-  async Archive(id: number): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: AarchivarComponent
+async Cancelar2(id: number): Promise<void> {
+ 
+ const modal = await this.modalCtrl.create({
+      component: AcancelarComponent
     });
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
-    if (role === 'confirm') {
+    if (role === 'confirm')
+ {
 
-   this.loading.simpleLoader()
-     var url = 'https://washtt.com/v1_api_clientes_archivar_item_order.php'
+     
+      this.loading.simpleLoader()
+     var url = 'https://washtt.com/v2_api_clientes_cancelCitaOther.php'
      var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, itemid:id }
      this.cHttps(url, data1).subscribe(
       async (res: any) => {
@@ -361,15 +360,34 @@ goBack(): void {
           this.aviso(header,mensaje,code)                       
           break;  
           
-          
+          case 'MISMODIA':
+            code = ''
+            header = 'Warning' 
+            mensaje = res.data.mensaje              
+            this.aviso(header,mensaje,code)         
+          break;  
+
+          case 'DIASDESPUESCITA':
+           code = ''
+           header = 'Warning' 
+           mensaje = res.data.mensaje              
+           this.aviso(header,mensaje,code)  
+          break; 
+
+          case 'FALTAUNDIA':
+            code = ''
+           header = 'Warning' 
+           mensaje = res.data.mensaje              
+           this.aviso(header,mensaje,code)  
+          break; 
 
           case '200_OK':
-
+ this.router.navigate(['pasos/welcome'])  
           code = ''
           header = 'Warning' 
-          mensaje = 'Appointment successfully archived'             
+          mensaje = 'Appointment successfully cancelled'             
           this.aviso(header,mensaje,code) 
-          this.router.navigate(['/tabs/tabtobooks/tipocitas']) 
+        
                     
               
         
@@ -380,160 +398,98 @@ goBack(): void {
         }
                       
       }
-    ) 
-}
-    
-  }
-
-  async Pay1(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any, numberV:any): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: PaysquareComponent,
-       componentProps: { 
-        
-        concepto : 'TTS | '+service,
-        subtotal : subtotal,
-        descuento : descuento,
-        total : total,
-        item : item_id,
-        wash : wash_id,
-        numberV : numberV,
-        modoS: 'TTS'
-        
-      }
-    });
-    modal.present();
-
-    const { data, role } = await modal.onWillDismiss();
-    if (role === 'continue') {
-//refrescar luego del pago
-switch(data.accion) {
-
-case "alogin":
-  var code = ''
-  var header = 'Error'
-  var mensaje = 'an error occurred,please login again'
-  this.localstorage.clearData()
-  this.router.navigate(['/login']);
-  this.aviso(header, mensaje, code) 
-break;    
-
-case "tipopagos":
-   this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
-break;
-
-case "successpay":
- this.router.navigate(['/pasos/pagoexitoso'])  
-break; 
-
-case "successpaycond":
- this.router.navigate(['/pasos/pagocond'])  
-break;
+    ) }
 
 
-
-}
-
-
-    } 
-  
-  }
-
-  async Pay2(service:string,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any, numberV: any): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: PaysquarechargeComponent,
-       componentProps: { 
-        
-        concepto : 'TTS | '+service,
-        subtotal : subtotal,
-        descuento : descuento,
-        total : total,
-        item : item_id,
-        wash : wash_id,
-        recargo_concepto : recargo_concepto,
-        recargo_monto : recargo_monto,
-        numberV : numberV,
-        modoS: 'TTS'
-        
-      }
-    });
-    modal.present();
-
-    const { data, role } = await modal.onWillDismiss();
-    if (role === 'continue') {
-//refrescar luego del pago
-switch(data.accion) {
-
-case "alogin":
-   var code = ''
-  var header = 'Error'
-  var mensaje = 'an error occurred,please login again'
-  this.localstorage.clearData()
-  this.router.navigate(['/login']);
-  this.aviso(header, mensaje, code)  
-break;    
-
-case "tipopagos":
-   this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
-break;
-
-case "successpay":
- this.router.navigate(['/pasos/pagoexitoso'])  
-break; 
-
-case "successpaycond":
-this.router.navigate(['/pasos/pagocond'])  
-break;
-
-
-
-}
-
-
-    } 
-  
-  }
-
-  async Galery(id: any): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: SlidergaleryComponent,
-      componentProps: { 
-        item: id,
-        modoService:'TTS'
-        
-      }
-    });
-     modal.present();
-
-    const { data, role } = await modal.onWillDismiss();
-    if (role === 'continue') {
-
-
-
-    } 
   }
 
 
 
 
-
-  vermobil(){
-    this.terms = "Mobil"
-  }
-  veryard(){
-    this.terms = "Yard"
-  }
-
-  verlistos() {
-     this.conjunto = this.paid
-  }
-
-  vercancel() {
-   this.conjunto = this.cancel
-  }
-
+  async Cancelar3(id: number): Promise<void> {
  
+ const modal = await this.modalCtrl.create({
+      component: AcancelarComponent
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+    if (role === 'confirm')
+ {
+
+     
+      this.loading.simpleLoader()
+     var url = 'https://washtt.com/v2_api_clientes_cancelCitaFleet.php'
+     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email, itemid:id }
+     this.cHttps(url, data1).subscribe(
+      async (res: any) => {
+        this.loading.dismissLoader()
+        console.log(res)
+        let mensaje
+        let header
+        let code
+        switch (res.data.respuesta) {
+          case 'ERROR':
+            code = '01'
+            header = 'Error'
+            mensaje = 'Sorry, an error occurred,please login again2'
+            this.localstorage.clearData()
+            this.router.navigate(['/login'])       
+            this.aviso(header, mensaje, code)              
+            break;         
+          case 'TOKEN ERROR':
+          code = '01'
+          header = 'Error' 
+          mensaje = 'Invalid or expired token,please login again'
+          this.localstorage.clearData()
+          this.router.navigate(['/login'])   
+          this.aviso(header,mensaje,code)                       
+          break;  
+          
+          case 'MISMODIA':
+            code = ''
+            header = 'Warning' 
+            mensaje = res.data.mensaje              
+            this.aviso(header,mensaje,code)         
+          break;  
+
+          case 'DIASDESPUESCITA':
+           code = ''
+           header = 'Warning' 
+           mensaje = res.data.mensaje              
+           this.aviso(header,mensaje,code)  
+          break; 
+
+          case 'FALTAUNDIA':
+            code = ''
+           header = 'Warning' 
+           mensaje = res.data.mensaje              
+           this.aviso(header,mensaje,code)  
+          break; 
+
+          case '200_OK':
+this.router.navigate(['/pasos/wellcome']) 
+       
+          code = ''
+          header = 'Warning' 
+          mensaje = 'Appointment successfully cancelled'             
+          this.aviso(header,mensaje,code) 
+          
+                    
+              
+        
+          break;
+          
+     
+         
+        }
+                      
+      }
+    ) }
 
 
+  }
+ 
 
 
 

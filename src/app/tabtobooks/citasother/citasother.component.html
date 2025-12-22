@@ -107,7 +107,7 @@
     
 
  <div *ngIf="n != 11">
- <ion-accordion-group *ngFor="let element of conjunto | sortcitas : terms  ; let i = index " expand="inset" >
+ <ion-accordion-group *ngFor="let element of conjunto  ; let i = index " expand="inset" >
     <ion-accordion value=i>     
       <ion-item slot="header" color="light" >
         <ion-icon *ngIf="element.location == ''" name="warning" color="warning" slot="start"></ion-icon>
@@ -122,7 +122,7 @@
           <strong *ngIf="element.location == 'Mobile'" class="mobile">{{element.location}}</strong>
           <strong *ngIf="element.location == 'Onsite'" class="yard">{{element.location}}</strong><br>
           {{element.diaCita}} | {{element.horaCita}}<br>Service: {{element.tipoS}}<br>Vehicules: {{element.tipoV}}<br>
-              
+           <strong>Vehicule number: </strong>{{element.numberV}}   
         </ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
@@ -170,7 +170,7 @@
                  </ion-button> 
         </ion-col>
         <ion-col>
-           <ion-button  shape="round" color="secondary" (click)="Pay2(element.tipoS,element.tipoV,element.precio, element.id, element.id_wash, element.descuento, element.total,element.rp_monto,element.rp_concepto)" > PAY NOW  
+           <ion-button  shape="round" color="secondary" (click)="Pay2(element.tipoS,element.tipoV,element.precio, element.id, element.id_wash, element.descuento, element.total,element.rp_monto,element.rp_concepto,element.numberV)" > PAY NOW  
            <ion-icon name="card" slot="start" ></ion-icon>             
             </ion-button> 
         </ion-col>
@@ -184,7 +184,7 @@
           </ion-button>
         </ion-col>
         <ion-col>
-            <ion-button  shape="round" color="secondary"  (click)="Pay1(element.tipoS,element.tipoV,element.precio, element.id, element.id_wash, element.descuento, element.total)"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
+            <ion-button  shape="round" color="secondary"  (click)="Pay1(element.tipoS,element.tipoV,element.precio, element.id, element.id_wash, element.descuento, element.total,element.numberV)"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
                          </ion-button> 
         </ion-col>
       </ion-row>
@@ -259,7 +259,7 @@
           <strong *ngIf="element.location == 'Mobile'" class="mobile">{{element.location}}</strong>
           <strong *ngIf="element.location == 'Onsite'" class="yard">{{element.location}}</strong><br>
           {{element.diaCita}} | {{element.horaCita}}<br>Service: {{element.tipoS}}<br>Vehicules: {{element.tipoV}}<br>
-              
+            <strong>Vehicule number: </strong>{{element.numberV}}      
         </ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">

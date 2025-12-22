@@ -36,7 +36,7 @@ verfiltros : boolean = true
   user: any
 
   conjunto:any //onevehiculo
-  terms: any = ""
+
 
    all:any
   paid:any
@@ -108,7 +108,7 @@ async aviso(header : string, mensaje : string, code : string) {
 
 
   async ionViewWillEnter() {
-    this.terms = ""
+   this.filtros = false
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
@@ -181,7 +181,7 @@ async aviso(header : string, mensaje : string, code : string) {
 
 
   async doRefresh(event: { target: { complete: () => void; }; }) {
-   this.terms = ""
+   
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
   if(this.user){   
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
@@ -414,7 +414,7 @@ goBack(): void {
     
   }
 
-  async Pay1(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {
+  async Pay1(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,numberV:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquareComponent,
        componentProps: { 
@@ -425,6 +425,7 @@ goBack(): void {
         total : total,
         item : item_id,
         wash : wash_id,
+        numberV: numberV,
         modoS: 'OS'
       }
     });
@@ -436,7 +437,12 @@ goBack(): void {
 switch(data.accion) {
 
 case "alogin":
-  this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+    var code = ''
+  var header = 'Error'
+  var mensaje = 'an error occurred,please login again'
+  this.localstorage.clearData()
+  this.router.navigate(['/login']);
+  this.aviso(header, mensaje, code) 
 break;    
 
 case "tipopagos":
@@ -460,7 +466,7 @@ break;
   
   }
 
-  async Pay2(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any): Promise<void> {
+  async Pay2(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any,numberV:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquarechargeComponent,
        componentProps: { 
@@ -473,6 +479,7 @@ break;
         wash : wash_id,
         recargo_concepto : recargo_concepto,
         recargo_monto : recargo_monto,
+        numberV : numberV,
          modoS: 'OS'
         
       }
@@ -485,7 +492,12 @@ break;
 switch(data.accion) {
 
 case "alogin":
-  this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+  var code = ''
+  var header = 'Error'
+  var mensaje = 'an error occurred,please login again'
+  this.localstorage.clearData()
+  this.router.navigate(['/login']);
+  this.aviso(header, mensaje, code) 
 break;    
 
 case "tipopagos":

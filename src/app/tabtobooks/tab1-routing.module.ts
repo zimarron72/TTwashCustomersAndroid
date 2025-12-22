@@ -28,6 +28,9 @@ import { AllcitasComponent } from './allcitas/allcitas.component';
 import { CitasfleetComponent } from './citasfleet/citasfleet.component';
 import { CitasotherComponent } from './citasother/citasother.component';
 import { TobooknowComponent } from './tobooknow/tobooknow.component';
+import { A2waitingComponent } from './a2waiting/a2waiting.component';
+import { A2confirmedComponent } from './a2confirmed/a2confirmed.component';
+import { A2attendedComponent } from './a2attended/a2attended.component';
 
 
 
@@ -68,6 +71,11 @@ const routes: Routes = [
       { path: 'Pay1', component: PaysquareComponent },
       { path: 'allcitas', component: AllcitasComponent },
       { path: 'tobooknow/:modo', component: TobooknowComponent },
+       { path: 'waiting', component: A2waitingComponent },
+  { path: 'confirmed', component: A2confirmedComponent },
+    { path: 'attended', component: A2attendedComponent },
+
+
      
      
       

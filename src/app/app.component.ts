@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { AlertController, IonicSafeString } from '@ionic/angular';
+import { AlertController  } from '@ionic/angular';
 import { App } from '@capacitor/app';
-import { CapacitorHttp, HttpResponse, HttpOptions } from '@capacitor/core';
+import { CapacitorHttp,  HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
 import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 

@@ -30,9 +30,15 @@ export class WellcomeComponent  implements OnInit {
 
       //   private AutenticacionService : AutenticacionService,
     
-  ) { }
+  ) { 
 
-  ngOnInit() {}
+  }
+
+  ngOnInit() {
+
+  }
+
+ 
 
 
  async aviso(header : string, mensaje : string, code : string) {
@@ -67,7 +73,8 @@ export class WellcomeComponent  implements OnInit {
     return from(CapacitorHttp.post(options))
   }
 
-  async ionViewWillEnter() {
+  
+ async ionViewWillEnter() {
 
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
@@ -120,13 +127,14 @@ export class WellcomeComponent  implements OnInit {
   }
 
        doRefresh(event: { target: { complete: () => void; }; }) {
-              event.target.complete();
+              
             
          var url = 'https://washtt.com/v2_api_clientes_get_wellcome.php'
     var data1 = { idtoken: this.idtoken, autenticacion_tipo: this.autenticacion_tipo, email: this.user.email }
     this.cHttps(url, data1).subscribe(
       async (res: any) => {
-       
+        if (event)
+          event.target.complete();
    
         let mensaje
         let header
@@ -180,9 +188,7 @@ bookCheck() {
 
 
 
-/*findMore() {
-this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']);
-}*/
+
 
 menu() {
  //this.router.navigate(['/tabs/tabtobooks/tipovehiculos/more']); 
@@ -193,7 +199,7 @@ menu() {
 
 verSin(){
   if(this.sinconfirmar != 0) {
-this.router.navigate(['/tabs/tabtobooks/citas/1']);  
+this.router.navigate(['/tabs/tabtobooks/waiting']);  
   }
   else {
      let mensaje
@@ -209,7 +215,7 @@ this.router.navigate(['/tabs/tabtobooks/citas/1']);
 
 verCon(){
     if(this.confirmados != 0) {
-this.router.navigate(['/tabs/tabtobooks/citas/2']);  
+this.router.navigate(['/tabs/tabtobooks/confirmed']);  
   }
   else {
      let mensaje
@@ -224,7 +230,7 @@ this.router.navigate(['/tabs/tabtobooks/citas/2']);
 
 verPay(){
      if(this.completados != 0) {
-this.router.navigate(['/tabs/tabtobooks/citas/7']);  
+this.router.navigate(['/tabs/tabtobooks/attended']);  
   }
   else {
      let mensaje
@@ -268,6 +274,10 @@ this.router.navigate(['/pasos/coupons']);
             mensaje = 'Currently, there are no Coupons Active.'       
             this.aviso(header, mensaje, code)  
   }
+}
+
+ngOnDestroy() {
+
 }
  
 }

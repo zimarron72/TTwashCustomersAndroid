@@ -416,7 +416,7 @@ this.router.navigate(['/tabs/tabtobooks/tipocitasfleets'])
     
   }
 
-  async Pay1(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any): Promise<void> {
+  async Pay1(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any, numberV:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquareComponent,
        componentProps: { 
@@ -427,6 +427,7 @@ this.router.navigate(['/tabs/tabtobooks/tipocitasfleets'])
         total : total,
         item : item_id,
         wash : wash_id,
+        numberV : numberV,
         modoS: 'FS'
         
       }
@@ -439,7 +440,12 @@ this.router.navigate(['/tabs/tabtobooks/tipocitasfleets'])
 switch(data.accion) {
 
 case "alogin":
-  this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+   var code = ''
+  var header = 'Error'
+  var mensaje = 'an error occurred,please login again'
+  this.localstorage.clearData()
+  this.router.navigate(['/login']);
+  this.aviso(header, mensaje, code) 
 break;    
 
 case "tipopagos":
@@ -461,7 +467,7 @@ break;
   
   }
 
-  async Pay2(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any): Promise<void> {
+  async Pay2(service:string,vehiculo:any,subtotal:any,item_id:any, wash_id:any, descuento: any, total:any,recargo_monto:any, recargo_concepto:any, numberV:any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PaysquarechargeComponent,
        componentProps: { 
@@ -474,6 +480,7 @@ break;
         wash : wash_id,
         recargo_concepto : recargo_concepto,
         recargo_monto : recargo_monto,
+        numberV : numberV,
         modoS: 'FS'
         
       }
@@ -486,7 +493,12 @@ break;
 switch(data.accion) {
 
 case "alogin":
-  this.router.navigate(['/tabs/tabtobooks/tipopagos'])  
+  var code = ''
+  var header = 'Error'
+  var mensaje = 'an error occurred,please login again'
+  this.localstorage.clearData()
+  this.router.navigate(['/login']);
+  this.aviso(header, mensaje, code) 
 break;    
 
 case "tipopagos":

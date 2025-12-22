@@ -120,7 +120,8 @@
             <strong *ngIf="element.Order_Item_Status == 9" class="advertencia">Incomplete | Cancelled <br></strong>
           <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
           <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
-          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}
+          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}<br>
+          <strong>Vehicule number: </strong>{{element.unitnumber}}
      
         </ion-label>
       </ion-item>
@@ -160,7 +161,7 @@
                  </ion-button> 
         </ion-col>
         <ion-col>
-           <ion-button  shape="round" color="secondary" (click)="Pay2(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total,element.rp_monto,element.rp_concepto_item)" > PAY NOW  
+           <ion-button  shape="round" color="secondary" (click)="Pay2(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total,element.rp_monto,element.rp_concepto_item,element.unitnumber)" > PAY NOW  
            <ion-icon name="card" slot="start" ></ion-icon>             
             </ion-button> 
         </ion-col>
@@ -174,7 +175,7 @@
           </ion-button>
         </ion-col>
         <ion-col>
-            <ion-button  shape="round" color="secondary"  (click)="Pay1(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total)"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
+            <ion-button  shape="round" color="secondary"  (click)="Pay1(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total, element.unitnumber)"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
                          </ion-button> 
         </ion-col>
       </ion-row>
@@ -243,7 +244,7 @@
           <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
           <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
           {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}<br> 
-            
+            <strong>Vehicule number: </strong>{{element.unitnumber}}
         </ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">

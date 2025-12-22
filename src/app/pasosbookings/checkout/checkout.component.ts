@@ -5,7 +5,7 @@ import { StorageService } from '../../servicios/storage.service';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CartComponent } from '../cart/cart.component';
-import { LoadingService } from '../../servicios/loading.services';
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -34,17 +34,21 @@ export class CheckoutComponent implements OnInit {
     private alertController: AlertController,
     private router: Router,
     private modalCtrl: ModalController,
-    private loading: LoadingService,
+    
   ) {
 
- this.enproceso = false
-      this.noprocesar = false
-this.mensaje=''
+ 
   }
 
 
 
   async ionViewWillEnter() {
+
+this.enproceso = false
+      this.noprocesar = false
+this.mensaje=''
+
+
     let vehiculoData = JSON.parse(await this.localstorage.getData('itemcartVehiculo1'))
     let servicioData = JSON.parse(await this.localstorage.getData('itemcartServicio'))
     let onsiteData = JSON.parse(await this.localstorage.getData('itemcartOnsite'))
@@ -271,6 +275,16 @@ this.mensaje=''
   async atras() {
     await this.localstorage.removeData('itemcartTime')
     this.router.navigate(['/pasos/selectcita']);
+  }
+
+  async wellcome() {
+    await this.localstorage.removeData('itemcartOnsite')
+       await this.localstorage.removeData('itemcartMobil')
+          await this.localstorage.removeData('itemcartVehiculo1')
+             await this.localstorage.removeData('itemcartServicio')
+                await this.localstorage.removeData('id_category')
+        await this.localstorage.removeData('itemcartTime')
+    this.router.navigate(['/pasos/wellcome']);
   }
 
 }

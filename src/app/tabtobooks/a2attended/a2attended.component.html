@@ -1,0 +1,335 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+         <ion-buttons slot="start">
+      <ion-button (click)="wellcome()">       
+        <ion-icon slot="icon-only" name="arrow-back" color="light"></ion-icon>
+          </ion-button>   
+    </ion-buttons>   
+    <ion-title>APPOINTMENTS<br>PENDING PAYMENT</ion-title>         
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+  <!--<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+     <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>-->
+    <h3 style="text-align: center;">Trucks & Trailers Services</h3>
+<div *ngIf="!vermensaje1">
+    <ion-accordion-group  *ngFor="let element of conjunto1  ; let i = index " expand="inset" >
+    <ion-accordion value=i>     
+      <ion-item slot="header" color="light" >
+        <ion-icon *ngIf="element.Location == 'Mobile'" name="rocket" color="success" slot="start"></ion-icon>
+        <ion-icon *ngIf="element.Location == 'Yard'" name="golf" color="tertiary" slot="start"></ion-icon>
+        <ion-label>
+          <strong *ngIf="element.Order_Item_Status == 1" class="advertencia">Confirmation in process<br></strong>
+          <strong *ngIf="element.Order_Item_Status == 2" class="advertencia">In progress<br></strong>
+          <strong *ngIf="element.Order_Item_Status == 7" class="advertencia">Executed | Unpaid<br></strong>
+           <strong *ngIf="element.Order_Item_Status == 8" class="advertencia">Executed | Paid<br></strong>
+            <strong *ngIf="element.Order_Item_Status == 9" class="advertencia">Incomplete | Cancelled <br></strong>
+          <strong *ngIf="element.Location == 'Mobile'" class="mobile">{{element.Location}}</strong>
+          <strong *ngIf="element.Location == 'Yard'" class="yard">Onsite</strong>
+          {{element.Appointment}} | {{element.citahora}}<br>{{element.Service}}<br>
+          <strong>Vehicule number: </strong>{{element.unitnumber}}
+     
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+
+          <ion-row>
+            <ion-col class="neon">Order nº</ion-col>          
+          </ion-row>
+          <ion-row>
+            <ion-col class="argon">{{element.Order}}</ion-col>          
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="neon" >Price</ion-col>
+            <ion-col class="neon">Discount</ion-col>
+            <ion-col class="neon">Total to pay</ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="argon">{{element.Price_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Descuento_item_string}}</ion-col>
+            <ion-col class="argon">{{element.Total_item_string}}</ion-col>
+            
+          </ion-row>
+        </ion-grid>
+
+<div >
+    <ion-grid *ngIf="element.vercharge_item">
+      <ion-row>
+        <ion-col>
+            <ion-button  shape="round" color="warning"   (click)="Galery1(element.order_item_id)" > SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
+                 </ion-button> 
+        </ion-col>
+        <ion-col>
+           <ion-button  shape="round" color="secondary" (click)="Pay2A(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total,element.rp_monto,element.rp_concepto_item,element.unitnumber)" > PAY NOW  
+           <ion-icon name="card" slot="start" ></ion-icon>             
+            </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>   
+    
+    <ion-grid *ngIf="element.verenlace3_item">
+      <ion-row>
+        <ion-col>
+          <ion-button  shape="round" color="warning"  (click)="Galery1(element.order_item_id)"> SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button  shape="round" color="secondary"  (click)="Pay1A(element.Service, element.product_item_price, element.order_item_id, element.wash_id, element.discount, element.total,element.unitnumber)"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
+                         </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+                            
+                 
+          </div>
+  
+          <div >
+            <hr class="linea" *ngIf="element.vercharge_item">
+  <div class="neon2" *ngIf="element.vercharge_item">
+    <p class="neon1">Service Charge</p>
+            <p *ngIf="element.vercharge_item" class="neon1">Amount:</p>
+            <p *ngIf="element.vercharge_item" class="argon">{{element.rp_monto_item}}</p>
+              <p *ngIf="element.vercharge_item" class="neon1">Concept:</p>
+              <p *ngIf="element.vercharge_item" class="argon">{{element.rp_concepto_item}}</p>
+              </div>
+          </div>
+        
+
+                 
+
+ 
+
+       
+
+
+     
+          
+
+
+      </div>
+    </ion-accordion>   
+  </ion-accordion-group> 
+</div>  
+
+<div *ngIf="vermensaje1"  style="text-align: center; color:#f2f2f2"> <img src="./assets/imgs/.png" /><p>Without active tobookes of this type</p></div>
+
+<h3 style="text-align: center;">Other Services</h3>
+<div *ngIf="!vermensaje2">
+   <ion-accordion-group  *ngFor="let element of conjunto2  ; let i = index " expand="inset" >
+    <ion-accordion value=i>     
+      <ion-item slot="header" color="light" >
+        <ion-icon *ngIf="element.location == ''" name="warning" color="warning" slot="start"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Mobile'" name="rocket" color="success" slot="start"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Onsite'" name="golf" color="tertiary" slot="start"></ion-icon>
+        <ion-label>
+             <strong *ngIf="element.status == 1" class="advertencia">Confirmation in process<br></strong>
+          <strong *ngIf="element.status == 2" class="advertencia">In progress<br></strong>
+          <strong *ngIf="element.status == 7" class="advertencia">Executed | Unpaid<br></strong>
+           <strong *ngIf="element.status == 8" class="advertencia">Executed | Paid<br></strong>
+            <strong *ngIf="element.status == 9" class="advertencia">Incomplete | Cancelled <br></strong>
+          <strong *ngIf="element.location == 'Mobile'" class="mobile">{{element.location}}</strong>
+          <strong *ngIf="element.location == 'Onsite'" class="yard">{{element.location}}</strong><br>
+          {{element.diaCita}} | {{element.horaCita}}<br>Service: {{element.tipoS}}<br>Vehicules: {{element.tipoV}}<br>
+           <strong>Vehicule number: </strong>{{element.numberV}}   
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+
+          <ion-row>
+            <ion-col class="neon">Order nº</ion-col>          
+          </ion-row>
+          <ion-row>
+            <ion-col class="argon">{{element.nReporte}}</ion-col>          
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="neon" >Price</ion-col>
+            <ion-col class="neon">Discount</ion-col>
+            <ion-col class="neon">Total to pay</ion-col>
+          </ion-row>
+
+
+            <ion-row *ngIf="element.status == 1">
+               <ion-col class="argon">Awaiting confirmation.</ion-col>        
+          </ion-row>
+           <ion-row *ngIf="element.status == 9">
+               <ion-col class="argon">Incomplete | Cancelled.</ion-col>        
+          </ion-row>
+
+          <ion-row *ngIf="element.location != ''">
+            <ion-col class="argon">{{element.priceString}}</ion-col>
+            <ion-col class="argon">{{element.descuentoString}}</ion-col>
+            <ion-col class="argon">{{element.totalString}}</ion-col>
+            
+          </ion-row>
+        </ion-grid>
+     
+      
+  
+ 
+  <div >
+    <ion-grid *ngIf="element.vercharge">
+      <ion-row>
+        <ion-col>
+            <ion-button  shape="round" color="warning"   (click)="Galery2(element.id)" > SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
+                 </ion-button> 
+        </ion-col>
+        <ion-col>
+           <ion-button  shape="round" color="secondary" (click)="Pay2B(element.tipoS,element.tipoV,element.precio, element.id, element.id_wash, element.descuento, element.total,element.rp_monto,element.rp_concepto,element.numberV)" > PAY NOW  
+           <ion-icon name="card" slot="start" ></ion-icon>             
+            </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>   
+    
+    <ion-grid *ngIf="element.verenlace3">
+      <ion-row>
+        <ion-col>
+          <ion-button  shape="round" color="warning"  (click)="Galery2(element.id)"> SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button  shape="round" color="secondary"  (click)="Pay1B(element.tipoS,element.tipoV,element.precio, element.id, element.id_wash, element.descuento, element.total,element.numberV)"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
+                         </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+                            
+                 
+          </div>       
+  
+          <div >
+            <hr class="linea" *ngIf="element.vercharge">
+  <div class="neon2" *ngIf="element.vercharge">
+    <p class="neon1">Service Charge</p>
+            <p *ngIf="element.vercharge" class="neon1">Amount:</p>
+            <p *ngIf="element.vercharge" class="argon">{{element.rp_monto}}</p>
+              <p *ngIf="element.vercharge" class="neon1">Concept:</p>
+              <p *ngIf="element.vercharge" class="argon">{{element.rp_concepto}}</p>
+              </div>
+          </div>
+    
+
+            
+
+     
+
+     
+
+       
+
+   
+     
+          
+
+
+      </div>
+    </ion-accordion>   
+  </ion-accordion-group>
+</div>  
+  <div *ngIf="vermensaje2"  style="text-align: center; color:#f2f2f2"> <img src="./assets/imgs/app_success_tobook.png" /><p>Without active tobookes of this type</p></div>
+
+  <h3 style="text-align: center;">Fleet Services</h3>
+  <div *ngIf="!vermensaje3">
+   <ion-accordion-group   *ngFor="let element of conjunto3   ; let i = index " expand="inset" >
+    <ion-accordion value=i>     
+      <ion-item slot="header" color="light" >
+    <ion-icon *ngIf="element.location == ''" name="warning" color="warning" slot="start"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Mobile'" name="rocket" color="success" slot="start"></ion-icon>
+        <ion-icon *ngIf="element.location == 'Onsite'" name="golf" color="tertiary" slot="start"></ion-icon>
+        <ion-label>
+           <strong *ngIf="element.status == 1" class="advertencia">Confirmation in process<br></strong>
+          <strong *ngIf="element.status == 2" class="advertencia">In progress<br></strong>
+          <strong *ngIf="element.status == 7" class="advertencia">Executed | Unpaid<br></strong>
+           <strong *ngIf="element.status == 8" class="advertencia">Executed | Paid<br></strong>
+            <strong *ngIf="element.status == 9" class="advertencia">Incomplete | Cancelled <br></strong>
+          <strong *ngIf="element.location == 'Mobile'" class="mobile">{{element.location}}</strong>
+          <strong *ngIf="element.location == 'Onsite'" class="yard">{{element.location}}</strong><br>
+          {{element.diaCita}} | {{element.horaCita}}<br>Service: {{element.tipoS}}<br>Vehicules: {{element.tipoV}}<br>
+          Quantity: {{element.cantidadV}}     
+        </ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-grid>
+
+          <ion-row>
+            <ion-col class="neon">Order nº</ion-col>          
+          </ion-row>
+          <ion-row>
+            <ion-col class="argon">{{element.nReporte}}</ion-col>          
+          </ion-row>
+
+          <ion-row>
+            <ion-col class="neon" >Price</ion-col>
+            <ion-col class="neon">Discount</ion-col>
+            <ion-col class="neon">Total to pay</ion-col>
+          </ion-row>
+
+            <ion-row *ngIf="element.location == ''">
+               <ion-col class="argon">Awaiting confirmation.</ion-col>        
+          </ion-row>
+
+          <ion-row *ngIf="element.location != ''">
+            <ion-col class="argon">{{element.priceString}}</ion-col>
+            <ion-col class="argon">{{element.descuentoString}}</ion-col>
+            <ion-col class="argon">{{element.totalString}}</ion-col>            
+          </ion-row>
+        </ion-grid>  
+ 
+  <div >
+    <ion-grid *ngIf="element.vercharge">
+      <ion-row>
+        <ion-col>
+            <ion-button  shape="round" color="warning"   (click)="Galery3(element.id)" > SEE PHOTOS <ion-icon slot="start"  name= "sparkles"></ion-icon>
+                 </ion-button> 
+        </ion-col>
+        <ion-col>
+           <ion-button  shape="round" color="secondary" (click)="Pay2C(element.tipoS,element.tipoV, element.precio, element.id, element.id_wash, element.descuento, element.total,element.rp_monto,element.rp_concepto,'FLEET')" > PAY NOW  
+           <ion-icon name="card" slot="start" ></ion-icon>             
+            </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>   
+    
+    <ion-grid *ngIf="element.verenlace3">
+      <ion-row>
+        <ion-col>
+          <ion-button  shape="round" color="warning"  (click)="Galery3(element.id)"> SEE PHOTOS <ion-icon slot="start" name="sparkles"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button  shape="round" color="secondary"  (click)="Pay1C(element.tipoS, element.tipoV, element.precio, element.id, element.id_wash, element.descuento, element.total,'FLEET')"> PAY NOW    <ion-icon name="card" slot="start"></ion-icon>
+                         </ion-button> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+                            
+                 
+          </div>      
+  
+          <div >
+            <hr class="linea" *ngIf="element.vercharge">
+<div class="neon2" *ngIf="element.vercharge">
+    <p class="neon1">Service Charge</p>
+            <p *ngIf="element.vercharge" class="neon1">Amount:</p>
+            <p *ngIf="element.vercharge" class="argon">{{element.rp_monto}}</p>
+              <p *ngIf="element.vercharge" class="neon1">Concept:</p>
+              <p *ngIf="element.vercharge" class="argon">{{element.rp_concepto}}</p>
+              </div>
+          </div>
+   
+   
+      </div>
+    </ion-accordion>   
+  </ion-accordion-group>
+</div>
+<div *ngIf="vermensaje3"  style="text-align: center; color:#f2f2f2"> <img src="./assets/imgs/app_success_tobook.png" /><p>Without active tobookes of this type</p></div>
+  </ion-content>

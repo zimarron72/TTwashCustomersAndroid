@@ -26,6 +26,7 @@ import { CouponsComponent } from './coupons/coupons.component';
 
 
 
+
 const routes: Routes = [
   {
     path: '',
@@ -42,8 +43,8 @@ const routes: Routes = [
       { path: 'checkout', component: CheckoutComponent },
     { path: 'selectlocation', component: SelectlocationComponent },      
  
-   { path: 'bookother', component: BooknowotherComponent },
-     { path: 'bookfleets', component: BooknowfleetsComponent },
+  { path: 'bookother', component: BooknowotherComponent },
+{ path: 'bookfleets', component: BooknowfleetsComponent },
       { path: 'cart', component: CartComponent },
        { path: 'pagoexitoso', component: PayokeyComponent },
         { path: 'pagocond', component: PaycondComponent },
@@ -53,6 +54,7 @@ const routes: Routes = [
            { path: 'fleet', component: FleetComponent },
             { path: 'locations', component: LocationsComponent },
               { path: 'coupons', component: CouponsComponent },
+       
            
 
 

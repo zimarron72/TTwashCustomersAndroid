@@ -24,12 +24,14 @@
 <ion-grid>
 
   <ion-row>
-    <ion-col>
-      <ion-button expand="block" (click)="openAppleSignIn1()">
+    <ion-col></ion-col>
+    <ion-col size="auto">
+      <ion-button shape="round" (click)="openAppleSignIn1()">
         <ion-icon name="logo-apple" slot="end"></ion-icon>
         SIGN IN
       </ion-button>
     </ion-col>
+       <ion-col></ion-col>
   </ion-row>
 <!---SIGN FIREBASE EMAIL-PASSSWORD-->
 <ion-row>
@@ -44,17 +46,18 @@
 
     <ion-row>
       <ion-col>  
-        <ion-list lines="none">
+        <ion-list >
           
-      <ion-item lines="full" >
- <ion-label position="floating" class="platino">Email</ion-label>  
+      <ion-item  >
+  <ion-label position="stacked" color="light">EMAIL</ion-label>
    <ion-icon name="mail" color="light" slot="end"></ion-icon>
-<ion-input   color="light"  formControlName="email" type="email" required></ion-input>     
-    </ion-item> 
+     
+<ion-input placeholder="email@domain.com" fill="outline"   formControlName="email" type="email" required></ion-input>     
+    </ion-item><br> 
 
-    <ion-item lines="full" >
-      <ion-label position="floating" class="platino">Password</ion-label>
-      <ion-input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"></ion-input>
+    <ion-item>
+<ion-label position="stacked" color="light">PASSWORD</ion-label>
+      <ion-input placeholder="password"  fill="outline" type="{{ showPassword ? 'text' : 'password' }}" formControlName="password"></ion-input>
       <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
     </ion-item> 
 
@@ -65,18 +68,22 @@
   </form>  
 
   <ion-row>
-    <ion-col>
-<ion-button color="primary" expand="block"  (click)="send()">LOGIN</ion-button>
+    <ion-col></ion-col>
+    <ion-col size="auto">
+<ion-button color="primary" shape="round"  (click)="send()">LOGIN</ion-button>
 </ion-col>
+<ion-col></ion-col>
 </ion-row> 
 
 
 
 
     <ion-row>
-      <ion-col>       
-        <ion-button  color="primary" expand="block" (click) = "resetpassword()" >Forgot your password</ion-button>
+      <ion-col></ion-col>
+      <ion-col size="auto">       
+        <ion-button  color="primary" shape="round" (click) = "resetpassword()" >Forgot your password</ion-button>
       </ion-col>
+      <ion-col></ion-col>
     </ion-row>
   
    
@@ -90,9 +97,11 @@
  
   
     <ion-row>
-      <ion-col>
-        <ion-button   color="primary" expand="block" (click) = "registro()" >Don't have an account?</ion-button>
+      <ion-col></ion-col>
+      <ion-col size="auto">
+        <ion-button   color="primary" shape="round" (click) = "registro()" >Don't have an account?</ion-button>
       </ion-col>
+      <ion-col></ion-col>
     </ion-row>
   </ion-grid>
 

@@ -38,6 +38,7 @@ charge_string !: string
  modoS : any
   url : any
   card : any
+  numberV : any
 
   monedaCifra!: any
   monedaString: any 
@@ -184,7 +185,8 @@ this.loading.dismissLoader()
         washid : this.wash,
         charge : this.recargo_monto,
         charge_concepto : this.recargo_concepto,
-        charge_status : 2
+        charge_status : 2,
+        numberV : this.numberV
       };
 
         fetch(this.url, {

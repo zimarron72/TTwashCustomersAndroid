@@ -187,7 +187,7 @@ this.loading.simpleLoader()
                     this.wonderPush.setUserId(res.data.userid)
                     this.wonderPush.addTag('clientes')
                     await this.localstorage.setData('autenticacion_tipo', 'apple');                   
-                    this.router.navigate(['/tabs/tabtobooks']);              
+                    this.router.navigate(['/pasos/wellcome']);              
                     
                   break; 
                   case 'NOT_CUSTOMER':

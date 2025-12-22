@@ -22,7 +22,14 @@
    <div class="data-perfil">        
     <p class="perfilcorreo">{{cliente_correo}}</p>
   </div>
-  
+     <ion-list id="inbox-list" >    
+        <ion-item color="secondary" (click) ="wellcome()"  lines="none"  >
+          <ion-icon slot="start" [name]="'speedometer'"></ion-icon>
+          <ion-label>
+         Dashboard
+          </ion-label>
+        </ion-item>
+      </ion-list>
   <ion-list id="inbox-list" >
     <ion-menu-toggle auto-hide="false" *ngFor="let pages of Pages; let i = index">
 

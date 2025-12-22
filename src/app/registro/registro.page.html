@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">   
-    <ion-title>Sing up with an Account</ion-title>
+    <ion-title>SING UP</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +23,7 @@
   <form [formGroup]="form_registro" >
   <ion-row>
   <ion-col>  
-  <ion-list lines="none">
+  <ion-list >
               
   <ion-item lines="full" >
   <ion-label position="floating" class="platino">Full name</ion-label>  
@@ -65,14 +65,30 @@
   <ion-segment-button value="second" content-id="second" >
     <ion-label>NOT</ion-label>
   </ion-segment-button> 
-</ion-segment>
+</ion-segment><br><br>
 
 <ion-segment-view>
   <ion-segment-content id="first">
-    <ion-button color="primary" expand="block"  (click)="send()">SEND</ion-button>
+    <ion-grid>
+      <ion-row>
+          <ion-col></ion-col>
+        <ion-col size="auto"> <ion-button color="primary" shape="round"  (click)="send()">SEND</ion-button></ion-col>
+          <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+   
   </ion-segment-content>
   <ion-segment-content id="second">
-    <ion-button color="primary" expand="block"  (click)="cancel()">Cancel</ion-button>
+<ion-grid>
+      <ion-row>
+          <ion-col></ion-col>
+          <ion-col size="auto"><ion-button color="primary" shape="round"  (click)="cancel()">CANCEL</ion-button></ion-col>
+          <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    
   </ion-segment-content>  
 </ion-segment-view>
 

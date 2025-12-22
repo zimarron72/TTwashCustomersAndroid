@@ -58,7 +58,8 @@ AddfleetComponent,
 AddlocationComponent,
 FleetComponent,
 LocationsComponent,
-CouponsComponent
+CouponsComponent,
+
     
   ],
    schemas: [ CUSTOM_ELEMENTS_SCHEMA],

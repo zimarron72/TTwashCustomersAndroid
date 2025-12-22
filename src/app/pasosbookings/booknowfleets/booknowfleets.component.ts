@@ -30,7 +30,9 @@ services:any
 horario:any
 hoy:any
 ErrorMessage = ''
-
+  enproceso:boolean = true
+  noprocesar: boolean = false
+  mensaje: any;
 
 
   constructor(
@@ -131,6 +133,11 @@ ErrorMessage = ''
 
   async ionViewWillEnter() {
 
+    this.enproceso = false
+      this.noprocesar = false
+this.mensaje=''
+
+
     this.user = JSON.parse(await this.localstorage.getData('usuario'))
     this.idtoken = await this.localstorage.getData('idtoken')
     this.autenticacion_tipo = await this.localstorage.getData('autenticacion_tipo')
@@ -165,7 +172,7 @@ ErrorMessage = ''
     
   }
 
-  async doRefresh(event: { target: { complete: () => void; }; }) {
+ /* async doRefresh(event: { target: { complete: () => void; }; }) {
   event.target.complete();
 
  this.user = JSON.parse(await this.localstorage.getData('usuario'))
@@ -198,7 +205,7 @@ ErrorMessage = ''
       }
     )
 
-}
+}*/
 
 tipoVehiclePopoverOptions = {
 
@@ -297,7 +304,9 @@ this.loading.simpleLoader()
             break;  
             
             case 'NOPROCESAR':
-              this.router.navigate(['/pasos/alerta/',res.data.mensaje]);
+               this.enproceso = true
+      this.noprocesar = true
+      this.mensaje = res.data.mensaje
               break;
         
           case 'OK':
