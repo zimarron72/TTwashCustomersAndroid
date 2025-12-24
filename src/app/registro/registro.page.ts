@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {AutenticacionService} from '../servicios/autenticacion'
-
+import { Device } from '@capacitor/device';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -17,7 +17,7 @@ export class RegistroPage   {
   password: string = '';
   showPassword1: boolean = false;
   showPassword2: boolean = false;
-
+ErrorMessage :any
   respuesta! : string
 
   constructor(
@@ -34,7 +34,77 @@ export class RegistroPage   {
       });
    }
 
+validateForm() {
+
+    var name=  this.form_registro.get("name")?.value;
+    var password1 =  this.form_registro.get("password1")?.value;
+    var password2 =  this.form_registro.get("password2")?.value;
+    var email =  this.form_registro.get("email")?.value;
   
+    const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const hasUppercase = /[A-Z]/.test(password1);
+    const hasLowercase = /[a-z]/.test(password1);
+    const hasNumber = /[0-9]/.test(password1);
+    const hasSimbol = /[!@#$%^&*]/.test(password1);
+    const uname = new String(password1) 
+  
+   
+    
+
+    var ValidationFlag = true
+if(name == "") {
+this.ErrorMessage = "Please provide your first and last name.";
+      ValidationFlag = false;
+}
+
+if(email == "") {
+this.ErrorMessage = "Please provide an email address for your account.";
+      ValidationFlag = false;
+}
+
+else if (!emailRegex.test(email)) {
+      this.ErrorMessage = "Please provide a valid email address.";
+      ValidationFlag = false;
+    }
+ 
+  else if (password1 === '') {
+      this.ErrorMessage = "Set a password for your account. It must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one symbol !@#$%^&*";
+      ValidationFlag = false;
+    }
+
+
+    else if (uname.length < 8) {
+      this.ErrorMessage = "The password must contain at least 8 characters";
+      ValidationFlag = false;
+    }
+    else if (!hasUppercase) {
+      this.ErrorMessage = "The password must contain at least one uppercase letter";
+      ValidationFlag = false;
+    }
+    else if (!hasLowercase) {
+      this.ErrorMessage = "The password must contain at least one lowercase letter";
+      ValidationFlag = false;
+    }
+    else if (!hasNumber) {
+      this.ErrorMessage = "The password must contain at least one number";
+      ValidationFlag = false;
+    }
+    else if (!hasSimbol) {
+      this.ErrorMessage = "The password must contain at least one symbol, for example: $%#";
+      ValidationFlag = false
+    }
+    else if(password1 != password2) {
+      this.ErrorMessage = "The passwords do not match";
+      ValidationFlag = false;
+    }
+    else {}
+
+   
+
+    return (ValidationFlag) ? true : false;
+    
+
+  }
 
     togglePasswordVisibility1() {
       this.showPassword1 = !this.showPassword1;
@@ -45,30 +115,17 @@ export class RegistroPage   {
     }
 
   send() {
-    if (this.form_registro.valid) {
+    if (this.validateForm()) {
   
    var name=  this.form_registro.get("name")?.value;
     var password1 =  this.form_registro.get("password1")?.value;
-    var password2 =  this.form_registro.get("password2")?.value;
     var email =  this.form_registro.get("email")?.value;
 
-    if(password1 != password2) {
-      this.form_registro.patchValue({password2 : ''})
-      let header = 'Warning'
-      let mensaje = 'There is no match between the passwords entered'
-      let codigo = ''
-    this.aviso(header,mensaje,codigo)
-    
-    }
-    else {
-      return this.servicioauth.register(email,password1,name)
-    }
-
-   
+      return this.servicioauth.register(email,password1,name,this.getIdevice)  
     }
     else {
       let header = 'Warning'
-      let mensaje = 'Please Fill all  fields'
+      let mensaje = this.ErrorMessage
       let codigo = ''
     this.aviso(header,mensaje,codigo)
     }
@@ -89,5 +146,21 @@ export class RegistroPage   {
     await alert.present();  
   
   }
+
+   async getIdevice() {
+
+  const info = await Device.getId().then(
+    (res)=> {
+      console.log(res)
+    }
+  ).catch(
+    (err)=> {
+      console.log(err)
+    }
+  )
+  
+
+
+}
 
 }

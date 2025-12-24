@@ -32,9 +32,7 @@ elemento = {
       private loading: LoadingService,
   ) { 
 
-if(this.email == "") {
-this.email = this.ID+"@correoculto.com"
-}
+
 
   }
 
@@ -150,7 +148,8 @@ this.loading.simpleLoader()
               email: this.email,
               idtoken : this.idtoken,
               tipo:this.tipo,
-              password : this.elemento.password1
+              password : this.elemento.password1,
+              iDevices : this.ID
              }
             this.cHttps(url, data1).subscribe(
               async (res: any)  => {
@@ -167,7 +166,12 @@ this.loading.simpleLoader()
                       
                   break;            
                   case 'OK':
-                  this.modalCtrl.dismiss( {userid : res.data.userid}, 'continue');
+                  this.modalCtrl.dismiss( {
+                    userid : res.data.userid,
+                    iDevices : res.data.iDevices,
+                    name : res.data.name,
+                    email : res.data.email,
+                  }, 'continue');
                     
                   break; 
                  

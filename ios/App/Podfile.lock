@@ -8,6 +8,8 @@ PODS:
   - CapacitorCommunityAppleSignIn (6.0.0):
     - Capacitor
   - CapacitorCordova (6.2.0)
+  - CapacitorDevice (6.0.3):
+    - Capacitor
   - CapacitorFilesystem (6.0.2):
     - Capacitor
   - CapacitorGoogleMaps (6.0.1):
@@ -45,6 +47,7 @@ DEPENDENCIES:
   - "CapacitorCamera (from `../../node_modules/@capacitor/camera`)"
   - "CapacitorCommunityAppleSignIn (from `../../node_modules/@capacitor-community/apple-sign-in`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorDevice (from `../../node_modules/@capacitor/device`)"
   - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
   - "CapacitorGoogleMaps (from `../../node_modules/@capacitor/google-maps`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
@@ -74,6 +77,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor-community/apple-sign-in"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
+  CapacitorDevice:
+    :path: "../../node_modules/@capacitor/device"
   CapacitorFilesystem:
     :path: "../../node_modules/@capacitor/filesystem"
   CapacitorGoogleMaps:
@@ -95,6 +100,7 @@ SPEC CHECKSUMS:
   CapacitorCamera: ed022171dbf3853e68eec877b4d78995378af6b7
   CapacitorCommunityAppleSignIn: c8bba4ca8ff6ff843367ece13ee8af24e9266eb9
   CapacitorCordova: b33e7f4aa4ed105dd43283acdd940964374a87d9
+  CapacitorDevice: b75f969620ef37865e8bfaaacd2f98c0a770156c
   CapacitorFilesystem: c832a3f6d4870c3872688e782ae8e33665e6ecbf
   CapacitorGoogleMaps: bafda318e41a1aab9f00571f6a87fb376b63c0c9
   CapacitorHaptics: b53409aaca1203f79c6d0eb3ed5de40556339518
@@ -107,6 +113,6 @@ SPEC CHECKSUMS:
   WonderPush: 846ef082e7df9cbcf9b4a2c755899c0cbca30228
   WonderPushExtension: 65c269defd144b6e21d7d6fce54ab17289200540
 
-PODFILE CHECKSUM: 1ae35553a5686b419606ae72b5dbddbd054b33e5
+PODFILE CHECKSUM: c7fece6e910739d5b028e39042ba1355d96fdbff
 
 COCOAPODS: 1.16.2

@@ -10,7 +10,7 @@ import { Passwordapple1Page } from '../passwordapple1/passwordapple1.page';
 import { StorageService } from '../servicios/storage.service';
 import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 import { LoadingService } from '../servicios/loading.services';
-
+import { Device } from '@capacitor/device';
 import {
   SignInWithApple
 } from '@capacitor-community/apple-sign-in';
@@ -22,6 +22,12 @@ import {
    getAuth
   } from '@angular/fire/auth';
 
+interface User {
+  name: string;
+  email: string;
+  userid: string;
+  iDevices: string;
+}
 
 
 @Component({
@@ -64,7 +70,26 @@ appVersion: any
     this.appVersion = info.version
   })
 
+ 
+
 }
+
+  async getIdevice() {
+
+  const info = await Device.getId().then(
+    (res)=> {
+      console.log(res)
+    }
+  ).catch(
+    (err)=> {
+      console.log(err)
+    }
+  )
+  
+
+
+}
+
 
   cHttps(url: string, data: any) {
     const options: HttpOptions = {
@@ -108,6 +133,7 @@ else {
     
 
   }
+
 
 
 ////////LFIREBASE EMAIL-CONTRASENA///////
@@ -168,7 +194,7 @@ console.log("User signed in:", userCredential.user.email);
  await this.localstorage.setData('idtoken',idToken)
 this.loading.simpleLoader()
   var url = "https://washtt.com/v1_api_clientes_loginapple.php"
-            var data1 = { email: userCredential.user.email, idtoken : idToken }
+            var data1 = { email: userCredential.user.email, idtoken : idToken, idDevice : this.getIdevice }
             this.cHttps(url, data1).subscribe(
               async (res: any)  => {
                 this.loading.dismissLoader()
@@ -183,30 +209,52 @@ this.loading.simpleLoader()
                   this.aviso(header,mensaje,code)   
                       
                   break;            
-                  case 'TODO_OK':
+                  case 'OK_LOGIN':
+                  var DataUser  = {
+                  iDevices :res.data.iDevices,
+                  email : res.data.email,
+                  name : res.data.name,
+                  userid : res.data.userid
+                  }
+                  await this.localstorage.setObject('usuario',DataUser)
                     this.wonderPush.setUserId(res.data.userid)
                     this.wonderPush.addTag('clientes')
                     await this.localstorage.setData('autenticacion_tipo', 'apple');                   
                     this.router.navigate(['/pasos/wellcome']);              
                     
                   break; 
+                   case 'OK_REGISTER':
+                  var DataUser  = {
+                  iDevices :res.data.iDevices,
+                  email : res.data.email,
+                  name : res.data.name,
+                  userid : res.data.userid
+                  }
+                  await this.localstorage.setObject('usuario',DataUser)
+                    this.wonderPush.setUserId(res.data.userid)
+                    this.wonderPush.addTag('clientes')
+                    await this.localstorage.setData('autenticacion_tipo', 'apple');                   
+                    this.router.navigate(['pasos/comienzo']);           
+                    
+                  break; 
                   case 'NOT_CUSTOMER':
                 code = '01'
                   header = 'Error' 
-                  mensaje = 'Uuups!, an account with this email address already exists, associated with the TTwash Jobs app. Therefore, for this app (TTwash Customers), you must use a different email address.'                     
+                  mensaje = 'Oops! An account is already associated with the TTwash Jobs app. Therefore, for this app (TTwash Customers), you must use a different email address or device.'                     
                   this.aviso(header,mensaje,code)
                 
 
                   break;
-                  case 'GETPASSWORD':
+                  //DESHABILITADO PARA BORRAR
+                  /*case 'GETPASSWORD':
 
-                  this.password1(userCredential.user.email,idToken, this.ID )  
+                  this.password1(res.data.email,idToken, this.getIdevice )  
               
                    
                  
                
                       
-                break;
+                break;*/
               
 
                 }
@@ -231,7 +279,8 @@ this.loading.dismissLoader()
       this.showPassword = !this.showPassword;
     }
 
-  async password1(email:string | null ,idtoken:string, ID:any) {
+    //DESHABILITADOR PARA BORRAR CON EL COMPONENTE
+  /*async password1(email:string | null ,idtoken:string, ID:any) {
     const modal = await this.modalCtrl.create({
                     component: Passwordapple1Page,
                      componentProps: { 
@@ -246,6 +295,14 @@ this.loading.dismissLoader()
                   const { data, role } = await modal.onWillDismiss();
 
                   if(role === 'continue') {
+
+                  var DataUser  = {
+                  iDevices : data.iDevices,
+                  email : data.email,
+                  name : data.name,
+                  userid : data.userid
+                  }
+                  await this.localstorage.setObject('usuario',DataUser)  
                     
                     this.wonderPush.setUserId(data.userid)
                     this.wonderPush.addTag('clientes')
@@ -255,8 +312,11 @@ this.loading.dismissLoader()
                      
                   }
 
-                }
+                }*/
+
   
+
+
 
 }
 

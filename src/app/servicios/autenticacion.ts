@@ -220,9 +220,10 @@ else {
 
 
 
-register(email: string , password: string, name: string) {
+register(email: string , password: string, name: string, iDevices : any) {
   this.loading.simpleLoader()
-  createUserWithEmailAndPassword(this.auth, email, password).then(
+
+              createUserWithEmailAndPassword(this.auth, email, password).then(
     async (res) => {
        let user = res.user
        await this.localstorage.setObject('usuario',user)
@@ -231,7 +232,7 @@ register(email: string , password: string, name: string) {
   let idtoken = response
   await this.localstorage.setData('idtoken',idtoken)
 var url = "https://washtt.com/v1_api_clientes_registro.php"    
-      var data1 = { email: email, password: password, name : name }
+      var data1 = { email: email, password: password, iDevices : iDevices, name : name }
       this.cHttps(url, data1).subscribe(
         async (res1: any) => {
            this.loading.dismissLoader() 
@@ -248,20 +249,44 @@ var url = "https://washtt.com/v1_api_clientes_registro.php"
              
                                       
             break;
-            case 'DUPLICADO_USUARIO':
-                  code = '01'
-                  header = 'Error' 
-                  mensaje = 'Uuups!, an account with this email address already exists. Therefore, you must use a different email address.'                     
-                  this.aviso(header,mensaje,code)
-            break;              
-            case 'OK':
+                 
+            case 'OK_REGISTER':
+              var DataUser  = {
+                  iDevices : res1.data.iDevices,
+                  email : res1.data.email,
+                  name : res1.data.name,
+                  userid : res1.data.userid
+                  }
+                  await this.localstorage.setObject('usuario',DataUser)  
               this.wonderPush.setUserId(res1.data.userid)
               this.wonderPush.addTag('clientes')
-              await this.localstorage.setData('autenticacion_tipo', 'correo_pass');
-             
+              await this.localstorage.setData('autenticacion_tipo', 'correo_pass');             
              this.router.navigate(['pasos/comienzo']);
               break;  
+
+              case 'OK_LOGIN':
+                  var DataUser  = {
+                  iDevices :res1.data.iDevices,
+                  email : res1.data.email,
+                  name : res1.data.name,
+                  userid : res1.data.userid
+                  }
+                  await this.localstorage.setObject('usuario',DataUser)
+                    this.wonderPush.setUserId(res1.data.userid)
+                    this.wonderPush.addTag('clientes')
+                    await this.localstorage.setData('autenticacion_tipo', 'apple');                   
+                    this.router.navigate(['/pasos/wellcome']);              
+                    
+                  break; 
               
+              case 'NOT_CUSTOMER':
+                code = '01'
+                  header = 'Error' 
+                  mensaje = 'Oops! An account is already associated with the TTwash Jobs app. Therefore, for this app (TTwash Customers), you must use a different email address or device.'                     
+                  this.aviso(header,mensaje,code)
+                
+
+                  break;
               
 
             default:
@@ -281,7 +306,7 @@ var url = "https://washtt.com/v1_api_clientes_registro.php"
 
 
  })
-    })
+    }) 
 }
 
  
