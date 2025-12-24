@@ -23,10 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./resetpassword/resetpassword.module').then( m => m.ResetpasswordPageModule)
   },
   {
-    path: 'passwordapple1',
-    loadChildren: () => import('./passwordapple1/passwordapple1.module').then( m => m.Passwordapple1PageModule)
-  },
-  {
     path: 'delete-cuenta',
     loadChildren: () => import('./delete-cuenta/delete-cuenta.module').then( m => m.DeleteCuentaPageModule)
   },

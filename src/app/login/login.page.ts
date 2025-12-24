@@ -6,7 +6,6 @@ import {AutenticacionService} from '../servicios/autenticacion'
 import { App } from '@capacitor/app';
 import { CapacitorHttp, HttpOptions } from '@capacitor/core';
 import { from } from 'rxjs';
-import { Passwordapple1Page } from '../passwordapple1/passwordapple1.page';
 import { StorageService } from '../servicios/storage.service';
 import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 import { LoadingService } from '../servicios/loading.services';
@@ -245,16 +244,7 @@ this.loading.simpleLoader()
                 
 
                   break;
-                  //DESHABILITADO PARA BORRAR
-                  /*case 'GETPASSWORD':
-
-                  this.password1(res.data.email,idToken, this.getIdevice )  
-              
-                   
                  
-               
-                      
-                break;*/
               
 
                 }
@@ -279,41 +269,7 @@ this.loading.dismissLoader()
       this.showPassword = !this.showPassword;
     }
 
-    //DESHABILITADOR PARA BORRAR CON EL COMPONENTE
-  /*async password1(email:string | null ,idtoken:string, ID:any) {
-    const modal = await this.modalCtrl.create({
-                    component: Passwordapple1Page,
-                     componentProps: { 
-                     email: email,
-                     idtoken: idtoken,
-                     tipo: 'apple' ,
-                      ID: ID                
-                    }
-                  });
-                  modal.present();
-              
-                  const { data, role } = await modal.onWillDismiss();
-
-                  if(role === 'continue') {
-
-                  var DataUser  = {
-                  iDevices : data.iDevices,
-                  email : data.email,
-                  name : data.name,
-                  userid : data.userid
-                  }
-                  await this.localstorage.setObject('usuario',DataUser)  
-                    
-                    this.wonderPush.setUserId(data.userid)
-                    this.wonderPush.addTag('clientes')
-                    await this.localstorage.setData('autenticacion_tipo', 'apple');                   
-                  //  this.router.navigate(['/tabs/tabtobooks']); *viejo
-                       this.router.navigate(['pasos/comienzo']) 
-                     
-                  }
-
-                }*/
-
+  
   
 
 
