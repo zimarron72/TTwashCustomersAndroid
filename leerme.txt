@@ -24,10 +24,3 @@ System:
    NodeJS : v20.17.0 (/Users/jormansandoval/.nvm/versions/node/v20.17.0/bin/node)
    npm    : 10.8.2
    OS     : macOS Unknown
-
-   Sobre la base de los avances del commit previo, ya se implemento
-   recuperacion de clave. faltaria ahora el sing de apple, para ingresar
-   dentros de los detalles internos de la app
-   . 
-   
-   Esta pendiente implementar la verificacion del token al back/end php

@@ -1,6 +1,6 @@
 {
   "name": "ttwash-customers",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -38,6 +38,7 @@
     "@capacitor/keyboard": "6.0.3",
     "@capacitor/splash-screen": "^6.0.3",
     "@capacitor/status-bar": "6.0.2",
+    "@codetrix-studio/capacitor-google-auth": "^3.4.0-rc.4",
     "@ionic/angular": "^8.0.0",
     "@ionic/storage-angular": "^4.0.0",
     "ionicons": "^7.0.0",

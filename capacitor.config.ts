@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 import { KeyboardResize, KeyboardStyle } from '@capacitor/keyboard';
 const config: CapacitorConfig = {
-  appId: 'com.appiosid.ttwashexpress',
+  appId: 'com.appandroid.ttwash',
   appName: 'TTwash',
   webDir: 'www/browser',
   plugins: {

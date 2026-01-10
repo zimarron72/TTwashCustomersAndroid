@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "658811684880",
+    "project_id": "ttwash-customers",
+    "storage_bucket": "ttwash-customers.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658811684880:android:925c4956c95a540c882295",
+        "android_client_info": {
+          "package_name": "com.appandroid.ttwash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658811684880-11tqksaloi4rlum2g4q0nmeo6t1gofq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appandroid.ttwash",
+            "certificate_hash": "feb9ed7a03321b6fb61203bdd0334362bf8e88cb"
+          }
+        },
+        {
+          "client_id": "658811684880-1ifeco7pafvknenrf0kq6bimcae2na37.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBibZS3Db70xQb-tbq1BdUODd5SHRjwwZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658811684880-1ifeco7pafvknenrf0kq6bimcae2na37.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "658811684880-im0004f28qe769qb73u0p63i6f4b8ptm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appiosid.ttwashexpress"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,9 +10,10 @@ import { StorageService } from '../servicios/storage.service';
 import { WonderPush } from '@awesome-cordova-plugins/wonderpush/ngx';
 import { LoadingService } from '../servicios/loading.services';
 import { Device } from '@capacitor/device';
-import {
+//import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
+/*import {
   SignInWithApple
-} from '@capacitor-community/apple-sign-in';
+} from '@capacitor-community/apple-sign-in';*/
 
 import { 
    OAuthProvider,
@@ -53,11 +54,12 @@ appVersion: any
   private router: Router,
  private servicioauth : AutenticacionService,
   private formBuilder: FormBuilder,
-  private modalCtrl: ModalController,
   private localstorage: StorageService,
   private wonderPush: WonderPush,
  private loading: LoadingService,
-) { 
+) 
+
+{ 
 
   this.form_login = this.formBuilder.group({
     email: [, { validators: [Validators.required]}],
@@ -68,8 +70,6 @@ appVersion: any
   App.getInfo().then(info=> {
     this.appVersion = info.version
   })
-
- 
 
 }
 
@@ -170,37 +170,38 @@ resetpassword (){
        this.router.navigate(['resetpassword']);
      }
 
-/////////////LOGIN APPLE////////////////// 
-  
-  async openAppleSignIn1()  {
 
-SignInWithApple.authorize().then(async (res) => {
-        if (res.response && res.response.identityToken) {
 
- const auth = getAuth();         
-const idToken = res.response.identityToken;
-this.ID = res.response.user
- const provider = new OAuthProvider('apple.com')
+ togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    }
+
+ /*async openGoogleSignIn()  {
+
+   const x = await GoogleAuth.signIn()
+        //alert(res.authentication.idToken)
+ const auth = getAuth();  
+ const idToken = x.authentication.idToken;
+ const provider = new OAuthProvider('google.com')
  const credential = provider.credential(
   {
     idToken : idToken
   }
  )
- const userCredential = await signInWithCredential(auth, credential as AuthCredential);
-console.log("User signed in:", userCredential.user.email);
-
- await this.localstorage.setObject('usuario',userCredential.user)
- await this.localstorage.setData('idtoken',idToken)
+ const userCredential =  signInWithCredential(auth, credential as AuthCredential).then(
+(res)=> {
+  this.localstorage.setObject('usuario', res.user)
+ this.localstorage.setData('idtoken',res.user.getIdToken)
 this.loading.simpleLoader()
-  var url = "https://washtt.com/v1_api_clientes_loginapple.php"
-            var data1 = { email: userCredential.user.email, idtoken : idToken, idDevice : this.getIdevice }
+  var url = "https://washtt.com/v1_api_clientes_logingoogle.php"
+            var data1 = { email: res.user.email, idtoken : res.user.getIdToken }
             this.cHttps(url, data1).subscribe(
-              async (res: any)  => {
+              async (res1: any)  => {
                 this.loading.dismissLoader()
                 let mensaje
                 let header
                 let code
-                switch (res.data.respuesta) {
+                switch (res1.data.respuesta) {
                 case 'ERROR':
                       code = '01'
                   header = 'Error'              
@@ -208,43 +209,30 @@ this.loading.simpleLoader()
                   this.aviso(header,mensaje,code)   
                       
                   break;            
-                  case 'OK_LOGIN':
-                  var DataUser  = {
-                  iDevices :res.data.iDevices,
-                  email : res.data.email,
-                  name : res.data.name,
-                  userid : res.data.userid
-                  }
-                  await this.localstorage.setObject('usuario',DataUser)
-                    this.wonderPush.setUserId(res.data.userid)
+                  case 'TODO_OK':
+                    this.wonderPush.setUserId(res1.data.userid)
                     this.wonderPush.addTag('clientes')
-                    await this.localstorage.setData('autenticacion_tipo', 'apple');                   
-                    this.router.navigate(['/pasos/wellcome']);              
-                    
-                  break; 
-                   case 'OK_REGISTER':
-                  var DataUser  = {
-                  iDevices :res.data.iDevices,
-                  email : res.data.email,
-                  name : res.data.name,
-                  userid : res.data.userid
-                  }
-                  await this.localstorage.setObject('usuario',DataUser)
-                    this.wonderPush.setUserId(res.data.userid)
-                    this.wonderPush.addTag('clientes')
-                    await this.localstorage.setData('autenticacion_tipo', 'apple');                   
-                    this.router.navigate(['pasos/comienzo']);           
+                    await this.localstorage.setData('autenticacion_tipo', 'google');                   
+                    this.router.navigate(['/tabs/tabtobooks']);              
                     
                   break; 
                   case 'NOT_CUSTOMER':
                 code = '01'
                   header = 'Error' 
-                  mensaje = 'Oops! An account is already associated with the TTwash Jobs app. Therefore, for this app (TTwash Customers), you must use a different email address or device.'                     
+                  mensaje = 'Uuups!, an account with this email address already exists, associated with the TTwash Jobs app. Therefore, for this app (TTwash Customers), you must use a different email address.'                     
                   this.aviso(header,mensaje,code)
                 
 
                   break;
+                  case 'GETPASSWORD':
+
+                  this.password1(res.user.email, res.user.getIdToken)  
+              
+                   
                  
+               
+                      
+                break;
               
 
                 }
@@ -252,26 +240,12 @@ this.loading.simpleLoader()
               }
             )
 
-        } else {
-this.loading.dismissLoader()
-      
-        }
-      })
-      .catch(() => {
-      
-       this.loading.dismissLoader()
-       
-      });
-  
 }
 
- togglePasswordVisibility() {
-      this.showPassword = !this.showPassword;
-    }
 
-  
-  
 
+ )
+}*/
 
 
 }
