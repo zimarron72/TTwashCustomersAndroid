@@ -10,7 +10,7 @@
 <ion-content class="ion-padding">
  <div style="text-align: justify;"><p>This location will be stored in your list of locations for another time.</p></div>
 
-<ion-list>
+<ion-list lines="none" [inset] = "true">
     <ion-item>
       <ion-input labelPlacement="stacked" label="Suite" id = 'suite' name = 'suite' type = 'text' [(ngModel)]="site.suite" placeholder="your suite" />
       <br/>
@@ -31,14 +31,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-select 
+      <ion-select style="padding:5px;"
       [interfaceOptions]="estadoPopoverOptions"
-       interface="popover" 
+       interface="alert" 
         fill="outline"   
       label="State" labelPlacement="stacked" id = 'estado' name = 'estado'  placeholder="your state" [(ngModel)]="site.estado" >
-      <ion-select-option value="">  
-      Select
-      </ion-select-option> 
+  
       <ion-select-option *ngFor="let local of estados"  [value]="local.estado">  
         {{local.estado}}
       </ion-select-option>        
@@ -48,14 +46,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-select 
+      <ion-select style="padding:5px;"
       [interfaceOptions]="ciudadPopoverOptions"
-       interface="popover" 
+       interface="alert" 
         fill="outline"   
       label="City" id = 'ciudad' name = 'ciudad'  labelPlacement="stacked" placeholder="your city" [(ngModel)]="site.ciudad" >
-      <ion-select-option value="">  
-      Select
-      </ion-select-option> 
+
       <ion-select-option *ngFor="let ciudad of cities"  [value]="ciudad.city">  
         {{ciudad.city}}
       </ion-select-option>        
@@ -68,7 +64,7 @@
 
 <div  style="text-align: center;"> <img src="./assets/imgs/location_app.png" /></div>
 
-</ion-content>
+</ion-content >
 <ion-footer class="ion-no-border">
   <ion-toolbar color="primary">
    <ion-grid>

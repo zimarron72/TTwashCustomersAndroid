@@ -15,6 +15,20 @@ android {
              // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
+
+// Note that it's important to keep the double quotes as part of the third argument
+    // as this represents a string in Java code
+    buildConfigField 'String', 'WONDERPUSH_CLIENT_ID', '"213c8ea4ecb545a6aa4238c09a3289b760f47d69"'
+    buildConfigField 'String', 'WONDERPUSH_CLIENT_SECRET', '"324db2b9b38519ba4431324b78768785df86b74edd2750dc693346acfb0596bf"'
+    buildConfigField 'String', 'WONDERPUSH_SENDER_ID', '"213c8ea4ecb545a6aa4238c09a3289b760f47d69"'
+    buildFeatures {
+      buildConfig = true
+    }
+
+
+
+
+
     }
     buildTypes {
         release {

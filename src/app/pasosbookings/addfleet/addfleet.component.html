@@ -13,8 +13,8 @@
   <ion-list lines="none">
 
     <ion-item>    
-      <ion-select 
-      [interfaceOptions]="tipoVehiclePopoverOptions" interface="popover" fill="outline"
+      <ion-select style="padding:5px;" fill="outline" 
+      [interfaceOptions]="tipoVehiclePopoverOptions" interface="alert" 
       label="Type vehicle" labelPlacement="stacked" id = "tipoVehicle" name = "tipoVehicle" placeholder="Your vehicle's type" [(ngModel)]="truck.tipov" (ionChange)="selectVehiculos($event)">
       <ion-select-option *ngFor="let vehiculo of vehiculos"  [value]="vehiculo.category_id">  
         {{vehiculo.name}}
@@ -25,8 +25,8 @@
 
     <ion-item>
      
-         <ion-select 
-      [interfaceOptions]="modeloVehiclePopoverOptions" interface="popover" fill="outline"
+         <ion-select style="padding:5px;" fill="outline" 
+      [interfaceOptions]="modeloVehiclePopoverOptions" interface="alert" 
       label="Vehicle model" labelPlacement="stacked" id = "model" name = "model" placeholder="Your vehicle's model" [(ngModel)]="truck.model" >
       <ion-select-option *ngFor="let modelo of modelos"  [value]="modelo.category_id">  
         {{modelo.name}}
@@ -53,9 +53,9 @@
   </ion-item>
 
   <ion-item>
-    <ion-select labelPlacement="stacked" 
+    <ion-select labelPlacement="stacked" style="padding:5px;"
     [interfaceOptions]="detallesPopoverOptions" 
-    interface="popover" 
+    interface="alert" 
         fill="outline"   
     label="Vehicle details" 
 placeholder="Its general appearance"

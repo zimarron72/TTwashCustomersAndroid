@@ -28,6 +28,8 @@ import { LocationsComponent } from './locations/locations.component';
 import { CouponsComponent } from './coupons/coupons.component';
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -59,6 +61,7 @@ AddlocationComponent,
 FleetComponent,
 LocationsComponent,
 CouponsComponent,
+
 
     
   ],

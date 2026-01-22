@@ -1,5 +1,5 @@
 ion-item::part(native) {
-  
+  padding:10px;
     background-color: #f2f2f2;
 
   border-color: solid 2px #CA083F;
@@ -24,4 +24,8 @@ div[slot="content"] {
   border-radius: 0 0 8px 8px;
   padding: 15px;
   font-size: 14px;
+}
+
+ion-content {
+  background-color: #2E4F9C;
 }

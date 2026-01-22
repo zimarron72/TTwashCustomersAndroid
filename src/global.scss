@@ -39,49 +39,28 @@
 
 
 :root {
-    --ion-color-rojo: #CA083F;
-    --ion-color-rojo-rgb: 202, 8, 63;
-    --ion-color-rojo-contrast: #f2f2f2;
-    --ion-color-rojo-contrast-rgb: 0, 0, 0;
-    --ion-color-rojo-shade: #e0b4ba;
-    --ion-color-rojo-tint: #fed2d7;
-  }
-  
-  .ion-color-rojo {
-    --ion-color-base: var(--ion-color-rojo);
-    --ion-color-base-rgb: var(--ion-color-rojo-rgb);
-    --ion-color-contrast: var(--ion-color-rojo-contrast);
-    --ion-color-contrast-rgb: var(--ion-color-rojo-contrast-rgb);
-    --ion-color-shade: var(--ion-color-rojo-shade);
-    --ion-color-tint: var(--ion-color-rojo-tint);
-  }
-  
-  div[slot='content'] {
-    background: rgba(var(--ion-color-rojo-rgb));
-  }
+  --ion-color-rojo: #CA083F;
+  --ion-color-rojo-rgb: 202, 8, 63;
+  --ion-color-rojo-contrast: #f2f2f2;
+  --ion-color-rojo-contrast-rgb: 0, 0, 0;
+  --ion-color-rojo-shade: #e0b4ba;
+  --ion-color-rojo-tint: #fed2d7;
+}
 
- /* ion-popover {
- // --background: rgba(160, 163, 10, 0.6);
- // --backdrop-opacity: 1;
- // --box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.6);
- // --color: white;
- // --width: 300px;
-}*/
+.ion-color-rojo {
+  --ion-color-base: var(--ion-color-rojo);
+  --ion-color-base-rgb: var(--ion-color-rojo-rgb);
+  --ion-color-contrast: var(--ion-color-rojo-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-rojo-contrast-rgb);
+  --ion-color-shade: var(--ion-color-rojo-shade);
+  --ion-color-tint: var(--ion-color-rojo-tint);
+}
 
-/*ion-popover ion-content {
-  --background: rgba(218, 40, 64, 0.6);
-}*/
+div[slot='content'] {
+  background: rgba(var(--ion-color-rojo-rgb));
+}
 
-/*ion-popover::part(header) {
-  color:azure;
-}*/
-
- /*ion-select-popover ion-list {
-  background: #f2f2f2;
-  color:#f2f2f2;
-}*/
-
- ion-select-popover ion-item {
+ion-select-popover ion-item {
   --background: #f2f2f2;
   --color: #141414;
   --inner-border-width: 0;
@@ -89,13 +68,41 @@
 
 body {
   --color: #f2f2f2;
+  --ion-background-color: transparent !important;
+  background-color: transparent !important;
+
 }
+
+
 
 p {
-   --color: #f2f2f2;
+  --color: #f2f2f2;
 }
 
- /*ion-select-popover ion-radio {
-  --color: #a61134;
-  --color-checked: #4550f5;
-}*/
+
+
+  /* Target specific elements inside the alert */
+  .alert-wrapper {
+    background-color: #2E4F9C !important;
+    border-radius: 10px !important;
+
+
+
+  }
+
+  /* Target the header */
+  .alert-head h2 {
+    color: #CA083F !important; /* Custom color for the header text */
+    font-size: 20px !important;
+  }
+
+  /* Target the message area */
+  .alert-message {
+    color: #000 !important;
+  }
+  
+  /* Target the buttons */
+  button.alert-button {
+    color: #CA083F !important; /* Custom color for the button text */
+    font-weight: bold !important;
+  }

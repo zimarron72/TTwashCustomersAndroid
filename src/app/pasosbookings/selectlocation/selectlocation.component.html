@@ -52,7 +52,7 @@ INDICATE A NEW LOCATION
 <div *ngIf="new">
   <div style="text-align: justify;"><p>This location will be stored in your list of locations for another time.</p></div>
 
-<ion-list>
+<ion-list lines="none" [inset]="true">
     <ion-item>
       <ion-input labelPlacement="stacked" label="Suite" id = 'suite' name = 'suite' type = 'text' [(ngModel)]="site.suite" placeholder="your suite" />
       <br/>
@@ -69,20 +69,18 @@ INDICATE A NEW LOCATION
     
 
     <ion-item>
-      <ion-input labelPlacement="stacked" label="Code postal" id = 'zip' name = 'zip' type = 'number' [(ngModel)]="site.zip" placeholder="your code postal" />
+      <ion-input labelPlacement="stacked" label="Code postal" id = 'zip' name = 'zip' type = 'text' [(ngModel)]="site.zip" placeholder="your code postal" />
       <br/>
  
     </ion-item>
 
     <ion-item>
-      <ion-select 
+      <ion-select  style="padding:5px"
       [interfaceOptions]="estadoPopoverOptions"
-       interface="popover" 
+       interface="alert" 
         fill="outline"   
       label="State" labelPlacement="stacked" id = 'estado' name = 'estado'  placeholder="your state" [(ngModel)]="site.estado" >
-      <ion-select-option value="">  
-      Select
-      </ion-select-option> 
+
       <ion-select-option *ngFor="let local of estados"  [value]="local.estado">  
         {{local.estado}}
       </ion-select-option>        
@@ -92,14 +90,12 @@ INDICATE A NEW LOCATION
     </ion-item>
 
     <ion-item>
-      <ion-select 
+      <ion-select  style="padding:5px"
       [interfaceOptions]="ciudadPopoverOptions"
-       interface="popover" 
+       interface="alert" 
         fill="outline"   
       label="City" id = 'ciudad' name = 'ciudad'  labelPlacement="stacked" placeholder="your city" [(ngModel)]="site.ciudad" >
-      <ion-select-option value="">  
-      Select
-      </ion-select-option> 
+   
       <ion-select-option *ngFor="let ciudad of cities"  [value]="ciudad.city">  
         {{ciudad.city}}
       </ion-select-option>        
@@ -109,10 +105,10 @@ INDICATE A NEW LOCATION
     </ion-item>
    </ion-list>
    <h4 style="text-align: center;">WORKING CONDITIONS<br>AT YOUR LOCATION</h4>
-    <ion-list>
+    <ion-list lines="none" [inset]="true">
         <ion-item>
-      <ion-select  label="Power supply"
-       [interfaceOptions]="powerPopoverOptions" interface="popover" fill="outline"
+      <ion-select  label="Power supply" style="padding:5px"
+       [interfaceOptions]="powerPopoverOptions" interface="alert" fill="outline"
       
       labelPlacement="stacked" placeholder="Select" id = "power" name = "power" [(ngModel)]="site.power" >
       <ion-select-option *ngFor="let power of powers"  [value]="power.valor">  
@@ -123,8 +119,8 @@ INDICATE A NEW LOCATION
     </ion-item>
 
     <ion-item>
-      <ion-select label="Water supply" placeholder="Select"
-       [interfaceOptions]="waterPopoverOptions" interface="popover" fill="outline"
+      <ion-select label="Water supply" placeholder="Select" style="padding:5px"
+       [interfaceOptions]="waterPopoverOptions" interface="alert" fill="outline"
       labelPlacement="stacked"  id = "water" name = "water" [(ngModel)]="site.water" >
       <ion-select-option *ngFor="let water of waters"  [value]="water.valor">  
         {{water.etiqueta}}
@@ -134,9 +130,9 @@ INDICATE A NEW LOCATION
     </ion-item>
 
     <ion-item>
-      <ion-select 
+      <ion-select style="padding:5px"
       label="Will you to be there?" placeholder="Select"
-       [interfaceOptions]="presenciaPopoverOptions" interface="popover" fill="outline"
+       [interfaceOptions]="presenciaPopoverOptions" interface="alert" fill="outline"
       labelPlacement="stacked"  id = "ensitio" name = "ensitio" [(ngModel)]="site.ensitio" >
       <ion-select-option *ngFor="let ensitio of ensitios"  [value]="ensitio.valor">  
         {{ensitio.etiqueta}}

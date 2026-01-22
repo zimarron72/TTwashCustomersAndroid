@@ -6,7 +6,7 @@ ion-thumbnail {
 
 ion-item::part(native) {
   
-
+padding:10px;
    background-color: #f2f2f2;
 
   border-color: solid 2px #CA083F;
@@ -23,4 +23,8 @@ ion-item::part(detail-icon) {
   color: black;  
   font-size: 20px;
    opacity: 1; 
+}
+
+ion-content {
+  background-color: #2E4F9C;
 }

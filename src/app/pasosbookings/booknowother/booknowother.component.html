@@ -52,9 +52,9 @@
   
 
   <ion-item>
-    <ion-select labelPlacement="stacked" 
+    <ion-select labelPlacement="stacked" style="padding:5px;"
     [interfaceOptions]="detallesPopoverOptions" 
-    interface="popover" 
+    interface="alert" 
         fill="outline"   
     label="Vehicle details" 
 placeholder="Its general appearance"
@@ -68,8 +68,8 @@ placeholder="Its general appearance"
   </ion-item>
 
 <ion-item>    
-      <ion-select 
-      [interfaceOptions]="tipoServicePopoverOptions" interface="popover" fill="outline"
+      <ion-select style="padding:5px;"
+      [interfaceOptions]="tipoServicePopoverOptions" interface="alert" fill="outline"
       label="Type service" labelPlacement="stacked" id = "tipoS" name = "tipoS" placeholder="Type service" [(ngModel)]="book.tipoS" >
       <ion-select-option *ngFor="let service of services"  [value]="service.valor">  
         {{service.key}}
@@ -84,9 +84,9 @@ placeholder="Its general appearance"
  
        [interfaceOptions]="timePopoverOptions" interface="alert" 
        labelPlacement="stacked"  id = "horaCita" name = "horaCita" [(ngModel)]="book.horaCita" (ionChange) = done1()>
-     <ion-select-option value="">
-Select
-     </ion-select-option >
+       <ion-select-option value="">
+        Select
+             </ion-select-option >
 
        <ion-select-option *ngFor="let hora of horario"  [value]="hora.valor">        
         {{hora.etiqueta}}

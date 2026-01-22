@@ -16,8 +16,8 @@
 
   
         <ion-item>
-      <ion-select  label="Power supply"
-       [interfaceOptions]="powerPopoverOptions" interface="popover" fill="outline"
+      <ion-select  label="Power supply" style="padding:5px;" fill="outline"
+       [interfaceOptions]="powerPopoverOptions" interface="alert" 
       
       labelPlacement="stacked" placeholder="Select" id = "power" name = "power" [(ngModel)]="site.power" >
       <ion-select-option *ngFor="let power of powers"  [value]="power.valor">  
@@ -28,8 +28,8 @@
     </ion-item>
 
     <ion-item>
-      <ion-select label="Water supply" placeholder="Select"
-       [interfaceOptions]="waterPopoverOptions" interface="popover" fill="outline"
+      <ion-select label="Water supply" fill="outline" placeholder="Select" style="padding:5px;"
+       [interfaceOptions]="waterPopoverOptions" interface="alert" 
       labelPlacement="stacked"  id = "water" name = "water" [(ngModel)]="site.water" >
       <ion-select-option *ngFor="let water of waters"  [value]="water.valor">  
         {{water.etiqueta}}
@@ -39,9 +39,9 @@
     </ion-item>
 
     <ion-item>
-      <ion-select 
+      <ion-select style="padding:5px;"
       label="Will you to be there?" placeholder="Select"
-       [interfaceOptions]="presenciaPopoverOptions" interface="popover" fill="outline"
+       [interfaceOptions]="presenciaPopoverOptions" interface="alert" fill="outline"
       labelPlacement="stacked"  id = "ensitio" name = "ensitio" [(ngModel)]="site.ensitio" >
       <ion-select-option *ngFor="let ensitio of ensitios"  [value]="ensitio.valor">  
         {{ensitio.etiqueta}}

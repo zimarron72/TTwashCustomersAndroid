@@ -3,6 +3,7 @@ import { GoogleMap , MapType, Marker} from '@capacitor/google-maps';
 import { ToastController } from '@ionic/angular';
 import { Router, ActivatedRoute,  Params } from '@angular/router';
 import { StorageService } from '../../servicios/storage.service';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -25,6 +26,7 @@ yard_nombre:any
      private router: Router,
       private rutaActiva: ActivatedRoute,
           private localstorage:StorageService, 
+  
   ) {
 
 
@@ -63,6 +65,8 @@ yard_nombre:any
   ngOnInit() {
 
   }
+
+    
 async ngAfterViewInit() {
     await this.createMap()
   }
@@ -145,9 +149,13 @@ async ngAfterViewInit() {
   }
 
 atras() {
-       this.router.navigate(['pasos/selectyarda'])       
+  this.googleMap.destroy().then(
+    (res)=> {
+      this.router.navigate(['pasos/selectyarda'])   
+    }
+  )
+           
 }
-
 
  async selectCita(yard_nombre:any) {
   
@@ -162,5 +170,8 @@ atras() {
  await this.localstorage.setObject('itemcartOnsite', itemcartOnsite)
 this.router.navigate(['/pasos/selectcita']);  
  }   
+
+
+ 
   
 }
