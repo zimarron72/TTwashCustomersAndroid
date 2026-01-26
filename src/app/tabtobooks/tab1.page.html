@@ -44,8 +44,18 @@
   </ion-menu-toggle>
   </ion-list>
   
-      <ion-list id="inbox-list" >    
+                   
+      <ion-list id="inbox-list" *ngIf ="autenticacion_tipo == 'correo_pass'">    
         <ion-item color="secondary" (click) ="salida_regular()"  lines="none"  >
+          <ion-icon slot="start" [name]="'power'"></ion-icon>
+          <ion-label>
+           Sign out
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-list id="inbox-list" *ngIf ="autenticacion_tipo == 'google'">    
+        <ion-item color="secondary" (click) ="logoutGoogle()"  lines="none"  >
           <ion-icon slot="start" [name]="'power'"></ion-icon>
           <ion-label>
            Sign out

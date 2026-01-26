@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import {AutenticacionService} from '../servicios/autenticacion'
-import { Device } from '@capacitor/device';
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -114,14 +114,16 @@ else if (!emailRegex.test(email)) {
       this.showPassword2 = !this.showPassword2;
     }
 
-  send() {
+  async send() {
     if (this.validateForm()) {
   
    var name=  this.form_registro.get("name")?.value;
     var password1 =  this.form_registro.get("password1")?.value;
     var email =  this.form_registro.get("email")?.value;
 
-      return this.servicioauth.register(email,password1,name,this.getIdevice)  
+
+
+      return this.servicioauth.register(email,password1,name)  
     }
     else {
       let header = 'Warning'
@@ -147,20 +149,6 @@ else if (!emailRegex.test(email)) {
   
   }
 
-   async getIdevice() {
 
-  const info = await Device.getId().then(
-    (res)=> {
-      console.log(res)
-    }
-  ).catch(
-    (err)=> {
-      console.log(err)
-    }
-  )
-  
-
-
-}
 
 }

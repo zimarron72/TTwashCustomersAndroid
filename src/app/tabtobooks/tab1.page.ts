@@ -86,6 +86,10 @@ salida_regular() {
       this.router.navigate(['delete-cuenta/delete']);
     }
 
+    logoutGoogle() {
+      this.AutenticacionService.logoutGoogle()
+    }  
+
 
 
 }

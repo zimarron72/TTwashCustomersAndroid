@@ -30,6 +30,8 @@ versionActual:any
 
    this.inicializarApp()
 
+
+
   }
 
  public async openAlert2(mensaje: string,  url: string) {
@@ -67,7 +69,11 @@ cHttps(url: string, data: any) {
   }
 
  inicializarApp() {
+
+
+
 this.platform.ready().then(async ()=>{
+
   setTimeout(() => {
   this.wonderPush.subscribeToNotifications().then(
 
@@ -93,7 +99,7 @@ checkVersion() {
   App.getInfo().then(info=> {
     this.versionActual = info.version
     if(this.platform.is('ios')){
-
+ 
 var url = 'https://app.washtt.com/1A_check_version.php'
       var data = {
         plataforma: 'IOS',
@@ -112,56 +118,32 @@ var url = 'https://app.washtt.com/1A_check_version.php'
                  })
   }
 
+  else if(this.platform.is('android')){
+
+    var url = 'https://app.washtt.com/1A_check_version.php'
+        var data = {
+          plataforma: 'ANDROID',
+          app : 'CUSTOMERS'
+        }
+        this.cHttps(url, data).subscribe(
+          async (res: any) => {
+                   console.log(res.data)
+  
+  var resultado =   this.compare(this.versionActual,res.data.version)
+  
+          if(resultado != 0 ){
+            var mensaje = 'You have the old version of the app, '+this.versionActual+' update the app to the latest version '+res.data.version+' to ensure proper functioning.'
+          this.openAlert2(mensaje,res.data.url)    
+          }
+              
+          }) 
+  
+  }
+
+
 })
 
-if(this.platform.is('android')){
-
-  var url = 'https://app.washtt.com/1A_check_version.php'
-      var data = {
-        plataforma: 'ANDROID',
-        app : 'CUSTOMERS'
-      }
-      this.cHttps(url, data).subscribe(
-        async (res: any) => {
-                 console.log(res.data)
-
-var resultado =   this.compare(this.versionActual,res.data.version)
-
-        if(resultado != 0 ){
-          var mensaje = 'You have the old version of the app, '+this.versionActual+' update the app to the latest version '+res.data.version+' to ensure proper functioning.'
-        this.openAlert2(mensaje,res.data.url)    
-        }
-            
-        }) 
-
-}
-
-
                  }          
- /* var url = 'https://app.washtt.com/1A_check_version.php'
-      var data = {
-        plataforma: 'IOS',
-        app : 'CUSTOMERS'
-      }
-      this.cHttps(url, data).subscribe(
-        async (res: any) => {
-                 console.log(res.data)
-
-                 var resultado =   this.compare(this.versionActual,res.data.version)
-
-                 if(resultado != 0 ){
-                   var mensaje = 'You have the old version of the app, '+this.versionActual+' update the app to the latest version '+res.data.version+' to ensure proper functioning.'
-                 this.openAlert2(mensaje,res.data.url)    
-                 }          
-                 
-        }) */
-
-
-
-
-
-
-
 
 // Return 1 if a > b
 // Return -1 if a < b
